@@ -3,13 +3,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
     <script src="js/script.js"></script>
     <title>Join</title>
 </head>
 
-<body onload="init()">
+<body>
     <div class="header">
         <div>
             <img src="img/join_logo.png" alt="">
@@ -23,11 +29,11 @@
 
     <div id="loginWrapper" class="loginWrapper">
         <div id="loginForm" class="loginForm">
-            <h1>Log in</h1>
+            <h1 class="fSize-61">Log in</h1>
             <span class="headlineBorder">&nbsp;</span>
             <div id="loginCredentials">
                 <form method="POST">
-                    <input type="email" placeholder="Email" name="email" id="email" class="icon-letter">
+                    <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control">
                     <input type="password" placeholder="Password" name="password" id="password" class="icon-lock">
                     <div class="checkBox">
                         <input type="checkbox" placeholder="Remember me">
@@ -35,18 +41,19 @@
                     </div>
                 </form>
                 <form action="">
-                    <button>Log in</button>
-                    <button>Guest Log in</button>
+                    <button class="btn bg-join-blue fc-white fSize-16" id="logIn">Log in</button>
+                    <button class="btn bg-transparent fc-join-blue fSize-16 border-join-blue" id="guestLogIn">Guest Log in</button>
                 </form>
             </div>
+
         </div>
     </div>
 
 
     <footer>
-        <div class="footerLinks">Privacy Policy</div>
+        <div class="footerLinks fc-grey">Privacy Policy</div>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="footerLinks">Legal Notice</div>
+        <div class="footerLinks fc-grey">Legal Notice</div>
     </footer>
 </body>
 </html>

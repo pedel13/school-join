@@ -5,8 +5,9 @@ html {
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Inter', sans-serif !important;
     font-size: 24px;
-    background: #F6F7F8;
+    background: #F6F7F8 !important;
 }
 
 /***** START OF global and general stylings *****/
@@ -18,6 +19,38 @@ h1 {
 button,
 input {
     cursor: pointer;
+}
+
+.bg-join-blue {
+    background-color: #2A3647 !important;
+}
+
+.bg-transparent {
+    background-color: transparent!important;
+}
+
+.fc-white {
+    color: #ffffff !important;
+}
+
+.fc-grey {
+    color: #A8A8A8 !important;
+}
+
+.fc-join-blue {
+    color: #2A3647 !important;
+}
+
+.border-join-blue {
+    border: 1px solid #2A3647 !important;
+}
+
+.fSize-16 {
+    font-size: 16px!important;
+}
+
+.fSize-61 {
+    font-size: 61px !important;
 }
 
 /***** END OF global and general stylings *****/
@@ -47,6 +80,7 @@ button#signUp {
 }
 
 .loginWrapper {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,9 +91,10 @@ button#signUp {
     align-items: center;
     flex-direction: column;
     background: #ffffff;
-    width: 60vw;
-    height: 40vh;
+    max-width: 652px;
+    max-height: 493px;
     border-radius: 24px;
+    padding: 48px 115px;
 }
 
 .headlineBorder {
@@ -77,11 +112,16 @@ button#signUp {
 }
 
 #loginCredentials > form > input {
-    width: 40vw;
+    width: 422px;
     padding: 12px 30px 12px 21px !important;
     gap: 10px;
     border: 1px solid lightgray;
     border-radius: 10px;
+}
+
+#loginCredentials > form:nth-of-type(2) {
+    flex-direction: row;
+    gap: 24px;
 }
 
 #loginCredentials > form > input:first-of-type {
@@ -89,12 +129,20 @@ button#signUp {
 }
 
 .checkBox {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .checkBox > span {
     font-size: 16px;
+    margin: 16px 0 16px 16px;
+}
+
+.checkBox > input[type=checkbox] {
+    height: 20px;
+    width: 20px;
 }
 
 footer {
@@ -104,6 +152,7 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-bottom: 40px;
 }
 
 .icon-letter {
