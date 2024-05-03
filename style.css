@@ -170,3 +170,53 @@ footer {
     background-position: center right 20px;
     background-size: 20px;
 }
+
+.summary-butten-color {
+    color: black !important;
+    background-color: #ffffff !important;
+}
+
+.summary-butten-number{
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary-butten-text-small{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.summary-butten-text-medium{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.summary-butten-text-large{
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.summary-butten-size-small {
+    width: 168px;
+    height: 168px;
+}
+
+.summary-butten-size-medium {
+    width: 264px;
+    height: 168px;
+}
+
+.summary-butten-size-large {
+    width: 560px;
+    height: 168px;
+}
+
+.roundet-30{
+    border-radius: 30px;
+}
+
+.summary-line{
+    max-width: 2px !important;
+    height: 102px !important;
+    background-color:#D1D1D1;
+}
