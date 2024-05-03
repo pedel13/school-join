@@ -197,18 +197,18 @@ footer {
 }
 
 .summary-butten-size-small {
-    width: 168px;
-    height: 168px;
+    width: 168px !important;
+    height: 168px !important;
 }
 
 .summary-butten-size-medium {
-    width: 264px;
-    height: 168px;
+    width: 264px !important;
+    height: 168px !important;
 }
 
 .summary-butten-size-large {
-    width: 560px;
-    height: 168px;
+    width: 560px !important;
+    height: 168px !important;
 }
 
 .roundet-30{
@@ -219,4 +219,21 @@ footer {
     max-width: 2px !important;
     height: 102px !important;
     background-color:#D1D1D1;
+}
+
+.summary-placeholder-large{
+    width: 32px !important;
+}
+
+.summary-placeholder-small{
+    width: 28px !important;
+}
+
+.summary-placeholder-vertical{
+    height: 29px !important;
+}
+
+.summary-icon{
+    max-width: 69px !important;
+    height: 69px !important;
 }
