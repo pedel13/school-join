@@ -16,6 +16,7 @@
     <script src="js/script.js"></script>
     <title>Join</title>
 </head>
+<!--  TODO: m-0 in divs unter dem link einfügen -->
 
 <body>
 
@@ -31,21 +32,21 @@
             <div class="col p-0">
                 <!-- Tt-do -done container -->
                 <div class="row summary-button-size-large">
-                    <a href="./board.html"
-                        class="text-decoration-none p-0 summary-button-color summary-button-size-medium col  rounded-30">
-                        <div class="row align-items-center summary-button-size-medium justify-content-around">
-                            <div class="col summary-icon p-0">
-                                <!-- TODO: icon einfügen -->
-                                <img src="./img/todo_icon.png" alt="todo_icon">
+                    <a href="./board.html" class="col p-0 rounded-30 text-decoration-none summary-button-color container">
+                        <div class="row align-items-center h-100 m-0">
+                            <div class="col p-0 justify-content-end">
+                                <!-- TODO: grösse einfügen -->
+                                <img src="./img/todo_icon.png" alt="done_icon" class="justify-content-end">
                             </div>
                             <div class="col p-0">
-                                <!--TODO: Zahl aus Zählerfunktion -->
-                                <h1 class="summary-button-number">
-                                    1
-                                </h1>
-
                                 <div>
-                                    <p class="summary-button-text-medium">To-Do</p>
+                                    <!--TODO: Zahl aus Zählerfunktion -->
+                                    <h1 class="summary-button-number">
+                                        1
+                                    </h1>
+                                </div>
+                                <div>
+                                    <p class="summary-button-text-medium">todo</p>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +119,7 @@
                     <!-- done container -->
                     <a href="./board.html"
                         class="col p-0 text-decoration-none summary-button-color rounded-30 summary-button-size-small">
-                        <div class="align-items-center h-100 row">
+                        <div class="align-items-center h-100">
                             <div>
                                 <!-- TODO: zählerfunktion -->
                                 <h1 class="summary-button-number">
