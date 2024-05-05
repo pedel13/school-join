@@ -17,45 +17,36 @@
     <title>Join</title>
 </head>
 
-<body onload="onloadFunc()">
+<body onload="init()">
     <div class="header">
         <div>
             <img src="img/join_logo.png" alt="">
         </div>
-        <div class="signUp_btn">
-            <p>Not a Join user?</p>
-            &nbsp;
-            <button id="signUp">Sign up</button>
-        </div>
     </div>
 
-    <div id="loginWrapper" class="loginWrapper">
-        <div id="loginForm" class="loginForm">
-            <h1 class="fSize-61">Log in</h1>
+    <div id="signUpWrapper" class="signUpWrapper">
+        <div id="signUpForm" class="signUpForm">
+            <h1 class="fSize-61">Sign up</h1>
             <span class="headlineBorder">&nbsp;</span>
-            <div id="loginCredentials">
+            <div id="signUpCredentials">
                 <form method="POST">
+                    <input type="text" placeholder="Name" name="name" id="name" class="icon-person form-control">
                     <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control">
                     <input type="password" placeholder="Password" name="password" id="password" class="icon-lock">
-                    <div class="checkBox">
+                    <input type="password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock">
+                    <div class="signUpCheckBox">
                         <input type="checkbox">
-                        <span>Remember me</span>
+                        <span>I accept the
+                            <a href="">Privacy policy</a>
+                        </span>
                     </div>
                 </form>
                 <form action="">
-                    <button class="btn bg-join-blue fc-white fSize-16" id="logIn">Log in</button>
-                    <button class="btn bg-transparent fc-join-blue fSize-16 border-join-blue" id="guestLogIn">Guest Log in</button>
+                    <button class="btn bg-join-blue fc-white fSize-16" id="signUp">Sign up</button>
                 </form>
             </div>
 
         </div>
     </div>
-
-
-    <footer>
-        <div class="footerLinks fc-grey">Privacy Policy</div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="footerLinks fc-grey">Legal Notice</div>
-    </footer>
 </body>
 </html>

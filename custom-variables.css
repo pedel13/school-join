@@ -1,0 +1,135 @@
+h1 {
+    margin-block-end: 0;
+}
+
+button,
+input {
+    cursor: pointer;
+}
+
+.bg-join-blue {
+    background-color: #2A3647 !important;
+}
+
+.bg-transparent {
+    background-color: transparent!important;
+}
+
+.fc-white {
+    color: #ffffff !important;
+}
+
+.fc-grey {
+    color: #A8A8A8 !important;
+}
+
+.fc-join-blue {
+    color: #2A3647 !important;
+}
+
+.border-join-blue {
+    border: 1px solid #2A3647 !important;
+}
+
+.fSize-16 {
+    font-size: 16px!important;
+}
+
+.fSize-61 {
+    font-size: 61px !important;
+}
+
+.icon-letter {
+    position: relative;
+    background-image: url("img/mail.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+.icon-lock {
+    position: relative;
+    background-image: url("img/lock.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+.icon-person {
+    position: relative;
+    background-image: url("img/person.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+::placeholder {
+    color: #ADADAD !important;
+}
+
+.summary-button-color {
+    color: black !important;
+    background-color: #ffffff !important;
+}
+
+.summary-button-number {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary-button-text-small {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.summary-button-text-medium {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.summary-button-text-large {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.summary-button-size-small {
+    width: 168px !important;
+    height: 168px !important;
+}
+
+.summary-button-size-medium {
+    width: 264px !important;
+    height: 168px !important;
+}
+
+.summary-button-size-large {
+    width: 560px !important;
+    height: 168px !important;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+}
+
+.summary-line {
+    max-width: 2px !important;
+    height: 102px !important;
+    background-color:#D1D1D1;
+}
+
+.summary-placeholder-large {
+    width: 32px !important;
+}
+
+.summary-placeholder-small {
+    width: 28px !important;
+}
+
+.summary-placeholder-vertical {
+    height: 29px !important;
+}
+
+.summary-icon {
+    max-width: 69px !important;
+    height: 69px !important;
+}

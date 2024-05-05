@@ -10,51 +10,6 @@ body {
     background: #F6F7F8 !important;
 }
 
-/***** START OF global and general stylings *****/
-
-h1 {
-    margin-block-end: 0;
-}
-
-button,
-input {
-    cursor: pointer;
-}
-
-.bg-join-blue {
-    background-color: #2A3647 !important;
-}
-
-.bg-transparent {
-    background-color: transparent!important;
-}
-
-.fc-white {
-    color: #ffffff !important;
-}
-
-.fc-grey {
-    color: #A8A8A8 !important;
-}
-
-.fc-join-blue {
-    color: #2A3647 !important;
-}
-
-.border-join-blue {
-    border: 1px solid #2A3647 !important;
-}
-
-.fSize-16 {
-    font-size: 16px!important;
-}
-
-.fSize-61 {
-    font-size: 61px !important;
-}
-
-/***** END OF global and general stylings *****/
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -79,20 +34,22 @@ button#signUp {
     font-size: 16px;
 }
 
-.loginWrapper {
+.loginWrapper,
+.signUpWrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.loginForm {
+.loginForm,
+.signUpForm {
     display: flex;
     align-items: center;
     flex-direction: column;
     background: #ffffff;
     max-width: 652px;
-    max-height: 493px;
+    min-height: 493px;
     border-radius: 24px;
     padding: 48px 115px;
 }
@@ -111,7 +68,8 @@ button#signUp {
     flex-direction: column;
 }
 
-#loginCredentials > form > input {
+#loginCredentials > form > input,
+#signUpCredentials > form > input {
     width: 422px;
     padding: 12px 30px 12px 21px !important;
     gap: 10px;
@@ -124,8 +82,25 @@ button#signUp {
     gap: 24px;
 }
 
+#signUpCredentials > form:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #loginCredentials > form > input:first-of-type {
     margin-bottom: 24px;
+}
+
+#signUpCredentials > form > input {
+    margin-bottom: 24px;
+}
+
+.signUpCheckBox {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .checkBox {
@@ -135,12 +110,14 @@ button#signUp {
     align-items: center;
 }
 
-.checkBox > span {
+.checkBox > span,
+.signUpCheckBox > span {
     font-size: 16px;
     margin: 16px 0 16px 16px;
 }
 
-.checkBox > input[type=checkbox] {
+.checkBox > input[type=checkbox],
+.signUpCheckBox > input[type=checkbox]{
     height: 20px;
     width: 20px;
 }
@@ -153,87 +130,4 @@ footer {
     align-items: center;
     width: 100%;
     margin-bottom: 40px;
-}
-
-.icon-letter {
-    position: relative;
-    background-image: url("img/mail.png");
-    background-repeat: no-repeat;
-    background-position: center right 20px;
-    background-size: 20px;
-}
-
-.icon-lock {
-    position: relative;
-    background-image: url("img/lock.png");
-    background-repeat: no-repeat;
-    background-position: center right 20px;
-    background-size: 20px;
-}
-
-.summary-butten-color {
-    color: black !important;
-    background-color: #ffffff !important;
-}
-
-.summary-butten-number{
-    font-size: 64px;
-    font-weight: 600;
-}
-
-.summary-butten-text-small{
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.summary-butten-text-medium{
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.summary-butten-text-large{
-    font-size: 21px;
-    font-weight: 700;
-}
-
-.summary-butten-size-small {
-    width: 168px !important;
-    height: 168px !important;
-}
-
-.summary-butten-size-medium {
-    width: 264px !important;
-    height: 168px !important;
-}
-
-.summary-butten-size-large {
-    width: 560px !important;
-    height: 168px !important;
-}
-
-.roundet-30{
-    border-radius: 30px;
-}
-
-.summary-line{
-    max-width: 2px !important;
-    height: 102px !important;
-    background-color:#D1D1D1;
-}
-
-.summary-placeholder-large{
-    width: 32px !important;
-}
-
-.summary-placeholder-small{
-    width: 28px !important;
-}
-
-.summary-placeholder-vertical{
-    height: 29px !important;
-}
-
-.summary-icon{
-    max-width: 69px !important;
-    height: 69px !important;
 }
