@@ -112,7 +112,7 @@ input {
 }
 
 .summary-line {
-    max-width: 2px !important;
+    width: 2px !important;
     height: 102px !important;
     background-color:#D1D1D1;
 }
@@ -132,4 +132,9 @@ input {
 .summary-icon {
     max-width: 69px !important;
     height: 69px !important;
+}
+
+.summary-icon-numberbox {
+    width: 130px !important;
+    height: 96px !important;
 }
