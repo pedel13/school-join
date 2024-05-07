@@ -7,7 +7,7 @@ function show() {
     document.getElementById('big-logo').style.display = 'flex';
     document.getElementById('header').style.display = 'none';
     document.getElementById('loginWrapper').style.display = 'none';
-    setTimeout("hide()", 2000);
+    setTimeout("hide()", 1300);
 }
 function hide() {
     document.getElementById('big-logo').style.display = 'none';

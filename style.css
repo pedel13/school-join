@@ -138,3 +138,9 @@ footer {
     align-items: center;
     height: 100vh;
 }
+
+button:hover {
+    background: #4589FF !important;
+    border: #4589FF !important;
+    box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.20) !important;
+}
