@@ -178,6 +178,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 16px;
 }
 
 header > div:last-of-type > img:first-of-type {
@@ -194,4 +195,16 @@ section#sidebar {
 section#sidebar > img {
     width: 100px;
     height: 122px;
+}
+#sidebar-content {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+    flex-direction: column;
+}
+
+#sidebar-content > a {
+    text-decoration: none !important;
+    color: #ffffff;
+    margin-left: 0 !important;
 }
