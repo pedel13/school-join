@@ -41,7 +41,7 @@ input {
 
 .icon-letter {
     position: relative;
-    background-image: url("img/mail.png");
+    background-image: url("img/icons/mail.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
@@ -49,7 +49,7 @@ input {
 
 .icon-lock {
     position: relative;
-    background-image: url("img/lock.png");
+    background-image: url("img/icons/lock.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
@@ -57,7 +57,7 @@ input {
 
 .icon-person {
     position: relative;
-    background-image: url("img/person.png");
+    background-image: url("img/icons/person.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
