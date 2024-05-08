@@ -10,7 +10,7 @@ body {
     background: #F6F7F8 !important;
 }
 
-.header {
+.loginHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -149,4 +149,49 @@ button#guestLogIn:hover {
     background: #ffffff !important;
     color: #4589FF !important;
     border: #4589FF !important;
+}
+
+#sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 232px;
+    border-right: 1px solid rgba(0, 0, 0, 1);
+    padding: 8px 12px 20px;
+    background-color: #2A3647;
+    z-index: 2;
+}
+
+.container {
+    margin-left: 232px !important;
+}
+
+section#header {
+    margin-left: 232px;
+}
+
+header {
+    background-color: #ffffff;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header > div:last-of-type > img:first-of-type {
+    margin-right: 24px;
+}
+
+section#sidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+section#sidebar > img {
+    width: 100px;
+    height: 122px;
 }
