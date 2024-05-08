@@ -1,5 +1,5 @@
-function init() {
-
+async function init() {
+    await includeHTML();
 }
 
 //Function show and hide belong together and are for the Join Logo

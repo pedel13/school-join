@@ -142,5 +142,11 @@ footer {
 button:hover {
     background: #4589FF !important;
     border: #4589FF !important;
-    box-shadow: 0 4px 80px 0 rgba(0, 0, 0, 0.20) !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20) !important;
+}
+
+button#guestLogIn:hover {
+    background: #ffffff !important;
+    color: #4589FF !important;
+    border: #4589FF !important;
 }
