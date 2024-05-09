@@ -10,6 +10,23 @@ body {
     background: #F6F7F8 !important;
 }
 
+p{
+    margin: 0px;
+}
+
+h1{
+    margin: 0px;
+}
+
+h2{
+    margin: 0px;
+}
+
+h3{
+    margin: 0px;
+}
+
+
 .loginHeader {
     display: flex;
     justify-content: space-between;
@@ -207,4 +224,48 @@ section#sidebar > img {
     text-decoration: none !important;
     color: #ffffff;
     margin-left: 0 !important;
+}
+
+.d-flex{
+    display: flex;
+}
+
+.align-items-center{
+    align-items: center;
+}
+
+.justify-content-center{
+    justify-content: center;
+}
+
+.justify-content-end{
+    justify-content: end;
+}
+
+.text-decoration-none{
+    text-decoration: none;
+}
+
+.justify-content-around{
+    justify-content: space-around;
+}
+
+.justify-content-between{
+    justify-content: space-between;
+}
+
+.justify-content-evenly{
+    justify-content: space-evenly;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-row{
+    flex-direction: row;
+}
+
+.m-0{
+    margin: 0px;
 }
