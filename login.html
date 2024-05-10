@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="custom-variables.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
+
     <link rel="icon" type="image/png" href="img/join_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,9 @@
 <body onload="onloadFunc(); show()">
     <div class="loginHeader" id="header">
         <div>
-            <img src="img/join_logo.png" alt="">
+            <a href="index.html">
+                <img src="img/join_logo.png" alt="">
+            </a>
         </div>
         <div class="signUp_btn">
             <p>Not a Join user?</p>
@@ -43,19 +45,22 @@
                     </div>
                 </form>
                 <form action="">
-                    <button class="btn bg-join-blue fc-white fSize-16" id="logIn">Log in</button>
-                    <button class="btn bg-transparent fc-join-blue fSize-16 border-join-blue" id="guestLogIn">Guest Log in</button>
+                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
+                    <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn">Guest Log in</button>
                 </form>
             </div>
 
         </div>
     </div>
 
-
     <footer>
-        <div class="footerLinks fc-grey">Privacy Policy</div>
+        <div class="footerLinks fc-grey">
+            <a href="privacy.html" target="_blank" class="fc-grey">Privacy Policy</a>
+        </div>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="footerLinks fc-grey">Legal Notice</div>
+        <div class="footerLinks link-noDeco-black">
+            <a href="legal.html" target="_blank" class="fc-grey">Legal Notice</a>
+        </div>
     </footer>
 
     <div id="big-logo" class="big-logo">
