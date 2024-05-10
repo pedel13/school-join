@@ -83,13 +83,13 @@ input {
 }
 
 .summary-button-color {
-    color: black !important;
-    background-color: #ffffff !important;
+    color: black ;
+    background-color: #ffffff ;
 }
 
 .summary-button-color:hover{
     color: #ffffff !important;
-    background-color: black !important;
+    background-color: #2A3647 !important;
 }
 
 .summary-button-number {
@@ -194,7 +194,7 @@ input {
 }
 
 .summary-done:hover + .summary-done-icon {
-    background: url(./img/icons/done_hover_icon.png) !important;
+    background-image: url(./img/icons/done_hover_icon.png) !important;
 }
 
 .summary-icon-numberbox {
