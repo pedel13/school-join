@@ -214,3 +214,17 @@ input {
 .margin-bottom-0 {
     margin-bottom: 0 !important;
 }
+
+.redStar {
+    color: red !important;
+}
+
+.divider {
+    height: 100% !important;
+    width: 1px !important;
+    border-left: 1px solid grey !important;
+}
+
+.spacer {
+    margin-top: 24px;
+}

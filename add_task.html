@@ -13,10 +13,78 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
+    <script src="js/template.js"></script>
     <title>Join</title>
 </head>
 
 <body onload="init()">
+    <div id="siteWrapper" class="siteWrapper">
+        <div w3-include-html="templates/sidebar.html"></div>
+        <div w3-include-html="templates/header.html"></div>
 
+        <div id="addTaskWrapper" class="addTaskWrapper" style="height: 424px">
+            <div class="addTaskWrapperLeft">
+                <div>
+                    <h1>Add Task</h1>
+                </div>
+
+                <div>
+                    <p class="fSize-16">Title<span class="redStar">*</span></p>
+                    <input type="text">
+                </div>
+
+                <div class="spacer">&nbsp;</div>
+
+                <div>
+                    <p class="fSize-16">Description<span class="redStar">*</span></p>
+                    <textarea rows="5"></textarea>
+                </div>
+
+                <div class="spacer">&nbsp;</div>
+
+                <div>
+                    <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
+                    <select name="choose" id="Assignee">
+                        <option value="Assigned to...">Assigned to...</option>
+                        <option value="Test 1">Test 1</option>
+                        <option value="Test 2">Test 2</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="addTaskWrapperMid divider">&nbsp;</div>
+
+            <div class="addTaskWrapperRight">
+                <div>
+                    <p>Due Date<span class="redStar">*</span></p>
+                    <input type="date">
+                </div>
+
+                <div>
+                    <p>Prio<span class="redStar">*</span></p>
+                    <div id="priority" class="priority">
+                        <button>Urgent</button>
+                        <button>Medium</button>
+                        <button>Low</button>
+                    </div>
+                </div>
+
+                <div>
+                    <p>Category<span class="redStar">*</span></p>
+                    <select name="choose" id="Assignee">
+                        <option value="Assigned to...">Assigned to...</option>
+                        <option value="Test 1">Test 1</option>
+                        <option value="Test 2">Test 2</option>
+                    </select>
+                </div>
+
+                <div>
+                    <p>Subtasks<span class="redStar">*</span></p>
+                    <input type="text">
+                </div>
+
+            </div>
+        </div>
+    </div>
 </body>
 </html>
