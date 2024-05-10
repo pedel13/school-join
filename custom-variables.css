@@ -72,6 +72,11 @@ input {
     background-color: #ffffff !important;
 }
 
+.summary-button-color:hover{
+    color: #ffffff !important;
+    background-color: black !important;
+}
+
 .summary-button-number {
     font-size: 64px;
     font-weight: 600;
@@ -92,6 +97,29 @@ input {
     font-weight: 700;
 }
 
+.summary-title-large {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.summary-title-small {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+
+
+.summary-greeting {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.summary-greeting-name {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
 .summary-button-size-small {
     width: 168px !important;
     height: 168px !important;
@@ -107,6 +135,24 @@ input {
     height: 168px !important;
 }
 
+.summary-button-width-text {
+    width: 93px!important;
+    text-align: center;
+}
+
+.summary-button-box {
+    height: 562px !important;
+    margin-top: 56px !important;
+    margin-left: 328px !important;
+    margin-right: 80px !important;
+}
+
+.summary-title-box {
+    gap: 30px !important;
+    margin-top: 206px !important;
+    margin-left: 328px !important;
+}
+
 .rounded-30 {
     border-radius: 30px;
 }
@@ -116,25 +162,35 @@ input {
     height: 102px !important;
     background-color:#D1D1D1;
 }
-
-.summary-placeholder-large {
-    width: 32px !important;
+.summary-title-line {
+    width: 3px !important;
+    height: 59px !important;
+    background-color:#29ABE2;
 }
 
-.summary-placeholder-small {
-    width: 28px !important;
-}
-
-.summary-placeholder-vertical {
-    height: 29px !important;
-}
 
 .summary-icon {
     max-width: 69px !important;
     height: 69px !important;
 }
 
+.summary-done-icon {
+    width: 69px !important;
+    height: 69px !important;
+    background-image: url(./img/icons/done_icon.png);
+    background-repeat: no-repeat;
+}
+
+.summary-done:hover + .summary-done-icon {
+    background: url(./img/icons/done_hover_icon.png) !important;
+}
+
+
 .summary-icon-numberbox {
     width: 130px !important;
     height: 96px !important;
+}
+
+.p-10{
+    padding: 10px;
 }
