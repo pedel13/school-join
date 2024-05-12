@@ -373,3 +373,11 @@ section#sidebar > img {
     align-items: flex-start;
     flex-direction: column;
 }
+
+.gap-32 {
+    gap: 32px;
+}
+
+.d-none {
+    display: none;
+}

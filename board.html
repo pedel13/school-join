@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
     <title>Join</title>
@@ -18,5 +20,174 @@
 
 <body>
 
+    <div class="">
+        <div class="d-flex align-items-center justify-content-between board-headline">
+            <div>
+                <h1 class="board-title">Board</h1>
+            </div>
+            <div class="d-flex align-items-center justify-content-evenly gap-32">
+                <div class="board-input-total d-flex align-items-center justify-content-between">
+                    <input type="text" class="board-input" placeholder="Find Task">
+                    <!-- TODO: onclik funktion -->
+                    <button class="d-flex" id="board-search-button" onclick="">
+                        <div class="board-vertical-line"></div>
+                        <div class="board-search-padding">
+                        <div class="board-search"></div>
+                        </div>
+                    </button>
+                </div>
+                <button class="board-add-task-button d-flex justify-content-evenly align-items-center">add task
+                    <div class="board-add-task-icon-withe"></div>
+                </button>
+            </div>
+        </div>
+        <div class="d-flex board-all-colums">
+            <!-- to-do  -->
+            <div class="board-task-colums">
+                <div>
+                    <div>
+                        <h2 class="board-suptitle">To Do</h2>
+                    </div>
+                    <div>
+                        <!-- TODO: icon einfügen
+                                        add task popapgeneriren -->
+                    </div>
+                </div>
+                <div class="board-tasks">
+                    <div id="no-tasks-to-do" class="board-no-tasks d-flex align-items-center justify-content-center">
+                        <p>No tasks To do</p>
+                    </div>
+                    <div id="board-task-on-to-do">
+                        <!-- TODO: task drag and drop einfügen -->
+                    </div>
+                </div>
+            </div>
+            <!-- in progress  -->
+            <div class="board-task-colums">
+                <div>
+                    <div>
+                        <h2 class="board-suptitle">In progress</h2>
+                    </div>
+                    <div>
+                        <!-- TODO: icon einfügen
+                                  add task popapgeneriren -->
+                    </div>
+                </div>
+                <div class="board-tasks">
+                    <div id="no-tasks-in-progress" class="board-no-tasks d-flex align-items-center justify-content-center">
+                        <p>No tasks In progress</p>
+                    </div>
+                    <div id="board-task-on-in-progress">
+                        <!-- TODO: task drag and drop einfügen -->
+                    </div>
+                </div>
+            </div>
+            <!-- await feedback  -->
+            <div class="board-task-colums">
+                <div>
+                    <div>
+                        <h2 class="board-suptitle">Await feedback</h2>
+                    </div>
+                    <div>
+                        <!-- TODO: icon einfügen
+                                        add task popapgeneriren -->
+                    </div>
+                </div>
+                <div class="board-tasks">
+                    <div id="no-tasks-await-feedback" class="board-no-tasks d-flex align-items-center justify-content-center">
+                        <p>No tasks Await feedback</p>
+                    </div>
+                    <div id="board-task-on-await-feedback">
+                        <!-- TODO: task drag and drop einfügen -->
+                    </div>
+                </div>
+            </div>
+            <!-- done  -->
+            <div class="board-task-colums">
+                <div>
+                    <div>
+                        <h2 class="board-suptitle">Done</h2>
+                    </div>
+                    <div>
+                        <!-- TODO: icon einfügen
+                                        add task popapgeneriren -->
+                    </div>
+                </div>
+                <div class="board-tasks">
+                    <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
+                        <p>No tasks Done</p>
+                    </div>
+                    <div id="board-task-on-done" class="board-tasks-card d-flex flex-column">
+                        <!-- TODO: task drag and drop einfügen -->
+                        <!-- Exempel task -->
+                        <div class="d-flex board-task-card flex-column">
+                            <div>
+                                <h3>user</h3>
+                            </div>
+                            <div>
+                                <p>subtitle</p>
+                            </div>
+                            <div>
+                                <p>description</p>
+                            </div>
+                            <div class="d-none" id="board-done-progressbar">
+                                <div>
+                                    <!-- TODO: progresbar -->
+                                </div>
+                                <div>
+                                    <p> <!-- TODO: zälermetode -->1/2</p>
+                                    <p>subtasks</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <!-- TODO: usericons printer funktion -->
+                                </div>
+                                <div>
+                                    <!-- TODO: priority icon funktion -->
+                                </div>
+                            </div>
+                        </div>
+                                                <!-- TODO: task drag and drop einfügen -->
+                        <!-- Exempel task -->
+                        <div class="d-flex board-task-card flex-column">
+                            <div>
+                                <h3>user</h3>
+                            </div>
+                            <div>
+                                <p>subtitle</p>
+                            </div>
+                            <div>
+                                <p>description</p>
+                            </div>
+                            <div class="d-none" id="board-done-progressbar">
+                                <div>
+                                    <!-- TODO: progresbar -->
+                                </div>
+                                <div>
+                                    <p> <!-- TODO: zälermetode -->1/2</p>
+                                    <p>subtasks</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <!-- TODO: usericons printer funktion -->
+                                </div>
+                                <div>
+                                    <!-- TODO: priority icon funktion -->
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    </div>
 </body>
+
 </html>
