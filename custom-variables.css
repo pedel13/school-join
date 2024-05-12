@@ -181,9 +181,15 @@ input {
     background-color:#29ABE2;
 }
 
-.summary-icon {
-    max-width: 69px !important;
+.summary-todo-icon {
+    width: 69px !important;
     height: 69px !important;
+    background-image: url(./img/icons/todo_icon.png);
+    background-repeat: no-repeat;
+}
+
+.summary-todo:hover .summary-todo-icon{
+    background-image: url(./img/icons/todo_hover_icon.png) !important;
 }
 
 .summary-done-icon {
@@ -193,7 +199,7 @@ input {
     background-repeat: no-repeat;
 }
 
-.summary-done:hover + .summary-done-icon {
+.summary-done:hover .summary-done-icon {
     background-image: url(./img/icons/done_hover_icon.png) !important;
 }
 

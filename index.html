@@ -19,8 +19,8 @@
 </head>
 
 <body onload="init()">
-    <div w3-include-html="templates/header.html"></div>
-    <div w3-include-html="templates/sidebar.html"></div>
+    <div w3-include-html="./templates/header.html"></div>
+    <div w3-include-html="./templates/sidebar.html"></div>
     
     <!-- Join Title -->
     <div class="d-flex flex-column">
@@ -36,9 +36,9 @@
                 <!-- Tt-do -done container -->
                 <div class="summary-button-size-large d-flex justify-content-between">
                     <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex align-items-center justify-content-center summary-button-size-medium">
+                        <div class="d-flex align-items-center justify-content-center summary-button-size-medium summary-todo">
                             <div class="p-10">
-                                <img src="img/icons/todo_icon.png" alt="done_icon" class="justify-content-end summary-icon">
+                                <div class="summary-todo-icon"></div>
                             </div>
                             <div class="d-flex flex-column align-items-center">
                                 <div>
