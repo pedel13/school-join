@@ -19,158 +19,166 @@
 </head>
 
 <body onload="init()">
-    <div w3-include-html="./templates/header.html"></div>
-    <div w3-include-html="./templates/sidebar.html"></div>
-    
-    <!-- Join Title -->
-    <div class="d-flex flex-column">
-        <div class="d-flex summary-title-box align-items-center">
-            <h1 class="summary-title-large">Join 360</h1>
-            <div class="summary-title-line"></div>
-            <h3 class="summary-title-small">Key Metrics at a Glance</h3>
+    <div id="bodyWrapper" class="bodyWrapper">
+        <div id="sideBarWrapper" class="sideBarWrapper">
+            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
         </div>
-        <div class="align-items-center d-flex">
-            <!-- TODO: container mit zählfunktion -->
-            <div class="d-flex flex-column summary-button-box justify-content-between">
 
-                <!-- Tt-do -done container -->
-                <div class="summary-button-size-large d-flex justify-content-between">
-                    <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex align-items-center justify-content-center summary-button-size-medium summary-todo">
-                            <div class="p-10">
-                                <div class="summary-todo-icon"></div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div>
-                                    <!--TODO: Zahl aus Zählerfunktion -->
-                                    <h1 class="summary-button-number">
-                                        1
-                                    </h1>
-                                </div>
-                                <div>
-                                    <p class="summary-button-text-medium">To-Do</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex justify-content-center align-items-center summary-button-size-medium summary-done">
-                            <div class="p-10">
-                                <div class="summary-done-icon"></div>
-                            </div>
-                            <div class="d-flex flex-column align-items-center">
-                                <div>
-                                    <!--TODO: Zahl aus Zählerfunktion -->
-                                    <h1 class="summary-button-number">
-                                        1
-                                    </h1>
-                                </div>
-                                <div>
-                                    <p class="summary-button-text-medium">Done</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
+        <div id="centerWrapper" class="centerWrapper">
+            <div w3-include-html="./templates/header.html"></div>
+
+            <!-- Join Title -->
+            <div class="d-flex flex-column">
+                <div class="d-flex summary-title-box align-items-center">
+                    <h1 class="summary-title-large">Join 360</h1>
+                    <div class="summary-title-line"></div>
+                    <h3 class="summary-title-small">Key Metrics at a Glance</h3>
                 </div>
-                <!-- datum container -->
-                    <a href="./board.html"
-                        class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex align-items-center justify-content-evenly summary-button-size-large">
-                            <div>
-                            <div class="d-flex align-items-center justify-content-center">
-                                <div class="d-flex p-10">
-                                    <img src="img/icons/urgent_colored_icon.png" alt="urgent_icon">
+                <div class="align-items-center d-flex">
+                    <!-- TODO: container mit zählfunktion -->
+                    <div class="d-flex flex-column summary-button-box justify-content-between">
+
+                        <!-- Tt-do -done container -->
+                        <div class="summary-button-size-large d-flex justify-content-between">
+                            <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
+                                <div class="d-flex align-items-center justify-content-center summary-button-size-medium summary-todo">
+                                    <div class="p-10">
+                                        <div class="summary-todo-icon"></div>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div>
+                                            <!--TODO: Zahl aus Zählerfunktion -->
+                                            <h1 class="summary-button-number">
+                                                1
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <p class="summary-button-text-medium">To-Do</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-column align-items-center justify-content-center">
+                            </a>
+                            <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
+                                <div class="d-flex justify-content-center align-items-center summary-button-size-medium summary-done">
+                                    <div class="p-10">
+                                        <div class="summary-done-icon"></div>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div>
+                                            <!--TODO: Zahl aus Zählerfunktion -->
+                                            <h1 class="summary-button-number">
+                                                1
+                                            </h1>
+                                        </div>
+                                        <div>
+                                            <p class="summary-button-text-medium">Done</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <!-- datum container -->
+                        <a href="./board.html"
+                           class="text-decoration-none summary-button-color rounded-30">
+                            <div class="d-flex align-items-center justify-content-evenly summary-button-size-large">
+                                <div>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <div class="d-flex p-10">
+                                            <img src="img/icons/urgent_colored_icon.png" alt="urgent_icon">
+                                        </div>
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            <div>
+                                                <!--TODO: Zahl aus Zählerfunktion -->
+                                                <h1 class="d-flex summary-button-number">
+                                                    1
+                                                </h1>
+                                            </div>
+                                            <div>
+                                                <p class="summary-button-text-small">Urgent</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex summary-line">
+                                </div>
+                                <div class="d-flex flex-column">
                                     <div>
-                                        <!--TODO: Zahl aus Zählerfunktion -->
-                                        <h1 class="d-flex summary-button-number">
-                                            1
+                                        <p class="">
+                                            <!-- TODO: Datum funktion -->
+                                            October 16,2022
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="summary-button-text-small">
+                                            <!-- TODO: fragen timelines-funktion -->
+                                            Upcoming Deadline
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="align-items-center summary-button-size-large d-flex justify-content-between">
+                            <!-- done container -->
+                            <a href="./board.html"
+                               class="text-decoration-none summary-button-color rounded-30">
+                                <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
+                                    <div>
+                                        <!-- TODO: zählerfunktion -->
+                                        <h1 class="summary-button-number">
+                                            5
                                         </h1>
                                     </div>
-                                    <div>
-                                        <p class="summary-button-text-small">Urgent</p>
+                                    <div class="summary-button-width-text">
+                                        <p class="summary-button-text-medium">
+                                            Tasks in Board
+                                        </p>
                                     </div>
                                 </div>
-                            </div>
-                            </div>
-                            <div class="d-flex summary-line">
-                            </div>
-                            <div class="d-flex flex-column">
-                                <div>
-                                    <p class="">
-                                        <!-- TODO: Datum funktion -->
-                                        October 16,2022
-                                    </p>
+                            </a>
+                            <a href="./board.html"
+                               class="text-decoration-none summary-button-color rounded-30">
+                                <div class="d-flex flex-column align-items-center justify-content-center summary-button-size-small">
+                                    <div>
+                                        <!-- TODO: zählerfunktion -->
+                                        <h1 class="summary-button-number">
+                                            2
+                                        </h1>
+                                    </div>
+                                    <div class="summary-button-width-text">
+                                        <p class="summary-button-text-medium">
+                                            Tasks In Progress
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <p class="summary-button-text-small">
-                                        <!-- TODO: fragen timelines-funktion -->
-                                        Upcoming Deadline
-                                    </p>
+                            </a>
+                            <a href="./board.html"
+                               class="text-decoration-none summary-button-color rounded-30">
+                                <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
+                                    <div>
+                                        <!-- TODO: zählerfunktion -->
+                                        <h1 class="summary-button-number">
+                                            2
+                                        </h1>
+                                    </div>
+                                    <div class="summary-button-width-text">
+                                        <p class="summary-button-text-medium">
+                                            Awaiting Feedback
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </a>
-                <div class="align-items-center summary-button-size-large d-flex justify-content-between">
-                    <!-- done container -->
-                    <a href="./board.html"
-                        class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
-                            <div>
-                                <!-- TODO: zählerfunktion -->
-                                <h1 class="summary-button-number">
-                                    5
-                                </h1>
-                            </div>
-                            <div class="summary-button-width-text">
-                                <p class="summary-button-text-medium">
-                                    Tasks in Board
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./board.html"
-                        class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex flex-column align-items-center justify-content-center summary-button-size-small">
-                            <div>
-                                <!-- TODO: zählerfunktion -->
-                                <h1 class="summary-button-number">
-                                    2
-                                </h1>
-                            </div>
-                            <div class="summary-button-width-text">
-                                <p class="summary-button-text-medium">
-                                    Tasks In Progress
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="./board.html"
-                        class="text-decoration-none summary-button-color rounded-30">
-                        <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
-                            <div>
-                                <!-- TODO: zählerfunktion -->
-                                <h1 class="summary-button-number">
-                                    2
-                                </h1>
-                            </div>
-                            <div class="summary-button-width-text">
-                                <p class="summary-button-text-medium">
-                                    Awaiting Feedback
-                                </p>
-                            </div>
-                        </div>
-                    </a>
+                    </div>
+                    <div class="">
+                        <!-- TODO: time funktion und user-namen funktion -->
+                        <h3 class="summary-greeting">Good morning</h3>
+                        <h2 class="summary-greeting-name">Sofia Müller</h2>
+                    </div>
                 </div>
-            </div>
-            <div class="">
-                <!-- TODO: time funktion und user-namen funktion -->
-                <h3 class="summary-greeting">Good morning</h3>
-                <h2 class="summary-greeting-name">Sofia Müller</h2>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
