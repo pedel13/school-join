@@ -251,7 +251,7 @@ input {
     margin-top: 24px;
 }
 
-.board-task-colums {
+.board-task-columns {
     width: 252px;
     gap: 16px;
 }
@@ -261,7 +261,7 @@ input {
     font-size: 61px;
 }
 
-.board-suptitle {
+.board-subtitle {
     font-weight: 700;
     font-size: 20px;
     color: #42526E;
@@ -296,8 +296,7 @@ input {
 .board-input-total {
     border-radius: 10px;
     background-color: white;
-    border-color: #A8A8A8;
-    border: 1px ;
+    border: 1px #A8A8A8;
     width: 312px;
     height: 48px;
 }
@@ -310,7 +309,7 @@ input {
 
 .board-input, .board-input::placeholder {
     font-size: 20px;
-    font-weight: 400px !important;
+    font-weight: 400 !important;
     font-family: 'Inter', sans-serif !important;
 }
 
@@ -370,7 +369,7 @@ input {
     margin-left: 64px;
 }
 
-.board-all-colums{
+.board-all-columns{
     margin-top: 54px;
     margin-left: 64px;
     gap: 26px;
