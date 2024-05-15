@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    width: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Inter', sans-serif !important;
@@ -27,18 +28,76 @@ img {
 }
 
 #bodyWrapper {
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
 }
 
 #centerWrapper {
     width: 100%;
+    height: 100%;
 }
 
 /*##### END OF General- & template stylings #####*/
+
+/*##### START OF sidebar stylings #####*/
+
+
+#sidebar {
+    position: relative;
+    width: 232px;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 1);
+    background-color: #2A3647;
+}
+
+#sideBarContainer {
+    height: 100%;
+}
+
+section#sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+section#sidebar > div:first-of-type > a > img {
+    margin-top: 50px;
+}
+
+section#sidebar > img {
+    width: 100px;
+    height: 122px;
+}
+
+#sidebar-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#sidebar-content > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none !important;
+    color: #ffffff;
+}
+
+#sidebar-content > a > img {
+    margin-right: 12px;
+}
+
+.sideBar-footer {
+    margin-bottom: 4rem;
+}
+
+/*##### END OF sidebar stylings #####*/
 
 .loginHeader {
     display: flex;
@@ -214,19 +273,6 @@ button#guestLogIn:hover {
     border: #4589FF !important;
 }
 
-#sidebar {
-    position: relative;
-    width: 232px;
-    height: 100%;
-    border-right: 1px solid rgba(0, 0, 0, 1);
-    padding: 8px 12px 20px;
-    background-color: #2A3647;
-}
-
-#sideBarContainer {
-    height: 98vh;
-}
-
 .container {
     margin-left: 232px !important;
 }
@@ -253,42 +299,6 @@ header > div:last-of-type > img:first-of-type {
 
 header > div > h1 {
     margin-left: 83px;
-}
-
-section#sidebar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-}
-
-section#sidebar > div:first-of-type > a > img {
-        margin-top: 50px;
-}
-
-section#sidebar > img {
-    width: 100px;
-    height: 122px;
-}
-
-#sidebar-content {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 16px;
-}
-
-#sidebar-content > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none !important;
-    color: #ffffff;
-}
-
-#sidebar-content > a > img {
-    margin-right: 12px;
 }
 
 .d-flex {
