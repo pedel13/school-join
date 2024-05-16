@@ -172,6 +172,7 @@ input {
 
 input:focus {
     outline: none !important;
+    cursor: auto;
 }
 
 input::placeholder {
@@ -355,7 +356,7 @@ header > div > h1 {
 
 .head {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     gap: 250px;
     margin-bottom: 150px;
@@ -370,7 +371,7 @@ header > div > h1 {
 }
 
 .main {
-    padding: 0 24px 0 0;
+    margin: 40px 83px 40px 83px;
 }
 
 .main > div {
