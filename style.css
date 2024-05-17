@@ -383,10 +383,10 @@ header > div > h1 {
 }
 
 .addTaskWrapper {
+    height: 450px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    margin-left: 350px;
 }
 
 .addTaskWrapperLeft,
@@ -395,6 +395,7 @@ header > div > h1 {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    height: 100%;
 }
 
 .gap-32 {
@@ -404,3 +405,107 @@ header > div > h1 {
 .d-none {
     display: none;
 }
+
+/*##### START OF Add-task section #####*/
+
+.centerWrapperHeadline {
+    margin-top: 48px;
+}
+
+#title,
+textarea,
+#selectInput,
+#datePicker,
+#assigneeInput,
+#subtasks {
+    width: 428px;
+    padding: 12px 30px 12px 21px !important;
+    gap: 10px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.addTaskWrapperLeft {
+    margin-right: 48px;
+}
+
+.addTaskWrapperRight {
+    margin-left: 48px;
+}
+
+.addTaskWrapperRight > div {
+    margin-bottom: 48px;
+
+}
+
+.priorityButton {
+    width: 136px;
+    height: 56px;
+    border-radius: 16px;
+    border: none;
+    background-color: #ffffff;
+    font-size: 19px;
+}
+
+button.priorityButton:hover {
+    background: #FFA800 !important;
+}
+
+.priorityImg {
+    height: 14px;
+    width: 20px;
+    padding: 0;
+    margin-left: 8px;
+}
+
+#addTaskBottom {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#createTaskButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button#clear,
+button#create {
+    width: 110px;
+    height: 50px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: #000000;
+    font-size: 19px;
+    font-weight: bold;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button#create {
+    width: 183px;
+    background: #2A3647;
+    color: #ffffff;
+}
+
+button#create:hover {
+
+}
+
+#createTaskButton > button:first-of-type {
+    margin-right: 16px;
+}
+
+.createTaskButtonImg {
+    margin-left: 8px;
+}
+
+select {
+    width: 480px;
+}
+
+/*##### END OF Add-task section #####*/

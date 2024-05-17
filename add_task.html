@@ -26,67 +26,88 @@
         <div id="centerWrapper" class="centerWrapper">
             <div w3-include-html="templates/header.html"></div>
 
-            <div id="addTaskWrapper" class="addTaskWrapper" style="height: 424px">
-                <div class="addTaskWrapperLeft">
-                    <div>
-                        <h1>Add Task</h1>
-                    </div>
+            <div class="centerWrapperHeadline">
+                <h1>Add Task</h1>
+            </div>
 
-                    <div>
-                        <p class="fSize-16">Title<span class="redStar">*</span></p>
-                        <input type="text">
-                    </div>
+            <div class="main">
+                <div id="addTaskWrapper" class="addTaskWrapper">
+                    <div class="addTaskWrapperLeft">
+                        <div>
+                            <p class="fSize-16">Title<span class="redStar">*</span></p>
+                            <input type="text" id="title" placeholder="Enter Title"/>
+                        </div>
 
-                    <div class="spacer">&nbsp;</div>
+                        <div class="spacer">&nbsp;</div>
 
-                    <div>
-                        <p class="fSize-16">Description<span class="redStar">*</span></p>
-                        <textarea rows="5"></textarea>
-                    </div>
+                        <div>
+                            <p class="fSize-16">Description</p>
+                            <textarea rows="5" placeholder="Enter a Description"></textarea>
+                        </div>
 
-                    <div class="spacer">&nbsp;</div>
+                        <div class="spacer">&nbsp;</div>
 
-                    <div>
-                        <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
-                        <select name="choose" id="Assignee">
-                            <option value="Assigned to...">Assigned to...</option>
-                            <option value="Test 1">Test 1</option>
-                            <option value="Test 2">Test 2</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="addTaskWrapperMid divider">&nbsp;</div>
-
-                <div class="addTaskWrapperRight">
-                    <div>
-                        <p>Due Date<span class="redStar">*</span></p>
-                        <input type="date">
-                    </div>
-
-                    <div>
-                        <p>Prio<span class="redStar">*</span></p>
-                        <div id="priority" class="priority">
-                            <button>Urgent</button>
-                            <button>Medium</button>
-                            <button>Low</button>
+                        <div>
+                            <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
+                            <select name="choose" id="selectInput">
+                                <option value="Assigned to...">Assigned to...</option>
+                                <option value="Test 1">Test 1</option>
+                                <option value="Test 2">Test 2</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div>
-                        <p>Category<span class="redStar">*</span></p>
-                        <select name="choose" id="Assignee">
-                            <option value="Assigned to...">Assigned to...</option>
-                            <option value="Test 1">Test 1</option>
-                            <option value="Test 2">Test 2</option>
-                        </select>
-                    </div>
+                    <div class="addTaskWrapperMid divider">&nbsp;</div>
 
-                    <div>
-                        <p>Subtasks<span class="redStar">*</span></p>
-                        <input type="text">
+                    <div class="addTaskWrapperRight">
+                        <div>
+                            <p class="fSize-16">Due Date<span class="redStar">*</span></p>
+                            <input type="date" id="datePicker">
+                        </div>
+
+                        <div>
+                            <p class="fSize-16">Prio<span class="redStar">*</span></p>
+                            <div id="priority" class="priority">
+                                <button class="priorityButton">
+                                    Urgent
+                                    <img src="./img/icons/urgent_icon.png" alt="" class="priorityImg">
+                                </button>
+                                <button class="priorityButton">
+                                    Medium
+                                    <img src="./img/icons/medium-colored-icon.png" alt="" class="priorityImg">
+                                </button>
+                                <button class="priorityButton">
+                                    Low
+                                    <img src="./img/icons/low_icon.png" alt="" class="priorityImg">
+                                </button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="fSize-16">Category<span class="redStar">*</span></p>
+                            <select name="choose" id="assigneeInput">
+                                <option value="Assigned to...">Assigned to...</option>
+                                <option value="Test 1">Test 1</option>
+                                <option value="Test 2">Test 2</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <p class="fSize-16">Subtasks<span class="redStar">*</span></p>
+                            <input type="text" id="subtasks" placeholder="Enter Subtasks" />
+                        </div>
                     </div>
                 </div>
+
+                <div id="addTaskBottom" class="addTaskBottom">
+                    <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+
+                    <div id="createTaskButton">
+                        <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
+                        <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

@@ -270,7 +270,7 @@ input {
 .board-add-task-icon-withe {
     width: 32px;
     height: 32px;
-    background-image: url(./img/icons/add-withe.png);
+    background-image: url(img/icons/add-white.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -385,4 +385,8 @@ input {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);
     gap: 10px;
     padding: 16px;
+}
+
+.centerWrapperHeadline {
+    margin-left: 83px;
 }
