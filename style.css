@@ -175,7 +175,10 @@ input:focus {
     cursor: auto;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder,
+select::placeholder
+input[type=date] {
     font-size: 16px;
 }
 
@@ -445,6 +448,7 @@ textarea,
     border: none;
     background-color: #ffffff;
     font-size: 19px;
+    margin-right: 8px;
 }
 
 button.priorityButton:hover {
