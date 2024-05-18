@@ -409,6 +409,42 @@ header > div > h1 {
     display: none;
 }
 
+/* start bg-user colers */
+
+.bg-orange {
+    background-color: #FF7A00;
+}
+
+.bg-purple {
+    background-color: #9327FF;
+}
+
+.bg-blue {
+    background-color: #6E52FF;
+}
+
+.bg-pink {
+    background-color: #FC71FF;
+}
+
+.bg-jelliow {
+    background-color: #FFBB2B;
+}
+
+.bg-green {
+    background-color: #1FD7C1;
+}
+
+.bg-dark-blue {
+    background-color: #462F8A;
+}
+
+.bg-red {
+    background-color: #FF4646;
+}
+
+/*  end bg-user colors */
+
 /*##### START OF Add-task section #####*/
 
 .centerWrapperHeadline {
