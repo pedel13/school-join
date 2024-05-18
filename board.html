@@ -14,7 +14,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
-    <script src="js/script.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/template.js"></script>
+    <script src="./js/remoteStorage.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/script.js"></script>
     <title>Join</title>
 </head>
 
@@ -46,7 +50,7 @@
             <div class="board-task-colums">
                 <div>
                     <div>
-                        <h2 class="board-suptitle">To Do</h2>
+                        <p class="board-suptitle">To Do</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
@@ -66,7 +70,7 @@
             <div class="board-task-colums">
                 <div>
                     <div>
-                        <h2 class="board-suptitle">In progress</h2>
+                        <p class="board-suptitle">In progress</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
@@ -86,7 +90,7 @@
             <div class="board-task-colums">
                 <div>
                     <div>
-                        <h2 class="board-suptitle">Await feedback</h2>
+                        <p class="board-suptitle">Await feedback</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
@@ -97,16 +101,16 @@
                     <div id="no-tasks-await-feedback" class="board-no-tasks d-flex align-items-center justify-content-center">
                         <p>No tasks Await feedback</p>
                     </div>
-                    <div id="board-task-on-await-feedback">
+                    <div id="board-task-on-await-feedback"  ondrop="drop(awaitfeedbeek)" ondragover="allowDrop(awaitfeedbeek)" class="board-tasks-card d-flex flex-column">
                         <!-- TODO: task drag and drop einfügen -->
                     </div>
                 </div>
             </div>
             <!-- done  -->
-            <div class="board-task-colums">
+            <div class="board-task-colums d-flex flex-column">
                 <div>
                     <div>
-                        <h2 class="board-suptitle">Done</h2>
+                        <p class="board-suptitle">Done</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
@@ -117,68 +121,46 @@
                     <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
                         <p>No tasks Done</p>
                     </div>
-                    <div id="board-task-on-done" class="board-tasks-card d-flex flex-column">
+                    <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" class="board-tasks-card d-flex flex-column">
                         <!-- TODO: task drag and drop einfügen -->
                         <!-- Exempel task -->
-                        <div class="d-flex board-task-card flex-column">
-                            <div>
-                                <h3 class="fc-white" id="">user</h3>
+                        <div id="task-card-0" ondragstart="dreg(task-card-0)" draggable="true"  class="d-flex board-task-card flex-column">
+                            <div class="d-flex align-items-center">
+                                <!-- TODO: farbklasse dynamisch gestalten -->
+                                <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
                             </div>
                             <div>
-                                <p class="" id="">subtitle</p>
+                                <p class="board-card-suptitle" id="">subtitle</p>
                             </div>
                             <div>
-                                <p class="" id="">description</p>
+                                <p class="board-description" id="">description</p>
                             </div>
-                            <div class="d-flex" id="board-done-progressbar">
-                                <div>
+                            <div class="d-flex align-items-center gap-10" id="board-done-progressbar">
+                                <div class="doard-progressbar-full rounded-8">
+                                <div class="doard-progressbar rounded-8" style="width: 50%;">
                                     <!-- TODO: progresbar -->
                                 </div>
-                                <div class="d-flex">
+                                </div>
+                                <div class="d-flex board-subtasks gap-4">
                                     <p> <!-- TODO: zälermetode -->1/2</p>
-                                    <p>subtasks</p>
+                                    <p>Subtasks</p>
                                 </div>
                             </div>
-                            <div>
-                                <div>
+                            <div class="d-flex justify-content-between">
+                                <div class="fc-white d-flex">
+                                    <!-- TODO: farb-klass dynamisch gestalten -->
+                                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
                                     <!-- TODO: usericons printer funktion -->
+                                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
                                 </div>
-                                <div>
+                                <div class="board-icon-importance">
                                     <!-- TODO: priority icon funktion -->
+                                    <img src="./img/icons/low_icon.png" alt="">
                                 </div>
                             </div>
                         </div>
                                                 <!-- TODO: task drag and drop einfügen -->
                         <!-- Exempel task -->
-                        <div class="d-flex board-task-card flex-column">
-                            <div>
-                                <h3>user</h3>
-                            </div>
-                            <div>
-                                <p>subtitle</p>
-                            </div>
-                            <div>
-                                <p>description</p>
-                            </div>
-                            <div class="d-none d-flex" id="board-done-progressbar">
-                                <div>
-                                    <!-- TODO: progresbar -->
-                                </div>
-                                <div>
-                                    <p> <!-- TODO: zälermetode -->1/2</p>
-                                    <p>subtasks</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <!-- TODO: usericons printer funktion -->
-                                </div>
-                                <div>
-                                    <!-- TODO: priority icon funktion -->
-                                </div>
-                            </div>
-                        </div>
-
 
                     </div>
                 </div>

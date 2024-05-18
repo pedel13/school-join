@@ -173,10 +173,6 @@ input {
     margin-left: 83px !important;
 }
 
-.rounded-30 {
-    border-radius: 30px;
-}
-
 .summary-line {
     width: 2px !important;
     height: 102px !important;
@@ -249,11 +245,6 @@ input {
 
 .spacer {
     margin-top: 24px;
-}
-
-.board-task-columns {
-    width: 252px;
-    gap: 16px;
 }
 
 .board-title {
@@ -363,20 +354,73 @@ input {
     flex-direction: column;
 }
 
-.board-headline{
+.board-headline {
     max-width: 1056px;
     margin-top: 80px;
     margin-left: 64px;
 }
 
-.board-all-columns{
+.board-all-colums {
     margin-top: 54px;
     margin-left: 64px;
-    gap: 26px;
+    gap: 24px;
 }
 
-.board-tasks-card{
-    gap: 16px;
+.board-task-colums {
+    width: 252px;
+}
+
+.board-tasks-card {
+  row-gap: 16px;
+  height: 100vh;
+}
+
+.board-user {
+    font-size: 16px;
+    font-weight: 400 !important;
+    padding: 4px 16px 4px 16px;
+    height: 27px !important;
+    max-width: 220px;
+}
+
+.board-card-suptitle {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.board-description {
+    font-size: 16px;
+    font-weight: 400;
+    color:#A8A8A8;
+}
+
+.board-user-icon {
+    font-size: 12px;
+    font-weight: 400;
+    width: 32px;
+    height: 32px;
+    border: solid #ffffff 1px;
+}
+
+.board-subtasks {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.doard-progressbar-full {
+    background-color: #F4F4F4;
+    width: 128px;
+    height: 8px;
+}
+
+.doard-progressbar {    
+    background-color: #4589FF;
+    height: 8px;
+}
+
+.board-icon-importance {
+    width: 32px;
+    height: 32px;
 }
 
 .board-task-card {
@@ -385,6 +429,14 @@ input {
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);
     gap: 10px;
     padding: 16px;
+}
+
+.user-story{
+    background-color: #0038FF;
+}
+
+.technical-task {
+    background-color: #1FD7C1;
 }
 
 .centerWrapperHeadline {
