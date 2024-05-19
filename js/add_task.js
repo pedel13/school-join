@@ -1,11 +1,11 @@
 async function addTask() {
 
-    await let inputs = getinputs();
+    await let inputs = getInputs();
     console.log(inputs);
 
 }
 
-function getinputs() {
+function getInputs() {
     
     let title = document.getElementById('title');
     let description = document.getElementById('Description');
