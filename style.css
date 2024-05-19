@@ -477,9 +477,9 @@ header > div > h1 {
 
 #title,
 textarea,
-#selectInput,
+#selectInputAssignee,
 #datePicker,
-#assigneeInput,
+#categorySelect,
 #subtasks {
     width: 428px;
     padding: 12px 30px 12px 21px !important;
