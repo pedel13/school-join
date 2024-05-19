@@ -1,19 +1,22 @@
+let inputs = [];
+
 async function addTask() {
 
-    let inputs = getInputs();
+    await getInputs();
     console.log(inputs);
 
 }
 
-function getInputs() {
-    
-    let title = document.getElementById('title');
-    let description = document.getElementById('Description');
-    let assignedTo = document.getElementById('selectInputAssignee');
-    let date = document.getElementById('datePicker');
-    let prio = document.getElementById('priority');
-    let category = document.getElementById('categorySelect').value;
-    let subtasks = document.getElementById('subtasks');
-    return title, description, assignedTo, date, prio, category, subtasks;
+function getInputs(inputs) {
+
+    inputs[0] = document.getElementById('title').value;
+    inputs[1] = document.getElementById('description').value;
+    inputs[2] = document.getElementById('selectInputAssignee').value;
+    inputs[3] = document.getElementById('datePicker').value;
+    inputs[4] = document.getElementById('priority').value;
+    inputs[4] = document.getElementById('categorySelect').value;
+    inputs[6] = document.getElementById('subtasks').value;
+    console.log(inputs);
+    return inputs;
 
 }
