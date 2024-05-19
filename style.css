@@ -573,3 +573,10 @@ select {
 }
 
 /*##### END OF Add-task section #####*/
+
+/*##### START OF board.html section #####*/
+#addTask {
+    margin-right: 80px;
+}
+
+/*##### END OF board.html section #####*/

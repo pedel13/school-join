@@ -258,7 +258,7 @@ input {
     color: #42526E;
 }
 
-.board-add-task-icon-withe {
+.board-add-task-icon-white {
     width: 32px;
     height: 32px;
     background-image: url(img/icons/add-white.png);
@@ -361,8 +361,6 @@ input {
 }
 
 .board-all-columns {
-    margin-top: 54px;
-    margin-left: 64px;
     gap: 24px;
 }
 

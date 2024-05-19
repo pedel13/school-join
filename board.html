@@ -32,7 +32,7 @@
             <div w3-include-html="templates/header.html"></div>
 
             <div class="centerWrapperHeadline">
-                <div class="d-flex align-items-center justify-content-between board-headline">
+                <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <h1 class="board-title">Board</h1>
                     </div>
@@ -47,8 +47,9 @@
                                 </div>
                             </button>
                         </div>
-                        <button class="board-add-task-button d-flex justify-content-evenly align-items-center">add task
-                            <div class="board-add-task-icon-withe"></div>
+                        <button class="board-add-task-button d-flex justify-content-evenly align-items-center" id="addTask" onclick="">
+                            add task
+                            <div class="board-add-task-icon-white"></div>
                         </button>
                     </div>
                 </div>
@@ -134,7 +135,7 @@
                             <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                                 <!-- Example task -->
-                                <div id="task-card-0" ondragstart="drag('task-card-0')" draggable="true"  class="d-flex board-task-card flex-column">
+                                <div id="task-card-0" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
                                     <div class="d-flex align-items-center">
                                         <!-- TODO: farbklasse dynamisch gestalten -->
                                         <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
