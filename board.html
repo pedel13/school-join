@@ -32,7 +32,7 @@
             <div class="d-flex align-items-center justify-content-evenly gap-32">
                 <div class="board-input-total d-flex align-items-center justify-content-between">
                     <input type="text" class="board-input" placeholder="Find Task">
-                    <!-- TODO: onclik funktion -->
+                    <!-- TODO: onclick funktion -->
                     <button class="d-flex" id="board-search-button" onclick="">
                         <div class="board-vertical-line"></div>
                         <div class="board-search-padding">
@@ -45,16 +45,16 @@
                 </button>
             </div>
         </div>
-        <div class="d-flex board-all-colums">
+        <div class="d-flex board-all-columns">
             <!-- to-do  -->
-            <div class="board-task-colums">
+            <div class="board-task-columns">
                 <div>
                     <div>
-                        <p class="board-suptitle">To Do</p>
+                        <p class="board-subtitle">To Do</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
-                                        add task popapgeneriren -->
+                                        add task popUp generieren -->
                     </div>
                 </div>
                 <div class="board-tasks">
@@ -67,14 +67,14 @@
                 </div>
             </div>
             <!-- in progress  -->
-            <div class="board-task-colums">
+            <div class="board-task-columns">
                 <div>
                     <div>
-                        <p class="board-suptitle">In progress</p>
+                        <p class="board-subtitle">In progress</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
-                                  add task popapgeneriren -->
+                                  add task popUp generieren -->
                     </div>
                 </div>
                 <div class="board-tasks">
@@ -87,34 +87,34 @@
                 </div>
             </div>
             <!-- await feedback  -->
-            <div class="board-task-colums">
+            <div class="board-task-columns">
                 <div>
                     <div>
-                        <p class="board-suptitle">Await feedback</p>
+                        <p class="board-subtitle">Await feedback</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
-                                        add task popapgeneriren -->
+                                        add task popUp generieren -->
                     </div>
                 </div>
                 <div class="board-tasks">
                     <div id="no-tasks-await-feedback" class="board-no-tasks d-flex align-items-center justify-content-center">
                         <p>No tasks Await feedback</p>
                     </div>
-                    <div id="board-task-on-await-feedback"  ondrop="drop(awaitfeedbeek)" ondragover="allowDrop(awaitfeedbeek)" class="board-tasks-card d-flex flex-column">
+                    <div id="board-task-on-await-feedback"  ondrop="drop(awaitfeedback)" ondragover="allowDrop(awaitfeedback)" class="board-tasks-card d-flex flex-column">
                         <!-- TODO: task drag and drop einfügen -->
                     </div>
                 </div>
             </div>
             <!-- done  -->
-            <div class="board-task-colums d-flex flex-column">
+            <div class="board-task-columns d-flex flex-column">
                 <div>
                     <div>
-                        <p class="board-suptitle">Done</p>
+                        <p class="board-subtitle">Done</p>
                     </div>
                     <div>
                         <!-- TODO: icon einfügen
-                                        add task popapgeneriren -->
+                                        add task popUp generieren -->
                     </div>
                 </div>
                 <div class="board-tasks">
@@ -123,34 +123,34 @@
                     </div>
                     <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" class="board-tasks-card d-flex flex-column">
                         <!-- TODO: task drag and drop einfügen -->
-                        <!-- Exempel task -->
-                        <div id="task-card-0" ondragstart="dreg(task-card-0)" draggable="true"  class="d-flex board-task-card flex-column">
+                        <!-- Example task -->
+                        <div id="task-card-0" ondragstart="drag('task-card-0')" draggable="true"  class="d-flex board-task-card flex-column">
                             <div class="d-flex align-items-center">
                                 <!-- TODO: farbklasse dynamisch gestalten -->
                                 <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
                             </div>
                             <div>
-                                <p class="board-card-suptitle" id="">subtitle</p>
+                                <p class="board-card-subtitle" id="">subtitle</p>
                             </div>
                             <div>
                                 <p class="board-description" id="">description</p>
                             </div>
                             <div class="d-flex align-items-center gap-10" id="board-done-progressbar">
-                                <div class="doard-progressbar-full rounded-8">
-                                <div class="doard-progressbar rounded-8" style="width: 50%;">
-                                    <!-- TODO: progresbar -->
+                                <div class="board-progressbar-full rounded-8">
+                                <div class="board-progressbar rounded-8" style="width: 50%;">
+                                    <!-- TODO: progressbar -->
                                 </div>
                                 </div>
                                 <div class="d-flex board-subtasks gap-4">
-                                    <p> <!-- TODO: zälermetode -->1/2</p>
+                                    <p> <!-- TODO: zählermethode -->1/2</p>
                                     <p>Subtasks</p>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="fc-white d-flex">
-                                    <!-- TODO: farb-klass dynamisch gestalten -->
+                                    <!-- TODO: Farbklasse dynamisch gestalten -->
                                     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
-                                    <!-- TODO: usericons printer funktion -->
+                                    <!-- TODO: user-icons printer funktion -->
                                     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
                                 </div>
                                 <div class="board-icon-importance">
@@ -160,7 +160,7 @@
                             </div>
                         </div>
                                                 <!-- TODO: task drag and drop einfügen -->
-                        <!-- Exempel task -->
+                        <!-- Example task -->
 
                     </div>
                 </div>

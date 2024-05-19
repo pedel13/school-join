@@ -1,12 +1,12 @@
 
-let = card-dragged-id;
+//let = card-dragged-id;
 
 function allowDrop(ev) {
     ev.preventDefault();
   }
   
   function drag(id) {
-    card-dragged-id = id;
+    //card-dragged-id = id;
     
   }
   

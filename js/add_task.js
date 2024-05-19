@@ -1,6 +1,6 @@
 async function addTask() {
 
-    await let inputs = getInputs();
+    let inputs = getInputs();
     console.log(inputs);
 
 }

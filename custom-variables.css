@@ -360,13 +360,13 @@ input {
     margin-left: 64px;
 }
 
-.board-all-colums {
+.board-all-columns {
     margin-top: 54px;
     margin-left: 64px;
     gap: 24px;
 }
 
-.board-task-colums {
+.board-task-columns {
     width: 252px;
 }
 
@@ -383,7 +383,7 @@ input {
     max-width: 220px;
 }
 
-.board-card-suptitle {
+.board-card-subtitle {
     font-size: 16px;
     font-weight: 700;
 }
@@ -407,13 +407,13 @@ input {
     font-weight: 400;
 }
 
-.doard-progressbar-full {
+.board-progressbar-full {
     background-color: #F4F4F4;
     width: 128px;
     height: 8px;
 }
 
-.doard-progressbar {    
+.board-progressbar {
     background-color: #4589FF;
     height: 8px;
 }
