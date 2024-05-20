@@ -15,3 +15,9 @@ function allowDrop(ev) {
     let data = ev.dataTransfer.getData("text");
     ev.target.appendChild(document.getElementById(data));
   }
+
+
+  async function testdata() {
+    let response = await fetch(baseUrl + "tasks" + ".json");
+    return responseAsJson = await response.json();
+}
