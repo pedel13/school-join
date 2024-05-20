@@ -1,19 +1,31 @@
+const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
+
+let inputs= [{}]
+
 async function addTask() {
-
-    let inputs = getInputs();
+    await getInputs();
     console.log(inputs);
-
+    setTaskData("/tasks");
 }
 
 function getInputs() {
-    
-    let title = document.getElementById('title');
-    let description = document.getElementById('Description');
-    let assignedTo = document.getElementById('selectInputAssignee');
-    let date = document.getElementById('datePicker');
-    let prio = document.getElementById('priority');
-    let category = document.getElementById('categorySelect').value;
-    let subtasks = document.getElementById('subtasks');
-    return title, description, assignedTo, date, prio, category, subtasks;
-
+    inputs = [{
+        "title": document.getElementById('title').value,
+        "description": document.getElementById('description').value,
+        "selectInputAssignee": document.getElementById('selectInputAssignee').value,
+        "datePicker": document.getElementById('datePicker').value,
+        "priority": document.getElementById('priority').value,
+        "categorySelect": document.getElementById('categorySelect').value,
+        "subtasks": document.getElementById('subtasks').value,
+    }];
 }
+
+ async function setTaskData(path="") {
+    let response = await fetch(baseUrl + path + ".json",{
+        method: "post",
+        header: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(inputs)
+    });
+} 
