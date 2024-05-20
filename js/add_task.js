@@ -1,15 +1,13 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let inputs= [{}]
 
 async function addTask() {
     await getInputs();
-    console.log(inputs);
-    setTaskData("/tasks");
 }
 
 function getInputs() {
-    inputs = [{
+    let inputs = {
+        "position": "board-task-on-to-do",
         "title": document.getElementById('title').value,
         "description": document.getElementById('description').value,
         "selectInputAssignee": document.getElementById('selectInputAssignee').value,
@@ -17,15 +15,16 @@ function getInputs() {
         "priority": document.getElementById('priority').value,
         "categorySelect": document.getElementById('categorySelect').value,
         "subtasks": document.getElementById('subtasks').value,
-    }];
+    };
+    setTaskData("/tasks", inputs);
 }
 
- async function setTaskData(path="") {
+ async function setTaskData(path="", data={}) {
     let response = await fetch(baseUrl + path + ".json",{
-        method: "post",
-        header: {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(inputs)
+        body: JSON.stringify(data)
     });
 } 
