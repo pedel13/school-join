@@ -32,31 +32,33 @@ async function renderAllTasks() {
 
       let task = tasks[taskId];
       let subtask = "";
-      console.log("hallo");
       if (task.subtasks == ""){
         subtask = "d-none";
       }
       else {
         subtask = "";
       }
-      let category = task.categorySelect;
-      let categoryclass = "";//category.ToLowerCase(category);
-      let categorytext = category.replace(/-/, " ");
-      renderTask(task, subtask, categoryclass, categorytext);
+      let categorytext =""
+      if (task.categorySelect == "technical-task") {
+        categorytext = "Technical Task";
+      } else {
+        categorytext = "User Story";
+      }
+      renderTask(task, subtask, categorytext);
   }
 }
 
-function renderTask(task, subtask, categoryclass, categorytext) {
+function renderTask(task, subtask, categorytext) {
   document.getElementById(task.position).innerHTML += `
-  <div id="${tasks.taskId}" ondragstart="drag('${tasks.taskId}')" draggable="true" class="d-flex board-task-card flex-column">
+  <div id="${task.taskId}" ondragstart="drag('${task.taskId}')" draggable="true" class="d-flex board-task-card flex-column">
   <div class="d-flex align-items-center">
-      <p class="fc-white rounded-8 board-user d-flex align-items-center ${categoryclass}" id="">${categorytext}</p>
+      <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categorytext}</p>
   </div>
   <div>
-      <p class="board-card-subtitle" id="">${tasks.title}</p>
+      <p class="board-card-subtitle" id="">${task.title}</p>
   </div>
   <div>
-      <p class="board-description" id="">d${tasks.description}</p>
+      <p class="board-description" id="">${task.description}</p>
   </div>
   <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
       <div class="board-progressbar-full rounded-8">
