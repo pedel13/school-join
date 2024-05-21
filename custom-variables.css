@@ -369,8 +369,8 @@ input {
 }
 
 .board-tasks-card {
-  row-gap: 16px;
-  height: 100vh;
+    row-gap: 16px;
+    height: 100vh;
 }
 
 .board-user {

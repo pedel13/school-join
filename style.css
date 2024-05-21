@@ -9,6 +9,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
+    overflow: auto;
 }
 
 /*##### General- & template stylings #####*/
@@ -580,3 +581,15 @@ select {
 }
 
 /*##### END OF board.html section #####*/
+
+/*.loginImage {
+    position: absolute;
+    width: 50vw;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: 500ms identifier cubic-bezier(.5,.02,.68,.62) forwards;
+    animation-delay: 0.5s;
+    z-index: 999;
+}*/

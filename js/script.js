@@ -14,3 +14,7 @@ function hide() {
     document.getElementById('header').style.display = 'flex';
     document.getElementById('loginWrapper').style.display = 'flex';
 }
+
+function loadTasks() {
+
+}
