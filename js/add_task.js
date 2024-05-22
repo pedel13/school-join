@@ -27,4 +27,12 @@ function getInputs() {
         },
         body: JSON.stringify(data)
     });
-} 
+}
+
+function openAddTaskOverlay() {
+    document.getElementById('addTaskOverlay').classList.remove('d-none');
+}
+
+function closeAddTaskOverlay() {
+    document.getElementById('addTaskOverlay').classList.add('d-none');
+}

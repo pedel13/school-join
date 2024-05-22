@@ -18,3 +18,15 @@ function hide() {
 function loadTasks() {
 
 }
+
+document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+        closeAddTaskOverlay();
+    }
+    else if (evt.key === 'ArrowRight') {
+    
+    }
+    else if (evt.key === 'ArrowLeft') {
+    
+    }
+});
