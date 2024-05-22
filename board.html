@@ -62,7 +62,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">To Do</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -83,7 +83,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">In progress</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -104,7 +104,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Await feedback</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -125,7 +125,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Done</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -185,10 +185,10 @@
         </div>
 
         <div id="addTaskOverlay" class="addTaskOverlay d-none">
-            <div class="outerTaskOverlayWrapper slide" id="slide">
+            <div class="outerTaskOverlayWrapper slide">
                 <div class="addTaskOverlayHeadline">
                     <h1>Add Task</h1>
-                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()">
+                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
                 </div>
                 <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
 
