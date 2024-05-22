@@ -252,6 +252,11 @@ input {
     font-size: 61px;
 }
 
+.board-task-lanes {
+    display: flex;
+    justify-content: space-between;
+}
+
 .board-subtitle {
     font-weight: 700;
     font-size: 20px;
