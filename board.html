@@ -203,14 +203,14 @@
 
                             <div>
                                 <p class="fSize-16">Description</p>
-                                <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                                <textarea rows="5" id="description" placeholder="Enter a Description" required></textarea>
                             </div>
 
                             <div class="spacer">&nbsp;</div>
 
                             <div>
                                 <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
-                                <select name="choose" id="selectInputAssignee">
+                                <select name="choose" id="selectInputAssignee" required>
                                     <option value="Assigned to...">Assigned to...</option>
                                     <option value="Test 1">Test 1</option>
                                     <option value="Test 2">Test 2</option>
@@ -223,7 +223,7 @@
                         <div class="addTaskWrapperRight">
                             <div>
                                 <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                                <input type="date" id="datePicker">
+                                <input type="date" id="datePicker" required>
                             </div>
 
                             <div>
@@ -265,7 +265,7 @@
 
                         <div id="createTaskButton">
                             <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
-                            <button id="create" onclick="addTask()">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                            <button id="create" onclick="addTask(); formValidation()">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
                         </div>
                     </div>
                 </div>

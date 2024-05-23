@@ -29,6 +29,16 @@ function getInputs() {
     });
 }
 
+function formValidation() {
+    let titleValidation = document.getElementById('title').value;
+    let descriptionValidation = document.getElementById('description').value;
+    
+    if (titleValidation !== '' && descriptionValidation !== '') {
+        document.getElementById("create").removeAttribute('disabled');
+    }
+    else window.alert("Bitte Mindestens ein Feld ausfüllen");
+}
+
 function openAddTaskOverlay() {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
 }
