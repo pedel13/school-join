@@ -47,18 +47,18 @@ async function renderAllTasks() {
 }
 
 function renderTask(task, subtask, categorytext) {
-  document.getElementById(task.position).innerHTML += `
-  <div id="${task.taskId}" ondragstart="drag('${task.taskId}')" draggable="true" class="d-flex board-task-card flex-column">
-  <div class="d-flex align-items-center">
+    document.getElementById(task.position).innerHTML += `
+    <div id="${task.taskId}" ondragstart="drag('${task.taskId}')" draggable="true" class="d-flex board-task-card flex-column">
+    <div class="d-flex align-items-center">
       <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categorytext}</p>
-  </div>
-  <div>
+    </div>
+    <div>
       <p class="board-card-subtitle" id="">${task.title}</p>
-  </div>
-  <div>
+    </div>
+    <div>
       <p class="board-description" id="">${task.description}</p>
-  </div>
-  <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
+    </div>
+    <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
       <div class="board-progressbar-full rounded-8">
       <div class="board-progressbar rounded-8" style="width: 50%;">
           <!-- TODO: progressbar -->
@@ -68,8 +68,8 @@ function renderTask(task, subtask, categorytext) {
           <p> <!-- TODO: zählermethode -->1/2</p>
           <p>Subtasks</p>
       </div>
-  </div>
-  <div class="d-flex justify-content-between">
+    </div>
+    <div class="d-flex justify-content-between">
       <div class="fc-white d-flex">
           <!-- TODO: Farbklasse dynamisch gestalten -->
           <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
@@ -80,6 +80,6 @@ function renderTask(task, subtask, categorytext) {
           <!-- TODO: priority icon funktion -->
           <img src="./img/icons/low_icon.png" alt="">
       </div>
-  </div>
-</div>`;
+    </div>
+    </div>`;
 }

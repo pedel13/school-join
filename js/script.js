@@ -4,13 +4,13 @@ async function init() {
 }
 
 //Function show and hide belong together and are for the Join Logo
-function show() {
+function showLogoAnimation() {
     document.getElementById('big-logo').style.display = 'flex';
     document.getElementById('header').style.display = 'none';
     document.getElementById('loginWrapper').style.display = 'none';
-    setTimeout("hide()", 1300);
+    setTimeout("hideLogoAnimation()", 1300);
 }
-function hide() {
+function hideLogoAnimation() {
     document.getElementById('big-logo').style.display = 'none';
     document.getElementById('header').style.display = 'flex';
     document.getElementById('loginWrapper').style.display = 'flex';
@@ -19,6 +19,7 @@ function hide() {
 document.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
         closeAddTaskOverlay();
+        closeTaskOverlay();
     }
     else if (evt.key === 'ArrowRight') {
     

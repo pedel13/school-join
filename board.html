@@ -18,6 +18,7 @@
     <script src="./js/template.js"></script>
     <script src="./js/remoteStorage.js"></script>
     <script src="./js/add_task.js"></script>
+    <script src="./js/renderTaskOverlay.js"></script>
     <script src="./js/script.js"></script>
     <title>Join</title>
 </head>
@@ -136,10 +137,10 @@
                             <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Done</p>
                             </div>
-                            <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                                 <!-- Example task -->
-                                <div id="task-card-0" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
+                                <div id="task-card-0" onclick="openTaskOverlay()" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
                                     <div class="d-flex align-items-center">
                                         <!-- TODO: farbklasse dynamisch gestalten -->
                                         <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
@@ -183,13 +184,14 @@
                 </div>
             </div>
         </div>
-        <div id="taskOverlay" class="taskOverlay">
-            <div id="taskOverlayWrapper" class="taskOverlayWrapper">
+
+        <div id="taskOverlay" class="taskOverlay d-none">
+            <div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
                 <div id="taskOverlayType" class="taskOverlayType">
                     <div id="issueType" class="issueType">
                         User Story
                     </div>
-                    <img src="./img/icons/cancel-logo.png" alt="">
+                    <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
                 </div>
 
                 <div id="taskOverlayTitle" class="taskOverlayTitle">
@@ -237,7 +239,7 @@
         </div>
 
         <div id="addTaskOverlay" class="addTaskOverlay d-none">
-            <div class="outerTaskOverlayWrapper slide">
+            <div class="outerTaskOverlayWrapper slide-top">
                 <div class="addTaskOverlayHeadline">
                     <h1>Add Task</h1>
                     <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
