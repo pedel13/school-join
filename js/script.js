@@ -1,5 +1,6 @@
 async function init() {
     await includeHTML();
+    loadTasks();
 }
 
 //Function show and hide belong together and are for the Join Logo
@@ -13,10 +14,6 @@ function hide() {
     document.getElementById('big-logo').style.display = 'none';
     document.getElementById('header').style.display = 'flex';
     document.getElementById('loginWrapper').style.display = 'flex';
-}
-
-function loadTasks() {
-
 }
 
 document.addEventListener('keydown', evt => {

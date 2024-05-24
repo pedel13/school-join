@@ -22,7 +22,7 @@
     <title>Join</title>
 </head>
 
-<body onload="init(); loadTasks();">
+<body onload="init()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -180,6 +180,58 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div id="taskOverlay" class="taskOverlay">
+            <div id="taskOverlayWrapper" class="taskOverlayWrapper">
+                <div id="taskOverlayType" class="taskOverlayType">
+                    <div id="issueType" class="issueType">
+                        User Story
+                    </div>
+                    <img src="./img/icons/cancel-logo.png" alt="">
+                </div>
+
+                <div id="taskOverlayTitle" class="taskOverlayTitle">
+                    Kochwelt Page & Recipe Recommender
+                </div>
+
+                <div id="taskOverlayFacts" class="taskOverlayFacts">
+                    <p>Build Start Page with recipe recommendation</p>
+                    <p>Due Date: 10/05/2023</p>
+                    <p>Priority: Medium</p>
+                </div>
+
+                <div id="taskOverlayAssignee" class="taskOverlayAssignee">
+                    Assigned to:
+                    <ul>
+                        <li>Patrick</li>
+                        <li>Farid</li>
+                    </ul>
+                </div>
+
+                <div id="taskOverlayCheckbox" class="taskOverlayCheckbox">
+                    <p>Subtasks:</p>
+                    <div class="checkBox">
+                        <input type="checkbox">
+                        <span>Implement Recipe Recommendation</span>
+                    </div>
+                    <div class="checkBox">
+                        <input type="checkbox">
+                        <span>Start Page Layout</span>
+                    </div>
+                </div>
+
+                <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
+                    <a href="" class="editBar">
+                        <img src="./img/icons/delete_icon.png">
+                        <p>Delete</p>
+                    </a>
+
+                    <a href="" class="editBar">
+                        <img src="./img/icons/edit_icon.png">
+                        <p>Edit</p>
+                    </a>
                 </div>
             </div>
         </div>
