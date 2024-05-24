@@ -1,7 +1,7 @@
 let tasks;
 
 //let = card-dragged-id;
-function loadtasks() {
+function loadTasks() {
   renderAllTasks();
 }
 
