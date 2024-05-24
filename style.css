@@ -616,17 +616,17 @@ select {
 .slide-top {
     position: absolute;
     top: -100%;
-    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation: slide-top 0.5s forwards;
     -webkit-animation-delay: 150ms;
-    animation: slide 0.5s forwards;
+    animation: slide-top 0.5s forwards;
     animation-delay: 150ms;
 }
 
-@-webkit-keyframes slide {
+@-webkit-keyframes slide-top {
     100% { top: 15%; }
 }
 
-@keyframes slide {
+@keyframes slide-top {
     100% { top: 15%; }
 }
 /* END OF TASK-OVERLAY SLIDING FROM TOP */
@@ -751,17 +751,17 @@ ul {
 .slide-right {
     position: absolute;
     right: -100%;
-    -webkit-animation: slide 0.5s forwards;
+    -webkit-animation: slide-right 0.5s forwards;
     -webkit-animation-delay: 150ms;
-    animation: slide 0.5s forwards;
+    animation: slide-right 0.5s forwards;
     animation-delay: 150ms;
 }
 
-@-webkit-keyframes slide {
+@-webkit-keyframes slide-right {
     100% { right: 35%; }
 }
 
-@keyframes slide {
+@keyframes slide-right {
     100% { right: 35%; }
 }
 
