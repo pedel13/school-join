@@ -20,7 +20,6 @@ function allowDrop(ev) {
 async function loadTasks(){
   let response = await fetch(baseUrl + "tasks" + ".json");
   return await response.json();
-  renderAllTasks();
 }
 
 async function renderAllTasks() {
