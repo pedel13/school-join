@@ -1,6 +1,5 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 
-
 async function addTask() {
     await getInputs();
 }
@@ -19,7 +18,7 @@ function getInputs() {
     setTaskData("/tasks", inputs);
 }
 
- async function setTaskData(path="", data={}) {
+async function setTaskData(path="", data={}) {
     let response = await fetch(baseUrl + path + ".json",{
         method: "POST",
         headers: {

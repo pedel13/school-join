@@ -22,9 +22,9 @@ document.addEventListener('keydown', evt => {
         closeTaskOverlay();
     }
     else if (evt.key === 'ArrowRight') {
-    
+        //Function
     }
     else if (evt.key === 'ArrowLeft') {
-    
+        //Function
     }
 });
