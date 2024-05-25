@@ -18,12 +18,10 @@ function allowDrop(ev) {
     reduceDropetElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
     await updateTaskPosition(cardDraggedId, dropCard);
-    console.log("countOnToDo", countOnToDo);
-    console.log("countOnInProgress", countOnInProgress);
 }
 
 async function updateTaskPosition(taskId, updatedTask) {
-    let response = await fetch(baseUrl + "board/tasks" + taskId + 'position' + ".json", {
+    let response = await fetch(baseUrl + "board/tasks/" + taskId + ".json", {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -39,8 +37,8 @@ async function updateTaskPosition(taskId, updatedTask) {
     let subtask = subtaskexist(element);
     let categoryText = categoryFinder(element);
     countForNoTask(element.position);
-    noTasksInProgress()
     renderTask(element,taskId, subtask, categoryText);
+    noTasksInProgress()
 }
 
 function remuveDragedCard() {
@@ -70,27 +68,29 @@ function reduceDropetElement(elementPosition) {
 }
 
 function noTasksInProgress() {
-  if (countOnToDo = 0){
+  if (countOnToDo != 0){
     addNoTaskInProgress("no-tasks-to-do");
   }
+
   else {
     removeNoTaskInProgress("no-tasks-to-do");
   }
-  if (countOnInProgress = 0) {
+
+  if (countOnInProgress != 0) {
     addNoTaskInProgress("no-tasks-in-progress");
   }
   else {
     removeNoTaskInProgress("no-tasks-in-progress");
   }
 
-  if (countOnAwaitFeedback = 0) {
+  if (countOnAwaitFeedback != 0) {
     addNoTaskInProgress("no-tasks-await-feedback");
   }
   else {
     removeNoTaskInProgress("no-tasks-await-feedback");
   }
 
-  if (countOnDone = 0) {
+  if (countOnDone != 0) {
     addNoTaskInProgress("no-tasks-Done");
   }
   else {
@@ -100,12 +100,12 @@ function noTasksInProgress() {
 
 function addNoTaskInProgress(taskInProgress="") {
   let element = document.getElementById(taskInProgress);
-  element.classList.add("d-none")
+  element.classList.add("d-none");
 }
 
 function removeNoTaskInProgress(taskInProgress="") {
   let element = document.getElementById(taskInProgress);
-  element.classList.add("d-none")
+  element.classList.remove("d-none");
 }
 
 async function loadTasks(){
@@ -122,9 +122,9 @@ async function renderAllTasks() {
       let subtask = subtaskexist(element);
       let categoryText = categoryFinder(element);
       countForNoTask(element.position);
-      noTasksInProgress()
       renderTask(element,taskId, subtask, categoryText);
-  }
+    }
+    noTasksInProgress()
 }
 
 function subtaskexist(task){
@@ -151,9 +151,7 @@ function categoryFinder(task){
 function countForNoTask(positionFromCard){
   switch(positionFromCard){
     case "board-task-on-to-do":
-      console.log(positionFromCard);
     countOnToDo ++;
-    console.log(countOnToDo);
     break;
 
     case "board-task-on-in-progress":
