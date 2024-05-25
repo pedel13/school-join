@@ -1,119 +1,55 @@
 let tasks;
-let cardDraggedId;
-let countOnToDo = 0;
-let countOnInProgress = 0;
-let countOnAwaitFeedback = 0;
-let countOnDone = 0;
+
+//let = card-dragged-id;
 
 function allowDrop(ev) {
     ev.preventDefault();
-}
-
-function drag(id) {
-    cardDraggedId = id;
-}
-
-async function drop(position) {
-    let dropCard = tasks[cardDraggedId];
-    console.log("dropCard", dropCard);
-    console.log("carddragid", cardDraggedId);
-    dropCard["position"] = position;
-    await updateTaskPosition(cardDraggedId, dropCard);
-}
-
-async function updateTaskPosition(taskId, updatedTask) {
-    let response = await fetch(baseUrl + "taskpresent/tasks/" + taskId + 'position' + ".json", {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedTask)
-    });
+  }
+  
+  function drag(id) {
+    //card-dragged-id = id;
     
-    if (!response.ok) {
-        console.error('Failed to update task position:', response.statusText);
-    }
-    let element = tasks[taskId];
-    remuveDragedCard()
-    let subtask = subtaskexist(element);
-    let categoryText = categoryFinder(element);
-    countDropetElement();
-    renderTask(element,taskId, subtask, categoryText);
-}
-
-function remuveDragedCard() {
-    const element = document.getElementById(cardDraggedId);
-    element.remove();
-}
-
-function countDropetElement() {
-
-}
+  }
+  
+  function drop(ev) {
+    ev.preventDefault();
+    let data = ev.dataTransfer.getData("text");
+    ev.target.appendChild(document.getElementById(data));
+  }
 
 async function loadTasks(){
-    let response = await fetch(baseUrl + "taskpresent/tasks" + ".json");
-    return await response.json();
+  let response = await fetch(baseUrl + "tasks" + ".json");
+  return await response.json();
 }
 
 async function renderAllTasks() {
-    tasks = await loadTasks();
-    
-    for (let taskId in tasks) {
-        
-        let element = tasks[taskId];
-        let subtask = subtaskexist(element);
-        let categoryText = categoryFinder(element);
-        countForNoTask(element.position);
-        renderTask(element,taskId, subtask, categoryText);
-    }
-}
+  tasks = await loadTasks();
 
-function subtaskexist(task){
-    let subtask = "";
-    if (task.subtasks == ""){
+  for (let taskId in tasks) {
+
+      let task = tasks[taskId];
+      let subtask = "";
+      if (task.subtasks === ""){
         subtask = "d-none";
-    }
-    else {
+      }
+      else {
         subtask = "";
-    }
-    return subtask;
+      }
+      let categorytext = "";
+      if (task.categorySelect === "technical-task") {
+        categorytext = "Technical Task";
+      } else {
+        categorytext = "User Story";
+      }
+      renderTask(task, subtask, categorytext);
+  }
 }
 
-function categoryFinder(task){
-    let categoryText =""
-    if (task.categorySelect == "technical-task") {
-        categoryText = "Technical Task";
-    } else {
-        categoryText = "User Story";
-    }
-    return categoryText;
-}
-
-function countForNoTask(positionFromCard){
-    switch(positionFromCard){
-        case "board-task-on-to-do":
-            countOnToDo ++;
-            break;
-        
-        case "board-task-on-in-progress":
-            countOnInProgress ++;
-            break;
-        
-        case "board-task-on-await-feedback":
-            countOnAwaitFeedback ++;
-            break;
-        
-        case "board-task-on-done":
-            countOnDone ++;
-            break;
-    }
-}
-
-function renderTask(task,taskId, subtask, categoryText) {
+function renderTask(task, subtask, categorytext) {
     document.getElementById(task.position).innerHTML += `
-    <div id="${taskId}" onclick="openTaskOverlay()" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
+    <div id="${task.taskId}" ondragstart="drag('${task.taskId}')" draggable="true" class="d-flex board-task-card flex-column">
     <div class="d-flex align-items-center">
-      <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categoryText}</p>
+      <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categorytext}</p>
     </div>
     <div>
       <p class="board-card-subtitle" id="">${task.title}</p>

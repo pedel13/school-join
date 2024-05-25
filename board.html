@@ -22,8 +22,8 @@
     <script src="./js/script.js"></script>
     <title>Join</title>
 </head>
-
-<body onload="init(), renderAllTasks()">
+<!-- renderAlltasks for render all task kards -->
+<body onload="init(); renderAllTasks()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -74,7 +74,7 @@
                             <div id="no-tasks-to-do" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks To do</p>
                             </div>
-                            <div id="board-task-on-to-do">
+                            <div id="board-task-on-to-do" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                             <div id="no-tasks-in-progress" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks In progress</p>
                             </div>
-                            <div id="board-task-on-in-progress">
+                            <div id="board-task-on-in-progress" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                             <div id="no-tasks-await-feedback" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Await feedback</p>
                             </div>
-                            <div id="board-task-on-await-feedback"  ondrop="drop(awaitfeedback)" ondragover="allowDrop(awaitfeedback)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-await-feedback"  ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
@@ -137,7 +137,7 @@
                             <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Done</p>
                             </div>
-                            <div id="board-task-on-done" ondrop="drop(done)" ondragover="allowDrop(done)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
                                 <!-- TODO: task drag and drop einfügen -->
                                 <!-- Example task -->
                                 <div id="task-card-0" onclick="openTaskOverlay()" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
@@ -226,12 +226,12 @@
 
                 <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
                     <a href="" class="editBar">
-                        <img src="./img/icons/delete_icon.png">
+                        <img alt="" src="./img/icons/delete_icon.png">
                         <p>Delete</p>
                     </a>
 
                     <a href="" class="editBar">
-                        <img src="./img/icons/edit_icon.png">
+                        <img alt="" src="./img/icons/edit_icon.png">
                         <p>Edit</p>
                     </a>
                 </div>

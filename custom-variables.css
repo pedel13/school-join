@@ -356,6 +356,7 @@ input {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
 }
 
 .board-headline {
@@ -374,7 +375,7 @@ input {
 
 .board-tasks-card {
     row-gap: 16px;
-    height: 100vh;
+    min-height: 40vh;
 }
 
 .board-user {
