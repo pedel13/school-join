@@ -23,7 +23,7 @@
     <title>Join</title>
 </head>
 <!-- renderAlltasks for render all task kards -->
-<body onload="init(); renderAllTasks()">
+<body onload="init(), renderAllTasks()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -226,12 +226,12 @@
 
                 <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
                     <a href="" class="editBar">
-                        <img alt="" src="./img/icons/delete_icon.png">
+                        <img src="./img/icons/delete_icon.png">
                         <p>Delete</p>
                     </a>
 
                     <a href="" class="editBar">
-                        <img alt="" src="./img/icons/edit_icon.png">
+                        <img src="./img/icons/edit_icon.png">
                         <p>Edit</p>
                     </a>
                 </div>
