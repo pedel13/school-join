@@ -15,7 +15,7 @@ function getInputs() {
         "categorySelect": document.getElementById('categorySelect').value,
         "subtasks": document.getElementById('subtasks').value,
     };
-    setTaskData("/tasks", inputs);
+    setTaskData("taskpresent/tasks", inputs);
 }
 
 async function setTaskData(path="", data={}) {
