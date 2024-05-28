@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
     <script src="js/remoteStorage.js"></script>
     <title>Join</title>
 </head>
@@ -32,10 +34,10 @@
             <span class="headlineBorder">&nbsp;</span>
             <div id="signUpCredentials">
                 <form method="POST">
-                    <input type="text" placeholder="Name" name="name" id="name" class="icon-person form-control">
-                    <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control">
-                    <input type="password" placeholder="Password" name="password" id="password" class="icon-lock">
-                    <input type="password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock">
+                    <input type="text" placeholder="Name" name="name" id="name" class="icon-person form-control" required>
+                    <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
+                    <input type="password" placeholder="Password" name="password" id="password" class="icon-lock" required>
+                    <input type="password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" required>
                     <div class="signUpCheckBox">
                         <input type="checkbox">
                         <span>I accept the
@@ -43,7 +45,7 @@
                         </span>
                     </div>
                 </form>
-                <form action="">
+                <form action="" onsubmit="addUser(); return false;">
                     <button class="btn bg-join-blue fc-white fSize-16" id="signUp">Sign up</button>
                 </form>
             </div>

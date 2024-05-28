@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="">
+    <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="git conflict first big one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/add_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/add_task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/board.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/board.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,8 +102,17 @@
       <workItem from="1715933280034" duration="514000" />
       <workItem from="1715934623542" duration="16087000" />
       <workItem from="1716224915587" duration="18302000" />
-      <workItem from="1716454847199" duration="25822000" />
+      <workItem from="1716454847199" duration="30443000" />
     </task>
+    <task id="LOCAL-00001" summary="git conflict first big one">
+      <option name="closed" value="true" />
+      <created>1716666291194</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1716666291194</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -109,6 +120,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="git conflict first big one" />
+    <option name="LAST_COMMIT_MESSAGE" value="git conflict first big one" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
