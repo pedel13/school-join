@@ -9,7 +9,7 @@
       <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/register.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sign_up.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,7 @@
       <workItem from="1715933280034" duration="514000" />
       <workItem from="1715934623542" duration="16087000" />
       <workItem from="1716224915587" duration="18302000" />
-      <workItem from="1716454847199" duration="30443000" />
+      <workItem from="1716454847199" duration="39130000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />

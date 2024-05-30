@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
+    <script src="js/register.js"></script>
     <script src="js/login.js"></script>
     <script src="js/remoteStorage.js"></script>
     <title>Join</title>
@@ -43,13 +44,13 @@
                     <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
                     <input type="password" placeholder="Password" name="password" id="password" class="icon-lock" required>
                     <div class="checkBox">
-                        <input type="checkbox">
+                        <input type="checkbox" id="remember">
                         <span>Remember me</span>
                     </div>
                 </form>
-                <form action="" onsubmit="loginValidation()">
+                <form>
                     <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
-                    <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn">Guest Log in</button>
+                    <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
                 </form>
             </div>
         </div>
