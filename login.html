@@ -40,7 +40,7 @@
             <h1 class="fSize-61">Log in</h1>
             <span class="headlineBorder">&nbsp;</span>
             <div id="loginCredentials">
-                <form method="POST">
+                <form onsubmit="loginValidation()">
                     <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
                     <input type="password" placeholder="Password" name="password" id="password" class="icon-lock" required>
                     <div class="checkBox">

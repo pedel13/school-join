@@ -5,19 +5,31 @@ function addUser() {
     let passwordConfirm = document.getElementById("passwordConfirm");
     let checkBox = document.getElementById("registerCheckbox");
     
-    if (password.value === passwordConfirm.value) {
-        if (checkBox.checked) {
+    if (name.value !== "" && password.value === passwordConfirm.value) {
+        if (checkBox.checked === true) {
             users.push({email: email.value, password: password.value});
+            window.alert("Du hast dich erfolgreich registriert!");
+            window.location.href = 'register.html?msg=Du hast dich erfolgreich registriert!';
+            name.value = "";
+            email.value = "";
+            password.value = "";
+            passwordConfirm.value = "";
+            successRegister();
         }
-        else if (checkBox === !checkBox.checked) {
-            window.alert("Bitte den haken Privacy akzeptieren!");
+        else if (checkBox.checked === false) {
+            window.alert("Bitte setze den Haken!");
         }
-        window.alert("Du hast dich erfolgreich registriert!");
     }
     else window.alert("Passwörter stimmen nicht überein!");
+}
+
+function successRegister() {
+    let msgBox = document.getElementById("msgBox");
+    const urlParams = new URLSearchParams(window.location.search);
+    const msg = urlParams.get('msg');
     
-    name.value = "";
-    email.value = "";
-    password.value = "";
-    passwordConfirm.value = "";
+    if (msg) {
+        msgBox.innerText = msg;
+    }
+    else msgBox.classList.add('d-none');
 }
