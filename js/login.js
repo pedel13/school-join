@@ -2,8 +2,15 @@ let users = [
     {'email': 'admin@join.de', 'password': '123456'},
     {'email': 'test@test.de', 'password': 'testUser'}
 ];
-function loginValidation() {
-
+function login() {
+    let email = document.getElementById('email');
+    let password = document.getElementById('password');
+    let user =  users.find(user => user.email === email.value && user.password === password.value);
+    console.log(user);
+    if (user) {
+        console.log('user gefunden')
+    }
+    else console.log('user nicht gefunden')
 }
 
 function guestLogin(event) {

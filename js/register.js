@@ -1,4 +1,8 @@
 function addUser() {
+    /**
+     * Register-function
+     * @TODO: pushing into remote-storage
+     */
     let name = document.getElementById("name");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
