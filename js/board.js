@@ -4,6 +4,8 @@ let countOnToDo = 0;
 let countOnInProgress = 0;
 let countOnAwaitFeedback = 0;
 let countOnDone = 0;
+let subtaskCount = 0;
+let subtaskCountInProzent = 0;
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -133,8 +135,18 @@ function subtaskExist(task){
     }
     else {
         subtask = "";
+        subtaskCounter(task);
     }
     return subtask;
+}
+
+function subtaskCounter(task) {
+    let subtask = task.subtasks;
+    console.log(subtask);
+    subtask.forEach(element => {
+        subtaskCount ++;
+    });
+    subtaskCountInProzent = subtaskCount / 100;
 }
 
 function categoryFinder(task){
@@ -169,7 +181,7 @@ function countForNoTask(positionFromCard){
 
 function renderTask(task,taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
-        <div id="${taskId}" onclick="openTaskOverlay()" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
+        <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
             <div class="d-flex align-items-center">
                 <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categoryText}</p>
             </div>
@@ -186,7 +198,7 @@ function renderTask(task,taskId, subtask, categoryText) {
                     </div>
                 </div>
                 <div class="d-flex board-subtasks gap-4">
-                  <p> <!-- TODO: zählermethode -->1/2</p>
+                  <p> <!-- TODO: zählermethode -->1/${subtaskCount}</p>
                   <p>Subtasks</p>
                 </div>
             </div>
@@ -205,3 +217,4 @@ function renderTask(task,taskId, subtask, categoryText) {
         </div>
     `;
 }
+

@@ -1,5 +1,7 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 let prio;
+let subtasklist = [];
+let subtaskProofment = [];
 
 async function addTask() {
     await getInputs();
@@ -14,7 +16,8 @@ function getInputs() {
         "datePicker": document.getElementById('datePicker').value,
         "priority": prio,
         "categorySelect": document.getElementById('categorySelect').value,
-        "subtasks": document.getElementById('subtasks').value,
+        "subtasks": subtasklist,
+        "subtask": subtaskProofment
     };
     setTaskData("board/tasks", inputs);
     clearAddTask();
@@ -27,6 +30,8 @@ function clearAddTask() {
     datePicker.value = '';
     categorySelect.value = '';
     subtasks.value = '';
+    subtasklist = '';
+    subtaskProofment = '';
     priobuttonclearselect()
     prio = '';
 }
@@ -100,15 +105,15 @@ function priobuttonSelect(priority) {
     prio = priority;
     console.log(prio);
     switch (prio) {
-        case 'urgent':
+        case 'Urgent':
             priobutton('urgentButton','addTaskPrioUrgent');
             priobuttonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
             break;
-        case 'medium':
+        case 'Medium':
             priobutton('mediumButton','addTaskPrioMedium');
             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
             break;
-        case 'low':
+        case 'Low':
             priobutton('lowButton','addTaskPrioLow');
             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
             break;
@@ -119,16 +124,31 @@ function priobuttonSelect(priority) {
 
 function priobuttonclearselect() {
     switch (prio) {
-        case 'urgent':
+        case 'Urgent':
             priobuttonclear('urgentButton','addTaskPrioUrgent');
             break;
-        case 'medium':
+        case 'Medium':
             priobuttonclear('mediumButton','addTaskPrioMedium');
             break;
-        case 'low':
+        case 'Low':
             priobuttonclear('lowButton','addTaskPrioLow');
             break;
         default:
             break;
     }
+}
+
+function addSubtaskAddArray() {
+    let newSubtask = document.getElementById('subtasks').value;
+    document.getElementById('subtaskSorage').innerHTML += `
+    <li class="addTaskSubtaskShow justify-content-between">• ${newSubtask}<div class="d-flex">
+    <button type="button"  class="addTaskSubtaskEdit"></button>
+    <div class="addTaskSubtaskVertikalLine"></div>
+    <button type="button"  class="addTaskSubtaskWaste"></button>
+    </div></li>`
+    subtasklist.push(newSubtask);
+    subtaskProofment.push("false");
+    console.log(subtasklist);
+    console.log(subtaskProofment);
+    subtasks.value = '';
 }

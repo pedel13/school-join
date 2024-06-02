@@ -63,21 +63,21 @@
                     <div class="addTaskWrapperRight">
                         <div>
                             <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                            <input type="date" id="datePicker">
+                            <input type="date" id="datePicker" required>
                         </div>
 
                         <div>
                             <p class="fSize-16">Prio</p>
                             <div id="priority" class="priority d-flex">
-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="urgentButton" type="button" onclick="priobuttonSelect('Urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
                                     <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                 </button>
-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="mediumButton" type="button" onclick="priobuttonSelect('Medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Medium
                                     <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                 </button>
-                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="lowButton" type="button" onclick="priobuttonSelect('Low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Low
                                     <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                 </button>
@@ -95,7 +95,14 @@
 
                         <div>
                             <p class="fSize-16">Subtasks</p>
+                            <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                             <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                <!-- TODO: onclick funktion -->
+                                <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
+                                        <div class="addTaskAdd"></div>
+                                </button>
+                            </div>
+                            <lu id="subtaskSorage"></lu>
                         </div>
                     </div>
                 </div>
