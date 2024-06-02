@@ -18,3 +18,13 @@ function guestLogin(event) {
     document.getElementById('loginEmail').value = "test@test.de";
     document.getElementById('loginPassword').value = "testUser";
 }
+
+function onloadLogin() {
+    loadUsers("users");
+}
+
+async function loadUsers(path = "") {
+    let response = await fetch(BASE_URL + path + ".json");
+    let responseToJson = await response.json();
+    console.log(responseToJson);
+}

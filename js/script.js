@@ -1,6 +1,7 @@
 async function init() {
-    await includeHTML();
-    loadTasks();
+    includeHTML();
+    await loadTasks();
+    await loadUsers();
 }
 
 //Function show and hide belong together and are for the Join Logo

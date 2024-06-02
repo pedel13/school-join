@@ -7,8 +7,8 @@
     <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="git conflict first big one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +81,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PS-241.15989.102" />
-        <option value="bundled-php-predefined-ba97393d7c68-c76157a7178b-com.jetbrains.php.sharedIndexes-PS-241.15989.102" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PS-241.17011.119" />
+        <option value="bundled-php-predefined-ba97393d7c68-48a1a656d44e-com.jetbrains.php.sharedIndexes-PS-241.17011.119" />
       </set>
     </attachedChunks>
   </component>
@@ -101,7 +101,10 @@
       <workItem from="1715933280034" duration="514000" />
       <workItem from="1715934623542" duration="16087000" />
       <workItem from="1716224915587" duration="18302000" />
-      <workItem from="1716454847199" duration="45130000" />
+      <workItem from="1716454847199" duration="47166000" />
+      <workItem from="1717244973978" duration="21000" />
+      <workItem from="1717244998546" duration="29000" />
+      <workItem from="1717245053638" duration="1931000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />
