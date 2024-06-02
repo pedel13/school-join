@@ -31,7 +31,7 @@
                 <h1>Add Task</h1>
             </div>
 
-            <div class="main">
+            <form class="main" onsubmit="addTask()">
                 <div id="addTaskWrapper" class="addTaskWrapper">
                     <div class="addTaskWrapperLeft">
                         <div>
@@ -49,7 +49,7 @@
                         <div class="spacer">&nbsp;</div>
 
                         <div>
-                            <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
+                            <p class="fSize-16">Assigned to</p>
                             <select name="choose" id="selectInputAssignee">
                                 <option value="Assigned to...">Assigned to...</option>
                                 <option value="Test 1">Test 1</option>
@@ -67,26 +67,26 @@
                         </div>
 
                         <div>
-                            <p class="fSize-16">Prio<span class="redStar">*</span></p>
-                            <div id="priority" class="priority">
-                                <button class="priorityButton">
+                            <p class="fSize-16">Prio</p>
+                            <div id="priority" class="priority d-flex">
+                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
-                                    <img src="./img/icons/urgent_icon.png" alt="" class="priorityImg">
+                                    <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                 </button>
-                                <button class="priorityButton">
+                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Medium
-                                    <img src="./img/icons/medium-colored-icon.png" alt="" class="priorityImg">
+                                    <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                 </button>
-                                <button class="priorityButton">
+                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Low
-                                    <img src="./img/icons/low_icon.png" alt="" class="priorityImg">
+                                    <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                 </button>
                             </div>
                         </div>
 
                         <div>
                             <p class="fSize-16">Category<span class="redStar">*</span></p>
-                            <select name="choose" id="categorySelect">
+                            <select name="choose" id="categorySelect" required>
                                 <option value="" disabled selected>Select Category</option>
                                 <option value="technical-task">Technical-Task</option>
                                 <option value="user-story">User-Story</option>
@@ -94,8 +94,8 @@
                         </div>
 
                         <div>
-                            <p class="fSize-16">Subtasks<span class="redStar">*</span></p>
-                            <input type="text" id="subtasks" placeholder="Enter Subtasks" />
+                            <p class="fSize-16">Subtasks</p>
+                            <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                         </div>
                     </div>
                 </div>
@@ -105,10 +105,10 @@
 
                     <div id="createTaskButton">
                         <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
-                        <button id="create" onclick="addTask()">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                        <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </body>

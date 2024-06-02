@@ -507,18 +507,88 @@ textarea,
 
 }
 
+.addTaskPrioLow {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/low_icon.png);
+}
+
+.addTaskPrioMedium {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/medium-colored-icon.png);
+}
+
+.addTaskPrioUrgent {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/urgent_icon.png);
+}
+
+.addTaskPrioLowActiv {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/low_with_icon.png);
+}
+
+.addTaskPrioMediumActiv {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/medium_icon.png);
+}
+
+.addTaskPrioUrgentActiv {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(./img/icons/urgent_with_icon.png);
+}
+
 .priorityButton {
     width: 136px;
     height: 56px;
-    border-radius: 16px;
+    border-radius: 10px;
     border: none;
     background-color: #ffffff;
     font-size: 19px;
     margin-right: 8px;
 }
 
-button.priorityButton:hover {
+.priorityButtonActiv {
+    width: 136px;
+    height: 56px;
+    border-radius: 10px;
+    border: none;
+    font-size: 19px;
+    margin-right: 8px;
     background: #FFA800 !important;
+    color: #ffffff;
+}
+
+.priorityButtonActiv:hover {
+    background: #FFA800 !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+button.priorityButton:hover {
+    background-color: #ffffff !important;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
+}
+
+button.priorityButton:active {
+    background: #FFA800 !important;
+    color: #ffffff;
+}
+
+button.priorityButton:active .addTaskPrioLow {
+    background-image: url(./img/icons/low_with_icon.png);
+}
+
+button.priorityButton:active .addTaskPrioMedium {
+    background-image: url(./img/icons/medium_icon.png);
+}
+
+button.priorityButton:active .addTaskPrioUrgent {
+    background-image: url(./img/icons/urgent_with_icon.png);
 }
 
 .priorityImg {
@@ -526,6 +596,10 @@ button.priorityButton:hover {
     width: 20px;
     padding: 0;
     margin-left: 8px;
+}
+
+.priority{
+    
 }
 
 #addTaskBottom {
@@ -772,3 +846,6 @@ ul {
 
 /*##### END OF Task Overlay section #####*/
 
+input[required] {
+    border-color: red;
+  }
