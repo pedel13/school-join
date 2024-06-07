@@ -23,7 +23,7 @@ async function drop(dropPosition) {
 }
 
 async function updateTaskPosition(taskId, updatedTask) {
-    let response = await fetch(baseUrl + "board/tasks/" + taskId + ".json", {
+    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -40,6 +40,7 @@ async function updateTaskPosition(taskId, updatedTask) {
     let categoryText = categoryFinder(element);
     countForNoTask(element.position);
     renderTask(element,taskId, subtask, categoryText);
+    subtaskCount = 0;
     noTasksInProgress()
 }
 
@@ -111,7 +112,7 @@ function removeNoTaskInProgress(taskInProgress="") {
 }
 
 async function loadTasks(){
-    let response = await fetch(baseUrl + "board/tasks" + ".json");
+    let response = await fetch(baseUrl + "/board/tasks" + ".json");
     return await response.json();
 }
 
@@ -125,6 +126,7 @@ async function renderAllTasks() {
         countForNoTask(element.position);
         renderTask(element,taskId, subtask, categoryText);
     }
+    subtaskCount = 0;
     noTasksInProgress()
 }
 

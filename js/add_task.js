@@ -1,13 +1,15 @@
-const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
+const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio;
 let subtasklist = [];
 let subtaskProofment = [];
 
 async function addTask() {
+    console.log("vor ged inputs");
     await getInputs();
+    console.log("nach get inputs");
 }
 
-function getInputs() {
+async function getInputs() {
     let inputs = {
         "position": "board-task-on-to-do",
         "title": document.getElementById('title').value,
@@ -19,7 +21,9 @@ function getInputs() {
         "subtasks": subtasklist,
         "subtask": subtaskProofment
     };
-    setTaskData("board/tasks", inputs);
+    console.log("for set data");
+    await setTaskDataInDatabase("/board/tasks", inputs);
+    console.log("nach set data");
     clearAddTask();
 }
 
@@ -36,25 +40,37 @@ function clearAddTask() {
     prio = '';
 }
 
-async function setTaskData(path="", data={}) {
-    let response = await fetch(baseUrl + path + ".json",{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
+async function setTaskDataInDatabase(path = "", data = {}) {
+    console.log("infor set data", data);
+    try {
+        let response = await fetch(baseUrl + path + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let responseData = await response.json();
+        console.log("Data set response", responseData);
+    } catch (error) {
+        console.error("Error setting data in database:", error);
+    }
 }
 
-function formValidation() {
-    let titleValidation = document.getElementById('title').value;
-    let descriptionValidation = document.getElementById('description').value;
+// function formValidation() {
+//     let titleValidation = document.getElementById('title').value;
+//     let descriptionValidation = document.getElementById('description').value;
     
-    if (titleValidation !== '' && descriptionValidation !== '') {
-        document.getElementById("create").removeAttribute('disabled');
-    }
-    else window.alert("Bitte Mindestens ein Feld ausfüllen");
-}
+//     if (titleValidation !== '' && descriptionValidation !== '') {
+//         document.getElementById("create").removeAttribute('disabled');
+//     }
+//     else window.alert("Bitte Mindestens ein Feld ausfüllen");
+// }
 
 function openAddTaskOverlay() {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
