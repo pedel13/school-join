@@ -4,7 +4,13 @@ function renderTaskOverlay() {
 
 function openTaskOverlay(taskId = "") {
     takeElementFromTask(taskId);
-    subtaskLoop(taskId);
+    let task = tasks[taskId];
+    if (task.subtasks == 'no') {
+        document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
+    }
+    else{
+        subtaskLoop(taskId);
+    }
     document.getElementById('taskOverlay').classList.remove('d-none');
 }
 
@@ -15,22 +21,23 @@ function closeTaskOverlay() {
 function takeElementFromTask(taskid) {
     let element = tasks[taskid];
     let categoryText = categoryFinder(element);
-    console.log(element);
     renderTaskCardBig(element, categoryText);
 }
 
 function subtaskLoop(taskId) {
     let element = tasks[taskId];
     let subtasks = element.subtasks;
+    let i = 0;
     subtasks.forEach(subtask => {
-        renderSubTasks(subtask);
+        renderSubTasks(subtask, i);
+        i++;
     });
 }
 
-function renderSubTasks(subtask) {
+function renderSubTasks(subtask, i) {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
     <div class="checkBox">
-    <input type="checkbox">
+    <input type="checkbox" onclick="subtaskCheckbogschecked()">
     <span>${subtask}</span>
 </div>`
 }

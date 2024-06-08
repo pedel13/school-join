@@ -125,14 +125,14 @@ async function renderAllTasks() {
         let categoryText = categoryFinder(element);
         countForNoTask(element.position);
         renderTask(element,taskId, subtask, categoryText);
-    }
     subtaskCount = 0;
+    }
     noTasksInProgress()
 }
 
 function subtaskExist(task){
     let subtask = "";
-    if (task.subtasks === ""){
+    if (task.subtasks == "no"){
         subtask = "d-none";
     }
     else {
@@ -144,10 +144,13 @@ function subtaskExist(task){
 
 function subtaskCounter(task) {
     let subtask = task.subtasks;
-    console.log(subtask);
-    subtask.forEach(element => {
+    for (const element of subtask) {
         subtaskCount ++;
-    });
+        
+    }
+
+    // subtask.forEach(element => {
+    // });
     subtaskCountInProzent = subtaskCount / 100;
 }
 
@@ -164,7 +167,7 @@ function categoryFinder(task){
 function countForNoTask(positionFromCard){
     switch(positionFromCard){
     case "board-task-on-to-do":
-    countOnToDo ++;
+        countOnToDo ++;
     break;
     
     case "board-task-on-in-progress":

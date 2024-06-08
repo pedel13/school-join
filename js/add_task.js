@@ -1,12 +1,10 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio;
-let subtasklist = [];
-let subtaskProofment = [];
+let subtasklist = ['no'];
+let subtaskProofment = ['no'];
 
 async function addTask() {
-    console.log("vor ged inputs");
     await getInputs();
-    console.log("nach get inputs");
 }
 
 async function getInputs() {
@@ -21,9 +19,7 @@ async function getInputs() {
         "subtasks": subtasklist,
         "subtask": subtaskProofment
     };
-    console.log("for set data");
     await setTaskDataInDatabase("/board/tasks", inputs);
-    console.log("nach set data");
     clearAddTask();
 }
 
@@ -34,14 +30,13 @@ function clearAddTask() {
     datePicker.value = '';
     categorySelect.value = '';
     subtasks.value = '';
-    subtasklist = '';
-    subtaskProofment = '';
+    subtasklist = ['no'];
+    subtaskProofment = ['no'];
     priobuttonclearselect()
     prio = '';
 }
 
 async function setTaskDataInDatabase(path = "", data = {}) {
-    console.log("infor set data", data);
     try {
         let response = await fetch(baseUrl + path + ".json", {
             method: "POST",
@@ -56,7 +51,6 @@ async function setTaskDataInDatabase(path = "", data = {}) {
         }
 
         let responseData = await response.json();
-        console.log("Data set response", responseData);
     } catch (error) {
         console.error("Error setting data in database:", error);
     }
@@ -119,7 +113,6 @@ function priobuttonclear(button, icon) {
 
 function priobuttonSelect(priority) {
     prio = priority;
-    console.log(prio);
     switch (prio) {
         case 'Urgent':
             priobutton('urgentButton','addTaskPrioUrgent');
@@ -162,9 +155,11 @@ function addSubtaskAddArray() {
     <div class="addTaskSubtaskVertikalLine"></div>
     <button type="button"  class="addTaskSubtaskWaste"></button>
     </div></li>`
+    if (subtasklist[0] == 'no') {
+        subtasklist = [];
+        subtaskProofment = [];
+    }
     subtasklist.push(newSubtask);
     subtaskProofment.push("false");
-    console.log(subtasklist);
-    console.log(subtaskProofment);
     subtasks.value = '';
 }
