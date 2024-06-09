@@ -31,7 +31,7 @@
                 <h1>Add Task</h1>
             </div>
 
-            <form class="main" onsubmit="addTask()">
+            <form class="main" onsubmit="addTask('board-task-on-to-do')">
                 <div id="addTaskWrapper" class="addTaskWrapper">
                     <div class="addTaskWrapperLeft">
                         <div>
@@ -69,15 +69,15 @@
                         <div>
                             <p class="fSize-16">Prio</p>
                             <div id="priority" class="priority d-flex">
-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('Urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
                                     <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                 </button>
-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('Medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Medium
                                     <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                 </button>
-                                <button id="lowButton" type="button" onclick="priobuttonSelect('Low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Low
                                     <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                 </button>
@@ -106,12 +106,12 @@
                         </div>
                     </div>
                 </div>
-
+                
                 <div id="addTaskBottom" class="addTaskBottom">
                     <p class="fSize-16">This field is required<span class="redStar">*</span></p>
 
                     <div id="createTaskButton">
-                        <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
+                        <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
                         <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ let countOnAwaitFeedback = 0;
 let countOnDone = 0;
 let subtaskCount = 0;
 let subtaskCountInProzent = 0;
+let subtaskCountPrufment = 0;
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -116,9 +117,16 @@ async function loadTasks(){
     return await response.json();
 }
 
+function cleanTaskboard() {
+    document.getElementById("board-task-on-to-do").innerHTML = ''; 
+    document.getElementById("board-task-on-in-progress").innerHTML = ''; 
+    document.getElementById("board-task-on-await-feedback").innerHTML = ''; 
+    document.getElementById("board-task-on-done").innerHTML = ''; 
+}
+
 async function renderAllTasks() {
     tasks = await loadTasks();
-
+    cleanTaskboard()
     for (let taskId in tasks) {
         let element = tasks[taskId];
         let subtask = subtaskExist(element);
@@ -144,14 +152,20 @@ function subtaskExist(task){
 
 function subtaskCounter(task) {
     let subtask = task.subtasks;
+    subtaskProofments = task.subtask;
+    subtaskCount = 0;
+    let i = 0;
+    subtaskCountPrufment = 0;
     for (const element of subtask) {
+        if (subtaskProofments[i] == 'true') {
+            subtaskCountPrufment ++;
+        }
+        i ++;
         subtaskCount ++;
         
     }
+    subtaskCountInProzent = 100 / subtaskCount * subtaskCountPrufment;
 
-    // subtask.forEach(element => {
-    // });
-    subtaskCountInProzent = subtaskCount / 100;
 }
 
 function categoryFinder(task){
@@ -184,6 +198,17 @@ function countForNoTask(positionFromCard){
     }
 }
 
+async function deleteTask(taskId){
+    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+        method: 'DELETE',
+    });
+
+    if (!response.ok) {
+        console.error('Failed to update task position:', response.statusText);
+    }
+    closeTaskOverlay();
+}
+
 function renderTask(task,taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
@@ -198,12 +223,11 @@ function renderTask(task,taskId, subtask, categoryText) {
             </div>
             <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
                 <div class="board-progressbar-full rounded-8">
-                    <div class="board-progressbar rounded-8" style="width: 50%;">
-                      <!-- TODO: progressbar -->
+                    <div class="board-progressbar rounded-8" style="width: ${subtaskCountInProzent}%;">
                     </div>
                 </div>
                 <div class="d-flex board-subtasks gap-4">
-                  <p> <!-- TODO: zählermethode -->1/${subtaskCount}</p>
+                  <p> ${subtaskCountPrufment}/${subtaskCount}</p>
                   <p>Subtasks</p>
                 </div>
             </div>
@@ -214,9 +238,7 @@ function renderTask(task,taskId, subtask, categoryText) {
                     <!-- TODO: user-icons printer funktion -->
                     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
                 </div>
-                <div class="board-icon-importance">
-                    <!-- TODO: priority icon funktion -->
-                    <img src="./img/icons/low_icon.png" alt="">
+                <div class="board-icon-importance board-icon-${task.priority}-prio">
                 </div>
             </div>
         </div>
