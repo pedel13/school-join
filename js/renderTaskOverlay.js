@@ -45,15 +45,15 @@ async function changeSuptaskPrufment(i, taskId= '') {
     let subtaskCheckbox = element.subtask;
         if (subtaskCheckbox[i] == 'false') {      
             subtaskCheckbox[i] = 'true';
-            await updateSubtaskPrufment(taskId, subtaskCheckbox);
+            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
         } else {
             subtaskCheckbox[i] = 'false';
-            await updateSubtaskPrufment(taskId, subtaskCheckbox);
+            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
         }
 }
 
-async function updateSubtaskPrufment(taskId, updatedTask) {
-    let response = await fetch(baseUrl + "/board/tasks/" + taskId +"/subtask"+ ".json", {
+async function updateSubtaskPrufment(taskId, updatedTask, path='') {
+    let response = await fetch(baseUrl + "/board/tasks/" + taskId +"path"+ ".json", {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'

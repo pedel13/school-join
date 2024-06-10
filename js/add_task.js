@@ -33,7 +33,7 @@ function clearAddTask() {
     categorySelect.value = '';
     subtasks.value = '';
     subtasklist = ['no'];
-    subtaskProofment = [];
+    subtaskProofment = ['no'];
     priobuttonclearselect()
     prio = '';
 }
@@ -61,9 +61,7 @@ async function setTaskDataInDatabase(path = "", data = {}) {
 
 function openAddTaskOverlay(position='') {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
-    console.log("for render overlay");
     renderAddOverlay(position);
-    console.log("nach render overlay");
 }
 
 function closeAddTaskOverlay() {
@@ -143,28 +141,53 @@ function priobuttonclearselect() {
     }
 }
 
-function editCreatSubtaskNew(subtaskCreateCount, newSubtask) {
-    document.getElementById('subtaskCreate_'+subtaskCreateCount).innerHTML
+
+function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
+    document.getElementById('subtasks').removeAttribute("placeholder");
+    document.getElementById('subtasks').value=newSubtask;
+    deleteCreateSubtask(subtaskCreateCount);
 }
 
-function editCreatSubtaskAlt(subtaskCreateCount, newSubtask) {
-    document.getElementById('subtaskCreate_'+subtaskCreateCount).innerHTML
+function deleteCreateSubtask(subtaskCreateCount='') {
+    if (subtasklist.length == 1) {
+        subtasklist = ['no'];
+        subtaskProofment = ['no']
+    }
+    else {
+        let subtaskCreateCountSplice = subtaskCreateCount;
+        subtasklist.splice(subtaskCreateCountSplice, 1);
+        subtaskProofment.splice(subtaskCreateCountSplice, 1);
+        }
+    console.log(subtasklist);
+    let element = document.getElementById('subtaskSorage');
+    if (element) {
+        let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
+        if (child) {
+            child.remove();
+        }
+    }
+    document.getElementById('subtaskSorage').innerHTML = ''
+    renderAllCreateSubtaskNew();
 }
 
-function deleteCreateSubtaskNew(subtaskCreateCount) {
-    let element = document.getElementById('subtaskCreate_'+subtaskCreateCount);
-    element.parentNode.removeChild(element);
-}
-
-function deleteCreateSubtaskAlt(subtaskCreateCount) {
-    document.getElementById('subtaskCreate_'+subtaskCreateCount).innerHTML
+function renderAllCreateSubtaskNew() {
+    if (subtasklist[0] == 'no') {
+    } else{
+        let i = 0;
+        for (let subtask in subtasklist) {
+        renderCrateSubtask(subtasklist[i], i);
+        i ++;
+        }
+    }
 }
 
 function renderAllCreateSubtasks(taskId) {
     let i = 0;
     let element = tasks[taskId];
     for (let subtask in element.subtasks) {
-    renderCrateSubtask(element.subtasks[i], i, 'Alt');
+        subtasklist.push(newSubtask);
+        subtaskProofment.push("false");
+    renderCrateSubtask(element.subtasks[i], i);
     i ++;
     }
 }
@@ -178,15 +201,16 @@ function addSubtaskAddArray() {
     subtaskProofment.push("false");
     subtasks.value = '';
     let subtaskCreateCount = subtasklist.length - 1;
-    renderCrateSubtask(newSubtask, subtaskCreateCount, 'New');
+    renderCrateSubtask(newSubtask, subtaskCreateCount);
     }
     
-    function renderCrateSubtask(newSubtask, subtaskCreateCount, age='') {
+    function renderCrateSubtask(newSubtask, subtaskCreateCount) {
+    
     document.getElementById('subtaskSorage').innerHTML += `
     <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" justify-content-between">• ${newSubtask}<div class="d-flex">
-    <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask${age}('${subtaskCreateCount},${newSubtask}')"></button>
+    <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
     <div class="addTaskSubtaskVertikalLine"></div>
-    <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask${age}('${subtaskCreateCount}')"></button>
+    <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
     </div></li>`
 }
 
