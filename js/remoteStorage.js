@@ -1,5 +1,5 @@
 function onloadFunc() {
-    console.log("test");
+    //console.log("test");
     deleteData("/name");
 }
 

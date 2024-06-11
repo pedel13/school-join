@@ -16,10 +16,10 @@
     <script src="js/register.js"></script>
     <script src="js/login.js"></script>
     <script src="js/remoteStorage.js"></script>
-    <title>Join</title>
+    <title>Join - Login</title>
 </head>
 
-<body onload="onloadFunc(); showLogoAnimation()">
+<body onload="onloadFunc(); showLogoAnimation(); onloadLogin();">
     <div class="loginHeader" id="header">
         <div>
             <a href="index.html">
@@ -29,7 +29,7 @@
         <div class="signUp_btn">
             <p>Not a Join user?</p>
             &nbsp;
-            <a href="register.html">
+            <a href="signup.html">
                 <button id="signUp">Sign up</button>
             </a>
         </div>
@@ -48,7 +48,7 @@
                         <span>Remember me</span>
                     </div>
                 </form>
-                <form onsubmit="login(); return false;">
+                <form>
                     <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
                     <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
                 </form>

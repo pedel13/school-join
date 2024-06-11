@@ -1,23 +1,20 @@
 function addUser() {
-    /**
-     * Register-function
-     * @TODO: pushing into remote-storage
-     */
     let name = document.getElementById("name");
     let email = document.getElementById("email");
     let password = document.getElementById("password");
     let passwordConfirm = document.getElementById("passwordConfirm");
     let checkBox = document.getElementById("registerCheckbox");
-    
+    /**
+     * Register-function
+     * @TODO: pushing into remote-storage??
+     */
+    preventRefresh();
     if (name.value !== "" && password.value === passwordConfirm.value) {
         if (checkBox.checked === true) {
             users.push({email: email.value, password: password.value});
             window.alert("Du hast dich erfolgreich registriert!");
-            window.location.href = 'register.html?msg=Du hast dich erfolgreich registriert!';
-            name.value = "";
-            email.value = "";
-            password.value = "";
-            passwordConfirm.value = "";
+            window.location.href = 'signup.html?msg=Du hast dich erfolgreich registriert!';
+            clearRegisterForm();
             successRegister();
         }
         else if (checkBox.checked === false) {
@@ -25,6 +22,25 @@ function addUser() {
         }
     }
     else window.alert("Passwörter stimmen nicht überein!");
+}
+
+function clearRegisterForm(name, email, password, passwordConfirm, checkBox) {
+    name.value = "";
+    email.value = "";
+    password.value = "";
+    passwordConfirm.value = "";
+    checkBox.checked = false;
+}
+
+function preventRefresh() {
+    document.getElementById('formIdSignup').addEventListener (
+        "submit",
+        function (evt) {
+            // Eingaben nicht korrekt
+            evt.preventDefault();
+            //
+        }
+    );
 }
 
 function successRegister() {
