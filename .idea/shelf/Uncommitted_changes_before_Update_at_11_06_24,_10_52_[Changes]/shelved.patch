@@ -1,0 +1,1174 @@
+Index: js/board.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>let tasks;\nlet cardDraggedId;\nlet countOnToDo = 0;\nlet countOnInProgress = 0;\nlet countOnAwaitFeedback = 0;\nlet countOnDone = 0;\nlet subtaskCount = 0;\nlet subtaskCountInProzent = 0;\n\nfunction allowDrop(ev) {\n    ev.preventDefault();\n}\n  \nfunction drag(id) {\n    cardDraggedId = id;\n}\n  \nasync function drop(dropPosition) {\n    let dropCard = tasks[cardDraggedId];\n    reduceDroppedElement(dropCard[\"position\"]);\n    dropCard[\"position\"] = dropPosition;\n    await updateTaskPosition(cardDraggedId, dropCard);\n}\n\nasync function updateTaskPosition(taskId, updatedTask) {\n    let response = await fetch(baseUrl + \"board/tasks/\" + taskId + \".json\", {\n        method: 'PUT',\n        headers: {\n            'Content-Type': 'application/json'\n        },\n        body: JSON.stringify(updatedTask)\n    });\n\n    if (!response.ok) {\n        console.error('Failed to update task position:', response.statusText);\n    }\n    let element = tasks[taskId];\n    removeDraggedCard()\n    let subtask = subtaskExist(element);\n    let categoryText = categoryFinder(element);\n    countForNoTask(element.position);\n    renderTask(element,taskId, subtask, categoryText);\n    noTasksInProgress()\n}\n\nfunction removeDraggedCard() {\n    const element = document.getElementById(cardDraggedId);\n    element.remove();\n}\n\nfunction reduceDroppedElement(elementPosition) {\n    switch(elementPosition){\n    case \"board-task-on-to-do\":\n    countOnToDo --;\n    break;\n    \n    case \"board-task-on-in-progress\":\n    countOnInProgress --;\n    break;\n    \n    case \"board-task-on-await-feedback\":\n    countOnAwaitFeedback --;\n    break;\n    \n    case \"board-task-on-done\":\n    countOnDone --;\n    break;\n    }\n\n}\n\nfunction noTasksInProgress() {\n    if (countOnToDo != 0){\n        addNoTaskInProgress(\"no-tasks-to-do\");\n    }\n    \n    else {\n        removeNoTaskInProgress(\"no-tasks-to-do\");\n    }\n    \n    if (countOnInProgress != 0) {\n        addNoTaskInProgress(\"no-tasks-in-progress\");\n    }\n    else {\n        removeNoTaskInProgress(\"no-tasks-in-progress\");\n    }\n    \n    if (countOnAwaitFeedback != 0) {\n        addNoTaskInProgress(\"no-tasks-await-feedback\");\n    }\n    else {\n        removeNoTaskInProgress(\"no-tasks-await-feedback\");\n    }\n    \n    if (countOnDone != 0) {\n        addNoTaskInProgress(\"no-tasks-Done\");\n    }\n    else {\n        removeNoTaskInProgress(\"no-tasks-Done\");\n    }\n}\n\nfunction addNoTaskInProgress(taskInProgress=\"\") {\n    let element = document.getElementById(taskInProgress);\n    element.classList.add(\"d-none\");\n}\n\nfunction removeNoTaskInProgress(taskInProgress=\"\") {\n    let element = document.getElementById(taskInProgress);\n    element.classList.remove(\"d-none\");\n}\n\nasync function loadTasks(){\n    let response = await fetch(baseUrl + \"board/tasks\" + \".json\");\n    return await response.json();\n}\n\nasync function renderAllTasks() {\n    tasks = await loadTasks();\n\n    for (let taskId in tasks) {\n        let element = tasks[taskId];\n        let subtask = subtaskExist(element);\n        let categoryText = categoryFinder(element);\n        countForNoTask(element.position);\n        renderTask(element,taskId, subtask, categoryText);\n    }\n    noTasksInProgress()\n}\n\nfunction subtaskExist(task){\n    let subtask = \"\";\n    if (task.subtasks === \"\"){\n        subtask = \"d-none\";\n    }\n    else {\n        subtask = \"\";\n        subtaskCounter(task);\n    }\n    return subtask;\n}\n\nfunction subtaskCounter(task) {\n    let subtask = task.subtasks;\n    console.log(subtask);\n    subtask.forEach(element => {\n        subtaskCount ++;\n    });\n    subtaskCountInProzent = subtaskCount / 100;\n}\n\nfunction categoryFinder(task){\n    let categoryText = \"\";\n    if (task.categorySelect === \"technical-task\") {\n    categoryText = \"Technical Task\";\n    } else {\n    categoryText = \"User Story\";\n    }\n    return categoryText;\n}\n\nfunction countForNoTask(positionFromCard){\n    switch(positionFromCard){\n    case \"board-task-on-to-do\":\n    countOnToDo ++;\n    break;\n    \n    case \"board-task-on-in-progress\":\n    countOnInProgress ++;\n    break;\n    \n    case \"board-task-on-await-feedback\":\n    countOnAwaitFeedback ++;\n    break;\n    \n    case \"board-task-on-done\":\n    countOnDone ++;\n    break;\n    }\n}\n\nfunction renderTask(task,taskId, subtask, categoryText) {\n    document.getElementById(task.position).innerHTML += `\n        <div id=\"${taskId}\" onclick=\"openTaskOverlay('${taskId}')\" ondragstart=\"drag('${taskId}')\" draggable=\"true\" class=\"d-flex board-task-card flex-column\">\n            <div class=\"d-flex align-items-center\">\n                <p class=\"fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}\" id=\"\">${categoryText}</p>\n            </div>\n            <div>\n                <p class=\"board-card-subtitle\" id=\"\">${task.title}</p>\n            </div>\n            <div>\n                <p class=\"board-description\" id=\"\">${task.description}</p>\n            </div>\n            <div class=\"d-flex align-items-center gap-10 ${subtask}\" id=\"board-done-progressbar\">\n                <div class=\"board-progressbar-full rounded-8\">\n                    <div class=\"board-progressbar rounded-8\" style=\"width: 50%;\">\n                      <!-- TODO: progressbar -->\n                    </div>\n                </div>\n                <div class=\"d-flex board-subtasks gap-4\">\n                  <p> <!-- TODO: zählermethode -->1/${subtaskCount}</p>\n                  <p>Subtasks</p>\n                </div>\n            </div>\n            <div class=\"d-flex justify-content-between\">\n                <div class=\"fc-white d-flex\">\n                    <!-- TODO: Farbklasse dynamisch gestalten -->\n                    <p class=\"rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8\">PW</p>\n                    <!-- TODO: user-icons printer funktion -->\n                    <p class=\"rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8\">FF</p>\n                </div>\n                <div class=\"board-icon-importance\">\n                    <!-- TODO: priority icon funktion -->\n                    <img src=\"./img/icons/low_icon.png\" alt=\"\">\n                </div>\n            </div>\n        </div>\n    `;\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/board.js b/js/board.js
+--- a/js/board.js	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/js/board.js	(date 1718094693850)
+@@ -6,6 +6,7 @@
+ let countOnDone = 0;
+ let subtaskCount = 0;
+ let subtaskCountInProzent = 0;
++let subtaskCountPrufment = 0;
+ 
+ function allowDrop(ev) {
+     ev.preventDefault();
+@@ -23,7 +24,7 @@
+ }
+ 
+ async function updateTaskPosition(taskId, updatedTask) {
+-    let response = await fetch(baseUrl + "board/tasks/" + taskId + ".json", {
++    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+         method: 'PUT',
+         headers: {
+             'Content-Type': 'application/json'
+@@ -40,6 +41,7 @@
+     let categoryText = categoryFinder(element);
+     countForNoTask(element.position);
+     renderTask(element,taskId, subtask, categoryText);
++    subtaskCount = 0;
+     noTasksInProgress()
+ }
+ 
+@@ -111,26 +113,34 @@
+ }
+ 
+ async function loadTasks(){
+-    let response = await fetch(baseUrl + "board/tasks" + ".json");
++    let response = await fetch(baseUrl + "/board/tasks" + ".json");
+     return await response.json();
+ }
+ 
++function cleanTaskboard() {
++    document.getElementById("board-task-on-to-do").innerHTML = ''; 
++    document.getElementById("board-task-on-in-progress").innerHTML = ''; 
++    document.getElementById("board-task-on-await-feedback").innerHTML = ''; 
++    document.getElementById("board-task-on-done").innerHTML = ''; 
++}
++
+ async function renderAllTasks() {
+     tasks = await loadTasks();
+-
++    cleanTaskboard()
+     for (let taskId in tasks) {
+         let element = tasks[taskId];
+         let subtask = subtaskExist(element);
+         let categoryText = categoryFinder(element);
+         countForNoTask(element.position);
+         renderTask(element,taskId, subtask, categoryText);
++    subtaskCount = 0;
+     }
+     noTasksInProgress()
+ }
+ 
+ function subtaskExist(task){
+     let subtask = "";
+-    if (task.subtasks === ""){
++    if (task.subtasks == "no"){
+         subtask = "d-none";
+     }
+     else {
+@@ -142,11 +152,20 @@
+ 
+ function subtaskCounter(task) {
+     let subtask = task.subtasks;
+-    console.log(subtask);
+-    subtask.forEach(element => {
++    subtaskProofments = task.subtask;
++    subtaskCount = 0;
++    let i = 0;
++    subtaskCountPrufment = 0;
++    for (const element of subtask) {
++        if (subtaskProofments[i] == 'true') {
++            subtaskCountPrufment ++;
++        }
++        i ++;
+         subtaskCount ++;
+-    });
+-    subtaskCountInProzent = subtaskCount / 100;
++        
++    }
++    subtaskCountInProzent = 100 / subtaskCount * subtaskCountPrufment;
++
+ }
+ 
+ function categoryFinder(task){
+@@ -162,7 +181,7 @@
+ function countForNoTask(positionFromCard){
+     switch(positionFromCard){
+     case "board-task-on-to-do":
+-    countOnToDo ++;
++        countOnToDo ++;
+     break;
+     
+     case "board-task-on-in-progress":
+@@ -179,6 +198,17 @@
+     }
+ }
+ 
++async function deleteTask(taskId){
++    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
++        method: 'DELETE',
++    });
++
++    if (!response.ok) {
++        console.error('Failed to update task position:', response.statusText);
++    }
++    closeTaskOverlay();
++}
++
+ function renderTask(task,taskId, subtask, categoryText) {
+     document.getElementById(task.position).innerHTML += `
+         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
+@@ -193,12 +223,11 @@
+             </div>
+             <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
+                 <div class="board-progressbar-full rounded-8">
+-                    <div class="board-progressbar rounded-8" style="width: 50%;">
+-                      <!-- TODO: progressbar -->
++                    <div class="board-progressbar rounded-8" style="width: ${subtaskCountInProzent}%;">
+                     </div>
+                 </div>
+                 <div class="d-flex board-subtasks gap-4">
+-                  <p> <!-- TODO: zählermethode -->1/${subtaskCount}</p>
++                  <p> ${subtaskCountPrufment}/${subtaskCount}</p>
+                   <p>Subtasks</p>
+                 </div>
+             </div>
+@@ -209,9 +238,7 @@
+                     <!-- TODO: user-icons printer funktion -->
+                     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
+                 </div>
+-                <div class="board-icon-importance">
+-                    <!-- TODO: priority icon funktion -->
+-                    <img src="./img/icons/low_icon.png" alt="">
++                <div class="board-icon-importance board-icon-${task.priority}-prio">
+                 </div>
+             </div>
+         </div>
+Index: custom-variables.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>/*\n# fc = font-color\n# fs = font-size\n# bg = background\n# fSize = font-size //e.g. fSize21 = font-size: 21px\n*/\n\nh1 {\n    margin-block-end: 0;\n}\n\nbutton,\ninput {\n    cursor: pointer;\n}\n\n.bg-join-blue {\n    background-color: #2A3647 !important;\n}\n\n.bg-transparent {\n    background-color: transparent !important;\n}\n\n.fc-white {\n    color: #ffffff !important;\n}\n\n.fc-grey {\n    color: #A8A8A8 !important;\n}\n\n.fc-join-blue {\n    color: #2A3647 !important;\n}\n\n.border-join-blue {\n    border: 1px solid #2A3647 !important;\n}\n\n.fSize-16 {\n    font-size: 16px !important;\n}\n\n.fSize-21 {\n    font-size: 21px !important;\n}\n\n.fSize-61 {\n    font-size: 61px !important;\n}\n\n.bold {\n    font-weight: bold !important;\n}\n\n.icon-letter {\n    position: relative;\n    background-image: url(\"img/icons/mail.png\");\n    background-repeat: no-repeat;\n    background-position: center right 20px;\n    background-size: 20px;\n}\n\n.icon-lock {\n    position: relative;\n    background-image: url(\"img/icons/lock.png\");\n    background-repeat: no-repeat;\n    background-position: center right 20px;\n    background-size: 20px;\n}\n\n.icon-person {\n    position: relative;\n    background-image: url(\"img/icons/person.png\");\n    background-repeat: no-repeat;\n    background-position: center right 20px;\n    background-size: 20px;\n}\n\n::placeholder {\n    color: #ADADAD !important;\n}\n\n.summary-button-color {\n    color: black;\n    background-color: #ffffff;\n}\n\n.summary-button-color:hover {\n    color: #ffffff !important;\n    background-color: #2A3647 !important;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);\n}\n\n.summary-button-color:active {\n    color: black !important;\n    background-color: #ffffff!important;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);\n}\n\n.summary-button-number {\n    font-size: 64px;\n    font-weight: 600;\n}\n\n.summary-button-text-small {\n    font-size: 16px;\n    font-weight: 400;\n}\n\n.summary-button-text-medium {\n    font-size: 20px;\n    font-weight: 400;\n}\n\n.summary-button-text-large {\n    font-size: 21px;\n    font-weight: 700;\n}\n\n.summary-title-large {\n    font-size: 61px;\n    font-weight: 700;\n}\n\n.summary-title-small {\n    font-size: 27px;\n    font-weight: 400;\n}\n\n.summary-greeting {\n    font-size: 47px;\n    font-weight: 500;\n}\n\n.summary-greeting-name {\n    font-size: 64px;\n    font-weight: 700;\n    color: #29ABE2;\n}\n\n.summary-button-size-small {\n    width: 168px !important;\n    height: 168px !important;\n}\n\n.summary-button-size-medium {\n    width: 264px !important;\n    height: 168px !important;\n}\n\n.summary-button-size-large {\n    width: 560px !important;\n    height: 168px !important;\n}\n\n.summary-button-width-text {\n    width: 93px !important;\n    text-align: center;\n}\n\n.summary-button-box {\n    height: 562px !important;\n    margin-top: 56px !important;\n    margin-left: 83px !important;\n    margin-right: 80px !important;\n}\n\n.summary-title-box {\n    gap: 30px !important;\n    margin-top: 100px !important;\n    margin-left: 83px !important;\n}\n\n.summary-line {\n    width: 2px !important;\n    height: 102px !important;\n    background-color: #D1D1D1;\n}\n\n.summary-title-line {\n    width: 3px !important;\n    height: 59px !important;\n    background-color: #29ABE2;\n}\n\n.summary-todo-icon {\n    width: 69px !important;\n    height: 69px !important;\n    background-image: url(./img/icons/todo_icon.png);\n    background-repeat: no-repeat;\n}\n\n.summary-todo:hover .summary-todo-icon {\n    background-image: url(./img/icons/todo_hover_icon.png) !important;\n}\n\n.summary-todo:active .summary-todo-icon {\n    background-image: url(./img/icons/todo_icon.png) !important;\n}\n\n.summary-done-icon {\n    width: 69px !important;\n    height: 69px !important;\n    background-image: url(./img/icons/done_icon.png);\n    background-repeat: no-repeat;\n}\n\n.summary-done:hover .summary-done-icon {\n    background-image: url(./img/icons/done_hover_icon.png) !important;\n}\n\n.summary-done:active .summary-done-icon {\n    background-image: url(./img/icons/done_icon.png) !important;\n}\n\n.summary-icon-numberbox {\n    width: 130px !important;\n    height: 96px !important;\n}\n\n.p-10 {\n    padding: 10px;\n}\n\n.link-noDeco-black {\n    text-decoration: none;\n    color: #000000;\n}\n\n.margin-bottom-0 {\n    margin-bottom: 0 !important;\n}\n\n.redStar {\n    color: red !important;\n}\n\n.divider {\n    height: 100% !important;\n    width: 1px !important;\n    border-left: 1px solid grey !important;\n}\n\n.spacer {\n    margin-top: 24px;\n}\n\n.board-title {\n    font-weight: 700;\n    font-size: 61px;\n}\n\n.board-task-lanes {\n    display: flex;\n    justify-content: space-between;\n}\n\n.board-subtitle {\n    font-weight: 700;\n    font-size: 20px;\n    color: #42526E;\n}\n\n.board-add-task-icon-white {\n    width: 32px;\n    height: 32px;\n    background-image: url(img/icons/add-white.png);\n    background-repeat: no-repeat;\n    background-position: center;\n}\n\n.board-add-task-button {\n    background-color: #2A3647;\n    width: 160px;\n    height: 48px;\n    border-radius: 10px;\n    color: white;\n    font-size: 21px;\n    font-weight: 700;\n    margin-left: 16px;\n    margin-right: 16px;\n}\n\n.board-add-task-button:hover {\n    background-color: #29ABE2 !important;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);\n}\n\n.board-input-total {\n    border-radius: 10px;\n    background-color: white;\n    border: 1px #A8A8A8;\n    width: 312px;\n    height: 48px;\n}\n\n.board-input {\n    border: none;\n    padding-left: 16px;\n    width: 228px;\n}\n\n.board-input, .board-input::placeholder {\n    font-size: 20px;\n    font-weight: 400 !important;\n    font-family: 'Inter', sans-serif !important;\n}\n\n.board-vertical-line {\n    width: 1px;\n    height: 31px;\n    background-color: #D1D1D1;\n}\n\n.board-search {\n    background-image: url(./img/icons/board-search.png);\n    width: 32px;\n    height: 32px;\n    background-repeat: no-repeat;\n    background-position: center;\n    border-radius: 100%;\n}\n\n.board-search:hover {\n    background-color: #EEEEEE;\n}\n\n.board-search-padding {\n    padding-left: 16px;\n    padding-right: 16px;\n    display: inline;\n}\n\n#board-search-button {\n    background: none !important;\n    border: none !important;\n    padding: 0 !important;\n    box-shadow: none !important;\n}\n\n.board-no-tasks {\n    font-size: 16px;\n    font-weight: 400;\n    font-family: \"Open Sans\", sans-serif;\n    width: 252px;\n    height: 48px;\n    border-radius: 10px;\n    background-color: #E7E7E7;\n    border: dashed 1px #A8A8A8;\n    outline: 1px solid #E7E7E7;\n}\n\n.board-tasks {\n    margin-top: 16px;\n    display: flex;\n    flex-direction: column;\n    row-gap: 10px;\n}\n\n.board-headline {\n    max-width: 1056px;\n    margin-top: 80px;\n    margin-left: 64px;\n}\n\n.board-all-columns {\n    gap: 24px;\n}\n\n.board-task-columns {\n    width: 252px;\n}\n\n.board-tasks-card {\n    row-gap: 16px;\n    min-height: 40vh;\n}\n\n.board-user {\n    font-size: 16px;\n    font-weight: 400 !important;\n    padding: 4px 16px 4px 16px;\n    height: 27px !important;\n    max-width: 220px;\n}\n\n.board-card-subtitle {\n    font-size: 16px;\n    font-weight: 700;\n}\n\n.board-description {\n    font-size: 16px;\n    font-weight: 400;\n    color:#A8A8A8;\n}\n\n.board-user-icon {\n    font-size: 12px;\n    font-weight: 400;\n    width: 32px;\n    height: 32px;\n    border: solid #ffffff 1px;\n}\n\n.board-subtasks {\n    font-size: 12px;\n    font-weight: 400;\n}\n\n.board-progressbar-full {\n    background-color: #F4F4F4;\n    width: 128px;\n    height: 8px;\n}\n\n.board-progressbar {\n    background-color: #4589FF;\n    height: 8px;\n}\n\n.board-icon-importance {\n    width: 32px;\n    height: 32px;\n}\n\n.board-task-card {\n    background-color: #ffffff;\n    border-radius: 24px;\n    box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);\n    gap: 10px;\n    padding: 16px;\n}\n\n.user-story {\n    background-color: #0038FF;\n}\n\n.technical-task {\n    background-color: #1FD7C1;\n}\n\n.centerWrapperHeadline {\n    margin-left: 83px;\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/custom-variables.css b/custom-variables.css
+--- a/custom-variables.css	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/custom-variables.css	(date 1718094693842)
+@@ -46,6 +46,10 @@
+     font-size: 21px !important;
+ }
+ 
++.fSize-20 {
++    font-size: 20px !important;
++}
++
+ .fSize-61 {
+     font-size: 61px !important;
+ }
+@@ -247,6 +251,7 @@
+     margin-top: 24px;
+ }
+ 
++
+ .board-title {
+     font-weight: 700;
+     font-size: 61px;
+@@ -425,6 +430,31 @@
+     width: 32px;
+     height: 32px;
+ }
++
++.board-icon-low-prio {
++    background-image: url(./img/icons/low_icon.png);
++    width: 32px;
++    height: 32px;
++    background-repeat: no-repeat;
++    background-position: center;
++    border-radius: 100%;
++}
++
++.board-icon-medium-prio{
++    background-image: url(./img/icons/medium-colored-icon.png);
++    width: 32px;
++    height: 32px;
++    background-repeat: no-repeat;
++    background-position: center;
++}
++
++.board-icon-urgent-prio{
++    background-image: url(./img/icons/urgent_icon.png);
++    width: 32px;
++    height: 32px;
++    background-repeat: no-repeat;
++    background-position: center;
++}
+ 
+ .board-task-card {
+     background-color: #ffffff;
+@@ -444,5 +474,4 @@
+ 
+ .centerWrapperHeadline {
+     margin-left: 83px;
+-}
+-
++}
+\ No newline at end of file
+Index: js/script.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>async function init() {\n    includeHTML();\n    await loadTasks();\n    await loadUsers();\n}\n\n//Function show and hide belong together and are for the Join Logo\nfunction showLogoAnimation() {\n    document.getElementById('big-logo').style.display = 'flex';\n    document.getElementById('header').style.display = 'none';\n    document.getElementById('loginWrapper').style.display = 'none';\n    setTimeout(\"hideLogoAnimation()\", 1300);\n}\nfunction hideLogoAnimation() {\n    document.getElementById('big-logo').style.display = 'none';\n    document.getElementById('header').style.display = 'flex';\n    document.getElementById('loginWrapper').style.display = 'flex';\n}\n\ndocument.addEventListener('keydown', evt => {\n    if (evt.key === 'Escape') {\n        closeAddTaskOverlay();\n        closeTaskOverlay();\n    }\n    else if (evt.key === 'ArrowRight') {\n        //Function\n    }\n    else if (evt.key === 'ArrowLeft') {\n        //Function\n    }\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/script.js b/js/script.js
+--- a/js/script.js	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/js/script.js	(date 1718094693859)
+@@ -1,7 +1,7 @@
+ async function init() {
+     includeHTML();
+-    await loadTasks();
+-    await loadUsers();
++    // await loadTasks();
++    //await loadUsers();
+ }
+ 
+ //Function show and hide belong together and are for the Join Logo
+Index: js/renderTaskOverlay.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>function renderTaskOverlay() {\n\n}\n\nfunction openTaskOverlay(taskId = \"\") {\n    takeElementFromTask(taskId);\n    subtaskLoop(taskId);\n    document.getElementById('taskOverlay').classList.remove('d-none');\n}\n\nfunction closeTaskOverlay() {\n    document.getElementById('taskOverlay').classList.add('d-none');\n}\n\nfunction takeElementFromTask(taskid) {\n    let element = tasks[taskid];\n    let categoryText = categoryFinder(element);\n    console.log(element);\n    renderTaskCardBig(element, categoryText);\n}\n\nfunction subtaskLoop(taskId) {\n    let element = tasks[taskId];\n    let subtasks = element.subtasks;\n    subtasks.forEach(subtask => {\n        renderSubTasks(subtask);\n    });\n}\n\nfunction renderSubTasks(subtask) {\n    document.getElementById('taskOverlayCheckbox').innerHTML += `\n    <div class=\"checkBox\">\n    <input type=\"checkbox\">\n    <span>${subtask}</span>\n</div>`\n}\n\nfunction renderTaskCardBig(element, categoryText) {\n    document.getElementById('taskOverlay').innerHTML =\n    `<div id=\"taskOverlayWrapper\" class=\"taskOverlayWrapper slide-right\">\n    <div id=\"taskOverlayType\" class=\"taskOverlayType\">\n        <div id=\"issueType\" class=\"issueType ${element.categorySelect}\">\n            ${categoryText}\n        </div>\n        <img src=\"./img/icons/cancel-logo.png\" alt=\"\" onclick=\"closeTaskOverlay()\">\n    </div>\n\n    <div id=\"taskOverlayTitle\" class=\"taskOverlayTitle\">\n        ${element.title}\n    </div>\n\n    <div id=\"taskOverlayFacts\" class=\"taskOverlayFacts\">\n        <p>${element.description}</p>\n        <p>Due Date: ${element.datePicker}</p>\n        <p>Priority: ${element.priority}</p>\n    </div>\n\n    <div id=\"taskOverlayAssignee\" class=\"taskOverlayAssignee\">\n        Assigned to:\n        <ul>\n            <li>Patrick</li>\n            <li>Farid</li>\n        </ul>\n    </div>\n\n    <div id=\"taskOverlayCheckbox\" class=\"taskOverlayCheckbox\">\n        <p>Subtasks:</p>\n    </div>\n\n    <div id=\"taskOverlayBottomEdit\" class=\"taskOverlayBottomEdit\">\n        <a href=\"\" class=\"editBar\">\n            <img src=\"./img/icons/delete_icon.png\">\n            <p>Delete</p>\n        </a>\n\n        <a href=\"\" class=\"editBar\">\n            <img src=\"./img/icons/edit_icon.png\">\n            <p>Edit</p>\n        </a>\n    </div>\n</div>`\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/renderTaskOverlay.js b/js/renderTaskOverlay.js
+--- a/js/renderTaskOverlay.js	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/js/renderTaskOverlay.js	(date 1718094693856)
+@@ -4,47 +4,89 @@
+ 
+ function openTaskOverlay(taskId = "") {
+     takeElementFromTask(taskId);
+-    subtaskLoop(taskId);
++    let task = tasks[taskId];
++    if (task.subtasks == 'no') {
++        document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
++    }
++    else{
++        subtaskLoop(taskId);
++    }
+     document.getElementById('taskOverlay').classList.remove('d-none');
+ }
+ 
+ function closeTaskOverlay() {
+     document.getElementById('taskOverlay').classList.add('d-none');
++    renderAllTasks();
+ }
+ 
+ function takeElementFromTask(taskid) {
+     let element = tasks[taskid];
+     let categoryText = categoryFinder(element);
+-    console.log(element);
+-    renderTaskCardBig(element, categoryText);
++    renderTaskCardBig(element, categoryText, taskid);
+ }
+ 
+ function subtaskLoop(taskId) {
+     let element = tasks[taskId];
+     let subtasks = element.subtasks;
++    let subtaskCheckbox = element.subtask;
++    let i = 0;
+     subtasks.forEach(subtask => {
+-        renderSubTasks(subtask);
++        if (subtaskCheckbox[i] == 'false') {
++            renderSubTasks(subtask,taskId, i, '');
++        } else {
++            renderSubTasks(subtask,taskId, i, 'checked');
++        }
++        i++;
+     });
+ }
+ 
+-function renderSubTasks(subtask) {
++async function changeSuptaskPrufment(i, taskId= '') {
++    let element = tasks[taskId];
++    let subtaskCheckbox = element.subtask;
++        if (subtaskCheckbox[i] == 'false') {      
++            subtaskCheckbox[i] = 'true';
++            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
++        } else {
++            subtaskCheckbox[i] = 'false';
++            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
++        }
++}
++
++async function updateSubtaskPrufment(taskId, updatedTask, path='') {
++    let response = await fetch(baseUrl + "/board/tasks/" + taskId +"path"+ ".json", {
++        method: 'PUT',
++        headers: {
++            'Content-Type': 'application/json'
++        },
++        body: JSON.stringify(updatedTask)
++    });
++}
++
++function taskEdit(taskId) {
++    let task = tasks[taskId];
++    renderTaskEditor(taskId, task);
++    renderAllCreateSubtasks(taskId);
++}
++
++function renderSubTasks(subtask,taskId, i, checkBox = '') {
+     document.getElementById('taskOverlayCheckbox').innerHTML += `
+     <div class="checkBox">
+-    <input type="checkbox">
++    <input type="checkbox" id="ceckBox_${i}" onclick="changeSuptaskPrufment(${i}, '${taskId}')" ${checkBox}>
+     <span>${subtask}</span>
+ </div>`
+ }
+ 
+-function renderTaskCardBig(element, categoryText) {
++function renderTaskCardBig(element, categoryText, taskId) {
+     document.getElementById('taskOverlay').innerHTML =
+     `<div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
+     <div id="taskOverlayType" class="taskOverlayType">
+-        <div id="issueType" class="issueType ${element.categorySelect}">
+-            ${categoryText}
+-        </div>
+-        <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
++    <div id="issueType" class="issueType ${element.categorySelect}">
++    ${categoryText}
++    </div>
++    <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
+     </div>
+-
++    
++    <div class="scrollbarTaskOverlayWapper scrollbox">
+     <div id="taskOverlayTitle" class="taskOverlayTitle">
+         ${element.title}
+     </div>
+@@ -66,17 +108,105 @@
+     <div id="taskOverlayCheckbox" class="taskOverlayCheckbox">
+         <p>Subtasks:</p>
+     </div>
+-
++    </div>
+     <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
+-        <a href="" class="editBar">
++        <button class="unstyled-button editBar" type="button" onclick="deleteTask('${taskId}')">
+             <img src="./img/icons/delete_icon.png">
+             <p>Delete</p>
+-        </a>
++        </button>
+ 
+-        <a href="" class="editBar">
++        <button class="unstyled-button editBar" type="button" onclick="taskEdit('${taskId}')">
+             <img src="./img/icons/edit_icon.png">
+             <p>Edit</p>
+-        </a>
++        </button>
+     </div>
+ </div>`
++}
++
++function renderTaskEditor(taskId, task) {
++    document.getElementById('taskOverlay').innerHTML = `
++    <div  class="taskOverlayWrapper slide-right">
++    <div  class="taskOverlayTypeEdite d-flex">
++        <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
++    </div>
++    
++                    <form class="main" onsubmit="">
++                        <div class="addTaskWrapper scrollbarTaskOverlayWapper scrollbox">
++                            <div class="">
++                                <div>
++                                    <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
++                                    <input type="text" id="title" value="${task.title}" Title" required/>
++                                </div>
++        
++                                <div >&nbsp;</div>
++        
++                                <div>
++                                    <p class="fSize-20  editTaskWrapper">Description</p>
++                                    <textarea rows="5" id="description" >${task.description}</textarea>
++                                </div>
++        
++                                
++                                <div >&nbsp;</div>
++                                
++                                <div>
++                                <p class="fSize-20  editTaskWrapper">Due Date<span class="redStar">*</span></p>
++                                <input type="date" id="datePicker" value="${task.datePicker}" required>
++                                </div>
++                                
++                                <div >&nbsp;</div>
++                                
++                                <div>
++                                <p class="fSize-20  editTaskWrapper">Prio</p>
++                                <div id="priority" class="priority d-flex">
++                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                Urgent
++                                <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
++                                </button>
++                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                Medium
++                                <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
++                                </button>
++                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                Low
++                                <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
++                                </button>
++                                </div>
++                                </div>
++
++                                <div >&nbsp;</div>
++        
++                                <div>
++                                    <p class="fSize-20  editTaskWrapper">Assigned to</p>
++                                    <select name="choose" id="selectInputAssignee">
++                                        <option value="${task.selectInputAssignee}">${task.selectInputAssignee}</option>
++                                        <option value="Test 1">Test 1</option>
++                                        <option value="Test 2">Test 2</option>
++                                    </select>
++                                </div>
++                                
++                                <div >&nbsp;</div>
++                                
++                                <div>
++                                <p class="fSize-20  editTaskWrapper">Subtasks</p>
++                                <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
++                                <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
++                                <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
++                                <div class="addTaskAdd"></div>
++                                </button>
++                                    </div>
++                                    <lu id="subtaskSorage"></lu>
++                                </div>
++                            </div>
++                        </div>
++        
++                        <div class="editTaskBottom d-flex">
++
++                            <div >
++                                <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
++                            </div>
++                        </div>
++                    </form>
++
++                </div>
++            </div>`
+ }
+\ No newline at end of file
+Index: style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>html {\n    scroll-behavior: smooth;\n}\n\nbody {\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    font-family: 'Inter', sans-serif !important;\n    font-size: 24px;\n    background: #F6F7F8 !important;\n    overflow: auto;\n}\n\n/*##### General- & template stylings #####*/\n\np, h1, h2, h3, h4, h5, h6 {\n    margin: 0;\n}\n\na {\n    text-decoration: none;\n    color: #000000;\n}\n\na,\nimg {\n    cursor: pointer !important;\n}\n\n#bodyWrapper {\n    width: 100vw;\n    height: 100vh;\n    display: flex;\n    justify-content: center;\n    flex-direction: row;\n}\n\n#centerWrapper {\n    width: 100%;\n    height: 100%;\n}\n\n/*##### END OF General- & template stylings #####*/\n\n/*##### START OF sidebar stylings #####*/\n\n\n#sidebar {\n    position: relative;\n    width: 232px;\n    height: 100%;\n    border-right: 1px solid rgba(0, 0, 0, 1);\n    background-color: #2A3647;\n}\n\n#sideBarContainer {\n    height: 100%;\n}\n\nsection#sidebar {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    flex-direction: column;\n}\n\nsection#sidebar > div:first-of-type > a > img {\n    margin-top: 50px;\n}\n\nsection#sidebar > img {\n    width: 100px;\n    height: 122px;\n}\n\n#sidebar-content {\n    display: flex;\n    justify-content: center;\n    align-items: flex-start;\n    flex-direction: column;\n    gap: 16px;\n}\n\n#sidebar-content > a {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    text-decoration: none !important;\n    color: #ffffff;\n}\n\n#sidebar-content > a > img {\n    margin-right: 12px;\n}\n\n.sideBar-footer {\n    margin-bottom: 4rem;\n}\n\n/*##### END OF sidebar stylings #####*/\n\n.loginHeader {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    padding: 40px 80px;\n}\n\n.signUp_btn {\n    position: relative;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    gap: 30px;\n}\n\nbutton#signUp {\n    width: 90px;\n    height: 50px;\n    border-radius: 10px;\n    background: #2A3647;\n    color: #fff;\n    font-size: 16px;\n    font-weight: bold;\n}\n\nbutton#logIn,\nbutton#guestLogIn {\n    width: 110px;\n    height: 50px;\n    border-radius: 10px;\n    background: #2A3647;\n    color: #fff;\n    font-size: 16px;\n    font-weight: bold;\n}\n\nbutton#guestLogIn {\n    width: 177px;\n}\n\n.loginWrapper,\n.signUpWrapper {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.loginForm,\n.signUpForm {\n    display: flex;\n    align-items: center;\n    flex-direction: column;\n    background: #ffffff;\n    max-width: 652px;\n    min-height: 400px;\n    border-radius: 24px;\n    padding: 48px 115px;\n}\n\n.headlineBorder {\n    height: 3px;\n    width: 20%;\n    background-color: #29ABE2;\n    margin: 8px 0 40px 0;\n}\n\ninput {\n    height: 22px;\n}\n\ninput:focus {\n    outline: none !important;\n    cursor: auto;\n}\n\ninput::placeholder,\ntextarea::placeholder,\nselect::placeholder,\ninput[type=date] {\n    font-size: 16px;\n}\n\n#loginCredentials > form {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n}\n\n#loginCredentials > form:nth-of-type(2){\n    margin-top: 40px;\n}\n\n#loginCredentials > form > input,\n#signUpCredentials > form > input {\n    width: 422px;\n    padding: 12px 30px 12px 21px !important;\n    gap: 10px;\n    border: 1px solid lightgray;\n    border-radius: 10px;\n}\n\n#loginCredentials > form:nth-of-type(2) {\n    flex-direction: row;\n    gap: 24px;\n}\n\n#signUpCredentials > form {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n}\n\n#loginCredentials > form > input:first-of-type {\n    margin-bottom: 24px;\n}\n\n#signUpCredentials > form > input {\n    margin-bottom: 24px;\n}\n\n.signUpCheckBox {\n    width: 100%;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.checkBox {\n    width: 100%;\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n\n.checkBox > span,\n.signUpCheckBox > span {\n    font-size: 16px;\n    margin: 16px 0 16px 16px;\n}\n\n.checkBox > input[type=checkbox],\n.signUpCheckBox > input[type=checkbox]{\n    height: 20px;\n    width: 20px;\n}\n\nfooter {\n    position: absolute;\n    bottom: 0;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    width: 100%;\n    margin-bottom: 40px;\n}\n\n.big-logo {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    height: 100vh;\n}\n\nbutton:hover {\n    background: #4589FF !important;\n    border: #4589FF !important;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25) !important;\n}\n\nbutton#guestLogIn:hover {\n    background: #ffffff !important;\n    color: #4589FF !important;\n    border: #4589FF !important;\n}\n\n.container {\n    margin-left: 232px !important;\n}\n\nsection#header > header > div:nth-of-type(2) {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    gap: 24px;\n}\n\nheader {\n    background-color: #ffffff;\n    height: 100px;\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20) !important;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\nheader > div:last-of-type > img:first-of-type {\n    margin-right: 24px;\n}\n\nheader > div > h1 {\n    margin-left: 83px;\n}\n\n.d-flex {\n    display: flex;\n}\n\n.align-items-center {\n    align-items: center;\n}\n\n.justify-content-center {\n    justify-content: center;\n}\n\n.justify-content-end{\n    justify-content: end;\n}\n\n.text-decoration-none {\n    text-decoration: none;\n}\n\n.justify-content-around {\n    justify-content: space-around;\n}\n\n.justify-content-between {\n    justify-content: space-between;\n}\n\n.justify-content-evenly {\n    justify-content: space-evenly;\n}\n\n.flex-column {\n    flex-direction: column;\n}\n\n.flex-row {\n    flex-direction: row;\n}\n\n.m-0 {\n    margin: 0;\n}\n\n.wrap {\n    padding: 50px 100px 0 350px;\n}\n\n.main > div > h3 {\n    margin-top: 24px !important;\n}\n\n.head {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    gap: 250px;\n    margin-bottom: 150px;\n}\n\n.head > img {\n    height: 30px;\n    width: 30px;\n    vertical-align: center;\n    justify-content: center;\n    align-items: center;\n}\n\n.main {\n    margin: 40px 83px 40px 83px;\n}\n\n.main > div {\n    margin-bottom: 48px;\n}\n\n.main > div > h3 {\n    margin-bottom: 10px;\n}\n\n.addTaskWrapper {\n    display: flex;\n    justify-content: flex-start;\n}\n\n.addTaskWrapperLeft,\n.addTaskWrapperRight {\n    display: flex;\n    justify-content: flex-start;\n    align-items: flex-start;\n    flex-direction: column;\n}\n\n.gap-4 {\n    gap: 4px;\n}\n\n.gap-10 {\n    gap: 10px;\n}\n\n.gap-32 {\n    gap: 32px;\n}\n\n.-m-8 {\n    margin-right: -8px;\n}\n\n.d-none {\n    display: none !important;\n}\n\n.rounded-30 {\n    border-radius: 30px;\n}\n\n.rounded-8 {\n    border-radius: 8px;\n}\n\n.rounded-100 {\n    border-radius: 100%;\n}\n\n/* start bg-user colers */\n\n.bg-orange {\n    background-color: #FF7A00;\n}\n\n.bg-purple {\n    background-color: #9327FF;\n}\n\n.bg-blue {\n    background-color: #6E52FF;\n}\n\n.bg-pink {\n    background-color: #FC71FF;\n}\n\n.bg-jelliow {\n    background-color: #FFBB2B;\n}\n\n.bg-green {\n    background-color: #1FD7C1;\n}\n\n.bg-dark-blue {\n    background-color: #462F8A;\n}\n\n.bg-red {\n    background-color: #FF4646;\n}\n\n/*  end bg-user colors */\n\n/*##### START OF Add-task section #####*/\n\n.centerWrapperHeadline {\n    margin-top: 48px;\n}\n\nselect#selectInputAssignee,\nselect#categorySelect {\n    box-sizing: inherit;\n}\n\n#title,\ntextarea,\n#selectInputAssignee,\n#datePicker,\n#categorySelect,\n.addTaskEnterSubtask {\n    width: 428px;\n    height: 48px;\n    padding: 16px, 30px, 12px, 16px !important;\n    gap: 10px;\n    border: 1px solid lightgray !important;\n    border-radius: 10px;\n}\n\n#description {\n    height: 120px !important;\n}\n\n#subtasks {\n    border: none;\n    width: 80%;\n}\n\n.addTaskWrapperLeft {\n    margin-right: 48px;\n}\n\n.addTaskWrapperRight {\n    margin-left: 48px;\n}\n\n.addTaskWrapperRight > div {\n    margin-bottom: 48px;\n\n}\n\n.addTaskPrioLow {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/low_icon.png);\n}\n\n.addTaskPrioMedium {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/medium-colored-icon.png);\n}\n\n.addTaskPrioUrgent {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/urgent_icon.png);\n}\n\n.addTaskPrioLowActiv {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/low_with_icon.png);\n}\n\n.addTaskPrioMediumActiv {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/medium_icon.png);\n}\n\n.addTaskPrioUrgentActiv {\n    background-repeat: no-repeat;\n    background-position: center;\n    background-image: url(./img/icons/urgent_with_icon.png);\n}\n\n.addTaskAdd {\n        background-image: url(./img/icons/add.png);\n        margin-right: 5px;\n        width: 14px;\n        height: 14px;\n        background-repeat: no-repeat;\n        background-position: center;\n        border-radius: 100%;\n}\n\n#addTaskAddSubtaskbutton {\n    background: none !important;\n    border: none !important;\n    padding: 0 !important;\n    box-shadow: none !important;\n}\n\n.addTaskSubtask {\n    border-right: none !important;\n}\n\n.addTaskEnterSubtask {\n    border-radius: 10px;\n    background-color: white;\n    border: 1px #A8A8A8;\n}\n\n.subtaskSorage {\n    list-style-type:none;\n}\n\n.addTaskSubtaskShow {\n    width: 440px;\n    height:  32px;\n    padding: 6px 16px 6px 16px;\n    font-size: 16px;\n    font-weight: 400;\n    display: flex;\n    border-radius: 10px;\n    margin-top: 10px;\n}\n\n.addTaskSubtaskShow:hover {\n    background-color: #E7E7E7;\n}\n\n.addTaskSubtaskShow:hover .addTaskSubtaskEdit {\n    background-image: url(./img/icons/edit_icon.png) !important;\n}\n\n.addTaskSubtaskEdit:hover {\n    background-color: #EEEEEE !important;\n}\n\n.addTaskSubtaskEdit {\n    background: none;\n\tborder: none;\n\tcursor: pointer;\n    width: 24px;\n    height: 24px;\n}\n\n.addTaskSubtaskShow:hover .addTaskSubtaskVertikalLine {\n    height: 24px;\n    width: 1px;\n    background-color: #A8A8A8;\n}\n\n.addTaskSubtaskShow:hover .addTaskSubtaskWaste {\n    background-image: url(./img/icons/delete_icon.png) !important;\n}\n\n.addTaskSubtaskWaste:hover {\n    background-color: #EEEEEE !important;\n}\n\n.addTaskSubtaskWaste {\n    background: none;\n\tborder: none;\n\tcursor: pointer;\n    width: 24px;\n    height: 24px;\n}\n\n\n.addTaskSubtaskShow::before {\n    content: \"•\"; /* Der Punkt */\n    position: absolute;\n    left: 0;\n    font-size: 1.5em; /* Größe des Punktes */\n    line-height: 1; /* Zentrierung */\n}\n\n.priorityButton {\n    width: 136px;\n    height: 56px;\n    border-radius: 10px;\n    border: none;\n    background-color: #ffffff;\n    font-size: 19px;\n    margin-right: 8px;\n}\n\n.priorityButtonActiv {\n    width: 136px;\n    height: 56px;\n    border-radius: 10px;\n    border: none;\n    font-size: 19px;\n    margin-right: 8px;\n    background: #FFA800 !important;\n    color: #ffffff;\n}\n\n.priorityButtonActiv:hover {\n    background: #FFA800 !important;\n    text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);\n}\n\nbutton.priorityButton:hover {\n    background-color: #ffffff !important;\n    text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);\n}\n\nbutton.priorityButton:active {\n    background: #FFA800 !important;\n    color: #ffffff;\n}\n\nbutton.priorityButton:active .addTaskPrioLow {\n    background-image: url(./img/icons/low_with_icon.png);\n}\n\nbutton.priorityButton:active .addTaskPrioMedium {\n    background-image: url(./img/icons/medium_icon.png);\n}\n\nbutton.priorityButton:active .addTaskPrioUrgent {\n    background-image: url(./img/icons/urgent_with_icon.png);\n}\n\n.priorityImg {\n    height: 14px;\n    width: 20px;\n    padding: 0;\n    margin-left: 8px;\n}\n\n#addTaskBottom {\n    width: 70%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n#createTaskButton {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\nbutton#clear,\nbutton#create {\n    width: 110px;\n    height: 50px;\n    border-radius: 10px;\n    background: #ffffff;\n    color: #000000;\n    font-size: 19px;\n    font-weight: bold;\n    border: none;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\nbutton#create {\n    width: 183px;\n    background: #2A3647;\n    color: #ffffff;\n}\n\n#createTaskButton > button:first-of-type {\n    margin-right: 16px;\n}\n\n.createTaskButtonImg {\n    margin-left: 8px;\n}\n\nselect {\n    width: 480px;\n}\n\n/*##### END OF Add-task section #####*/\n\n/*##### START OF board.html section #####*/\n#addTask {\n    margin-right: 80px;\n}\n\n/*##### END OF board.html section #####*/\n\n/*##### START OF AddTASK Overlay section #####*/\n.addTaskOverlay,\n.taskOverlay {\n    background-color: rgba(0, 0, 0, 0.66);\n    width: 100%;\n    height: 100vh;\n    color: #000000;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    flex-direction: column;\n    position: fixed;\n    overflow: hidden;\n    top: 0;\n    z-index: 2;\n}\n\n.outerTaskOverlayWrapper {\n    background-color: #F6F7F8;\n    height: 65vh;\n    width: 65vw;\n    padding: 50px;\n    border-radius: 40px;\n    position: absolute;\n}\n/* TASK-OVERLAY SLIDING FROM TOP */\n.slide-top {\n    position: absolute;\n    top: -100%;\n    -webkit-animation: slide-top 0.5s forwards;\n    -webkit-animation-delay: 150ms;\n    animation: slide-top 0.5s forwards;\n    animation-delay: 150ms;\n}\n\n@-webkit-keyframes slide-top {\n    100% { top: 15%; }\n}\n\n@keyframes slide-top {\n    100% { top: 15%; }\n}\n/* END OF TASK-OVERLAY SLIDING FROM TOP */\n\n.addTaskWrapperOverlay {\n    height: 450px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    margin-top: 48px;\n}\n\n#addTaskOverlayBottom {\n    width: 85%;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.addTaskOverlayHeadline {\n    display: flex;\n    justify-content: space-between;\n}\n\n.addTaskOverlayHeadline > img {\n    height: 32px;\n    width: 32px;\n}\n/*##### END OF AddTASK Overlay section #####*/\n\n/*##### START OF Task Overlay section #####*/\n.taskOverlayWrapper {\n    background-color: #F6F7F8;\n    width: 525px;\n    padding: 48px 40px;\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    flex-direction: column;\n    border-radius: 40px;\n    font-size: 20px;\n}\n\n.taskOverlayType,\n.taskOverlayTitle,\n.taskOverlayFacts,\n.taskOverlayAssignee,\n.taskOverlayCheckbox {\n    width: 100%;\n    margin-bottom: 24px;\n}\n\n.taskOverlayType {\n    display: flex;\n    justify-content: space-between;\n}\n\n.taskOverlayType > img {\n    height: 32px;\n    width: 32px;\n}\n\n.issueType {\n    height: 28px;\n    padding: 6px;\n    border-radius: 10px;\n    color: #ffffff;\n    min-width: 160px;\n    display: flex;\n    justify-content: center;\n    font-size: 23px;\n}\n\n.taskOverlayTitle {\n    font-size: 61px;\n    font-weight: bold;\n}\n\n.taskOverlayFacts > p {\n    margin-bottom: 16px;\n}\n\n.taskOverlayFacts > p:first-of-type {\n    margin-top: 24px;\n}\n\n.taskOverlayBottomEdit {\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    width: 100%;\n    flex-direction: row;\n}\n\n.editBar {\n    height: 40px;\n    display: flex;\n    justify-content: flex-end;\n    align-items: center;\n    flex-direction: row;\n}\n\n.editBar > p {\n    font-size: 16px;\n}\n\n.editBar:last-of-type {\n    margin-left: 8px;\n}\n\n.editBar:last-of-type:before {\n    content: \" | \";\n    margin-right: 8px;\n}\n\nul {\n    list-style-type: none;\n}\n\n/* TASK-OVERLAY SLIDING FROM RIGHT */\n.slide-right {\n    position: absolute;\n    right: -100%;\n    -webkit-animation: slide-right 0.5s forwards;\n    -webkit-animation-delay: 150ms;\n    animation: slide-right 0.5s forwards;\n    animation-delay: 150ms;\n}\n\n@-webkit-keyframes slide-right {\n    100% { right: 35%; }\n}\n\n@keyframes slide-right {\n    100% { right: 35%; }\n}\n\n#board-task-on-done:hover {\n    cursor: pointer;\n}\n/* END OF TASK-OVERLAY SLIDING FROM RIGHT */\n\n/*##### END OF Task Overlay section #####*/\n\ninput[required] {\n    border-color: red;\n  }
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/style.css b/style.css
+--- a/style.css	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/style.css	(date 1718094693864)
+@@ -634,15 +634,6 @@
+     height: 24px;
+ }
+ 
+-
+-.addTaskSubtaskShow::before {
+-    content: "•"; /* Der Punkt */
+-    position: absolute;
+-    left: 0;
+-    font-size: 1.5em; /* Größe des Punktes */
+-    line-height: 1; /* Zentrierung */
+-}
+-
+ .priorityButton {
+     width: 136px;
+     height: 56px;
+@@ -825,6 +816,7 @@
+ 
+ /*##### START OF Task Overlay section #####*/
+ .taskOverlayWrapper {
++    max-height: 898px;
+     background-color: #F6F7F8;
+     width: 525px;
+     padding: 48px 40px;
+@@ -912,6 +904,16 @@
+     list-style-type: none;
+ }
+ 
++.unstyled-button {
++    background: none;
++	color: inherit;
++	border: none;
++	padding: 0;
++	font: inherit;
++	cursor: pointer;
++	outline: inherit;
++}
++
+ /* TASK-OVERLAY SLIDING FROM RIGHT */
+ .slide-right {
+     position: absolute;
+@@ -935,6 +937,61 @@
+ }
+ /* END OF TASK-OVERLAY SLIDING FROM RIGHT */
+ 
++/* start of EDIT-OVERLAY selection  */
++.editTaskBottom {
++    justify-content: end;
++}
++
++.editTaskEditBottom {
++    max-width: 89px;
++    height: 57px;
++    background: #2A3647;
++    color: #ffffff;
++    border-radius: 10px;
++    font-size: 21px;
++    font-weight: 700;
++}
++
++.taskOverlayTypeEdite {
++
++    width: 100%;
++    margin-bottom: 24px;
++    justify-content: end;
++}
++
++.taskOverlayTypeEdite > img {
++    height: 32px;
++    width: 32px;
++}
++
++.editTaskWrapper {
++    font-weight: 400 !important;
++    color: #2A3647 !important;
++}
++
++.scrollbarTaskOverlayWapper {
++    width: 100%;
++    max-height: 697px; 
++}
++
++.scrollbox {
++    overflow:scroll;
++    overflow-x:hidden;
++}
++
++@supports (scrollbar-color: auto) {
++    .scrollbox {
++      scrollbar-color: #A8A8A8 rgb(246, 247, 248);
++    }
++  }
++  
++  /* Otherwise, use `::-webkit-scrollbar-*` pseudo-elements */
++  @supports selector(::-webkit-scrollbar) {
++    .scrollbox::-webkit-scrollbar {
++      background: #A8A8A8;
++    }
++
++  }
+ /*##### END OF Task Overlay section #####*/
+ 
+ input[required] {
+Index: js/add_task.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>const baseUrl = \"https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/\";\nlet prio;\nlet subtasklist = [];\nlet subtaskProofment = [];\n\nasync function addTask() {\n    await getInputs();\n}\n\nfunction getInputs() {\n    let inputs = {\n        \"position\": \"board-task-on-to-do\",\n        \"title\": document.getElementById('title').value,\n        \"description\": document.getElementById('description').value,\n        \"selectInputAssignee\": document.getElementById('selectInputAssignee').value,\n        \"datePicker\": document.getElementById('datePicker').value,\n        \"priority\": prio,\n        \"categorySelect\": document.getElementById('categorySelect').value,\n        \"subtasks\": subtasklist,\n        \"subtask\": subtaskProofment\n    };\n    setTaskData(\"board/tasks\", inputs);\n    clearAddTask();\n}\n\nfunction clearAddTask() {\n    title.value = '';\n    description.value = '';\n    selectInputAssignee.value = '';\n    datePicker.value = '';\n    categorySelect.value = '';\n    subtasks.value = '';\n    subtasklist = '';\n    subtaskProofment = '';\n    priobuttonclearselect()\n    prio = '';\n}\n\nasync function setTaskData(path=\"\", data={}) {\n    let response = await fetch(baseUrl + path + \".json\",{\n        method: \"POST\",\n        headers: {\n            \"Content-Type\": \"application/json\"\n        },\n        body: JSON.stringify(data)\n    });\n}\n\nfunction formValidation() {\n    let titleValidation = document.getElementById('title').value;\n    let descriptionValidation = document.getElementById('description').value;\n    \n    if (titleValidation !== '' && descriptionValidation !== '') {\n        document.getElementById(\"create\").removeAttribute('disabled');\n    }\n    else window.alert(\"Bitte Mindestens ein Feld ausfüllen\");\n}\n\nfunction openAddTaskOverlay() {\n    document.getElementById('addTaskOverlay').classList.remove('d-none');\n}\n\nfunction closeAddTaskOverlay() {\n    document.getElementById('addTaskOverlay').classList.add('d-none');\n}\n\nfunction priobutton(button, icon) {\n    buttonSelected = document.getElementById(button);\n    iconSelected = document.getElementById(icon);\n\n    buttonSelected.classList.add(\"priorityButtonActiv\");\n    buttonSelected.classList.remove(\"priorityButton\");\n    iconSelected.classList.add(icon+'Activ');\n    iconSelected.classList.remove(icon);\n}\n\nfunction priobuttonRemoveOther(button, icon, buttonOther, iconOther) {\n    buttonSelected = document.getElementById(button);\n    iconSelected = document.getElementById(icon);\n    buttonOtherSelected = document.getElementById(buttonOther);\n    iconOtherSelected = document.getElementById(iconOther);\n\n    buttonSelected.classList.add(\"priorityButton\");\n    buttonSelected.classList.remove(\"priorityButtonActiv\");\n    iconSelected.classList.add(icon);\n    iconSelected.classList.remove(icon+'Activ');\n\n    buttonOtherSelected.classList.add(\"priorityButton\");\n    buttonOtherSelected.classList.remove(\"priorityButtonActiv\");\n    iconOtherSelected.classList.add(iconOther);\n    iconOtherSelected.classList.remove(iconOther+'Activ');\n}\n\nfunction priobuttonclear(button, icon) {\n    buttonSelected = document.getElementById(button);\n    iconSelected = document.getElementById(icon);\n\n    buttonSelected.classList.add(\"priorityButton\");\n    buttonSelected.classList.remove(\"priorityButtonActiv\");\n    iconSelected.classList.add(icon);\n    iconSelected.classList.remove(icon+'Activ');\n}\n\nfunction priobuttonSelect(priority) {\n    prio = priority;\n    console.log(prio);\n    switch (prio) {\n        case 'Urgent':\n            priobutton('urgentButton','addTaskPrioUrgent');\n            priobuttonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');\n            break;\n        case 'Medium':\n            priobutton('mediumButton','addTaskPrioMedium');\n            priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');\n            break;\n        case 'Low':\n            priobutton('lowButton','addTaskPrioLow');\n            priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');\n            break;\n        default:\n            break;\n    }\n}\n\nfunction priobuttonclearselect() {\n    switch (prio) {\n        case 'Urgent':\n            priobuttonclear('urgentButton','addTaskPrioUrgent');\n            break;\n        case 'Medium':\n            priobuttonclear('mediumButton','addTaskPrioMedium');\n            break;\n        case 'Low':\n            priobuttonclear('lowButton','addTaskPrioLow');\n            break;\n        default:\n            break;\n    }\n}\n\nfunction addSubtaskAddArray() {\n    let newSubtask = document.getElementById('subtasks').value;\n    document.getElementById('subtaskSorage').innerHTML += `\n    <li class=\"addTaskSubtaskShow justify-content-between\">• ${newSubtask}<div class=\"d-flex\">\n    <button type=\"button\"  class=\"addTaskSubtaskEdit\"></button>\n    <div class=\"addTaskSubtaskVertikalLine\"></div>\n    <button type=\"button\"  class=\"addTaskSubtaskWaste\"></button>\n    </div></li>`\n    subtasklist.push(newSubtask);\n    subtaskProofment.push(\"false\");\n    console.log(subtasklist);\n    console.log(subtaskProofment);\n    subtasks.value = '';\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/js/add_task.js b/js/add_task.js
+--- a/js/add_task.js	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/js/add_task.js	(date 1718094693846)
+@@ -1,15 +1,16 @@
+-const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
++const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
+ let prio;
+-let subtasklist = [];
++let subtasklist = ['no'];
+ let subtaskProofment = [];
+ 
+-async function addTask() {
+-    await getInputs();
++async function addTask(position='') {
++    await getInputs(position);
++    renderAllTasks();
+ }
+ 
+-function getInputs() {
++async function getInputs(position) {
+     let inputs = {
+-        "position": "board-task-on-to-do",
++        "position": position,
+         "title": document.getElementById('title').value,
+         "description": document.getElementById('description').value,
+         "selectInputAssignee": document.getElementById('selectInputAssignee').value,
+@@ -19,8 +20,9 @@
+         "subtasks": subtasklist,
+         "subtask": subtaskProofment
+     };
+-    setTaskData("board/tasks", inputs);
++    await setTaskDataInDatabase("/board/tasks", inputs);
+     clearAddTask();
++
+ }
+ 
+ function clearAddTask() {
+@@ -30,34 +32,36 @@
+     datePicker.value = '';
+     categorySelect.value = '';
+     subtasks.value = '';
+-    subtasklist = '';
+-    subtaskProofment = '';
++    subtasklist = ['no'];
++    subtaskProofment = ['no'];
+     priobuttonclearselect()
+     prio = '';
+ }
+ 
+-async function setTaskData(path="", data={}) {
+-    let response = await fetch(baseUrl + path + ".json",{
+-        method: "POST",
+-        headers: {
+-            "Content-Type": "application/json"
+-        },
+-        body: JSON.stringify(data)
+-    });
+-}
++async function setTaskDataInDatabase(path = "", data = {}) {
++    try {
++        let response = await fetch(baseUrl + path + ".json", {
++            method: "POST",
++            headers: {
++                "Content-Type": "application/json"
++            },
++            body: JSON.stringify(data)
++        });
+ 
+-function formValidation() {
+-    let titleValidation = document.getElementById('title').value;
+-    let descriptionValidation = document.getElementById('description').value;
+-    
+-    if (titleValidation !== '' && descriptionValidation !== '') {
+-        document.getElementById("create").removeAttribute('disabled');
++        if (!response.ok) {
++            throw new Error(`HTTP error! status: ${response.status}`);
++        }
++
++        let responseData = await response.json();
++    } catch (error) {
++        console.error("Error setting data in database:", error);
+     }
+-    else window.alert("Bitte Mindestens ein Feld ausfüllen");
+ }
+ 
+-function openAddTaskOverlay() {
++
++function openAddTaskOverlay(position='') {
+     document.getElementById('addTaskOverlay').classList.remove('d-none');
++    renderAddOverlay(position);
+ }
+ 
+ function closeAddTaskOverlay() {
+@@ -103,17 +107,16 @@
+ 
+ function priobuttonSelect(priority) {
+     prio = priority;
+-    console.log(prio);
+     switch (prio) {
+-        case 'Urgent':
++        case 'urgent':
+             priobutton('urgentButton','addTaskPrioUrgent');
+             priobuttonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
+             break;
+-        case 'Medium':
++        case 'medium':
+             priobutton('mediumButton','addTaskPrioMedium');
+             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
+             break;
+-        case 'Low':
++        case 'low':
+             priobutton('lowButton','addTaskPrioLow');
+             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
+             break;
+@@ -124,13 +127,13 @@
+ 
+ function priobuttonclearselect() {
+     switch (prio) {
+-        case 'Urgent':
++        case 'urgent':
+             priobuttonclear('urgentButton','addTaskPrioUrgent');
+             break;
+-        case 'Medium':
++        case 'medium':
+             priobuttonclear('mediumButton','addTaskPrioMedium');
+             break;
+-        case 'Low':
++        case 'low':
+             priobuttonclear('lowButton','addTaskPrioLow');
+             break;
+         default:
+@@ -138,17 +141,174 @@
+     }
+ }
+ 
++
++function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
++    document.getElementById('subtasks').removeAttribute("placeholder");
++    document.getElementById('subtasks').value=newSubtask;
++    deleteCreateSubtask(subtaskCreateCount);
++}
++
++function deleteCreateSubtask(subtaskCreateCount='') {
++    if (subtasklist.length == 1) {
++        subtasklist = ['no'];
++        subtaskProofment = ['no']
++    }
++    else {
++        let subtaskCreateCountSplice = subtaskCreateCount;
++        subtasklist.splice(subtaskCreateCountSplice, 1);
++        subtaskProofment.splice(subtaskCreateCountSplice, 1);
++        }
++    console.log(subtasklist);
++    let element = document.getElementById('subtaskSorage');
++    if (element) {
++        let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
++        if (child) {
++            child.remove();
++        }
++    }
++    document.getElementById('subtaskSorage').innerHTML = ''
++    renderAllCreateSubtaskNew();
++}
++
++function renderAllCreateSubtaskNew() {
++    if (subtasklist[0] == 'no') {
++    } else{
++        let i = 0;
++        for (let subtask in subtasklist) {
++        renderCrateSubtask(subtasklist[i], i);
++        i ++;
++        }
++    }
++}
++
++function renderAllCreateSubtasks(taskId) {
++    let i = 0;
++    let element = tasks[taskId];
++    for (let subtask in element.subtasks) {
++        subtasklist.push(newSubtask);
++        subtaskProofment.push("false");
++    renderCrateSubtask(element.subtasks[i], i);
++    i ++;
++    }
++}
++
+ function addSubtaskAddArray() {
+     let newSubtask = document.getElementById('subtasks').value;
+-    document.getElementById('subtaskSorage').innerHTML += `
+-    <li class="addTaskSubtaskShow justify-content-between">• ${newSubtask}<div class="d-flex">
+-    <button type="button"  class="addTaskSubtaskEdit"></button>
+-    <div class="addTaskSubtaskVertikalLine"></div>
+-    <button type="button"  class="addTaskSubtaskWaste"></button>
+-    </div></li>`
++    if (subtasklist[0] == 'no') {
++        subtasklist = [];
++    }
+     subtasklist.push(newSubtask);
+     subtaskProofment.push("false");
+-    console.log(subtasklist);
+-    console.log(subtaskProofment);
+     subtasks.value = '';
++    let subtaskCreateCount = subtasklist.length - 1;
++    renderCrateSubtask(newSubtask, subtaskCreateCount);
++    }
++    
++    function renderCrateSubtask(newSubtask, subtaskCreateCount) {
++    
++    document.getElementById('subtaskSorage').innerHTML += `
++    <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" justify-content-between">• ${newSubtask}<div class="d-flex">
++    <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
++    <div class="addTaskSubtaskVertikalLine"></div>
++    <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
++    </div></li>`
++}
++
++function renderAddOverlay(position) {
++    document.getElementById('addTaskOverlay').innerHTML = ''
++    document.getElementById('addTaskOverlay').innerHTML = `            
++        <div class="outerTaskOverlayWrapper slide-top">
++                <div class="addTaskOverlayHeadline">
++                    <h1>Add Task</h1>
++                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
++                </div>
++                <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
++
++                    <form class="main" onsubmit="addTask('${position}')">
++                        <div id="addTaskWrapper" class="addTaskWrapper">
++                            <div class="addTaskWrapperLeft">
++                                <div>
++                                    <p class="fSize-16">Title<span class="redStar">*</span></p>
++                                    <input type="text" id="title" placeholder="Enter Title" required/>
++                                </div>
++        
++                                <div class="spacer">&nbsp;</div>
++        
++                                <div>
++                                    <p class="fSize-16">Description</p>
++                                    <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
++                                </div>
++        
++                                <div class="spacer">&nbsp;</div>
++        
++                                <div>
++                                    <p class="fSize-16">Assigned to</p>
++                                    <select name="choose" id="selectInputAssignee">
++                                        <option value="Assigned to...">Assigned to...</option>
++                                        <option value="Test 1">Test 1</option>
++                                        <option value="Test 2">Test 2</option>
++                                    </select>
++                                </div>
++                            </div>
++        
++                            <div class="addTaskWrapperMid divider">&nbsp;</div>
++        
++                            <div class="addTaskWrapperRight">
++                                <div>
++                                    <p class="fSize-16">Due Date<span class="redStar">*</span></p>
++                                    <input type="date" id="datePicker" required>
++                                </div>
++        
++                                <div>
++                                    <p class="fSize-16">Prio</p>
++                                    <div id="priority" class="priority d-flex">
++                                        <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                            Urgent
++                                            <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
++                                        </button>
++                                        <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                            Medium
++                                            <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
++                                        </button>
++                                        <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                            Low
++                                            <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
++                                        </button>
++                                    </div>
++                                </div>
++        
++                                <div>
++                                    <p class="fSize-16">Category<span class="redStar">*</span></p>
++                                    <select name="choose" id="categorySelect" required>
++                                        <option value="" disabled selected>Select Category</option>
++                                        <option value="technical-task">Technical-Task</option>
++                                        <option value="user-story">User-Story</option>
++                                    </select>
++                                </div>
++        
++                                <div>
++                                    <p class="fSize-16">Subtasks</p>
++                                    <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
++                                    <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
++                                        <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
++                                                <div class="addTaskAdd"></div>
++                                        </button>
++                                    </div>
++                                    <lu id="subtaskSorage"></lu>
++                                </div>
++                            </div>
++                        </div>
++        
++                        <div id="addTaskBottom" class="addTaskBottom">
++                            <p class="fSize-16">This field is required<span class="redStar">*</span></p>
++        
++                            <div id="createTaskButton">
++                                <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
++                                <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
++                            </div>
++                        </div>
++                    </form>
++
++                </div>
++            </div>`
+ }
+\ No newline at end of file
+Index: add_task.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"custom-variables.css\">\n\n    <link rel=\"icon\" type=\"image/png\" href=\"img/join_logo.png\">\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap\" rel=\"stylesheet\">\n\n    <script src=\"./js/script.js\"></script>\n    <script src=\"./js/template.js\"></script>\n    <script src=\"./js/add_task.js\"></script>\n    <title>Join Add task</title>\n</head>\n\n<body onload=\"init()\">\n    <div id=\"bodyWrapper\" class=\"bodyWrapper\">\n        <div id=\"sideBarWrapper\" class=\"sideBarWrapper\">\n            <div w3-include-html=\"./templates/sidebar.html\" id=\"sideBarContainer\"></div>\n        </div>\n\n        <div id=\"centerWrapper\" class=\"centerWrapper\">\n            <div w3-include-html=\"templates/header.html\"></div>\n\n            <div class=\"centerWrapperHeadline\">\n                <h1>Add Task</h1>\n            </div>\n\n            <form class=\"main\" onsubmit=\"addTask()\">\n                <div id=\"addTaskWrapper\" class=\"addTaskWrapper\">\n                    <div class=\"addTaskWrapperLeft\">\n                        <div>\n                            <p class=\"fSize-16\">Title<span class=\"redStar\">*</span></p>\n                            <input type=\"text\" id=\"title\" placeholder=\"Enter Title\" required/>\n                        </div>\n\n                        <div class=\"spacer\">&nbsp;</div>\n\n                        <div>\n                            <p class=\"fSize-16\">Description</p>\n                            <textarea rows=\"5\" id=\"description\" placeholder=\"Enter a Description\"></textarea>\n                        </div>\n\n                        <div class=\"spacer\">&nbsp;</div>\n\n                        <div>\n                            <p class=\"fSize-16\">Assigned to</p>\n                            <select name=\"choose\" id=\"selectInputAssignee\">\n                                <option value=\"Assigned to...\">Assigned to...</option>\n                                <option value=\"Test 1\">Test 1</option>\n                                <option value=\"Test 2\">Test 2</option>\n                            </select>\n                        </div>\n                    </div>\n\n                    <div class=\"addTaskWrapperMid divider\">&nbsp;</div>\n\n                    <div class=\"addTaskWrapperRight\">\n                        <div>\n                            <p class=\"fSize-16\">Due Date<span class=\"redStar\">*</span></p>\n                            <input type=\"date\" id=\"datePicker\" required>\n                        </div>\n\n                        <div>\n                            <p class=\"fSize-16\">Prio</p>\n                            <div id=\"priority\" class=\"priority d-flex\">\n                                <button id=\"urgentButton\" type=\"button\" onclick=\"priobuttonSelect('Urgent')\" class=\"priorityButton d-flex align-items-center justify-content-evenly\">\n                                    Urgent\n                                    <div id=\"addTaskPrioUrgent\" class=\"priorityImg addTaskPrioUrgent\"></div>\n                                </button>\n                                <button id=\"mediumButton\" type=\"button\" onclick=\"priobuttonSelect('Medium')\" class=\"priorityButton d-flex align-items-center justify-content-evenly\">\n                                    Medium\n                                    <div id=\"addTaskPrioMedium\" class=\"priorityImg addTaskPrioMedium\"></div>                               \n                                </button>\n                                <button id=\"lowButton\" type=\"button\" onclick=\"priobuttonSelect('Low')\" class=\"priorityButton d-flex align-items-center justify-content-evenly\">\n                                    Low\n                                    <div id=\"addTaskPrioLow\" class=\"priorityImg addTaskPrioLow\"></div>\n                                </button>\n                            </div>\n                        </div>\n\n                        <div>\n                            <p class=\"fSize-16\">Category<span class=\"redStar\">*</span></p>\n                            <select name=\"choose\" id=\"categorySelect\" required>\n                                <option value=\"\" disabled selected>Select Category</option>\n                                <option value=\"technical-task\">Technical-Task</option>\n                                <option value=\"user-story\">User-Story</option>\n                            </select>\n                        </div>\n\n                        <div>\n                            <p class=\"fSize-16\">Subtasks</p>\n                            <div class=\"addTaskEnterSubtask d-flex align-items-center justify-content-between\">\n                            <input type=\"text\" id=\"subtasks\" placeholder=\"Enter Subtasks\"/>\n                                <!-- TODO: onclick funktion -->\n                                <button class=\"d-flex\" id=\"addTaskAddSubtaskbutton\" type=\"button\" onclick=\"addSubtaskAddArray()\">\n                                        <div class=\"addTaskAdd\"></div>\n                                </button>\n                            </div>\n                            <lu id=\"subtaskSorage\"></lu>\n                        </div>\n                    </div>\n                </div>\n\n                <div id=\"addTaskBottom\" class=\"addTaskBottom\">\n                    <p class=\"fSize-16\">This field is required<span class=\"redStar\">*</span></p>\n\n                    <div id=\"createTaskButton\">\n                        <button id=\"clear\">Clear <img src=\"./img/icons/cancel-logo.png\" alt=\"\" class=\"createTaskButtonImg\"></button>\n                        <button id=\"create\">Create Task <img src=\"./img/icons/check-icon.png\" alt=\"\" class=\"createTaskButtonImg\"></button>\n                    </div>\n                </div>\n            </form>\n        </div>\n    </div>\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/add_task.html b/add_task.html
+--- a/add_task.html	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/add_task.html	(date 1718094693830)
+@@ -31,7 +31,7 @@
+                 <h1>Add Task</h1>
+             </div>
+ 
+-            <form class="main" onsubmit="addTask()">
++            <form class="main" onsubmit="addTask('board-task-on-to-do')">
+                 <div id="addTaskWrapper" class="addTaskWrapper">
+                     <div class="addTaskWrapperLeft">
+                         <div>
+@@ -69,15 +69,15 @@
+                         <div>
+                             <p class="fSize-16">Prio</p>
+                             <div id="priority" class="priority d-flex">
+-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('Urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                     Urgent
+                                     <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                 </button>
+-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('Medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                     Medium
+                                     <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
+                                 </button>
+-                                <button id="lowButton" type="button" onclick="priobuttonSelect('Low')" class="priorityButton d-flex align-items-center justify-content-evenly">
++                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                     Low
+                                     <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                 </button>
+@@ -106,12 +106,12 @@
+                         </div>
+                     </div>
+                 </div>
+-
++                
+                 <div id="addTaskBottom" class="addTaskBottom">
+                     <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+ 
+                     <div id="createTaskButton">
+-                        <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
++                        <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
+                         <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                     </div>
+                 </div>
+Index: board.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"custom-variables.css\">\n\n    <link rel=\"icon\" type=\"image/png\" href=\"img/join_logo.png\">\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\n    <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap\" rel=\"stylesheet\">\n    <link href=\"https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap\" rel=\"stylesheet\">\n\n    <script src=\"./js/board.js\"></script>\n    <script src=\"./js/template.js\"></script>\n    <script src=\"./js/remoteStorage.js\"></script>\n    <script src=\"./js/add_task.js\"></script>\n    <script src=\"./js/renderTaskOverlay.js\"></script>\n    <script src=\"./js/script.js\"></script>\n    <title>Join - Board</title>\n</head>\n<!-- renderAlltasks for render all task kards -->\n<body onload=\"init(); renderAllTasks()\">\n    <div id=\"bodyWrapper\" class=\"bodyWrapper\">\n        <div id=\"sideBarWrapper\" class=\"sideBarWrapper\">\n            <div w3-include-html=\"./templates/sidebar.html\" id=\"sideBarContainer\"></div>\n        </div>\n\n        <div id=\"centerWrapper\" class=\"centerWrapper\">\n            <div w3-include-html=\"templates/header.html\"></div>\n\n            <div class=\"centerWrapperHeadline\">\n                <div class=\"d-flex align-items-center justify-content-between\">\n                    <div>\n                        <h1 class=\"board-title\">Board</h1>\n                    </div>\n                    <div class=\"d-flex align-items-center justify-content-evenly gap-32\">\n                        <div class=\"board-input-total d-flex align-items-center justify-content-between\">\n                            <input type=\"text\" class=\"board-input\" placeholder=\"Find Task\">\n                            <!-- TODO: onclick funktion -->\n                            <button class=\"d-flex\" id=\"board-search-button\" onclick=\"\">\n                                <div class=\"board-vertical-line\"></div>\n                                <div class=\"board-search-padding\">\n                                    <div class=\"board-search\"></div>\n                                </div>\n                            </button>\n                        </div>\n                        <button class=\"board-add-task-button d-flex justify-content-evenly align-items-center\" id=\"addTask\" onclick=\"openAddTaskOverlay()\">\n                            add task\n                            <div class=\"board-add-task-icon-white\"></div>\n                        </button>\n                    </div>\n                </div>\n            </div>\n\n            <div class=\"main\">\n                <div class=\"d-flex board-all-columns\">\n                    <!-- to-do  -->\n                    <div class=\"board-task-columns\">\n                        <div>\n                            <div class=\"board-task-lanes\">\n                                <p class=\"board-subtitle\">To Do</p>\n                                <img src=\"./img/icons/plus_button.svg\" alt=\"plus_button\" onclick=\"openAddTaskOverlay()\" title=\"Klick to add a new task\">\n                            </div>\n                            <div>\n                                <!-- TODO: icon einfügen\n                                                add task popUp generieren -->\n                            </div>\n                        </div>\n                        <div class=\"board-tasks\">\n                            <div id=\"no-tasks-to-do\" class=\"board-no-tasks d-flex align-items-center justify-content-center\">\n                                <p>No tasks To do</p>\n                            </div>\n                            <div id=\"board-task-on-to-do\" ondrop=\"drop('board-task-on-to-do')\" ondragover=\"allowDrop(event)\" class=\"board-tasks-card d-flex flex-column\">\n                                <!-- TODO: task drag and drop einfügen -->\n                            </div>\n                        </div>\n                    </div>\n                    <!-- in progress  -->\n                    <div class=\"board-task-columns\">\n                        <div>\n                            <div class=\"board-task-lanes\">\n                                <p class=\"board-subtitle\">In progress</p>\n                                <img src=\"./img/icons/plus_button.svg\" alt=\"plus_button\" onclick=\"openAddTaskOverlay()\" title=\"Klick to add a new task\">\n                            </div>\n                            <div>\n                                <!-- TODO: icon einfügen\n                                          add task popUp generieren -->\n                            </div>\n                        </div>\n                        <div class=\"board-tasks\">\n                            <div id=\"no-tasks-in-progress\" class=\"board-no-tasks d-flex align-items-center justify-content-center\">\n                                <p>No tasks In progress</p>\n                            </div>\n                            <div id=\"board-task-on-in-progress\" ondrop=\"drop('board-task-on-in-progress')\" ondragover=\"allowDrop(event)\" class=\"board-tasks-card d-flex flex-column\">\n                                <!-- TODO: task drag and drop einfügen -->\n                            </div>\n                        </div>\n                    </div>\n                    <!-- await feedback  -->\n                    <div class=\"board-task-columns\">\n                        <div>\n                            <div class=\"board-task-lanes\">\n                                <p class=\"board-subtitle\">Await feedback</p>\n                                <img src=\"./img/icons/plus_button.svg\" alt=\"plus_button\" onclick=\"openAddTaskOverlay()\" title=\"Klick to add a new task\">\n                            </div>\n                            <div>\n                                <!-- TODO: icon einfügen\n                                                add task popUp generieren -->\n                            </div>\n                        </div>\n                        <div class=\"board-tasks\">\n                            <div id=\"no-tasks-await-feedback\" class=\"board-no-tasks d-flex align-items-center justify-content-center\">\n                                <p>No tasks Await feedback</p>\n                            </div>\n                            <div id=\"board-task-on-await-feedback\"  ondrop=\"drop('board-task-on-await-feedback')\" ondragover=\"allowDrop(event)\" class=\"board-tasks-card d-flex flex-column\">\n                                <!-- TODO: task drag and drop einfügen -->\n                            </div>\n                        </div>\n                    </div>\n                    <!-- done  -->\n                    <div class=\"board-task-columns d-flex flex-column\">\n                        <div>\n                            <div class=\"board-task-lanes\">\n                                <p class=\"board-subtitle\">Done</p>\n                                <img src=\"./img/icons/plus_button.svg\" alt=\"plus_button\" onclick=\"openAddTaskOverlay()\" title=\"Klick to add a new task\">\n                            </div>\n                            <div>\n                                <!-- TODO: icon einfügen\n                                                add task popUp generieren -->\n                            </div>\n                        </div>\n                        <div class=\"board-tasks\">\n                            <div id=\"no-tasks-Done\" class=\"d-none board-no-tasks d-flex align-items-center justify-content-center\">\n                                <p>No tasks Done</p>\n                            </div>\n                            <div id=\"board-task-on-done\" ondrop=\"drop('board-task-on-done')\" ondragover=\"allowDrop(event)\" onclick=\"openTaskOverlay()\" class=\"board-tasks-card d-flex flex-column\">\n                                <!-- TODO: task drag and drop einfügen -->\n                                <!-- Example task -->\n                                <div id=\"task-card-0\" onclick=\"openTaskOverlay()\" ondragstart=\"drag('task-card-0')\" draggable=\"true\" class=\"d-flex board-task-card flex-column\">\n                                    <div class=\"d-flex align-items-center\">\n                                        <!-- TODO: farbklasse dynamisch gestalten -->\n                                        <p class=\"fc-white rounded-8 board-user d-flex align-items-center technical-task\" id=\"\">User Story</p>\n                                    </div>\n                                    <div>\n                                        <p class=\"board-card-subtitle\" id=\"\">subtitle</p>\n                                    </div>\n                                    <div>\n                                        <p class=\"board-description\" id=\"\">description</p>\n                                    </div>\n                                    <div class=\"d-flex align-items-center gap-10\" id=\"board-done-progressbar\">\n                                        <div class=\"board-progressbar-full rounded-8\">\n                                        <div class=\"board-progressbar rounded-8\" style=\"width: 50%;\">\n                                            <!-- TODO: progressbar -->\n                                        </div>\n                                        </div>\n                                        <div class=\"d-flex board-subtasks gap-4\">\n                                            <p> <!-- TODO: zählermethode -->1/2</p>\n                                            <p>Subtasks</p>\n                                        </div>\n                                    </div>\n                                    <div class=\"d-flex justify-content-between\">\n                                        <div class=\"fc-white d-flex\">\n                                            <!-- TODO: Farbklasse dynamisch gestalten -->\n                                            <p class=\"rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8\">PW</p>\n                                            <!-- TODO: user-icons printer funktion -->\n                                            <p class=\"rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8\">FF</p>\n                                        </div>\n                                        <div class=\"board-icon-importance\">\n                                            <!-- TODO: priority icon funktion -->\n                                            <img src=\"./img/icons/low_icon.png\" alt=\"\">\n                                        </div>\n                                    </div>\n                                </div>\n                                                        <!-- TODO: task drag and drop einfügen -->\n                                <!-- Example task -->\n\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n        <div id=\"taskOverlay\" class=\"taskOverlay d-none\">\n            <div id=\"taskOverlayWrapper\" class=\"taskOverlayWrapper slide-right\">\n                <div id=\"taskOverlayType\" class=\"taskOverlayType\">\n                    <div id=\"issueType\" class=\"issueType\">\n                        User Story\n                    </div>\n                    <img src=\"./img/icons/cancel-logo.png\" alt=\"\" onclick=\"closeTaskOverlay()\">\n                </div>\n\n                <div id=\"taskOverlayTitle\" class=\"taskOverlayTitle\">\n                    Kochwelt Page & Recipe Recommender\n                </div>\n\n                <div id=\"taskOverlayFacts\" class=\"taskOverlayFacts\">\n                    <p>Build Start Page with recipe recommendation</p>\n                    <p>Due Date: 10/05/2023</p>\n                    <p>Priority: Medium</p>\n                </div>\n\n                <div id=\"taskOverlayAssignee\" class=\"taskOverlayAssignee\">\n                    Assigned to:\n                    <ul>\n                        <li>Patrick</li>\n                        <li>Farid</li>\n                    </ul>\n                </div>\n\n                <div id=\"taskOverlayCheckbox\" class=\"taskOverlayCheckbox\">\n                    <p>Subtasks:</p>\n                    <div class=\"checkBox\">\n                        <input type=\"checkbox\">\n                        <span>Implement Recipe Recommendation</span>\n                    </div>\n                    <div class=\"checkBox\">\n                        <input type=\"checkbox\" onclick=\"\">\n                        <span>Start Page Layout</span>\n                    </div>\n                </div>\n\n                <div id=\"taskOverlayBottomEdit\" class=\"taskOverlayBottomEdit\">\n                    <a href=\"\" class=\"editBar\">\n                        <img src=\"./img/icons/delete_icon.png\">\n                        <p>Delete</p>\n                    </a>\n\n                    <a href=\"\" class=\"editBar\">\n                        <img src=\"./img/icons/edit_icon.png\">\n                        <p>Edit</p>\n                    </a>\n                </div>\n            </div>\n        </div>\n\n        <div id=\"addTaskOverlay\" class=\"addTaskOverlay d-none\">\n            <div class=\"outerTaskOverlayWrapper slide-top\">\n                <div class=\"addTaskOverlayHeadline\">\n                    <h1>Add Task</h1>\n                    <img src=\"./img/icons/cancel-logo.png\" alt=\"cancel\" onclick=\"closeAddTaskOverlay()\" title=\"Klick or press ESC to close\">\n                </div>\n                <div id=\"innerTaskOverlayWrapper\" class=\"innerTaskOverlayWrapper\">\n\n                    <div id=\"addTaskWrapperOverlay\" class=\"addTaskWrapperOverlay\">\n                        <div class=\"addTaskWrapperLeft\">\n                            <div>\n                                <p class=\"fSize-16\">Title<span class=\"redStar\">*</span></p>\n                                <input type=\"text\" id=\"title\" placeholder=\"Enter Title\" required/>\n                            </div>\n\n                            <div class=\"spacer\">&nbsp;</div>\n\n                            <div>\n                                <p class=\"fSize-16\">Description</p>\n                                <textarea rows=\"5\" id=\"description\" placeholder=\"Enter a Description\" required></textarea>\n                            </div>\n\n                            <div class=\"spacer\">&nbsp;</div>\n\n                            <div>\n                                <p class=\"fSize-16\">Assigned to<span class=\"redStar\">*</span></p>\n                                <select name=\"choose\" id=\"selectInputAssignee\" required>\n                                    <option value=\"Assigned to...\" disabled selected>Assigned to...</option>\n                                    <option value=\"Test 1\">Test 1</option>\n                                    <option value=\"Test 2\">Test 2</option>\n                                </select>\n                            </div>\n                        </div>\n\n                        <div class=\"addTaskWrapperMid divider\">&nbsp;</div>\n\n                        <div class=\"addTaskWrapperRight\">\n                            <div>\n                                <p class=\"fSize-16\">Due Date<span class=\"redStar\">*</span></p>\n                                <input type=\"date\" id=\"datePicker\" required>\n                            </div>\n\n                            <div>\n                                <p class=\"fSize-16\">Prio<span class=\"redStar\">*</span></p>\n                                <div id=\"priority\" class=\"priority\">\n                                    <button class=\"priorityButton\">\n                                        Urgent\n                                        <img src=\"./img/icons/urgent_icon.png\" alt=\"\" class=\"priorityImg\">\n                                    </button>\n                                    <button class=\"priorityButton\">\n                                        Medium\n                                        <img src=\"./img/icons/medium-colored-icon.png\" alt=\"\" class=\"priorityImg\">\n                                    </button>\n                                    <button class=\"priorityButton\">\n                                        Low\n                                        <img src=\"./img/icons/low_icon.png\" alt=\"\" class=\"priorityImg\">\n                                    </button>\n                                </div>\n                            </div>\n\n                            <div>\n                                <p class=\"fSize-16\">Category<span class=\"redStar\">*</span></p>\n                                <select name=\"choose\" id=\"categorySelect\">\n                                    <option value=\"\" disabled selected>Select Category</option>\n                                    <option value=\"technical-task\">Technical-Task</option>\n                                    <option value=\"user-story\">User-Story</option>\n                                </select>\n                            </div>\n\n                            <div>\n                                <p class=\"fSize-16\">Subtasks<span class=\"redStar\">*</span></p>\n                                <input type=\"text\" id=\"subtasks\" placeholder=\"Enter Subtasks\" />\n                            </div>\n                        </div>\n                    </div>\n\n                    <div id=\"addTaskOverlayBottom\" class=\"addTaskOverlayBottom\">\n                        <p class=\"fSize-16\">This field is required<span class=\"redStar\">*</span></p>\n\n                        <div id=\"createTaskButton\">\n                            <button id=\"clear\">Clear <img src=\"./img/icons/cancel-logo.png\" alt=\"\" class=\"createTaskButtonImg\"></button>\n                            <button id=\"create\" onclick=\"addTask(); formValidation()\">Create Task <img src=\"./img/icons/check-icon.png\" alt=\"\" class=\"createTaskButtonImg\"></button>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</body>\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/board.html b/board.html
+--- a/board.html	(revision c17539aa946e359c54590dab00fa453ac73e7c79)
++++ b/board.html	(date 1718094693836)
+@@ -63,7 +63,7 @@
+                         <div>
+                             <div class="board-task-lanes">
+                                 <p class="board-subtitle">To Do</p>
+-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
++                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-to-do')" title="Klick to add a new task">
+                             </div>
+                             <div>
+                                 <!-- TODO: icon einfügen
+@@ -75,7 +75,6 @@
+                                 <p>No tasks To do</p>
+                             </div>
+                             <div id="board-task-on-to-do" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+-                                <!-- TODO: task drag and drop einfügen -->
+                             </div>
+                         </div>
+                     </div>
+@@ -84,7 +83,7 @@
+                         <div>
+                             <div class="board-task-lanes">
+                                 <p class="board-subtitle">In progress</p>
+-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
++                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-in-progress')" title="Klick to add a new task">
+                             </div>
+                             <div>
+                                 <!-- TODO: icon einfügen
+@@ -96,7 +95,6 @@
+                                 <p>No tasks In progress</p>
+                             </div>
+                             <div id="board-task-on-in-progress" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+-                                <!-- TODO: task drag and drop einfügen -->
+                             </div>
+                         </div>
+                     </div>
+@@ -105,7 +103,7 @@
+                         <div>
+                             <div class="board-task-lanes">
+                                 <p class="board-subtitle">Await feedback</p>
+-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
++                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-await-feedback')" title="Klick to add a new task">
+                             </div>
+                             <div>
+                                 <!-- TODO: icon einfügen
+@@ -117,7 +115,6 @@
+                                 <p>No tasks Await feedback</p>
+                             </div>
+                             <div id="board-task-on-await-feedback"  ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+-                                <!-- TODO: task drag and drop einfügen -->
+                             </div>
+                         </div>
+                     </div>
+@@ -126,7 +123,7 @@
+                         <div>
+                             <div class="board-task-lanes">
+                                 <p class="board-subtitle">Done</p>
+-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
++                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-done')" title="Klick to add a new task">
+                             </div>
+                             <div>
+                                 <!-- TODO: icon einfügen
+@@ -138,53 +135,12 @@
+                                 <p>No tasks Done</p>
+                             </div>
+                             <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
+-                                <!-- TODO: task drag and drop einfügen -->
+-                                <!-- Example task -->
+-                                <div id="task-card-0" onclick="openTaskOverlay()" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
+-                                    <div class="d-flex align-items-center">
+-                                        <!-- TODO: farbklasse dynamisch gestalten -->
+-                                        <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
+-                                    </div>
+-                                    <div>
+-                                        <p class="board-card-subtitle" id="">subtitle</p>
+-                                    </div>
+-                                    <div>
+-                                        <p class="board-description" id="">description</p>
+-                                    </div>
+-                                    <div class="d-flex align-items-center gap-10" id="board-done-progressbar">
+-                                        <div class="board-progressbar-full rounded-8">
+-                                        <div class="board-progressbar rounded-8" style="width: 50%;">
+-                                            <!-- TODO: progressbar -->
+-                                        </div>
+-                                        </div>
+-                                        <div class="d-flex board-subtasks gap-4">
+-                                            <p> <!-- TODO: zählermethode -->1/2</p>
+-                                            <p>Subtasks</p>
+-                                        </div>
+-                                    </div>
+-                                    <div class="d-flex justify-content-between">
+-                                        <div class="fc-white d-flex">
+-                                            <!-- TODO: Farbklasse dynamisch gestalten -->
+-                                            <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
+-                                            <!-- TODO: user-icons printer funktion -->
+-                                            <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
+-                                        </div>
+-                                        <div class="board-icon-importance">
+-                                            <!-- TODO: priority icon funktion -->
+-                                            <img src="./img/icons/low_icon.png" alt="">
+-                                        </div>
+-                                    </div>
+-                                </div>
+-                                                        <!-- TODO: task drag and drop einfügen -->
+-                                <!-- Example task -->
+-
+-                            </div>
+-                        </div>
+-                    </div>
+-                </div>
+-            </div>
+-        </div>
+-
++                            </div>
++                        </div>
++                    </div>
++                </div>
++            </div>
++        </div>
+         <div id="taskOverlay" class="taskOverlay d-none">
+             <div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
+                 <div id="taskOverlayType" class="taskOverlayType">
+@@ -239,91 +195,6 @@
+         </div>
+ 
+         <div id="addTaskOverlay" class="addTaskOverlay d-none">
+-            <div class="outerTaskOverlayWrapper slide-top">
+-                <div class="addTaskOverlayHeadline">
+-                    <h1>Add Task</h1>
+-                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
+-                </div>
+-                <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
+-
+-                    <div id="addTaskWrapperOverlay" class="addTaskWrapperOverlay">
+-                        <div class="addTaskWrapperLeft">
+-                            <div>
+-                                <p class="fSize-16">Title<span class="redStar">*</span></p>
+-                                <input type="text" id="title" placeholder="Enter Title" required/>
+-                            </div>
+-
+-                            <div class="spacer">&nbsp;</div>
+-
+-                            <div>
+-                                <p class="fSize-16">Description</p>
+-                                <textarea rows="5" id="description" placeholder="Enter a Description" required></textarea>
+-                            </div>
+-
+-                            <div class="spacer">&nbsp;</div>
+-
+-                            <div>
+-                                <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
+-                                <select name="choose" id="selectInputAssignee" required>
+-                                    <option value="Assigned to..." disabled selected>Assigned to...</option>
+-                                    <option value="Test 1">Test 1</option>
+-                                    <option value="Test 2">Test 2</option>
+-                                </select>
+-                            </div>
+-                        </div>
+-
+-                        <div class="addTaskWrapperMid divider">&nbsp;</div>
+-
+-                        <div class="addTaskWrapperRight">
+-                            <div>
+-                                <p class="fSize-16">Due Date<span class="redStar">*</span></p>
+-                                <input type="date" id="datePicker" required>
+-                            </div>
+-
+-                            <div>
+-                                <p class="fSize-16">Prio<span class="redStar">*</span></p>
+-                                <div id="priority" class="priority">
+-                                    <button class="priorityButton">
+-                                        Urgent
+-                                        <img src="./img/icons/urgent_icon.png" alt="" class="priorityImg">
+-                                    </button>
+-                                    <button class="priorityButton">
+-                                        Medium
+-                                        <img src="./img/icons/medium-colored-icon.png" alt="" class="priorityImg">
+-                                    </button>
+-                                    <button class="priorityButton">
+-                                        Low
+-                                        <img src="./img/icons/low_icon.png" alt="" class="priorityImg">
+-                                    </button>
+-                                </div>
+-                            </div>
+-
+-                            <div>
+-                                <p class="fSize-16">Category<span class="redStar">*</span></p>
+-                                <select name="choose" id="categorySelect">
+-                                    <option value="" disabled selected>Select Category</option>
+-                                    <option value="technical-task">Technical-Task</option>
+-                                    <option value="user-story">User-Story</option>
+-                                </select>
+-                            </div>
+-
+-                            <div>
+-                                <p class="fSize-16">Subtasks<span class="redStar">*</span></p>
+-                                <input type="text" id="subtasks" placeholder="Enter Subtasks" />
+-                            </div>
+-                        </div>
+-                    </div>
+-
+-                    <div id="addTaskOverlayBottom" class="addTaskOverlayBottom">
+-                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+-
+-                        <div id="createTaskButton">
+-                            <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
+-                            <button id="create" onclick="addTask(); formValidation()">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+-                        </div>
+-                    </div>
+-                </div>
+-            </div>
+         </div>
+     </div>
+ </body>
