@@ -20,10 +20,10 @@
     <script src="./js/add_task.js"></script>
     <script src="./js/renderTaskOverlay.js"></script>
     <script src="./js/script.js"></script>
-    <title>Join - Board</title>
+    <title>Join</title>
 </head>
 <!-- renderAlltasks for render all task kards -->
-<body onload="init(); renderAllTasks()">
+<body onload="init(), renderAllTasks()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -63,7 +63,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">To Do</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-to-do')" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -75,7 +75,6 @@
                                 <p>No tasks To do</p>
                             </div>
                             <div id="board-task-on-to-do" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
-                                <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
                     </div>
@@ -84,7 +83,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">In progress</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-in-progress')" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -96,7 +95,6 @@
                                 <p>No tasks In progress</p>
                             </div>
                             <div id="board-task-on-in-progress" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
-                                <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
                     </div>
@@ -105,7 +103,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Await feedback</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-await-feedback')" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -117,7 +115,6 @@
                                 <p>No tasks Await feedback</p>
                             </div>
                             <div id="board-task-on-await-feedback"  ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
-                                <!-- TODO: task drag and drop einfügen -->
                             </div>
                         </div>
                     </div>
@@ -126,7 +123,7 @@
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Done</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay()" title="Klick to add a new task">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-done')" title="Klick to add a new task">
                             </div>
                             <div>
                                 <!-- TODO: icon einfügen
@@ -138,53 +135,12 @@
                                 <p>No tasks Done</p>
                             </div>
                             <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
-                                <!-- TODO: task drag and drop einfügen -->
-                                <!-- Example task -->
-                                <div id="task-card-0" onclick="openTaskOverlay()" ondragstart="drag('task-card-0')" draggable="true" class="d-flex board-task-card flex-column">
-                                    <div class="d-flex align-items-center">
-                                        <!-- TODO: farbklasse dynamisch gestalten -->
-                                        <p class="fc-white rounded-8 board-user d-flex align-items-center technical-task" id="">User Story</p>
-                                    </div>
-                                    <div>
-                                        <p class="board-card-subtitle" id="">subtitle</p>
-                                    </div>
-                                    <div>
-                                        <p class="board-description" id="">description</p>
-                                    </div>
-                                    <div class="d-flex align-items-center gap-10" id="board-done-progressbar">
-                                        <div class="board-progressbar-full rounded-8">
-                                        <div class="board-progressbar rounded-8" style="width: 50%;">
-                                            <!-- TODO: progressbar -->
-                                        </div>
-                                        </div>
-                                        <div class="d-flex board-subtasks gap-4">
-                                            <p> <!-- TODO: zählermethode -->1/2</p>
-                                            <p>Subtasks</p>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <div class="fc-white d-flex">
-                                            <!-- TODO: Farbklasse dynamisch gestalten -->
-                                            <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
-                                            <!-- TODO: user-icons printer funktion -->
-                                            <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
-                                        </div>
-                                        <div class="board-icon-importance">
-                                            <!-- TODO: priority icon funktion -->
-                                            <img src="./img/icons/low_icon.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                                        <!-- TODO: task drag and drop einfügen -->
-                                <!-- Example task -->
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div id="taskOverlay" class="taskOverlay d-none">
             <div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
                 <div id="taskOverlayType" class="taskOverlayType">
@@ -239,91 +195,6 @@
         </div>
 
         <div id="addTaskOverlay" class="addTaskOverlay d-none">
-            <div class="outerTaskOverlayWrapper slide-top">
-                <div class="addTaskOverlayHeadline">
-                    <h1>Add Task</h1>
-                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
-                </div>
-                <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
-
-                    <div id="addTaskWrapperOverlay" class="addTaskWrapperOverlay">
-                        <div class="addTaskWrapperLeft">
-                            <div>
-                                <p class="fSize-16">Title<span class="redStar">*</span></p>
-                                <input type="text" id="title" placeholder="Enter Title" required/>
-                            </div>
-
-                            <div class="spacer">&nbsp;</div>
-
-                            <div>
-                                <p class="fSize-16">Description</p>
-                                <textarea rows="5" id="description" placeholder="Enter a Description" required></textarea>
-                            </div>
-
-                            <div class="spacer">&nbsp;</div>
-
-                            <div>
-                                <p class="fSize-16">Assigned to<span class="redStar">*</span></p>
-                                <select name="choose" id="selectInputAssignee" required>
-                                    <option value="Assigned to..." disabled selected>Assigned to...</option>
-                                    <option value="Test 1">Test 1</option>
-                                    <option value="Test 2">Test 2</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="addTaskWrapperMid divider">&nbsp;</div>
-
-                        <div class="addTaskWrapperRight">
-                            <div>
-                                <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                                <input type="date" id="datePicker" required>
-                            </div>
-
-                            <div>
-                                <p class="fSize-16">Prio<span class="redStar">*</span></p>
-                                <div id="priority" class="priority">
-                                    <button class="priorityButton">
-                                        Urgent
-                                        <img src="./img/icons/urgent_icon.png" alt="" class="priorityImg">
-                                    </button>
-                                    <button class="priorityButton">
-                                        Medium
-                                        <img src="./img/icons/medium-colored-icon.png" alt="" class="priorityImg">
-                                    </button>
-                                    <button class="priorityButton">
-                                        Low
-                                        <img src="./img/icons/low_icon.png" alt="" class="priorityImg">
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div>
-                                <p class="fSize-16">Category<span class="redStar">*</span></p>
-                                <select name="choose" id="categorySelect">
-                                    <option value="" disabled selected>Select Category</option>
-                                    <option value="technical-task">Technical-Task</option>
-                                    <option value="user-story">User-Story</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <p class="fSize-16">Subtasks<span class="redStar">*</span></p>
-                                <input type="text" id="subtasks" placeholder="Enter Subtasks" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="addTaskOverlayBottom" class="addTaskOverlayBottom">
-                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>
-
-                        <div id="createTaskButton">
-                            <button id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
-                            <button id="create" onclick="addTask(); formValidation()">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>

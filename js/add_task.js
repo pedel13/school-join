@@ -1,15 +1,16 @@
-const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
+const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio;
-let subtasklist = [];
+let subtasklist = ['no'];
 let subtaskProofment = [];
 
-async function addTask() {
-    await getInputs();
+async function addTask(position='') {
+    await getInputs(position);
+    renderAllTasks();
 }
 
-function getInputs() {
+async function getInputs(position) {
     let inputs = {
-        "position": "board-task-on-to-do",
+        "position": position,
         "title": document.getElementById('title').value,
         "description": document.getElementById('description').value,
         "selectInputAssignee": document.getElementById('selectInputAssignee').value,
@@ -19,8 +20,9 @@ function getInputs() {
         "subtasks": subtasklist,
         "subtask": subtaskProofment
     };
-    setTaskData("board/tasks", inputs);
+    await setTaskDataInDatabase("/board/tasks", inputs);
     clearAddTask();
+
 }
 
 function clearAddTask() {
@@ -30,34 +32,36 @@ function clearAddTask() {
     datePicker.value = '';
     categorySelect.value = '';
     subtasks.value = '';
-    subtasklist = '';
-    subtaskProofment = '';
+    subtasklist = ['no'];
+    subtaskProofment = ['no'];
     priobuttonclearselect()
     prio = '';
 }
 
-async function setTaskData(path="", data={}) {
-    let response = await fetch(baseUrl + path + ".json",{
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-}
+async function setTaskDataInDatabase(path = "", data = {}) {
+    try {
+        let response = await fetch(baseUrl + path + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
 
-function formValidation() {
-    let titleValidation = document.getElementById('title').value;
-    let descriptionValidation = document.getElementById('description').value;
-    
-    if (titleValidation !== '' && descriptionValidation !== '') {
-        document.getElementById("create").removeAttribute('disabled');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let responseData = await response.json();
+    } catch (error) {
+        console.error("Error setting data in database:", error);
     }
-    else window.alert("Bitte Mindestens ein Feld ausfüllen");
 }
 
-function openAddTaskOverlay() {
+
+function openAddTaskOverlay(position='') {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
+    renderAddOverlay(position);
 }
 
 function closeAddTaskOverlay() {
@@ -103,17 +107,16 @@ function priobuttonclear(button, icon) {
 
 function priobuttonSelect(priority) {
     prio = priority;
-    console.log(prio);
     switch (prio) {
-        case 'Urgent':
+        case 'urgent':
             priobutton('urgentButton','addTaskPrioUrgent');
             priobuttonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
             break;
-        case 'Medium':
+        case 'medium':
             priobutton('mediumButton','addTaskPrioMedium');
             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
             break;
-        case 'Low':
+        case 'low':
             priobutton('lowButton','addTaskPrioLow');
             priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
             break;
@@ -124,13 +127,13 @@ function priobuttonSelect(priority) {
 
 function priobuttonclearselect() {
     switch (prio) {
-        case 'Urgent':
+        case 'urgent':
             priobuttonclear('urgentButton','addTaskPrioUrgent');
             break;
-        case 'Medium':
+        case 'medium':
             priobuttonclear('mediumButton','addTaskPrioMedium');
             break;
-        case 'Low':
+        case 'low':
             priobuttonclear('lowButton','addTaskPrioLow');
             break;
         default:
@@ -138,17 +141,174 @@ function priobuttonclearselect() {
     }
 }
 
+
+function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
+    document.getElementById('subtasks').removeAttribute("placeholder");
+    document.getElementById('subtasks').value=newSubtask;
+    deleteCreateSubtask(subtaskCreateCount);
+}
+
+function deleteCreateSubtask(subtaskCreateCount='') {
+    if (subtasklist.length == 1) {
+        subtasklist = ['no'];
+        subtaskProofment = ['no']
+    }
+    else {
+        let subtaskCreateCountSplice = subtaskCreateCount;
+        subtasklist.splice(subtaskCreateCountSplice, 1);
+        subtaskProofment.splice(subtaskCreateCountSplice, 1);
+        }
+    console.log(subtasklist);
+    let element = document.getElementById('subtaskSorage');
+    if (element) {
+        let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
+        if (child) {
+            child.remove();
+        }
+    }
+    document.getElementById('subtaskSorage').innerHTML = ''
+    renderAllCreateSubtaskNew();
+}
+
+function renderAllCreateSubtaskNew() {
+    if (subtasklist[0] == 'no') {
+    } else{
+        let i = 0;
+        for (let subtask in subtasklist) {
+        renderCrateSubtask(subtasklist[i], i);
+        i ++;
+        }
+    }
+}
+
+function renderAllCreateSubtasks(taskId) {
+    let i = 0;
+    let element = tasks[taskId];
+    for (let subtask in element.subtasks) {
+        subtasklist.push(newSubtask);
+        subtaskProofment.push("false");
+    renderCrateSubtask(element.subtasks[i], i);
+    i ++;
+    }
+}
+
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
-    document.getElementById('subtaskSorage').innerHTML += `
-    <li class="addTaskSubtaskShow justify-content-between">• ${newSubtask}<div class="d-flex">
-    <button type="button"  class="addTaskSubtaskEdit"></button>
-    <div class="addTaskSubtaskVertikalLine"></div>
-    <button type="button"  class="addTaskSubtaskWaste"></button>
-    </div></li>`
+    if (subtasklist[0] == 'no') {
+        subtasklist = [];
+    }
     subtasklist.push(newSubtask);
     subtaskProofment.push("false");
-    console.log(subtasklist);
-    console.log(subtaskProofment);
     subtasks.value = '';
+    let subtaskCreateCount = subtasklist.length - 1;
+    renderCrateSubtask(newSubtask, subtaskCreateCount);
+    }
+    
+    function renderCrateSubtask(newSubtask, subtaskCreateCount) {
+    
+    document.getElementById('subtaskSorage').innerHTML += `
+    <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" justify-content-between">• ${newSubtask}<div class="d-flex">
+    <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
+    <div class="addTaskSubtaskVertikalLine"></div>
+    <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
+    </div></li>`
+}
+
+function renderAddOverlay(position) {
+    document.getElementById('addTaskOverlay').innerHTML = ''
+    document.getElementById('addTaskOverlay').innerHTML = `            
+        <div class="outerTaskOverlayWrapper slide-top">
+                <div class="addTaskOverlayHeadline">
+                    <h1>Add Task</h1>
+                    <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
+                </div>
+                <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
+
+                    <form class="main" onsubmit="addTask('${position}')">
+                        <div id="addTaskWrapper" class="addTaskWrapper">
+                            <div class="addTaskWrapperLeft">
+                                <div>
+                                    <p class="fSize-16">Title<span class="redStar">*</span></p>
+                                    <input type="text" id="title" placeholder="Enter Title" required/>
+                                </div>
+        
+                                <div class="spacer">&nbsp;</div>
+        
+                                <div>
+                                    <p class="fSize-16">Description</p>
+                                    <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                                </div>
+        
+                                <div class="spacer">&nbsp;</div>
+        
+                                <div>
+                                    <p class="fSize-16">Assigned to</p>
+                                    <select name="choose" id="selectInputAssignee">
+                                        <option value="Assigned to...">Assigned to...</option>
+                                        <option value="Test 1">Test 1</option>
+                                        <option value="Test 2">Test 2</option>
+                                    </select>
+                                </div>
+                            </div>
+        
+                            <div class="addTaskWrapperMid divider">&nbsp;</div>
+        
+                            <div class="addTaskWrapperRight">
+                                <div>
+                                    <p class="fSize-16">Due Date<span class="redStar">*</span></p>
+                                    <input type="date" id="datePicker" required>
+                                </div>
+        
+                                <div>
+                                    <p class="fSize-16">Prio</p>
+                                    <div id="priority" class="priority d-flex">
+                                        <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Urgent
+                                            <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                        </button>
+                                        <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Medium
+                                            <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
+                                        </button>
+                                        <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Low
+                                            <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                        </button>
+                                    </div>
+                                </div>
+        
+                                <div>
+                                    <p class="fSize-16">Category<span class="redStar">*</span></p>
+                                    <select name="choose" id="categorySelect" required>
+                                        <option value="" disabled selected>Select Category</option>
+                                        <option value="technical-task">Technical-Task</option>
+                                        <option value="user-story">User-Story</option>
+                                    </select>
+                                </div>
+        
+                                <div>
+                                    <p class="fSize-16">Subtasks</p>
+                                    <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                                    <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                        <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
+                                                <div class="addTaskAdd"></div>
+                                        </button>
+                                    </div>
+                                    <lu id="subtaskSorage"></lu>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div id="addTaskBottom" class="addTaskBottom">
+                            <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+        
+                            <div id="createTaskButton">
+                                <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
+                                <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>`
 }
