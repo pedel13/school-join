@@ -29,7 +29,7 @@ async function guestLogin(event) {
 async function onloadLogin() {
     console.log('test');
     await loadUsers("users");
-    //postUserData("", {"banana": "rama"});
+    await postUserData("");
 }
 
 //Überprüfung in der Datenbank, ob ein User vorhanden ist
@@ -47,7 +47,7 @@ async function postUserData(path = "", data={}) {
         },
         body: JSON.stringify(data)
     });
-    return responseToJson = await response.json();
+    //return responseToJson = await response.json();
 }
 
 async function deleteFunction(path = "", data={}) {
