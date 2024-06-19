@@ -11,7 +11,7 @@ async function addUser() {
         if (checkBox.checked === true) {
             users.push({email: email.value, password: password.value});
             window.alert("Du hast dich erfolgreich registriert!");
-            setToFirebase();
+            await setToFirebase();
             //window.location.href = 'signup.html?msg=Du hast dich erfolgreich registriert!';
             clearRegisterForm();
             //successRegister();
@@ -60,7 +60,7 @@ function successRegister() {
     const msg = urlParams.get('msg');
     
     if (msg) {
-        msgBox.innerText = msg;
+        msgBox.innerHTML = msg;
     }
     else msgBox.classList.add('d-none');
 }

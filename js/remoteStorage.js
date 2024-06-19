@@ -1,6 +1,6 @@
 function onloadFunc() {
     //console.log("test");
-    deleteData("/name");
+    //deleteData("/name");
 }
 
 const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
