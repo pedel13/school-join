@@ -4,15 +4,16 @@ let users = [
         password: '123456'
     },
     {
-        email: 'test@test.de',
-        password: 'testUser'
+        email: 'ff@nix.de',
+        password: '1111'
     }
 ];
-function login() {
+async function login(path = "/users") {
     let email = document.getElementById('email');
     let password = document.getElementById('password');
-    let user =  users.find(user => user.email === email.value && user.password === password.value);
-    console.log(user);
+    let user =  users.find(u => u.email === email.value && u.password === password.value);
+    console.log("Folgenden User gefunden:", user);
+    
     if (user) {
         console.log('user gefunden')
     }
@@ -26,16 +27,15 @@ async function guestLogin(event) {
     window.open("summary.html", "_self");
 }
 
-async function onloadLogin() {
-    console.log('test');
-    await loadUsers("users");
-    await postUserData("");
-}
-
 //Überprüfung in der Datenbank, ob ein User vorhanden ist
-async function loadUsers(path = "") {
+async function loadUsers(path = "/users", email, password) {
     let response = await fetch(BASE_URL + path + ".json");
     let responseToJson = await response.json();
+    let user = await responseToJson.find(u => u.email === email.value && u.password === password.value);
+    if (user) {
+        console.log('user gefunden')
+    }
+    else console.log('user nicht gefunden')
     console.log("Function loadUsers: ",responseToJson);
 }
 
@@ -55,3 +55,9 @@ async function deleteFunction(path = "", data={}) {
        method: "DELETE",
     });
 }
+
+/*async function onloadLogin() {
+    console.log('test');
+    await loadUsers("users");
+    await postUserData("");
+}*/
