@@ -8,7 +8,7 @@ function openTaskOverlay(taskId = "") {
     if (task.subtasks == 'no') {
         document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
     }
-    else{
+    else {
         subtaskLoop(taskId);
     }
     document.getElementById('taskOverlay').classList.remove('d-none');
@@ -32,33 +32,33 @@ function subtaskLoop(taskId) {
     let i = 0;
     subtasks.forEach(subtask => {
         if (subtaskCheckbox[i] == 'false') {
-            renderSubTasks(subtask,taskId, i, '');
+            renderSubTasks(subtask, taskId, i, '');
         } else {
-            renderSubTasks(subtask,taskId, i, 'checked');
+            renderSubTasks(subtask, taskId, i, 'checked');
         }
         i++;
     });
 }
 
-async function changeSuptaskPrufment(i, taskId= '') {
+async function changeSuptaskPrufment(i, taskId = '') {
     let element = tasks[taskId];
     let subtaskCheckbox = element.subtask;
-        if (subtaskCheckbox[i] == 'false') {      
-            subtaskCheckbox[i] = 'true';
-            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
-        } else {
-            subtaskCheckbox[i] = 'false';
-            await updateSubtaskPrufment(taskId, subtaskCheckbox, '/subtask');
-        }
+    if (subtaskCheckbox[i] == 'false') {
+        subtaskCheckbox[i] = 'true';
+        await updateSubtaskPrufment(subtaskCheckbox, `${taskId}/subtask`);
+    } else {
+        subtaskCheckbox[i] = 'false';
+        await updateSubtaskPrufment(subtaskCheckbox, `${taskId}/subtask`);
+    }
 }
 
-async function updateSubtaskPrufment(taskId, updatedTask, path='') {
-    let response = await fetch(baseUrl + "/board/tasks/" + taskId +"path"+ ".json", {
+async function updateSubtaskPrufment(data = {}, path = '') {
+    let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(updatedTask)
+        body: JSON.stringify(data)
     });
 }
 
@@ -68,7 +68,61 @@ function taskEdit(taskId) {
     renderAllCreateSubtasks(taskId);
 }
 
-function renderSubTasks(subtask,taskId, i, checkBox = '') {
+async function changeTask(taskId='', taskposition='') {
+    await changesInputs(taskposition, taskId);
+}
+
+async function changesInputs(position, taskId) {
+    let task = tasks[taskId];
+    // let categorySelect = task.categorySelect;
+    let inputs = {
+        "position": position,
+        "title": document.getElementById('title').value,
+        "description": document.getElementById('description').value,
+        "selectInputAssignee": document.getElementById('selectInputAssignee').value,
+        "datePicker": document.getElementById('datePicker').value,
+        "priority": prio,
+        "categorySelect": task.categorySelect,
+        "subtasks": subtasklist,
+        "subtask": subtaskProofment
+    };
+    console.log(inputs);
+    console.log(task.categorySelect);
+    /*await putTaskDataInDatabase(`/board/tasks/${taskId}/title`, document.getElementById('title').value);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/description`, document.getElementById('description').value);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/selectInputAssignee`, document.getElementById('selectInputAssignee').value);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/datePicker`, document.getElementById('datePicker').value);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/priority`, prio);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/subtasks`, subtasklist);
+    await putTaskDataInDatabase(`/board/tasks/${taskId}/subtask`, subtaskProofment);*/
+    await updateSubtaskPrufment(inputs,`${taskId}`);
+    clearAddTask();
+
+}
+
+async function putTaskDataInDatabase(path=``,taskId, data) {
+    console.log(path, data);
+    try {
+        let response = await fetch(baseUrl + path + taskId + ".json", {
+            method: "PUT",
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let responseData = await response.json();
+    } catch (error) {
+        console.error("Error PUT data in database:", error);
+    }
+}
+
+
+function renderSubTasks(subtask, taskId, i, checkBox = '') {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
     <div class="checkBox">
     <input type="checkbox" id="ceckBox_${i}" onclick="changeSuptaskPrufment(${i}, '${taskId}')" ${checkBox}>
@@ -78,7 +132,7 @@ function renderSubTasks(subtask,taskId, i, checkBox = '') {
 
 function renderTaskCardBig(element, categoryText, taskId) {
     document.getElementById('taskOverlay').innerHTML =
-    `<div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
+        `<div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
     <div id="taskOverlayType" class="taskOverlayType">
     <div id="issueType" class="issueType ${element.categorySelect}">
     ${categoryText}
@@ -124,13 +178,14 @@ function renderTaskCardBig(element, categoryText, taskId) {
 }
 
 function renderTaskEditor(taskId, task) {
+    console.log("halo",task.position);
     document.getElementById('taskOverlay').innerHTML = `
     <div  class="taskOverlayWrapper slide-right">
     <div  class="taskOverlayTypeEdite d-flex">
         <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
     </div>
     
-                    <form class="main" onsubmit="">
+                    <form class="main" onsubmit="changeTask('${taskId}','${task.position}')">
                         <div class="addTaskWrapper scrollbarTaskOverlayWapper scrollbox">
                             <div class="">
                                 <div>
@@ -174,7 +229,7 @@ function renderTaskEditor(taskId, task) {
                                 </div>
 
                                 <div >&nbsp;</div>
-        
+
                                 <div>
                                     <p class="fSize-20  editTaskWrapper">Assigned to</p>
                                     <select name="choose" id="selectInputAssignee">

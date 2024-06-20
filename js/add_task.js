@@ -20,6 +20,7 @@ async function getInputs(position) {
         "subtasks": subtasklist,
         "subtask": subtaskProofment
     };
+    console.log(inputs);
     await setTaskDataInDatabase("/board/tasks", inputs);
     clearAddTask();
 
@@ -39,6 +40,7 @@ function clearAddTask() {
 }
 
 async function setTaskDataInDatabase(path = "", data = {}) {
+    console.log(data);
     try {
         let response = await fetch(baseUrl + path + ".json", {
             method: "POST",
@@ -158,7 +160,6 @@ function deleteCreateSubtask(subtaskCreateCount='') {
         subtasklist.splice(subtaskCreateCountSplice, 1);
         subtaskProofment.splice(subtaskCreateCountSplice, 1);
         }
-    console.log(subtasklist);
     let element = document.getElementById('subtaskSorage');
     if (element) {
         let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
@@ -185,8 +186,8 @@ function renderAllCreateSubtasks(taskId) {
     let i = 0;
     let element = tasks[taskId];
     for (let subtask in element.subtasks) {
-        subtasklist.push(newSubtask);
-        subtaskProofment.push("false");
+        subtasklist.push(element.subtasks[i]);
+        subtaskProofment.push(element.subtask[i]);
     renderCrateSubtask(element.subtasks[i], i);
     i ++;
     }

@@ -11,11 +11,11 @@ let subtaskCountPrufment = 0;
 function allowDrop(ev) {
     ev.preventDefault();
 }
-  
+
 function drag(id) {
     cardDraggedId = id;
 }
-  
+
 async function drop(dropPosition) {
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
@@ -40,7 +40,7 @@ async function updateTaskPosition(taskId, updatedTask) {
     let subtask = subtaskExist(element);
     let categoryText = categoryFinder(element);
     countForNoTask(element.position);
-    renderTask(element,taskId, subtask, categoryText);
+    renderTask(element, taskId, subtask, categoryText);
     subtaskCount = 0;
     noTasksInProgress()
 }
@@ -51,49 +51,49 @@ function removeDraggedCard() {
 }
 
 function reduceDroppedElement(elementPosition) {
-    switch(elementPosition){
-    case "board-task-on-to-do":
-    countOnToDo --;
-    break;
-    
-    case "board-task-on-in-progress":
-    countOnInProgress --;
-    break;
-    
-    case "board-task-on-await-feedback":
-    countOnAwaitFeedback --;
-    break;
-    
-    case "board-task-on-done":
-    countOnDone --;
-    break;
+    switch (elementPosition) {
+        case "board-task-on-to-do":
+            countOnToDo--;
+            break;
+
+        case "board-task-on-in-progress":
+            countOnInProgress--;
+            break;
+
+        case "board-task-on-await-feedback":
+            countOnAwaitFeedback--;
+            break;
+
+        case "board-task-on-done":
+            countOnDone--;
+            break;
     }
 
 }
 
 function noTasksInProgress() {
-    if (countOnToDo != 0){
+    if (countOnToDo != 0) {
         addNoTaskInProgress("no-tasks-to-do");
     }
-    
+
     else {
         removeNoTaskInProgress("no-tasks-to-do");
     }
-    
+
     if (countOnInProgress != 0) {
         addNoTaskInProgress("no-tasks-in-progress");
     }
     else {
         removeNoTaskInProgress("no-tasks-in-progress");
     }
-    
+
     if (countOnAwaitFeedback != 0) {
         addNoTaskInProgress("no-tasks-await-feedback");
     }
     else {
         removeNoTaskInProgress("no-tasks-await-feedback");
     }
-    
+
     if (countOnDone != 0) {
         addNoTaskInProgress("no-tasks-Done");
     }
@@ -102,49 +102,48 @@ function noTasksInProgress() {
     }
 }
 
-function addNoTaskInProgress(taskInProgress="") {
+function addNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.add("d-none");
 }
 
-function removeNoTaskInProgress(taskInProgress="") {
+function removeNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.remove("d-none");
 }
 
-async function loadTasks(){
+async function loadTasks() {
     let response = await fetch(baseUrl + "/board/tasks" + ".json");
     return await response.json();
 }
 
 function cleanTaskboard() {
-    document.getElementById("board-task-on-to-do").innerHTML = ''; 
-    document.getElementById("board-task-on-in-progress").innerHTML = ''; 
-    document.getElementById("board-task-on-await-feedback").innerHTML = ''; 
-    document.getElementById("board-task-on-done").innerHTML = ''; 
+    document.getElementById("board-task-on-to-do").innerHTML = '';
+    document.getElementById("board-task-on-in-progress").innerHTML = '';
+    document.getElementById("board-task-on-await-feedback").innerHTML = '';
+    document.getElementById("board-task-on-done").innerHTML = '';
 }
 
 async function renderAllTasks() {
     tasks = await loadTasks();
-    cleanTaskboard()
+    cleanTaskboard();
     for (let taskId in tasks) {
         let element = tasks[taskId];
         let subtask = subtaskExist(element);
         let categoryText = categoryFinder(element);
         countForNoTask(element.position);
-        renderTask(element,taskId, subtask, categoryText);
-    subtaskCount = 0;
+        renderTask(element, taskId, subtask, categoryText);
+        subtaskCount = 0;
     }
     noTasksInProgress()
 }
 
-function subtaskExist(task){
-    let subtask = "";
-    if (task.subtasks == "no"){
+function subtaskExist(task) {
+    let subtask = " ";
+    if (task.subtasks == "no") {
         subtask = "d-none";
     }
     else {
-        subtask = "";
         subtaskCounter(task);
     }
     return subtask;
@@ -158,58 +157,61 @@ function subtaskCounter(task) {
     subtaskCountPrufment = 0;
     for (const element of subtask) {
         if (subtaskProofments[i] == 'true') {
-            subtaskCountPrufment ++;
+            subtaskCountPrufment++;
         }
-        i ++;
-        subtaskCount ++;
-        
+        i++;
+        subtaskCount++;
+
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountPrufment;
 
 }
 
-function categoryFinder(task){
+function categoryFinder(task) {
     let categoryText = "";
     if (task.categorySelect === "technical-task") {
-    categoryText = "Technical Task";
+        categoryText = "Technical Task";
     } else {
-    categoryText = "User Story";
+        categoryText = "User Story";
     }
     return categoryText;
 }
 
-function countForNoTask(positionFromCard){
-    switch(positionFromCard){
-    case "board-task-on-to-do":
-        countOnToDo ++;
-    break;
-    
-    case "board-task-on-in-progress":
-    countOnInProgress ++;
-    break;
-    
-    case "board-task-on-await-feedback":
-    countOnAwaitFeedback ++;
-    break;
-    
-    case "board-task-on-done":
-    countOnDone ++;
-    break;
+function countForNoTask(positionFromCard) {
+    switch (positionFromCard) {
+        case "board-task-on-to-do":
+            countOnToDo++;
+            break;
+
+        case "board-task-on-in-progress":
+            countOnInProgress++;
+            break;
+
+        case "board-task-on-await-feedback":
+            countOnAwaitFeedback++;
+            break;
+
+        case "board-task-on-done":
+            countOnDone++;
+            break;
     }
 }
 
-async function deleteTask(taskId){
+async function deleteTask(taskId) {
+    try {
     let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
         method: 'DELETE',
     });
-
-    if (!response.ok) {
-        console.error('Failed to update task position:', response.statusText);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error delete data in database:", error);
     }
     closeTaskOverlay();
 }
 
-function renderTask(task,taskId, subtask, categoryText) {
+function renderTask(task, taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
             <div class="d-flex align-items-center">
