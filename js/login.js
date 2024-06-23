@@ -8,16 +8,42 @@ let users = [
         password: '1111'
     }
 ];
-async function login(path = "/users") {
-    let email = document.getElementById('email');
-    let password = document.getElementById('password');
-    let user =  users.find(u => u.email === email.value && u.password === password.value);
-    console.log("Folgenden User gefunden:", user);
+
+let downloadedUserData = [];
+let localUser;
+let contacts = [];
+let counter = 0;
+async function login() {
+    let email = document.getElementById('email').value;
+    let password = document.getElementById('password').value;
     
-    if (user) {
-        console.log('user gefunden')
+    for (const key in localUser) {
+        const SINGLE_CONTACT = localUser[key];
+        let contact = {
+            "id": key,
+            "name": SINGLE_CONTACT.name,
+            "email": SINGLE_CONTACT.email,
+            "password": SINGLE_CONTACT.password
+            
+        };
+        if (email === SINGLE_CONTACT.email) {
+            counter ++;
+            console.log(email);
+            console.log("Counter", counter);
+            if (password === SINGLE_CONTACT.password) {
+                console.log("Folgenden User gefunden:", SINGLE_CONTACT)
+            }
+            else {
+                counter = 0;
+                console.log("Passwort falsch")
+            }
+        }
+        contacts.push(contact);
     }
-    else console.log('user nicht gefunden')
+    if (counter === 0) {
+        console.log("E-Mail Adresse nicht vorhanden");
+    }
+    counter = 0;
 }
 
 async function guestLogin(event) {
@@ -27,16 +53,16 @@ async function guestLogin(event) {
     window.open("summary.html", "_self");
 }
 
-//Überprüfung in der Datenbank, ob ein User vorhanden ist
-async function loadUsers(path = "/users", email, password) {
-    let response = await fetch(BASE_URL + path + ".json");
+async function fetchUserData() {
+    let response = await fetch(BASE_URL + '/users' + ".json");
     let responseToJson = await response.json();
-    let user = await responseToJson.find(u => u.email === email.value && u.password === password.value);
-    if (user) {
-        console.log('user gefunden')
-    }
-    else console.log('user nicht gefunden')
-    console.log("Function loadUsers: ",responseToJson);
+    
+    downloadedUserData = downloadedUserData.concat(await responseToJson);
+    console.log("Downloaded (fetchUserData):", downloadedUserData[0]);
+    
+    localUser = downloadedUserData[0];
+    //localUser.push(...downloadedUserData);
+    console.log("Show local user:", localUser);
 }
 
 async function postUserData(path = "", data={}) {
@@ -47,17 +73,8 @@ async function postUserData(path = "", data={}) {
         },
         body: JSON.stringify(data)
     });
-    //return responseToJson = await response.json();
 }
 
-async function deleteFunction(path = "", data={}) {
-    let response = await fetch(BASE_URL + path + ".json", {
-       method: "DELETE",
-    });
+async function onloadLogin() {
+    await fetchUserData();
 }
-
-/*async function onloadLogin() {
-    console.log('test');
-    await loadUsers("users");
-    await postUserData("");
-}*/
