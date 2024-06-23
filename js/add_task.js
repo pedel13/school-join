@@ -185,11 +185,15 @@ function renderAllCreateSubtaskNew() {
 function renderAllCreateSubtasks(taskId) {
     let i = 0;
     let element = tasks[taskId];
+    let subtask = element.subtasks;
+    if (subtask == 'no') {
+    } else{
     for (let subtask in element.subtasks) {
         subtasklist.push(element.subtasks[i]);
         subtaskProofment.push(element.subtask[i]);
     renderCrateSubtask(element.subtasks[i], i);
     i ++;
+    }
     }
 }
 

@@ -1,8 +1,6 @@
 async function init() {
     includeHTML();
-    await loadTasks();
-    await loadUsers();
-    showLogoAnimation();
+    //showLogoAnimation();
     
 }
 

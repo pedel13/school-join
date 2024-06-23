@@ -53,6 +53,8 @@ async function changeSuptaskPrufment(i, taskId = '') {
 }
 
 async function updateSubtaskPrufment(data = {}, path = '') {
+    console.log("in metode");
+    try{
     let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
         method: 'PUT',
         headers: {
@@ -60,65 +62,16 @@ async function updateSubtaskPrufment(data = {}, path = '') {
         },
         body: JSON.stringify(data)
     });
+}  catch (error) {
+    console.error("Error PUT data in database:", error);
+}
 }
 
 function taskEdit(taskId) {
     let task = tasks[taskId];
     renderTaskEditor(taskId, task);
+    priobuttonSelect(task.priority)
     renderAllCreateSubtasks(taskId);
-}
-
-async function changeTask(taskId='', taskposition='') {
-    await changesInputs(taskposition, taskId);
-}
-
-async function changesInputs(position, taskId) {
-    let task = tasks[taskId];
-    // let categorySelect = task.categorySelect;
-    let inputs = {
-        "position": position,
-        "title": document.getElementById('title').value,
-        "description": document.getElementById('description').value,
-        "selectInputAssignee": document.getElementById('selectInputAssignee').value,
-        "datePicker": document.getElementById('datePicker').value,
-        "priority": prio,
-        "categorySelect": task.categorySelect,
-        "subtasks": subtasklist,
-        "subtask": subtaskProofment
-    };
-    console.log(inputs);
-    console.log(task.categorySelect);
-    /*await putTaskDataInDatabase(`/board/tasks/${taskId}/title`, document.getElementById('title').value);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/description`, document.getElementById('description').value);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/selectInputAssignee`, document.getElementById('selectInputAssignee').value);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/datePicker`, document.getElementById('datePicker').value);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/priority`, prio);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/subtasks`, subtasklist);
-    await putTaskDataInDatabase(`/board/tasks/${taskId}/subtask`, subtaskProofment);*/
-    await updateSubtaskPrufment(inputs,`${taskId}`);
-    clearAddTask();
-
-}
-
-async function putTaskDataInDatabase(path=``,taskId, data) {
-    console.log(path, data);
-    try {
-        let response = await fetch(baseUrl + path + taskId + ".json", {
-            method: "PUT",
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        let responseData = await response.json();
-    } catch (error) {
-        console.error("Error PUT data in database:", error);
-    }
 }
 
 
@@ -141,7 +94,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
     </div>
     
     <div class="scrollbarTaskOverlayWapper scrollbox">
-    <div id="taskOverlayTitle" class="taskOverlayTitle">
+    <div  class="taskOverlayTitle">
         ${element.title}
     </div>
 
@@ -178,19 +131,18 @@ function renderTaskCardBig(element, categoryText, taskId) {
 }
 
 function renderTaskEditor(taskId, task) {
-    console.log("halo",task.position);
     document.getElementById('taskOverlay').innerHTML = `
     <div  class="taskOverlayWrapper slide-right">
     <div  class="taskOverlayTypeEdite d-flex">
         <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
     </div>
     
-                    <form class="main" onsubmit="changeTask('${taskId}','${task.position}')">
+                    <form class="main" onsubmit="changeTask('${taskId}')">
                         <div class="addTaskWrapper scrollbarTaskOverlayWapper scrollbox">
                             <div class="">
                                 <div>
                                     <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
-                                    <input type="text" id="title" value="${task.title}" Title" required/>
+                                    <input type="text" id="title" value="${task.title}" required/>
                                 </div>
         
                                 <div >&nbsp;</div>

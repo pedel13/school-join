@@ -14,11 +14,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="/js/add_task.js"></script>
+    <script src="/js/renderTaskOverlay.js"></script>
+    <script src="js/board.js"></script>
     <script src="js/template.js"></script>
     <title>Join - Summary</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); summaryOnLoad()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -48,7 +52,7 @@
                                     <div class="d-flex flex-column align-items-center">
                                         <div>
                                             <!--TODO: Zahl aus Zählerfunktion -->
-                                            <h1 class="summary-button-number">
+                                            <h1 class="summary-button-number" id="summary-toDo">
                                                 1
                                             </h1>
                                         </div>
@@ -66,7 +70,7 @@
                                     <div class="d-flex flex-column align-items-center">
                                         <div>
                                             <!--TODO: Zahl aus Zählerfunktion -->
-                                            <h1 class="summary-button-number">
+                                            <h1 class="summary-button-number" id="summary-done">
                                                 1
                                             </h1>
                                         </div>
@@ -89,7 +93,7 @@
                                         <div class="d-flex flex-column align-items-center justify-content-center">
                                             <div>
                                                 <!--TODO: Zahl aus Zählerfunktion -->
-                                                <h1 class="d-flex summary-button-number">
+                                                <h1 class="d-flex summary-button-number" id="summary-urgent">
                                                     1
                                                 </h1>
                                             </div>
@@ -124,7 +128,7 @@
                                 <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
                                     <div>
                                         <!-- TODO: zählerfunktion -->
-                                        <h1 class="summary-button-number">
+                                        <h1 class="summary-button-number" id="summary-all-tasks">
                                             5
                                         </h1>
                                     </div>
@@ -140,7 +144,7 @@
                                 <div class="d-flex flex-column align-items-center justify-content-center summary-button-size-small">
                                     <div>
                                         <!-- TODO: zählerfunktion -->
-                                        <h1 class="summary-button-number">
+                                        <h1 class="summary-button-number" id="summary-taskInProgress">
                                             2
                                         </h1>
                                     </div>
@@ -156,7 +160,7 @@
                                 <div class="d-flex align-items-center flex-column justify-content-center summary-button-size-small">
                                     <div>
                                         <!-- TODO: zählerfunktion -->
-                                        <h1 class="summary-button-number">
+                                        <h1 class="summary-button-number" id="summary-awaitFeedback">
                                             2
                                         </h1>
                                     </div>

@@ -20,30 +20,61 @@ async function drop(dropPosition) {
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
-    await updateTaskPosition(cardDraggedId, dropCard);
-}
-
-async function updateTaskPosition(taskId, updatedTask) {
-    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedTask)
-    });
-
-    if (!response.ok) {
-        console.error('Failed to update task position:', response.statusText);
-    }
-    let element = tasks[taskId];
+    await updateTask(cardDraggedId, dropCard);
     removeDraggedCard()
-    let subtask = subtaskExist(element);
-    let categoryText = categoryFinder(element);
-    countForNoTask(element.position);
-    renderTask(element, taskId, subtask, categoryText);
+    let subtask = subtaskExist(dropCard);
+    let categoryText = categoryFinder(dropCard);
+    countForNoTask(dropCard.position);
+    renderTask(dropCard, cardDraggedId, subtask, categoryText);
     subtaskCount = 0;
     noTasksInProgress()
 }
+
+async function updateTask(taskId, task) {
+    console.log('taskId:  ',taskId);
+    console.log('task :  ', task);
+    try {
+        console.log('in try');
+        await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(task)
+        }); 
+        console.log('in fetch');
+    }  catch (error) {
+        console.log(response);
+        console.error("Error PUT data in database:", error);
+    }
+    console.log(task);
+
+}
+
+async function changeTask(taskId='') {
+    await changesInputs(taskId);
+}
+
+async function changesInputs(taskId) {
+    let task = tasks[taskId];
+    console.log(task);
+    console.log(taskId);
+    let title = document.getElementById('title').value;
+   let description = document.getElementById('description').value;
+    let selectInputAssignee = document.getElementById('selectInputAssignee').value;
+    let datePicker = document.getElementById('datePicker').value;
+    task["title"] = title;
+    task["description"] = description;
+    task["selectInputAssignee"] = selectInputAssignee;
+    task["datePicker"] = datePicker;
+    task["priority"] = prio;
+    task["subtasks"] = subtasklist;
+    task["subtask"] = subtaskProofment;
+    console.log(task);
+    await updateTask(taskId, task);
+    console.log("siig");
+}
+
 
 function removeDraggedCard() {
     const element = document.getElementById(cardDraggedId);
