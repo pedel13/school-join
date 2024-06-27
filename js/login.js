@@ -47,11 +47,10 @@ async function login() {
 }
 
 async function guestLogin() {
-    //event.preventDefault();
-    document.getElementById('email').value = "test@nix.de";
+    document.getElementById('email').value = "test@nixx.de";
     document.getElementById('password').value = "11111";
-    window.open("index.html", "_self");
     await login();
+    window.open("index.html", "_self");
 }
 
 async function fetchUserData() {
