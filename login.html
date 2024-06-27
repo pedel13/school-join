@@ -15,7 +15,7 @@
     <script src="js/script.js"></script>
     <script src="js/register.js"></script>
     <script src="js/login.js"></script>
-    <script src="js/remoteStorage.js"></script>
+    
     <title>Join - Login</title>
 </head>
 
@@ -48,8 +48,8 @@
                         <span>Remember me</span>
                     </div>
                 </form>
-                <form onsubmit="login(); return false;">
-                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
+                <form onsubmit="return false;">
+                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn" onclick="login()">Log in</button>
                     <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
                 </form>
             </div>

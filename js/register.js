@@ -9,7 +9,6 @@ async function addUser() {
     
     if (name.value !== "" && password.value === passwordConfirm.value) {
         if (checkBox.checked === true) {
-            users.push({email: email.value, password: password.value});
             window.alert("Du hast dich erfolgreich registriert!");
             await setToFirebase();
             //window.location.href = 'signup.html?msg=Du hast dich erfolgreich registriert!';

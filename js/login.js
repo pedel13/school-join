@@ -46,11 +46,12 @@ async function login() {
     counter = 0;
 }
 
-async function guestLogin(event) {
-    event.preventDefault();
-    document.getElementById('loginEmail').value = "test@test.de";
-    document.getElementById('loginPassword').value = "testUser";
-    window.open("summary.html", "_self");
+async function guestLogin() {
+    //event.preventDefault();
+    document.getElementById('email').value = "test@nix.de";
+    document.getElementById('password').value = "11111";
+    window.open("index.html", "_self");
+    await login();
 }
 
 async function fetchUserData() {
