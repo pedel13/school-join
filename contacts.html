@@ -1,22 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
-
+    
     <link rel="icon" type="image/png" href="img/join_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-
-    <script src="./js/script.js"></script>
-    <script src="./js/template.js"></script>
-    <script src="./js/add_task.js"></script>
+    
+    <script src="js/script.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="/js/add_task.js"></script>
+    <script src="/js/renderTaskOverlay.js"></script>
     <script src="js/board.js"></script>
-    <title>Join</title>
+    <script src="js/template.js"></script>
+    <title>Join - Contacts</title>
 </head>
 
 <body onload="init()">
@@ -24,14 +27,14 @@
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
         </div>
-
+        
         <div id="centerWrapper" class="centerWrapper">
             <div w3-include-html="templates/header.html"></div>
-
+            
             <div class="centerWrapperHeadline">
-                <h1>Add Task</h1>
+                <h1>Contacts</h1>
             </div>
-
+            
             <form class="main" onsubmit="addTask('board-task-on-to-do')">
                 <div id="addTaskWrapper" class="addTaskWrapper">
                     <div class="addTaskWrapperLeft">
@@ -39,16 +42,16 @@
                             <p class="fSize-16">Title<span class="redStar">*</span></p>
                             <input type="text" id="title" placeholder="Enter Title" required/>
                         </div>
-
+                        
                         <div class="spacer">&nbsp;</div>
-
+                        
                         <div>
                             <p class="fSize-16">Description</p>
                             <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
                         </div>
-
+                        
                         <div class="spacer">&nbsp;</div>
-
+                        
                         <div>
                             <p class="fSize-16">Assigned to</p>
                             <select name="choose" id="selectInputAssignee">
@@ -58,15 +61,15 @@
                             </select>
                         </div>
                     </div>
-
+                    
                     <div class="addTaskWrapperMid divider">&nbsp;</div>
-
+                    
                     <div class="addTaskWrapperRight">
                         <div>
                             <p class="fSize-16">Due Date<span class="redStar">*</span></p>
                             <input type="date" id="datePicker" required>
                         </div>
-
+                        
                         <div>
                             <p class="fSize-16">Prio</p>
                             <div id="priority" class="priority d-flex">
@@ -76,7 +79,7 @@
                                 </button>
                                 <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Medium
-                                    <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
+                                    <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
                                 </button>
                                 <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Low
@@ -84,7 +87,7 @@
                                 </button>
                             </div>
                         </div>
-
+                        
                         <div>
                             <p class="fSize-16">Category<span class="redStar">*</span></p>
                             <select name="choose" id="categorySelect" required>
@@ -93,14 +96,14 @@
                                 <option value="user-story">User-Story</option>
                             </select>
                         </div>
-
+                        
                         <div>
                             <p class="fSize-16">Subtasks</p>
                             <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
-                            <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                                 <!-- TODO: onclick funktion -->
                                 <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
-                                        <div class="addTaskAdd"></div>
+                                    <div class="addTaskAdd"></div>
                                 </button>
                             </div>
                             <lu id="subtaskStorage"></lu>
@@ -110,7 +113,7 @@
                 
                 <div id="addTaskBottom" class="addTaskBottom">
                     <p class="fSize-16">This field is required<span class="redStar">*</span></p>
-
+                    
                     <div id="createTaskButton">
                         <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
                         <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>

@@ -60,7 +60,7 @@ input {
 
 .icon-letter {
     position: relative;
-    background-image: url("img/icons/mail.png");
+    background-image: url("../img/icons/mail.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
@@ -68,7 +68,7 @@ input {
 
 .icon-lock {
     position: relative;
-    background-image: url("img/icons/lock.png");
+    background-image: url("../img/icons/lock.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
@@ -76,7 +76,7 @@ input {
 
 .icon-person {
     position: relative;
-    background-image: url("img/icons/person.png");
+    background-image: url("../img/icons/person.png");
     background-repeat: no-repeat;
     background-position: center right 20px;
     background-size: 20px;
@@ -192,31 +192,31 @@ input {
 .summary-todo-icon {
     width: 69px !important;
     height: 69px !important;
-    background-image: url(./img/icons/todo_icon.png);
+    background-image: url(../img/icons/todo_icon.png);
     background-repeat: no-repeat;
 }
 
 .summary-todo:hover .summary-todo-icon {
-    background-image: url(./img/icons/todo_hover_icon.png) !important;
+    background-image: url(../img/icons/todo_hover_icon.png) !important;
 }
 
 .summary-todo:active .summary-todo-icon {
-    background-image: url(./img/icons/todo_icon.png) !important;
+    background-image: url(../img/icons/todo_icon.png) !important;
 }
 
 .summary-done-icon {
     width: 69px !important;
     height: 69px !important;
-    background-image: url(./img/icons/done_icon.png);
+    background-image: url(../img/icons/done_icon.png);
     background-repeat: no-repeat;
 }
 
 .summary-done:hover .summary-done-icon {
-    background-image: url(./img/icons/done_hover_icon.png) !important;
+    background-image: url(../img/icons/done_hover_icon.png) !important;
 }
 
 .summary-done:active .summary-done-icon {
-    background-image: url(./img/icons/done_icon.png) !important;
+    background-image: url(../img/icons/done_icon.png) !important;
 }
 
 .summary-icon-numberbox {
@@ -271,7 +271,7 @@ input {
 .board-add-task-icon-white {
     width: 32px;
     height: 32px;
-    background-image: url(img/icons/add-white.png);
+    background-image: url(../img/icons/add-white.png);
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -320,7 +320,7 @@ input {
 }
 
 .board-search {
-    background-image: url(./img/icons/board-search.png);
+    background-image: url(../img/icons/board-search.png);
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
@@ -432,7 +432,7 @@ input {
 }
 
 .board-icon-low-prio {
-    background-image: url(./img/icons/low_icon.png);
+    background-image: url(../img/icons/low_icon.png);
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
@@ -441,7 +441,7 @@ input {
 }
 
 .board-icon-medium-prio{
-    background-image: url(./img/icons/medium-colored-icon.png);
+    background-image: url(../img/icons/medium-colored-icon.png);
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;
@@ -449,7 +449,7 @@ input {
 }
 
 .board-icon-urgent-prio{
-    background-image: url(./img/icons/urgent_icon.png);
+    background-image: url(../img/icons/urgent_icon.png);
     width: 32px;
     height: 32px;
     background-repeat: no-repeat;

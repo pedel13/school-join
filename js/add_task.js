@@ -160,14 +160,14 @@ function deleteCreateSubtask(subtaskCreateCount='') {
         subtasklist.splice(subtaskCreateCountSplice, 1);
         subtaskProofment.splice(subtaskCreateCountSplice, 1);
         }
-    let element = document.getElementById('subtaskSorage');
+    let element = document.getElementById('subtaskStorage');
     if (element) {
         let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
         if (child) {
             child.remove();
         }
     }
-    document.getElementById('subtaskSorage').innerHTML = ''
+    document.getElementById('subtaskStorage').innerHTML = ''
     renderAllCreateSubtaskNew();
 }
 
@@ -211,7 +211,7 @@ function addSubtaskAddArray() {
     
     function renderCrateSubtask(newSubtask, subtaskCreateCount) {
     
-    document.getElementById('subtaskSorage').innerHTML += `
+    document.getElementById('subtaskStorage').innerHTML += `
     <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" justify-content-between">• ${newSubtask}<div class="d-flex">
     <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
     <div class="addTaskSubtaskVertikalLine"></div>
@@ -299,7 +299,7 @@ function renderAddOverlay(position) {
                                                 <div class="addTaskAdd"></div>
                                         </button>
                                     </div>
-                                    <lu id="subtaskSorage"></lu>
+                                    <lu id="subtaskStorage"></lu>
                                 </div>
                             </div>
                         </div>
