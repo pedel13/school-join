@@ -61,7 +61,6 @@ async function fetchUserData() {
     console.log("Downloaded (fetchUserData):", downloadedUserData[0]);
     
     localUser = downloadedUserData[0];
-    //localUser.push(...downloadedUserData);
     console.log("Show local user:", localUser);
 }
 
