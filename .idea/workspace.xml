@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="git conflict first big one">
-      <change afterPath="$PROJECT_DIR$/img/icons/person_add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icons/delete_icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/icons/edit_icon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/add_task.html" beforeDir="false" afterPath="$PROJECT_DIR$/add_task.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/custom-variables.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/custom-variables.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/add_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/add_task.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/renderTaskOverlay.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/renderTaskOverlay.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +118,7 @@
       <workItem from="1718882661684" duration="27897000" />
       <workItem from="1719394914423" duration="1976000" />
       <workItem from="1719432042916" duration="1918000" />
-      <workItem from="1719478652205" duration="19971000" />
+      <workItem from="1719478652205" duration="26047000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />

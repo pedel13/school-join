@@ -1071,7 +1071,7 @@ input[required] {
 }
 
 button#newContact {
-    width: 350px;
+    width: 90%;
     height: 50px;
     border-radius: 10px;
     color: #ffffff;
@@ -1079,21 +1079,104 @@ button#newContact {
     font-weight: bold;
     border: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     background-color: #2A3647;
 }
 
 #contactsRight {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 80px 0 0 40px;
 }
 
 .spacerDiv {
-    height: 280px;
+    height: 100%;
+    width: 5px;
+    background: #29ABE2;
+    border-radius: 3px;
 }
 
-#contactHeadline {
-    margin-block-start: 0;
-    margin-block-end: 0;
+#contactRightHeadSection {
+    width: 80%;
+    height: 64px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+#contactTitle {
+    width: 80%;
+    display: flex;
+    gap: 60px;
+}
+
+#contactAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+}
+
+.credentialsCircle {
+    color: #ffffff;
+    background-color: #0100FF;
+    height: 119px;
+    width: 119px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.currentName {
+    font-size: 47px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#editButtons {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#editCurrentContact,
+#deleteCurrentContact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#editCurrentContact:hover,
+#deleteCurrentContact:hover {
+    cursor: pointer;
+    color: #0100FF;
+}
+
+#contactDetails {
+    margin-top: 40px;
+    column-gap: 24px;
+    font-size: 16px;
+}
+
+#contactDetails > p {
+    font-size: 22px;
+}
+
+#contactDetails > * {
+    margin-bottom: 32px;
+}
+
+.mailLink:hover,
+.phoneLink:hover {
+    cursor: pointer;
+    color: #007cee;
 }
