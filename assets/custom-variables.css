@@ -475,3 +475,11 @@ input {
 .centerWrapperHeadline {
     margin-left: 83px;
 }
+
+.addNewContactIcon {
+    width: 32px;
+    height: 32px;
+    background-image: url(../img/icons/person_add.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}

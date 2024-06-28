@@ -295,7 +295,7 @@ function renderAddOverlay(position) {
                                     <p class="fSize-16">Subtasks</p>
                                     <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                     <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
-                                        <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
+                                        <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
                                                 <div class="addTaskAdd"></div>
                                         </button>
                                     </div>

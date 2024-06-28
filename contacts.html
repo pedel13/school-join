@@ -31,95 +31,68 @@
         <div id="centerWrapper" class="centerWrapper">
             <div w3-include-html="templates/header.html"></div>
             
-            <div class="centerWrapperHeadline">
-                <h1>Contacts</h1>
-            </div>
-            
-            <form class="main" onsubmit="addTask('board-task-on-to-do')">
-                <div id="addTaskWrapper" class="addTaskWrapper">
-                    <div class="addTaskWrapperLeft">
-                        <div>
-                            <p class="fSize-16">Title<span class="redStar">*</span></p>
-                            <input type="text" id="title" placeholder="Enter Title" required/>
-                        </div>
-                        
-                        <div class="spacer">&nbsp;</div>
-                        
-                        <div>
-                            <p class="fSize-16">Description</p>
-                            <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
-                        </div>
-                        
-                        <div class="spacer">&nbsp;</div>
-                        
-                        <div>
-                            <p class="fSize-16">Assigned to</p>
-                            <select name="choose" id="selectInputAssignee">
-                                <option value="Assigned to...">Assigned to...</option>
-                                <option value="Test 1">Test 1</option>
-                                <option value="Test 2">Test 2</option>
-                            </select>
-                        </div>
+            <div id="contactsMain">
+                <div id="contactLeft">
+                    <div class="newContactButton">
+                        <button id="newContact">Add new contact
+                            <div class="addNewContactIcon"></div>
+                        </button>
                     </div>
                     
-                    <div class="addTaskWrapperMid divider">&nbsp;</div>
-                    
-                    <div class="addTaskWrapperRight">
-                        <div>
-                            <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                            <input type="date" id="datePicker" required>
+                    <div id="contactList">
+                        <div id="contactDetailWrapper">
+                            <h2 class="contactLetter">
+                                F
+                            </h2>
+                            <ul class="namesList activeContact">
+                                <li id="contactItem" class="contactItem">
+                                    <div class="innerContactDetailWrapper">
+                                        <div id="userProfile">
+                                            <img src="./img/icons/person.png" alt="personImage">
+                                        </div>
+                                        <div class="contact">
+                                            Farid Faraji
+                                            <br>
+                                            <a href="mailto:ff@nix.de" target="_blank" class="emailLink">
+                                                ff@nix.de
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                         
-                        <div>
-                            <p class="fSize-16">Prio</p>
-                            <div id="priority" class="priority d-flex">
-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                    Urgent
-                                    <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
-                                </button>
-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                    Medium
-                                    <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
-                                </button>
-                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                    Low
-                                    <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <p class="fSize-16">Category<span class="redStar">*</span></p>
-                            <select name="choose" id="categorySelect" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="technical-task">Technical-Task</option>
-                                <option value="user-story">User-Story</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <p class="fSize-16">Subtasks</p>
-                            <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
-                                <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
-                                <!-- TODO: onclick funktion -->
-                                <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
-                                    <div class="addTaskAdd"></div>
-                                </button>
-                            </div>
-                            <lu id="subtaskStorage"></lu>
+                        <div id="contactDetailWrapper">
+                            <h2 class="contactLetter">
+                                P
+                            </h2>
+                            <ul class="namesList">
+                                <li id="contactItem" class="contactItem">
+                                    <div class="innerContactDetailWrapper">
+                                        <div id="userProfile">
+                                            <img src="./img/icons/person.png" alt="personImage">
+                                        </div>
+                                        <div class="contact">
+                                            Patrick Wieth
+                                            <br>
+                                            <a href="mailto:pw@nix.de" target="_blank" class="emailLink">
+                                                pw@nix.de
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 
-                <div id="addTaskBottom" class="addTaskBottom">
-                    <p class="fSize-16">This field is required<span class="redStar">*</span></p>
-                    
-                    <div id="createTaskButton">
-                        <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
-                        <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                <div id="contactsRight">
+                    <div class="spacerDiv">&nbsp;</div>
+                    <div class="contactHeadline">
+                        <h1>Contacts</h1>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </body>

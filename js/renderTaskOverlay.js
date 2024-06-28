@@ -93,7 +93,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
     <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
     </div>
     
-    <div class="scrollbarTaskOverlayWapper scrollbox">
+    <div class="scrollbarTaskOverlayWrapper scrollbox">
     <div  class="taskOverlayTitle">
         ${element.title}
     </div>
@@ -138,7 +138,7 @@ function renderTaskEditor(taskId, task) {
     </div>
     
                     <form class="main" onsubmit="changeTask('${taskId}')">
-                        <div class="addTaskWrapper scrollbarTaskOverlayWapper scrollbox">
+                        <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
                             <div class="">
                                 <div>
                                     <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
@@ -197,7 +197,7 @@ function renderTaskEditor(taskId, task) {
                                 <p class="fSize-20  editTaskWrapper">Subtasks</p>
                                 <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                 <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
-                                <button class="d-flex" id="addTaskAddSubtaskbutton" type="button" onclick="addSubtaskAddArray()">
+                                <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
                                 <div class="addTaskAdd"></div>
                                 </button>
                                     </div>
