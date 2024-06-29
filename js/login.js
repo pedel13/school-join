@@ -10,6 +10,7 @@ let users = [
 ];
 
 let downloadedUserData = [];
+let activeUserName;
 let localUser;
 let contacts = [];
 let counter = 0;
@@ -32,6 +33,7 @@ async function login() {
             console.log("Counter", counter);
             if (password === SINGLE_CONTACT.password) {
                 console.log("Folgenden User gefunden:", SINGLE_CONTACT)
+                activeUserName = SINGLE_CONTACT.name;
             }
             else {
                 counter = 0;

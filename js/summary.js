@@ -10,6 +10,8 @@ async function summaryOnLoad(){
         taskCount++;
     }
     renderTaskCounts();
+    let greet = summaryGetTime();
+    renderUserGreeting(greet);
     taskCount=0;
     urgentCount=0;
     countOnToDo = 0;
@@ -24,6 +26,21 @@ function urgentCounting(priority) {
     }
 }
 
+function summaryGetTime() {
+    const d = new Date();
+    let hours = d.getHours();
+    let greet;
+    if (hours >= 0 && hours < 12) {
+        greet = 'Good morning';
+    } else if (hours >= 12 && hours < 18) {
+        greet = 'good afternoon';
+    } else {
+        greet = 'Good evening';
+    }
+    return greet;
+
+}
+
 function renderTaskCounts() {
     document.getElementById('summary-toDo').innerHTML =`${countOnToDo}`;
     document.getElementById('summary-done').innerHTML =`${countOnDone}`;
@@ -31,4 +48,9 @@ function renderTaskCounts() {
     document.getElementById('summary-all-tasks').innerHTML =`${taskCount}`;
     document.getElementById('summary-taskInProgress').innerHTML =`${countOnInProgress}`;
     document.getElementById('summary-awaitFeedback').innerHTML =`${countOnAwaitFeedback}`;
+}
+
+function renderUserGreeting(greet) {
+    document.getElementById('summary-time').innerHTML = `${greet}`;
+    document.getElementById('summary-user').innerHTML = `${activeUserName}`;
 }

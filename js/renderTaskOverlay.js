@@ -201,7 +201,7 @@ function renderTaskEditor(taskId, task) {
                                 <div class="addTaskAdd"></div>
                                 </button>
                                     </div>
-                                    <lu id="subtaskStorage"></lu>
+                                    <ul id="subtaskStorage"></ul>
                                 </div>
                             </div>
                         </div>
