@@ -4,7 +4,9 @@ function renderTaskOverlay() {
 
 function openTaskOverlay(taskId = "") {
     takeElementFromTask(taskId);
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
+    localStorage.activeTask = JSON.stringify(task);
     if (task.subtasks == 'no') {
         document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
     }
@@ -16,16 +18,18 @@ function openTaskOverlay(taskId = "") {
 
 function closeTaskOverlay() {
     document.getElementById('taskOverlay').classList.add('d-none');
-    renderAllTasks();
+    location.reload();
 }
 
 function takeElementFromTask(taskid) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskid];
     let categoryText = categoryFinder(element);
     renderTaskCardBig(element, categoryText, taskid);
 }
 
 function subtaskLoop(taskId) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtasks = element.subtasks;
     let subtaskCheckbox = element.subtask;
@@ -41,6 +45,7 @@ function subtaskLoop(taskId) {
 }
 
 async function changeSuptaskPrufment(i, taskId = '') {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtaskCheckbox = element.subtask;
     if (subtaskCheckbox[i] == 'false') {
@@ -68,6 +73,7 @@ async function updateSubtaskPrufment(data = {}, path = '') {
 }
 
 function taskEdit(taskId) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
     renderTaskEditor(taskId, task);
     priobuttonSelect(task.priority)

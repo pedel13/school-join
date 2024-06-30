@@ -1,4 +1,3 @@
-let tasks;
 let cardDraggedId;
 let countOnToDo = 0;
 let countOnInProgress = 0;
@@ -17,10 +16,13 @@ function drag(id) {
 }
 
 async function drop(dropPosition) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
-    await updateTask(cardDraggedId, dropCard);
+    localStorage.activeTask = JSON.stringify(dropCard);
+    localStorage.setItem("taskId", `${cardDraggedId}`);
+    await updateTask();
     removeDraggedCard()
     let subtask = subtaskExist(dropCard);
     let categoryText = categoryFinder(dropCard);
@@ -30,11 +32,11 @@ async function drop(dropPosition) {
     noTasksInProgress()
 }
 
-async function updateTask(taskId, task) {
-    console.log('taskId:  ',taskId);
-    console.log('task :  ', task);
+async function updateTask() {
+    task = JSON.parse(localStorage.getItem("activeTask"));
+    taskId = localStorage.getItem("taskId");
+    console.log(localStorage);
     try {
-        console.log('in try');
         await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
             method: 'PUT',
             headers: {
@@ -42,25 +44,18 @@ async function updateTask(taskId, task) {
             },
             body: JSON.stringify(task)
         }); 
-        console.log('in fetch');
     }  catch (error) {
         console.log(response);
         console.error("Error PUT data in database:", error);
     }
-    console.log(task);
 
 }
+
 
 async function changeTask(taskId='') {
-    await changesInputs(taskId);
-}
-
-async function changesInputs(taskId) {
-    let task = tasks[taskId];
-    console.log(task);
-    console.log(taskId);
+    let task = JSON.parse(localStorage.getItem("activeTask"));
     let title = document.getElementById('title').value;
-   let description = document.getElementById('description').value;
+    let description = document.getElementById('description').value;
     let selectInputAssignee = document.getElementById('selectInputAssignee').value;
     let datePicker = document.getElementById('datePicker').value;
     task["title"] = title;
@@ -70,9 +65,9 @@ async function changesInputs(taskId) {
     task["priority"] = prio;
     task["subtasks"] = subtasklist;
     task["subtask"] = subtaskProofment;
-    console.log(task);
-    await updateTask(taskId, task);
-    console.log("siig");
+    localStorage.activeTask = JSON.stringify(task);
+    localStorage.setItem("taskId", `${taskId}`);
+    await updateTask();
 }
 
 
@@ -156,7 +151,8 @@ function cleanTaskboard() {
 }
 
 async function renderAllTasks() {
-    tasks = await loadTasks();
+    let tasks = await loadTasks();
+    localStorage.tasks = JSON.stringify(tasks);
     cleanTaskboard();
     for (let taskId in tasks) {
         let element = tasks[taskId];

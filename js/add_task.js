@@ -5,7 +5,7 @@ let subtaskProofment = [];
 
 async function addTask(position='') {
     await getInputs(position);
-    renderAllTasks();
+    location.reload();
 }
 
 async function getInputs(position) {
@@ -20,8 +20,8 @@ async function getInputs(position) {
         "subtasks": subtasklist,
         "subtask": subtaskProofment
     };
-    console.log(inputs);
-    await setTaskDataInDatabase("/board/tasks", inputs);
+    
+    await setTaskDataInDatabase(inputs);
     clearAddTask();
 
 }
@@ -39,22 +39,21 @@ function clearAddTask() {
     prio = '';
 }
 
-async function setTaskDataInDatabase(path = "", data = {}) {
-    console.log(data);
+async function setTaskDataInDatabase(data = {}) {
     try {
-        let response = await fetch(baseUrl + path + ".json", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+         let response = await fetch(baseUrl + "/board/tasks" + ".json", {
+             method: "POST",
+             headers: {
+                 "Content-Type": "application/json"
+             },
+             body: JSON.stringify(data)
+         });
 
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
+         if (!response.ok) {
+             throw new Error(`HTTP error! status: ${response.status}`);
+         }
 
-        let responseData = await response.json();
+         let responseData = await response.json();
     } catch (error) {
         console.error("Error setting data in database:", error);
     }
@@ -184,6 +183,7 @@ function renderAllCreateSubtaskNew() {
 
 function renderAllCreateSubtasks(taskId) {
     let i = 0;
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtask = element.subtasks;
     if (subtask == 'no') {

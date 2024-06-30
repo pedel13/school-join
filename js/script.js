@@ -3,7 +3,6 @@ const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.fireba
 async function init() {
     includeHTML();
     //showLogoAnimation();
-    
 }
 
 //Function show and hide belong together and are for the Join Logo
