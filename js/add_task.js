@@ -35,7 +35,7 @@ function clearAddTask() {
     subtasks.value = '';
     subtasklist = ['no'];
     subtaskProofment = ['no'];
-    priobuttonclearselect()
+    prioButtonClearSelect()
     prio = '';
 }
 
@@ -65,11 +65,16 @@ function openAddTaskOverlay(position='') {
     renderAddOverlay(position);
 }
 
+function openAddContactOverlay(position='') {
+    document.getElementById('addTaskOverlay').classList.remove('d-none');
+    renderAddOverlay(position);
+}
+
 function closeAddTaskOverlay() {
     document.getElementById('addTaskOverlay').classList.add('d-none');
 }
 
-function priobutton(button, icon) {
+function prioButton(button, icon) {
     buttonSelected = document.getElementById(button);
     iconSelected = document.getElementById(icon);
 
@@ -79,7 +84,7 @@ function priobutton(button, icon) {
     iconSelected.classList.remove(icon);
 }
 
-function priobuttonRemoveOther(button, icon, buttonOther, iconOther) {
+function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     buttonSelected = document.getElementById(button);
     iconSelected = document.getElementById(icon);
     buttonOtherSelected = document.getElementById(buttonOther);
@@ -96,7 +101,7 @@ function priobuttonRemoveOther(button, icon, buttonOther, iconOther) {
     iconOtherSelected.classList.remove(iconOther+'Activ');
 }
 
-function priobuttonclear(button, icon) {
+function prioButtonclear(button, icon) {
     buttonSelected = document.getElementById(button);
     iconSelected = document.getElementById(icon);
 
@@ -106,36 +111,36 @@ function priobuttonclear(button, icon) {
     iconSelected.classList.remove(icon+'Activ');
 }
 
-function priobuttonSelect(priority) {
+function prioButtonSelect(priority) {
     prio = priority;
     switch (prio) {
         case 'urgent':
-            priobutton('urgentButton','addTaskPrioUrgent');
-            priobuttonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
+            prioButton('urgentButton','addTaskPrioUrgent');
+            prioButtonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
             break;
         case 'medium':
-            priobutton('mediumButton','addTaskPrioMedium');
-            priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
+            prioButton('mediumButton','addTaskPrioMedium');
+            prioButtonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
             break;
         case 'low':
-            priobutton('lowButton','addTaskPrioLow');
-            priobuttonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
+            prioButton('lowButton','addTaskPrioLow');
+            prioButtonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
             break;
         default:
             break;
     }
 }
 
-function priobuttonclearselect() {
+function prioButtonClearSelect() {
     switch (prio) {
         case 'urgent':
-            priobuttonclear('urgentButton','addTaskPrioUrgent');
+            prioButtonclear('urgentButton','addTaskPrioUrgent');
             break;
         case 'medium':
-            priobuttonclear('mediumButton','addTaskPrioMedium');
+            prioButtonclear('mediumButton','addTaskPrioMedium');
             break;
         case 'low':
-            priobuttonclear('lowButton','addTaskPrioLow');
+            prioButtonclear('lowButton','addTaskPrioLow');
             break;
         default:
             break;
@@ -150,7 +155,7 @@ function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
 }
 
 function deleteCreateSubtask(subtaskCreateCount='') {
-    if (subtasklist.length == 1) {
+    if (subtasklist.length === 1) {
         subtasklist = ['no'];
         subtaskProofment = ['no']
     }
@@ -267,15 +272,15 @@ function renderAddOverlay(position) {
                                 <div>
                                     <p class="fSize-16">Prio</p>
                                     <div id="priority" class="priority d-flex">
-                                        <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                             Urgent
                                             <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                         </button>
-                                        <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                             Medium
                                             <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                         </button>
-                                        <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                             Low
                                             <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                         </button>

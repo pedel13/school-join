@@ -37,25 +37,31 @@
                     <div class="addTaskWrapperLeft">
                         <div>
                             <p class="fSize-16">Title<span class="redStar">*</span></p>
-                            <input type="text" id="title" placeholder="Enter Title" required/>
+                            <label for="title">
+                                <input type="text" id="title" placeholder="Enter Title" required/>
+                            </label>
                         </div>
 
                         <div class="spacer">&nbsp;</div>
 
                         <div>
                             <p class="fSize-16">Description</p>
-                            <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                            <label for="description">
+                                <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                            </label>
                         </div>
 
                         <div class="spacer">&nbsp;</div>
 
                         <div>
                             <p class="fSize-16">Assigned to</p>
-                            <select name="choose" id="selectInputAssignee">
-                                <option value="Assigned to...">Assigned to...</option>
-                                <option value="Test 1">Test 1</option>
-                                <option value="Test 2">Test 2</option>
-                            </select>
+                            <label for="selectInputAssignee">
+                                <select name="choose" id="selectInputAssignee">
+                                    <option value="Assigned to...">Assigned to...</option>
+                                    <option value="Test 1">Test 1</option>
+                                    <option value="Test 2">Test 2</option>
+                                </select>
+                            </label>
                         </div>
                     </div>
 
@@ -64,21 +70,23 @@
                     <div class="addTaskWrapperRight">
                         <div>
                             <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                            <input type="date" id="datePicker" required>
+                            <label for="datePicker">
+                                <input type="date" id="datePicker" required>
+                            </label>
                         </div>
 
                         <div>
                             <p class="fSize-16">Prio</p>
                             <div id="priority" class="priority d-flex">
-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
                                     <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                 </button>
-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Medium
                                     <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                 </button>
-                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Low
                                     <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                 </button>
@@ -87,17 +95,21 @@
 
                         <div>
                             <p class="fSize-16">Category<span class="redStar">*</span></p>
-                            <select name="choose" id="categorySelect" required>
-                                <option value="" disabled selected>Select Category</option>
-                                <option value="technical-task">Technical-Task</option>
-                                <option value="user-story">User-Story</option>
-                            </select>
+                            <label for="categorySelect">
+                                <select name="choose" id="categorySelect" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="technical-task">Technical-Task</option>
+                                    <option value="user-story">User-Story</option>
+                                </select>
+                            </label>
                         </div>
 
                         <div>
                             <p class="fSize-16">Subtasks</p>
                             <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
-                            <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                <label for="subTasks">
+                                    <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                </label>
                                 <!-- TODO: onclick funktion -->
                                 <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
                                         <div class="addTaskAdd"></div>

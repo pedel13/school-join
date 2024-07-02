@@ -76,7 +76,7 @@ function taskEdit(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
     renderTaskEditor(taskId, task);
-    priobuttonSelect(task.priority)
+    prioButtonSelect(task.priority)
     renderAllCreateSubtasks(taskId);
 }
 
@@ -171,15 +171,15 @@ function renderTaskEditor(taskId, task) {
                                 <div>
                                 <p class="fSize-20  editTaskWrapper">Prio</p>
                                 <div id="priority" class="priority d-flex">
-                                <button id="urgentButton" type="button" onclick="priobuttonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                 Urgent
                                 <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                 </button>
-                                <button id="mediumButton" type="button" onclick="priobuttonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                 Medium
                                 <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
                                 </button>
-                                <button id="lowButton" type="button" onclick="priobuttonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                 Low
                                 <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
                                 </button>
