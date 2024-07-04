@@ -79,4 +79,5 @@ async function postUserData(path = "", data={}) {
 
 async function onloadLogin() {
     await fetchUserData();
+    showLogoAnimation();
 }

@@ -141,6 +141,54 @@
                         </div>
                     </div>
                 </div>
+                
+                <div id="contactOverlay" class="contactOverlay">
+                    <div id="contactOverlayWrapper" class="contactOverlayWrapper ">
+                        <div id="contactOverlayLeft" class="contactOverlayLeft">
+                            <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+                            <h1>Add contact</h1>
+                            <p>Tasks are better with a team!</p>
+                            <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+                        </div>
+                        
+                        <div id="contactOverlayRight" class="contactOverlayRight">
+                            <div class="close" onclick="">
+                                <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img">
+                            </div>
+                            <div id="addContactFormAvatar" class="addContactFormAvatar">
+                                <div class="avatar">
+                                    <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                                </div>
+                                <div class="addContactForm">
+                                    <form onsubmit="createContact()" id="createNewContactForm">
+                                        <input type="text" id="newContactName" class="icon-person" placeholder="Name" required>
+                                        <label for="newContactName"></label>
+                                        
+                                        <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
+                                        <label for="newContactMail"></label>
+                                        
+                                        <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone" required>
+                                        <label for="newContactPhone"></label>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="createContactButton">
+                                <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContact()">
+                                    Cancel
+                                    <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg">
+                                </button>
+                                
+                                <button id="createNewContact" class="createNewContact" type="button" onclick="createNewContact();">
+                                    Create Contact
+                                    <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg">
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>

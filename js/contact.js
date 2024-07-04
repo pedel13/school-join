@@ -1,4 +1,4 @@
-function renderAddOverlay(position) {
+function renderAddContactOverlay() {
     document.getElementById('addTaskOverlay').innerHTML = ''
     document.getElementById('addTaskOverlay').innerHTML = `
         <div class="outerTaskOverlayWrapper slide-top">
@@ -100,4 +100,8 @@ function renderAddOverlay(position) {
 function openAddContactOverlay(position='') {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
     renderAddOverlay(position);
+}
+
+function createContact() {
+
 }
