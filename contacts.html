@@ -19,6 +19,7 @@
     <script src="/js/renderTaskOverlay.js"></script>
     <script src="js/board.js"></script>
     <script src="js/template.js"></script>
+    <script src="js/contact.js"></script>
     <title>Join - Contacts</title>
 </head>
 
@@ -34,7 +35,8 @@
             <div id="contactsMain">
                 <div id="contactLeft">
                     <div class="newContactButton">
-                        <button id="newContact">Add new contact
+                        <button id="newContact" onclick="openAddContactOverlay()">
+                            Add new contact
                             <div class="addNewContactIcon"></div>
                         </button>
                     </div>
@@ -142,8 +144,8 @@
                     </div>
                 </div>
                 
-                <div id="contactOverlay" class="contactOverlay">
-                    <div id="contactOverlayWrapper" class="contactOverlayWrapper ">
+                <div id="contactOverlay" class="contactOverlay d-none">
+                    <div id="contactOverlayWrapper" class="contactOverlayWrapper slide-right">
                         <div id="contactOverlayLeft" class="contactOverlayLeft">
                             <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
                             <h1>Add contact</h1>
@@ -152,7 +154,7 @@
                         </div>
                         
                         <div id="contactOverlayRight" class="contactOverlayRight">
-                            <div class="close" onclick="">
+                            <div class="close" onclick="closeContactOverlay()">
                                 <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img">
                             </div>
                             <div id="addContactFormAvatar" class="addContactFormAvatar">

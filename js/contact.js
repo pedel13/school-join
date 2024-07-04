@@ -97,9 +97,12 @@ function renderAddContactOverlay() {
     `
 }
 
-function openAddContactOverlay(position='') {
-    document.getElementById('addTaskOverlay').classList.remove('d-none');
-    renderAddOverlay(position);
+function openAddContactOverlay() {
+    document.getElementById('contactOverlay').classList.remove('d-none');
+}
+
+function closeContactOverlay() {
+    document.getElementById('contactOverlay').classList.add('d-none');
 }
 
 function createContact() {
