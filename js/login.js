@@ -9,9 +9,8 @@ let users = [
     }
 ];
 
-let downloadedUserData = [];
+let downloadedUserData;
 let localUser;
-let contacts = [];
 let counter = 0;
 async function login() {
     let email = document.getElementById('email').value;
@@ -27,9 +26,7 @@ async function login() {
             
         };
         if (email === SINGLE_CONTACT.email) {
-            counter ++;
-            console.log(email);
-            console.log("Counter", counter);
+            counter ++;;
             if (password === SINGLE_CONTACT.password) {
                 console.log("Folgenden User gefunden:", SINGLE_CONTACT)
                 let activeUserName = SINGLE_CONTACT.name;
@@ -41,7 +38,6 @@ async function login() {
                 console.log("Passwort falsch")
             }
         }
-        contacts.push(contact);
     }
     if (counter === 0) {
         console.log("E-Mail Adresse nicht vorhanden");
@@ -60,23 +56,8 @@ async function fetchUserData() {
     let response = await fetch(BASE_URL + '/users' + ".json");
     let responseToJson = await response.json();
     
-    downloadedUserData = downloadedUserData.concat(await responseToJson);
-    console.log("Downloaded (fetchUserData):", downloadedUserData[0]);
-    
-    localUser = downloadedUserData[0];
-    console.log("Show local user:", localUser);
+    localUser = responseToJson;
 }
-
-async function postUserData(path = "", data={}) {
-    let response = await fetch(BASE_URL + path + ".json",{
-        method: "POST",
-        header: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data)
-    });
-}
-
 async function onloadLogin() {
     await fetchUserData();
     showLogoAnimation();

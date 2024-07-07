@@ -1,31 +1,98 @@
-async function addUser() {
-    let name = document.getElementById("name");
-    let email = document.getElementById("email");
-    let password = document.getElementById("password");
-    let passwordConfirm = document.getElementById("passwordConfirm");
-    let checkBox = document.getElementById("registerCheckbox");
-    
-    preventRefresh();
-    
-    if (name.value !== "" && password.value === passwordConfirm.value) {
-        if (checkBox.checked === true) {
-            window.alert("Du hast dich erfolgreich registriert!");
-            await setToFirebase();
-            //window.location.href = 'signup.html?msg=Du hast dich erfolgreich registriert!';
-            clearRegisterForm();
-            //successRegister();
-        }
-        else if (checkBox.checked === false) {
-            window.alert("Bitte setze den Haken!");
+function checkName(name) {
+    let nameCheck = 0;
+    for (const user in localUser) {
+        if (Object.hasOwnProperty.call(localUser, user)) {
+            const userCheck = localUser[user];
+            if (userCheck.name == name.value) {
+                nameCheck = 1;
+            }
         }
     }
-    else window.alert("Passwörter stimmen nicht überein!");
+    if (nameCheck == 1) {
+        document.getElementById('massageBoxName').classList.remove("d-none");
+        name.classList.add("alert-fild");
+    } else {
+        name.classList.remove("alert-fild");
+        document.getElementById('massageBoxName').classList.add("d-none");
+    }
+}
+function checkEmail(email) {
+    let emailCheck = 0;
+    let name = document.getElementById('name');
+    for (const user in localUser) {
+        if (Object.hasOwnProperty.call(localUser, user)) {
+            const userCheck = localUser[user];
+            if (userCheck.email === email.value) {
+                emailCheck = 1;
+            }
+        }
+    }
+    if (emailCheck == 1) {
+        document.getElementById('massageBoxEmail').classList.remove("d-none");
+        email.classList.add("alert-fild");
+        name.classList.add("m-0");
+    } else {
+        email.classList.remove("alert-fild");
+        name.classList.remove("m-0");
+        document.getElementById('massageBoxEmail').classList.add("d-none");
+    }
+
+    }
+
+async function addUser() {
+    let password = document.getElementById("password");
+    let passwordConfirm = document.getElementById("passwordConfirm");
+    let name = document.getElementById("name");
+    let email = document.getElementById("email");
+    let emailCheck = 0;
+    let nameCheck = 0;
+
+    for (const user in localUser) {
+        if (Object.hasOwnProperty.call(localUser, user)) {
+            const userCheck = localUser[user];
+            if (userCheck.name == name.value) {
+                nameCheck = 1;
+            }
+            if (userCheck.email == email.value) {
+                emailCheck = 1;
+            }
+        }
+    }
+
+    if (nameCheck == 1) {
+        document.getElementById('massageBoxName').classList.remove("d-none");
+        name.classList.add("alert-fild");
+    } else {
+        name.classList.remove("alert-fild");
+        document.getElementById('massageBoxName').classList.add("d-none");
+
+        if (emailCheck == 1) {
+            document.getElementById('massageBoxEmail').classList.remove("d-none");
+            email.classList.add("alert-fild");
+            name.classList.add("m-0");
+        } else {
+            email.classList.remove("alert-fild");
+            name.classList.remove("m-0");
+            document.getElementById('massageBoxEmail').classList.add("d-none");
+
+            if (password.value === passwordConfirm.value) {
+                passwordConfirm.classList.remove("alert-fild");
+                passwordConfirm.classList.remove("m-0");
+                document.getElementById('massageBox').classList.add("d-none");
+                localStorage.setItem("activeUserName", `${name.value}`);
+                await setToFirebase(name.value,email.value,password.value);
+                
+            } else {   
+                document.getElementById("passwordConfirm").value = ''
+                document.getElementById('massageBox').classList.remove("d-none");
+                passwordConfirm.classList.add("alert-fild");
+                passwordConfirm.classList.add("m-0");
+            }   
+        }       
+    }
 }
 
-async function setToFirebase() {
-    let name = document.getElementById("name").value;
-    let email = document.getElementById("email").value;
-    let password = document.getElementById("password").value;
+async function setToFirebase(name,email,password) {
     let userData = {
         "name": name,
         "email": email,
@@ -34,32 +101,32 @@ async function setToFirebase() {
     await postUserData('users', userData);
 }
 
-function clearRegisterForm(name, email, password, passwordConfirm, checkBox) {
-    name.value = "";
-    email.value = "";
-    password.value = "";
-    passwordConfirm.value = "";
-    checkBox.checked = false;
+function clearRegisterForm() {
+    document.getElementById("password").value = '';
+    document.getElementById("passwordConfirm").value = '';
+    document.getElementById("email").value = '';
+    document.getElementById("name").value = '';
 }
 
-function preventRefresh() {
-    document.getElementById('formIdSignup').addEventListener (
-        "submit",
-        function (evt) {
-            // Eingaben nicht korrekt
-            evt.preventDefault();
-            //
+async function postUserData(path = "", data) {
+    try {
+        debugger;
+        let response = await fetch(BASE_URL + path + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    );
+        window.location.href = '../index.html';
+    } catch (error) {
+        console.error('Es gab einen Fehler beim Posten der Benutzerdaten:', error);
+        alert('Es gab einen Fehler beim Posten der Benutzerdaten.');
+    }
 }
 
-function successRegister() {
-    let msgBox = document.getElementById("msgBox");
-    const urlParams = new URLSearchParams(window.location.search);
-    const msg = urlParams.get('msg');
-    
-    if (msg) {
-        msgBox.innerHTML = msg;
-    }
-    else msgBox.classList.add('d-none');
-}
+

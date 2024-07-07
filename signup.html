@@ -13,13 +13,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
 
     <script src="js/script.js"></script>
-    <script src="js/register.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/register.js"></script> 
     
     <title>Join - Sign up</title>
 </head>
 
-<body>
+<body onload="fetchUserData()">
     <div class="loginHeader">
         <div>
             <a href="index.html">
@@ -33,19 +34,24 @@
             <h1 class="fSize-61">Sign up</h1>
             <span class="headlineBorder">&nbsp;</span>
             <div id="signUpCredentials">
-                <form id="userCredentialsSignup">
-                    <input type="text" placeholder="Name" name="name" id="name" class="icon-person form-control" required>
-                    <input type="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
-                    <input type="password" placeholder="Password" name="password" id="password" class="icon-lock" required>
-                    <input type="password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" required>
+                <!-- <form id="userCredentialsSignup"> -->
+                    <form action="" onsubmit="addUser()" id="formIdSignup">
+                        <div id="massageBoxName" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! this name already exists</span>
+                        </div>
+                    <input type="text" autocomplete="Name" placeholder="Name" name="name" id="name" class="icon-person form-control" onchange="checkName(this)" required>
+                    <div id="massageBoxEmail" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! this email already exists</span>
+                    </div>
+                    <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" onchange="checkEmail(this)" required>
+                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" required>
+                    <input type="password" autocomplete="current-password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" required>
+                    <div id="massageBox" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! your password don’t match</span>
+                        </div>
                     <div class="signUpCheckBox">
-                        <input type="checkbox" id="registerCheckbox">
+                        <input type="checkbox" id="registerCheckbox" required>
                         <span>I accept the
                             <a href="privacy.html" target="_self">Privacy policy</a>
                         </span>
                     </div>
-                </form>
-                <form action="" onsubmit="addUser(); return false;" id="formIdSignup">
                     <button class="btn bg-join-blue fc-white fSize-16" id="signUp">Sign up</button>
                 </form>
                 <div id="msgBox" class="msgBox">
