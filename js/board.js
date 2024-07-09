@@ -23,13 +23,11 @@ async function drop(dropPosition) {
     localStorage.activeTask = JSON.stringify(dropCard);
     localStorage.setItem("taskId", `${cardDraggedId}`);
     await updateTask();
-    removeDraggedCard()
-    let subtask = subtaskExist(dropCard);
-    let categoryText = categoryFinder(dropCard);
-    countForNoTask(dropCard.position);
-    renderTask(dropCard, cardDraggedId, subtask, categoryText);
-    subtaskCount = 0;
-    noTasksInProgress()
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
+    renderAllTasks();
 }
 
 async function updateTask() {
