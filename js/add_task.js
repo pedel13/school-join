@@ -59,13 +59,7 @@ async function setTaskDataInDatabase(data = {}) {
     }
 }
 
-
 function openAddTaskOverlay(position='') {
-    document.getElementById('addTaskOverlay').classList.remove('d-none');
-    renderAddOverlay(position);
-}
-
-function openAddContactOverlay(position='') {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
     renderAddOverlay(position);
 }

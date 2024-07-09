@@ -42,11 +42,11 @@
                     </div>
                     
                     <div id="contactList">
+                        <h2 class="contactLetter">
+                            F
+                        </h2>
                         <div id="contactDetailWrapper">
-                            <h2 class="contactLetter">
-                                F
-                            </h2>
-                            <ul class="namesList activeContact">
+                            <ul class="namesList activeContact" id="contactUlActive" onclick="activeContact()">
                                 <li id="contactItem" class="contactItem">
                                     <div class="innerContactDetailWrapper">
                                         <div id="userProfile">
@@ -64,10 +64,10 @@
                             </ul>
                         </div>
                         
+                        <h2 class="contactLetter">
+                            P
+                        </h2>
                         <div id="contactDetailWrapper">
-                            <h2 class="contactLetter">
-                                P
-                            </h2>
                             <ul class="namesList">
                                 <li id="contactItem" class="contactItem">
                                     <div class="innerContactDetailWrapper">
@@ -162,7 +162,7 @@
                                     <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                 </div>
                                 <div class="addContactForm">
-                                    <form onsubmit="createContact()" id="createNewContactForm">
+                                    <form onsubmit="createContactToDatabase()" id="createNewContactForm">
                                         <input type="text" id="newContactName" class="icon-person" placeholder="Name" required>
                                         <label for="newContactName"></label>
                                         
