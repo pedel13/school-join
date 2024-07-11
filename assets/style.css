@@ -1163,6 +1163,7 @@ input[required] {
     font-size: 24px;
     padding: 8px 0 0 8px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .contactItem {

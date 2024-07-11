@@ -23,7 +23,7 @@
     <title>Join - Contacts</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); fetchContacts();">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -45,46 +45,7 @@
                         <h2 class="contactLetter">
                             F
                         </h2>
-                        <div id="contactDetailWrapper">
-                            <ul class="namesList activeContact" id="contactUlActive" onclick="activeContact()">
-                                <li id="contactItem" class="contactItem">
-                                    <div class="innerContactDetailWrapper">
-                                        <div id="userProfile">
-                                            <img src="./img/icons/person.png" alt="personImage">
-                                        </div>
-                                        <div class="contact">
-                                            Farid Faraji
-                                            <br>
-                                            <a href="mailto:ff@nix.de" target="_blank" class="emailLink">
-                                                ff@nix.de
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                         
-                        <h2 class="contactLetter">
-                            P
-                        </h2>
-                        <div id="contactDetailWrapper">
-                            <ul class="namesList">
-                                <li id="contactItem" class="contactItem">
-                                    <div class="innerContactDetailWrapper">
-                                        <div id="userProfile">
-                                            <img src="./img/icons/person.png" alt="personImage">
-                                        </div>
-                                        <div class="contact">
-                                            Patrick Wethli
-                                            <br>
-                                            <a href="mailto:pw@nix.de" target="_blank" class="emailLink">
-                                                pw@nix.de
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 
