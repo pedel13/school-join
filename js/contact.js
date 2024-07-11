@@ -54,7 +54,6 @@ async function fetchContacts(path = "/contacts") {
     
     await renderContacts();
 }
-let counter;
 /**
  * Rendering the contact data into the HTML
  */
