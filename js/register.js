@@ -10,9 +10,9 @@ function checkName(name) {
     }
     if (nameCheck == 1) {
         document.getElementById('massageBoxName').classList.remove("d-none");
-        name.classList.add("alert-fild");
+        name.classList.add("alert-filled");
     } else {
-        name.classList.remove("alert-fild");
+        name.classList.remove("alert-filled");
         document.getElementById('massageBoxName').classList.add("d-none");
     }
 }
@@ -29,10 +29,10 @@ function checkEmail(email) {
     }
     if (emailCheck == 1) {
         document.getElementById('massageBoxEmail').classList.remove("d-none");
-        email.classList.add("alert-fild");
+        email.classList.add("alert-filled");
         name.classList.add("m-0");
     } else {
-        email.classList.remove("alert-fild");
+        email.classList.remove("alert-filled");
         name.classList.remove("m-0");
         document.getElementById('massageBoxEmail').classList.add("d-none");
     }
@@ -61,22 +61,22 @@ async function addUser() {
 
     if (nameCheck == 1) {
         document.getElementById('massageBoxName').classList.remove("d-none");
-        name.classList.add("alert-fild");
+        name.classList.add("alert-filled");
     } else {
-        name.classList.remove("alert-fild");
+        name.classList.remove("alert-filled");
         document.getElementById('massageBoxName').classList.add("d-none");
 
         if (emailCheck == 1) {
             document.getElementById('massageBoxEmail').classList.remove("d-none");
-            email.classList.add("alert-fild");
+            email.classList.add("alert-filled");
             name.classList.add("m-0");
         } else {
-            email.classList.remove("alert-fild");
+            email.classList.remove("alert-filled");
             name.classList.remove("m-0");
             document.getElementById('massageBoxEmail').classList.add("d-none");
 
             if (password.value === passwordConfirm.value) {
-                passwordConfirm.classList.remove("alert-fild");
+                passwordConfirm.classList.remove("alert-filled");
                 passwordConfirm.classList.remove("m-0");
                 document.getElementById('massageBox').classList.add("d-none");
                 localStorage.setItem("activeUserName", `${name.value}`);
@@ -85,7 +85,7 @@ async function addUser() {
             } else {   
                 document.getElementById("passwordConfirm").value = ''
                 document.getElementById('massageBox').classList.remove("d-none");
-                passwordConfirm.classList.add("alert-fild");
+                passwordConfirm.classList.add("alert-filled");
                 passwordConfirm.classList.add("m-0");
             }   
         }       
@@ -110,7 +110,6 @@ function clearRegisterForm() {
 
 async function postUserData(path = "", data) {
     try {
-        debugger;
         let response = await fetch(BASE_URL + path + ".json", {
             method: "POST",
             headers: {

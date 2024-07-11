@@ -10,7 +10,7 @@ function activeContact() {
     document.getElementById('contactUlActive').classList.add('activeContact');
 }
 
-async function postContactData(path = "", data={}) {
+async function postContactDataToFirebase(path = "", data={}) {
     let response = await fetch(BASE_URL + path + ".json",{
         method: "POST",
         header: {
