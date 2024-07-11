@@ -12,7 +12,7 @@ function checkName(name) {
         document.getElementById('massageBoxName').classList.remove("d-none");
         name.classList.add("alert-filled");
     } else {
-        name.classList.remove("alert-filled");
+        name.classList.remove("alert-");
         document.getElementById('massageBoxName').classList.add("d-none");
     }
 }
