@@ -1153,7 +1153,7 @@ input[required] {
 .activeContact {
     background-color: #2A3647;
     color: #ffffff;
-    border-radius: 30px;
+    border-radius: 8px;
     height: 100%;
 }
 

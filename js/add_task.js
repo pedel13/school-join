@@ -211,11 +211,15 @@ function addSubtaskAddArray() {
     function renderCrateSubtask(newSubtask, subtaskCreateCount) {
     
     document.getElementById('subtaskStorage').innerHTML += `
-    <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" justify-content-between">• ${newSubtask}<div class="d-flex">
-    <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
-    <div class="addTaskSubtaskVertikalLine"></div>
-    <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
-    </div></li>`
+        <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" class="justify-content-between">
+            • ${newSubtask}
+            <div class="d-flex">
+                <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
+                <div class="addTaskSubtaskVertikalLine"></div>
+                <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
+            </div>
+        </li>
+    `;
 }
 
 function renderAddOverlay(position) {

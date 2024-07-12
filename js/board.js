@@ -5,7 +5,7 @@ let countOnAwaitFeedback = 0;
 let countOnDone = 0;
 let subtaskCount = 0;
 let subtaskCountInProzent = 0;
-let subtaskCountPrufment = 0;
+let subtaskCountProvement = 0;
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -179,16 +179,16 @@ function subtaskCounter(task) {
     subtaskProofments = task.subtask;
     subtaskCount = 0;
     let i = 0;
-    subtaskCountPrufment = 0;
+    subtaskCountProvement = 0;
     for (const element of subtask) {
         if (subtaskProofments[i] == 'true') {
-            subtaskCountPrufment++;
+            subtaskCountProvement++;
         }
         i++;
         subtaskCount++;
 
     }
-    subtaskCountInProzent = 100 / subtaskCount * subtaskCountPrufment;
+    subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
 
 }
 
@@ -254,7 +254,7 @@ function renderTask(task, taskId, subtask, categoryText) {
                     </div>
                 </div>
                 <div class="d-flex board-subtasks gap-4">
-                  <p> ${subtaskCountPrufment}/${subtaskCount}</p>
+                  <p> ${subtaskCountProvement}/${subtaskCount}</p>
                   <p>Subtasks</p>
                 </div>
             </div>

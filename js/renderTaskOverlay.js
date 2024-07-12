@@ -44,21 +44,21 @@ function subtaskLoop(taskId) {
     });
 }
 
-async function changeSuptaskPrufment(i, taskId = '') {
+async function changeSubtaskProvement(i, taskId = '') {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtaskCheckbox = element.subtask;
     if (subtaskCheckbox[i] == 'false') {
         subtaskCheckbox[i] = 'true';
-        await updateSubtaskPrufment(subtaskCheckbox, `${taskId}/subtask`);
+        await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
     } else {
         subtaskCheckbox[i] = 'false';
-        await updateSubtaskPrufment(subtaskCheckbox, `${taskId}/subtask`);
+        await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
     }
 }
 
-async function updateSubtaskPrufment(data = {}, path = '') {
-    console.log("in metode");
+async function updateSubtaskProvement(data = {}, path = '') {
+    console.log("in methode");
     try{
     let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
         method: 'PUT',
@@ -84,7 +84,7 @@ function taskEdit(taskId) {
 function renderSubTasks(subtask, taskId, i, checkBox = '') {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
     <div class="checkBox">
-    <input type="checkbox" id="ceckBox_${i}" onclick="changeSuptaskPrufment(${i}, '${taskId}')" ${checkBox}>
+    <input type="checkbox" id="ceckBox_${i}" onclick="changeSubtaskProvement(${i}, '${taskId}')" ${checkBox}>
     <span>${subtask}</span>
 </div>`
 }
@@ -138,88 +138,87 @@ function renderTaskCardBig(element, categoryText, taskId) {
 
 function renderTaskEditor(taskId, task) {
     document.getElementById('taskOverlay').innerHTML = `
-    <div  class="taskOverlayWrapper slide-right">
-    <div  class="taskOverlayTypeEdite d-flex">
-        <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
-    </div>
-    
-                    <form class="main" onsubmit="changeTask('${taskId}')">
-                        <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
-                            <div class="">
-                                <div>
-                                    <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
-                                    <input type="text" id="title" value="${task.title}" required/>
-                                </div>
-        
-                                <div >&nbsp;</div>
-        
-                                <div>
-                                    <p class="fSize-20  editTaskWrapper">Description</p>
-                                    <textarea rows="5" id="description" >${task.description}</textarea>
-                                </div>
-        
-                                
-                                <div >&nbsp;</div>
-                                
-                                <div>
-                                <p class="fSize-20  editTaskWrapper">Due Date<span class="redStar">*</span></p>
-                                <input type="date" id="datePicker" value="${task.datePicker}" required>
-                                </div>
-                                
-                                <div >&nbsp;</div>
-                                
-                                <div>
-                                <p class="fSize-20  editTaskWrapper">Prio</p>
-                                <div id="priority" class="priority d-flex">
+        <div  class="taskOverlayWrapper slide-right">
+        <div  class="taskOverlayTypeEdite d-flex">
+            <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
+        </div>
+            <form class="main" onsubmit="changeTask('${taskId}')">
+                <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
+                    <div>
+                        <div>
+                            <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
+                            <input type="text" id="title" value="${task.title}" required/>
+                        </div>
+
+                        <div>&nbsp;</div>
+
+                        <div>
+                            <p class="fSize-20  editTaskWrapper">Description</p>
+                            <textarea rows="5" id="description" >${task.description}</textarea>
+                        </div>
+
+                        
+                        <div>&nbsp;</div>
+                        
+                        <div>
+                        <p class="fSize-20  editTaskWrapper">Due Date<span class="redStar">*</span></p>
+                        <input type="date" id="datePicker" value="${task.datePicker}" required>
+                        </div>
+                        
+                        <div>&nbsp;</div>
+                        
+                        <div>
+                            <p class="fSize-20  editTaskWrapper">Prio</p>
+                            <div id="priority" class="priority d-flex">
                                 <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                 Urgent
                                 <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
-                                </button>
-                                <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                Medium
-                                <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>                               
-                                </button>
-                                <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                Low
-                                <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
-                                </button>
-                                </div>
-                                </div>
+                                    </button>
+                                    <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        Medium
+                                        <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
+                                    </button>
+                                    <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        Low
+                                        <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                    </button>
+                            </div>
+                        </div>
 
-                                <div >&nbsp;</div>
+                        <div>&nbsp;</div>
 
-                                <div>
-                                    <p class="fSize-20  editTaskWrapper">Assigned to</p>
-                                    <select name="choose" id="selectInputAssignee">
-                                        <option value="${task.selectInputAssignee}">${task.selectInputAssignee}</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 2">Test 2</option>
-                                    </select>
-                                </div>
-                                
-                                <div >&nbsp;</div>
-                                
-                                <div>
-                                <p class="fSize-20  editTaskWrapper">Subtasks</p>
-                                <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                        <div>
+                            <p class="fSize-20  editTaskWrapper">Assigned to</p>
+                            <select name="choose" id="selectInputAssignee">
+                                <option value="${task.selectInputAssignee}">${task.selectInputAssignee}</option>
+                                <option value="Test 1">Test 1</option>
+                                <option value="Test 2">Test 2</option>
+                            </select>
+                        </div>
+                        
+                        <div>&nbsp;</div>
+                        
+                        <div>
+                            <p class="fSize-20  editTaskWrapper">Subtasks</p>
+                            <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                 <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                                 <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
                                 <div class="addTaskAdd"></div>
                                 </button>
-                                    </div>
-                                    <ul id="subtaskStorage"></ul>
-                                </div>
                             </div>
+                            <ul id="subtaskStorage"></ul>
                         </div>
-        
-                        <div class="editTaskBottom d-flex">
-
-                            <div >
-                                <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
-                            </div>
-                        </div>
-                    </form>
-
+                    </div>
                 </div>
-            </div>`
+
+                <div class="editTaskBottom d-flex">
+                    <div>
+                        <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                    </div>
+                </div>
+            </form>
+
+            </div>
+        </div>
+    `;
 }
