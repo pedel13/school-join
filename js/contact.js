@@ -150,15 +150,14 @@ function closeContactOverlay() {
     document.getElementById('contactOverlay').classList.add('d-none');
 }
 
-function activeContact() {
-    let activeClass = document.querySelectorAll('.contactItem');
-    activeClass.forEach(activeClassLink => {
-        activeClassLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            document.querySelector('.activeContact')?.classList.remove('activeContact');
-            activeClassLink.classList.add('activeContact');
-        });
-    });
+function activeContact(idOfContact) {
+    let activatedContacts = document.getElementsByClassName('activeContact');
+    console.log("Aktiv:", activatedContacts);
+    if (activatedContacts[0]) {
+        activatedContacts[0].classList.remove('activeContact');
+    }
+    let contactToActivate = document.getElementById(`contactItem_${idOfContact}`);
+    contactToActivate.classList.add('activeContact');
 }
 
 function removeActiveContact(j) {
