@@ -160,10 +160,6 @@ function activeContact(idOfContact) {
     contactToActivate.classList.add('activeContact');
 }
 
-function removeActiveContact(j) {
-    document.getElementById(`contactUlActive_${j}`).classList.remove('activeContact');
-}
-
 function clearNewContactForm() {
     document.getElementById('newContactName').value = '';
     document.getElementById('newContactMail').value = '';
