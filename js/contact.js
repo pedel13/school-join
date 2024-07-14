@@ -161,20 +161,6 @@ function activeContact() {
             navLinkEl.classList.add('activeContact');
         })
     });
-
-
-    /*
-    let activatedContacts = document.getElementsByClassName('activeContact');    
-    console.log("Aktiv:", activatedContacts);
-    
-    if (localContactArray[idOfContact]) {
-        localContactArray[idOfContact].classList.remove('activeContact');
-    }
-
-    let contactToActivate = document.getElementById(`contactItem_${idOfContact}`);
-    contactToActivate.classList.add('activeContact');
-    globalID = idOfContact;
-    */
 }
 
 function clearNewContactForm() {
