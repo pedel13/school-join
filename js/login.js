@@ -1,29 +1,15 @@
-let users = [
-    {
-        email: 'admin@join.de',
-        password: '123456'
-    },
-    {
-        email: 'ff@nix.de',
-        password: '1111'
-    }
-];
 
 let localUser;
 let counter = 0;
-async function login() {
+
+
+async function login(event) {
+    event.preventDefault();
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
     
     for (const key in localUser) {
         const SINGLE_CONTACT = localUser[key];
-        let contact = {
-            "id": key,
-            "name": SINGLE_CONTACT.name,
-            "email": SINGLE_CONTACT.email,
-            "password": SINGLE_CONTACT.password
-            
-        };
         if (email === SINGLE_CONTACT.email) {
             counter ++;
             if (password === SINGLE_CONTACT.password) {
@@ -34,20 +20,28 @@ async function login() {
             }
             else {
                 counter = 0;
-                console.log("Passwort falsch")
             }
         }
     }
     if (counter === 0) {
-        console.log("E-Mail Adresse nicht vorhanden");
+        wrongPassword();
     }
     counter = 0;
 }
 
+function wrongPassword() {
+    let passwordInput = document.getElementById('password');
+    document.getElementById('massageBoxEmail').classList.remove("d-none");
+    passwordInput.classList.add("alert-filled");
+}
+
+function removeWrongPasword(passwordInput) {
+    document.getElementById('massageBoxEmail').classList.add("d-none");
+    passwordInput.classList.remove("alert-filled");
+}
+
 async function guestLogin() {
-    document.getElementById('email').value = "test@nixx.de";
-    document.getElementById('password').value = "11111";
-    await login();
+    localStorage.setItem("activeUserName", ``);
     window.open("index.html", "_self");
 }
 
@@ -58,6 +52,7 @@ async function fetchUserData() {
     localUser = responseToJson;
 }
 async function onloadLogin() {
+    localStorage.clear();
     await fetchUserData();
     showLogoAnimation();
 }

@@ -11,3 +11,15 @@ async function includeHTML() {
         }
     }
 }
+function hasClass(element, className) {
+    return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
+}
+
+function templateNavbarOpenClose() {
+    let navbarOpenOrClose = document.getElementById("header-Navbar");
+    if (hasClass(navbarOpenOrClose,'d-none')) {
+        navbarOpenOrClose.classList.remove("d-none");
+    } else {
+        navbarOpenOrClose.classList.add("d-none");
+    }
+}

@@ -1,5 +1,8 @@
+let emailCheck = 0;
+let nameCheck = 0;
+
 function checkName(name) {
-    let nameCheck = 0;
+    nameCheck = 0;
     for (const user in localUser) {
         if (Object.hasOwnProperty.call(localUser, user)) {
             const userCheck = localUser[user];
@@ -11,14 +14,13 @@ function checkName(name) {
     if (nameCheck == 1) {
         document.getElementById('massageBoxName').classList.remove("d-none");
         name.classList.add("alert-filled");
-    } else {
-        name.classList.remove("alert-");
-        document.getElementById('massageBoxName').classList.add("d-none");
-    }
+        name.classList.add("m-0");
+    } 
 }
+
+
 function checkEmail(email) {
-    let emailCheck = 0;
-    let name = document.getElementById('name');
+    emailCheck = 0;
     for (const user in localUser) {
         if (Object.hasOwnProperty.call(localUser, user)) {
             const userCheck = localUser[user];
@@ -30,60 +32,33 @@ function checkEmail(email) {
     if (emailCheck == 1) {
         document.getElementById('massageBoxEmail').classList.remove("d-none");
         email.classList.add("alert-filled");
-        name.classList.add("m-0");
-    } else {
-        email.classList.remove("alert-filled");
-        name.classList.remove("m-0");
-        document.getElementById('massageBoxEmail').classList.add("d-none");
+        email.classList.add("m-0");
     }
+    
+}
 
-    }
+function alertClassRemove(element, massageBox) {
+    element.classList.remove("alert-filled");
+    element.classList.remove("m-0");
+    document.getElementById(`${massageBox}`).classList.add("d-none");
+}
 
-async function addUser() {
+async function addUser(event) {
+    event.preventDefault();
     let password = document.getElementById("password");
     let passwordConfirm = document.getElementById("passwordConfirm");
     let name = document.getElementById("name");
     let email = document.getElementById("email");
-    let emailCheck = 0;
-    let nameCheck = 0;
-
-    for (const user in localUser) {
-        if (Object.hasOwnProperty.call(localUser, user)) {
-            const userCheck = localUser[user];
-            if (userCheck.name == name.value) {
-                nameCheck = 1;
-            }
-            if (userCheck.email == email.value) {
-                emailCheck = 1;
-            }
-        }
-    }
-
+    checkName(name);
+    checkEmail(email);
     if (nameCheck == 1) {
-        document.getElementById('massageBoxName').classList.remove("d-none");
-        name.classList.add("alert-filled");
     } else {
-        name.classList.remove("alert-filled");
-        document.getElementById('massageBoxName').classList.add("d-none");
-
         if (emailCheck == 1) {
-            document.getElementById('massageBoxEmail').classList.remove("d-none");
-            email.classList.add("alert-filled");
-            name.classList.add("m-0");
         } else {
-            email.classList.remove("alert-filled");
-            name.classList.remove("m-0");
-            document.getElementById('massageBoxEmail').classList.add("d-none");
-
             if (password.value === passwordConfirm.value) {
-                passwordConfirm.classList.remove("alert-filled");
-                passwordConfirm.classList.remove("m-0");
-                document.getElementById('massageBox').classList.add("d-none");
                 localStorage.setItem("activeUserName", `${name.value}`);
-                await setToFirebase(name.value,email.value,password.value);
-                
+                await setToFirebase(name.value,email.value,password.value);  
             } else {   
-                document.getElementById("passwordConfirm").value = ''
                 document.getElementById('massageBox').classList.remove("d-none");
                 passwordConfirm.classList.add("alert-filled");
                 passwordConfirm.classList.add("m-0");

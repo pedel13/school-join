@@ -48,11 +48,9 @@ async function setTaskDataInDatabase(data = {}) {
              },
              body: JSON.stringify(data)
          });
-
          if (!response.ok) {
              throw new Error(`HTTP error! status: ${response.status}`);
          }
-
          let responseData = await response.json();
     } catch (error) {
         console.error("Error setting data in database:", error);
@@ -83,12 +81,10 @@ function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     iconSelected = document.getElementById(icon);
     buttonOtherSelected = document.getElementById(buttonOther);
     iconOtherSelected = document.getElementById(iconOther);
-
     buttonSelected.classList.add("priorityButton");
     buttonSelected.classList.remove("priorityButtonActiv");
     iconSelected.classList.add(icon);
     iconSelected.classList.remove(icon+'Activ');
-
     buttonOtherSelected.classList.add("priorityButton");
     buttonOtherSelected.classList.remove("priorityButtonActiv");
     iconOtherSelected.classList.add(iconOther);
@@ -231,7 +227,6 @@ function renderAddOverlay(position) {
                     <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
                 </div>
                 <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
-
                     <form class="main" onsubmit="addTask('${position}')">
                         <div id="addTaskWrapper" class="addTaskWrapper">
                             <div class="addTaskWrapperLeft">

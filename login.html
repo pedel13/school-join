@@ -40,17 +40,19 @@
             <h1 class="fSize-61">Log in</h1>
             <span class="headlineBorder">&nbsp;</span>
             <div id="loginCredentials">
-                <form>
+                <form onsubmit="login(event);">
                     <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
-                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" required>
+                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPasword(this)" required>
+                    <div id="massageBoxEmail" class="d-none" style="width: 100%;"><span class="alert-massage">Wrong password Ups! Try again.</span>
+                    </div>
                     <div class="checkBox">
                         <input type="checkbox" id="remember">
                         <span>Remember me</span>
                     </div>
-                </form>
-                <form onsubmit="return false;">
-                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn" onclick="login()">Log in</button>
+                    <div class="justify-content-evenly d-flex w-100">
+                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
                     <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
+                    </div>
                 </form>
             </div>
         </div>

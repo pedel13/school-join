@@ -31,20 +31,28 @@
 
     <div id="signUpWrapper" class="signUpWrapper">
         <div id="signUpForm" class="signUpForm">
-            <h1 class="fSize-61">Sign up</h1>
-            <span class="headlineBorder">&nbsp;</span>
+            <div class="d-flex w-100 signUp-title">
+            <a class="logIn-link" href="./login.html">
+                <img class="logIn-arrow" src="./img/icons/arrow-left-blue.png" alt="">
+            </a>
+            <div>
+                <h1 class="fSize-61">Sign up</h1>
+            </div>
+            <div class="logIn-arrow"></div>
+        </div>
+        <span class="headlineBorder">&nbsp;</span>
             <div id="signUpCredentials">
                 <!-- <form id="userCredentialsSignup"> -->
-                    <form action="" onsubmit="addUser()" id="formIdSignup">
-                        <div id="massageBoxName" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! this name already exists</span>
+                    <form action="" onsubmit="addUser(event)" id="formIdSignup">
+                        <input type="text" autocomplete="Name" placeholder="Name" name="name" id="name" class="icon-person form-control" onclick="alertClassRemove(this, 'massageBoxName')" onchange="checkName(this)" required>
+                        <div id="massageBoxName" class="d-none d-flex w-100"><span class="alert-massage">Ups! this name already exists</span>
                         </div>
-                    <input type="text" autocomplete="Name" placeholder="Name" name="name" id="name" class="icon-person form-control" onchange="checkName(this)" required>
-                    <div id="massageBoxEmail" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! this email already exists</span>
-                    </div>
-                    <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" onchange="checkEmail(this)" required>
+                        <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" onclick="alertClassRemove(this, 'massageBoxEmail')" onchange="checkEmail(this)" required>
+                        <div id="massageBoxEmail" class="d-none d-flex w-100"><span class="alert-massage">Ups! this email already exists</span>
+                        </div>
                     <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" required>
-                    <input type="password" autocomplete="current-password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" required>
-                    <div id="massageBox" class="d-none" style="width: 100%;"><span class="alert-massage">Ups! your password don’t match</span>
+                    <input type="password" autocomplete="current-password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" onclick="alertClassRemove(this, 'massageBox')" required>
+                    <div id="massageBox" class="d-none d-flex w-100"><span class="alert-massage">Ups! your password don’t match</span>
                         </div>
                     <div class="signUpCheckBox">
                         <input type="checkbox" id="registerCheckbox" required>

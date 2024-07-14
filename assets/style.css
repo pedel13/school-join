@@ -42,6 +42,39 @@ img {
     height: 100%;
 }
 
+.template-navbar-position {
+    position: fixed;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 86vw;
+}
+
+.template-navbar{
+
+    padding: 10px;
+    border-radius: 20px ;
+    border-top-right-radius: 0px !important;
+    background-color:#2A3647;
+    display: flex;
+
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: left !important;
+}
+
+.template-navbar-a {
+font-size: 16px !important;
+font-weight: 400 !important;
+line-height: 19.2px !important;
+color: #CDCDCD !important;
+padding: 16px;
+}
+
+.template-navbar-a:hover {
+    background-color: #2A3D59;
+}
+
 /*##### END OF General- & template stylings #####*/
 
 /*##### START OF sidebar stylings #####*/
@@ -101,6 +134,8 @@ section#sidebar > img {
 
 /*##### END OF sidebar stylings #####*/
 
+/*##### START OF logIn stylings #####*/
+
 .loginHeader {
     display: flex;
     justify-content: space-between;
@@ -149,6 +184,26 @@ button#guestLogIn {
     align-items: center;
 }
 
+.logIn-link {
+    border-radius: 100%;
+    height: 32px;
+    width: 32px;
+}
+
+.logIn-link:hover {
+    background-color: #EEEEEE;
+}
+
+.logIn-arrow {
+    width: 32px;
+    height: 32px;
+}
+
+.signUp-title {
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 .loginForm,
 .signUpForm {
     display: flex;
@@ -163,7 +218,7 @@ button#guestLogIn {
 
 .headlineBorder {
     height: 3px;
-    width: 20%;
+    width: 20% ;
     background-color: #29ABE2;
     margin: 8px 0 40px 0;
 }
@@ -1309,7 +1364,8 @@ button#newContact {
     font-size: 12px;
     font-weight: 400;
     line-height: 14.4px;
-    text-align: left !important;   
+    text-align: left !important;
+    height: 24px;   
 }
 
 .alert-filled {
