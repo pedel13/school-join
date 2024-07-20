@@ -32,11 +32,11 @@
                 <h1>Add Task</h1>
             </div>
 
-            <form class="main" onsubmit="addTask('board-task-on-to-do')">
+            <form class="main" onsubmit="addTask(event, 'board-task-on-to-do')">
                 <div id="addTaskWrapper" class="addTaskWrapper">
                     <div class="addTaskWrapperLeft">
                         <div>
-                            <p class="fSize-16">Title<span class="redStar">*</span></p>
+                            <p class="fSize-16 mb-8">Title<span class="redStar">*</span></p>
                             <label for="title">
                                 <input type="text" id="title" placeholder="Enter Title" required/>
                             </label>
@@ -45,7 +45,7 @@
                         <div class="spacer">&nbsp;</div>
 
                         <div>
-                            <p class="fSize-16">Description</p>
+                            <p class="fSize-16 mb-8">Description</p>
                             <label for="description">
                                 <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
                             </label>
@@ -53,15 +53,42 @@
 
                         <div class="spacer">&nbsp;</div>
 
+                        <!-- TODO: Contacts rendern lasen -->
+                        <div class="gap-8">
+                            <p class="fSize-16 mb-8">Assigned to</p>
                         <div>
-                            <p class="fSize-16">Assigned to</p>
-                            <label for="selectInputAssignee">
-                                <select name="choose" id="selectInputAssignee">
-                                    <option value="Assigned to...">Assigned to...</option>
-                                    <option value="Test 1">Test 1</option>
-                                    <option value="Test 2">Test 2</option>
-                                </select>
-                            </label>
+                            <div class="selectBox" onclick="showCheckboxes()">
+                              <select id="selectInputAssignee">
+                                <option value="" disabled selected>Select contacts to assign</option>
+                              </select>
+                              <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes" class="">
+                                <div class="d-flex flex-column w-100">
+                              <label for="one" class="d-flex justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center bg-orange">PW</p>
+                                    <p>First checkbox</p>
+                              </div>
+                                <input type="checkbox" id="one" /></label>
+                                                            <label for="one" class="d-flex justify-content-between w-100">
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <p class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center bg-orange">PW</p>
+                                    <p>First checkbox</p>
+                              </div>
+                                <input type="checkbox" id="one" /></label>
+
+                                </div>
+                            </div>
+                          </div>
+                            <div class="d-flex justify-content-between mt-8">
+                                <div class="fc-white d-flex gap-10">
+                                    <!-- TODO: Farbklasse dynamisch gestalten -->
+                                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange">PW</p>
+                                    <!-- TODO: user-icons printer funktion -->
+                                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red">FF</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -69,14 +96,14 @@
 
                     <div class="addTaskWrapperRight">
                         <div>
-                            <p class="fSize-16">Due Date<span class="redStar">*</span></p>
+                            <p class="fSize-16 mb-8">Due Date<span class="redStar">*</span></p>
                             <label for="datePicker">
                                 <input type="date" id="datePicker" required>
                             </label>
                         </div>
 
                         <div>
-                            <p class="fSize-16">Prio</p>
+                            <p class="fSize-16 mb-8">Prio</p>
                             <div id="priority" class="priority d-flex">
                                 <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
@@ -94,7 +121,7 @@
                         </div>
 
                         <div>
-                            <p class="fSize-16">Category<span class="redStar">*</span></p>
+                            <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
                             <label for="categorySelect">
                                 <select name="choose" id="categorySelect" required>
                                     <option value="" disabled selected>Select Category</option>
@@ -105,12 +132,11 @@
                         </div>
 
                         <div>
-                            <p class="fSize-16">Subtasks</p>
+                            <p class="fSize-16 mb-8">Subtasks</p>
                             <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                 <label for="subTasks">
                                     <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                                 </label>
-                                <!-- TODO: onclick funktion -->
                                 <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
                                         <div class="addTaskAdd"></div>
                                 </button>

@@ -64,10 +64,6 @@
                                 <p class="board-subtitle">To Do</p>
                                 <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-to-do')" title="Klick to add a new task">
                             </div>
-                            <div>
-                                <!-- TODO: icon einfügen
-                                                add task popUp generieren -->
-                            </div>
                         </div>
                         <div class="board-tasks">
                             <div id="no-tasks-to-do" class="board-no-tasks d-flex align-items-center justify-content-center">
@@ -84,10 +80,7 @@
                                 <p class="board-subtitle">In progress</p>
                                 <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-in-progress')" title="Klick to add a new task">
                             </div>
-                            <div>
-                                <!-- TODO: icon einfügen
-                                          add task popUp generieren -->
-                            </div>
+
                         </div>
                         <div class="board-tasks">
                             <div id="no-tasks-in-progress" class="board-no-tasks d-flex align-items-center justify-content-center">
@@ -103,10 +96,6 @@
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Await feedback</p>
                                 <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-await-feedback')" title="Klick to add a new task">
-                            </div>
-                            <div>
-                                <!-- TODO: icon einfügen
-                                                add task popUp generieren -->
                             </div>
                         </div>
                         <div class="board-tasks">
@@ -124,16 +113,12 @@
                                 <p class="board-subtitle">Done</p>
                                 <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-done')" title="Klick to add a new task">
                             </div>
-                            <div>
-                                <!-- TODO: icon einfügen
-                                                add task popUp generieren -->
-                            </div>
                         </div>
                         <div class="board-tasks">
                             <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Done</p>
                             </div>
-                            <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" onclick="openTaskOverlay()" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
                             </div>
                         </div>
                     </div>

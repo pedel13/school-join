@@ -1,11 +1,23 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio;
 let subtasklist = ['no'];
-let subtaskProofment = [];
+let subtaskProovment = [];
+let expanded = false;
 
-async function addTask(position='') {
+function showCheckboxes() {
+  var checkboxes = document.getElementById("checkboxes");
+  if (!expanded) {
+    checkboxes.style.display = "flex";
+    expanded = true;
+  } else {
+    checkboxes.style.display = "none";
+    expanded = false;
+  }
+}
+
+async function addTask(event, position='') {
+    event.preventDefault(event);
     await getInputs(position);
-    location.reload();
 }
 
 async function getInputs(position) {
@@ -18,7 +30,7 @@ async function getInputs(position) {
         "priority": prio,
         "categorySelect": document.getElementById('categorySelect').value,
         "subtasks": subtasklist,
-        "subtask": subtaskProofment
+        "subtask": subtaskProovment
     };
     
     await setTaskDataInDatabase(inputs);
@@ -27,19 +39,13 @@ async function getInputs(position) {
 }
 
 function clearAddTask() {
-    title.value = '';
-    description.value = '';
-    selectInputAssignee.value = '';
-    datePicker.value = '';
-    categorySelect.value = '';
-    subtasks.value = '';
     subtasklist = ['no'];
-    subtaskProofment = ['no'];
+    subtaskProovment = [];
     prioButtonClearSelect()
     prio = '';
 }
 
-async function setTaskDataInDatabase(data = {}) {
+async function setTaskDataInDatabase(data) {
     try {
          let response = await fetch(baseUrl + "/board/tasks" + ".json", {
              method: "POST",
@@ -50,6 +56,9 @@ async function setTaskDataInDatabase(data = {}) {
          });
          if (!response.ok) {
              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            else{
+                window.location.assign('../board.html');
          }
          let responseData = await response.json();
     } catch (error) {
@@ -138,6 +147,7 @@ function prioButtonClearSelect() {
 }
 
 
+
 function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
     document.getElementById('subtasks').removeAttribute("placeholder");
     document.getElementById('subtasks').value=newSubtask;
@@ -147,12 +157,12 @@ function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
 function deleteCreateSubtask(subtaskCreateCount='') {
     if (subtasklist.length === 1) {
         subtasklist = ['no'];
-        subtaskProofment = ['no']
+        subtaskProovment = ['no']
     }
     else {
         let subtaskCreateCountSplice = subtaskCreateCount;
         subtasklist.splice(subtaskCreateCountSplice, 1);
-        subtaskProofment.splice(subtaskCreateCountSplice, 1);
+        subtaskProovment.splice(subtaskCreateCountSplice, 1);
         }
     let element = document.getElementById('subtaskStorage');
     if (element) {
@@ -182,10 +192,11 @@ function renderAllCreateSubtasks(taskId) {
     let element = tasks[taskId];
     let subtask = element.subtasks;
     if (subtask == 'no') {
+        subtasklist = ['no'];
     } else{
     for (let subtask in element.subtasks) {
         subtasklist.push(element.subtasks[i]);
-        subtaskProofment.push(element.subtask[i]);
+        subtaskProovment.push(element.subtask[i]);
     renderCrateSubtask(element.subtasks[i], i);
     i ++;
     }
@@ -196,9 +207,10 @@ function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
     if (subtasklist[0] == 'no') {
         subtasklist = [];
+        subtaskProovment = [];
     }
     subtasklist.push(newSubtask);
-    subtaskProofment.push("false");
+    subtaskProovment.push("false");
     subtasks.value = '';
     let subtaskCreateCount = subtasklist.length - 1;
     renderCrateSubtask(newSubtask, subtaskCreateCount);

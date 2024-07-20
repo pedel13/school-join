@@ -58,7 +58,6 @@ async function changeSubtaskProvement(i, taskId = '') {
 }
 
 async function updateSubtaskProvement(data = {}, path = '') {
-    console.log("in methode");
     try{
     let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
         method: 'PUT',
@@ -123,7 +122,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
     </div>
     </div>
     <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
-        <button class="unstyled-button editBar" type="button" onclick="deleteTask('${taskId}')">
+        <button class="unstyled-button editBar" type="button" onclick="deleteTask(event, '${taskId}')">
             <img src="./img/icons/delete_icon.png">
             <p>Delete</p>
         </button>
@@ -142,7 +141,7 @@ function renderTaskEditor(taskId, task) {
         <div  class="taskOverlayTypeEdite d-flex">
             <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
         </div>
-            <form class="main" onsubmit="changeTask('${taskId}')">
+            <form class="main" onsubmit="changeTask(event,'${taskId}')">
                 <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
                     <div>
                         <div>

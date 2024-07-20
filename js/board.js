@@ -31,41 +31,41 @@ async function drop(dropPosition) {
 }
 
 async function updateTask() {
-    task = JSON.parse(localStorage.getItem("activeTask"));
-    taskId = localStorage.getItem("taskId");
-    console.log(localStorage);
+    let task = localStorage.getItem("activeTask");
+    let taskId = localStorage.getItem("taskId");
     try {
-        await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+        let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(task)
+            body: task
         }); 
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
     }  catch (error) {
-        console.log(response);
         console.error("Error PUT data in database:", error);
     }
-
 }
 
 
-async function changeTask(taskId='') {
+async function changeTask(event,taskId='') {
+    event.preventDefault(event);
     let task = JSON.parse(localStorage.getItem("activeTask"));
-    let title = document.getElementById('title').value;
-    let description = document.getElementById('description').value;
-    let selectInputAssignee = document.getElementById('selectInputAssignee').value;
-    let datePicker = document.getElementById('datePicker').value;
-    task["title"] = title;
-    task["description"] = description;
-    task["selectInputAssignee"] = selectInputAssignee;
-    task["datePicker"] = datePicker;
+    task["title"] = document.getElementById('title').value;
+    task["description"] = document.getElementById('description').value;
+    task["selectInputAssignee"] = document.getElementById('selectInputAssignee').value;
+    task["datePicker"] = document.getElementById('datePicker').value;
     task["priority"] = prio;
-    task["subtasks"] = subtasklist;
-    task["subtask"] = subtaskProofment;
+    if (subtasklist[0] !== 'no') {
+        task["subtasks"] = subtasklist;
+        task["subtask"] = subtaskProofment;
+    }
     localStorage.activeTask = JSON.stringify(task);
     localStorage.setItem("taskId", `${taskId}`);
     await updateTask();
+    closeTaskOverlay();
 }
 
 
@@ -194,7 +194,7 @@ function subtaskCounter(task) {
 
 function categoryFinder(task) {
     let categoryText = "";
-    if (task.categorySelect === "technical-task") {
+    if (task.categorySelect == "technical-task") {
         categoryText = "Technical Task";
     } else {
         categoryText = "User Story";
@@ -222,7 +222,8 @@ function countForNoTask(positionFromCard) {
     }
 }
 
-async function deleteTask(taskId) {
+async function deleteTask(event, taskId) {
+    event.preventDefault(event);
     try {
     let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
         method: 'DELETE',
