@@ -11,7 +11,9 @@ async function addContact() {
     let contactPhone = document.getElementById('newContactPhone');
     
     await setContactToFirebase(contactName.value, contactMail.value, contactPhone.value);
+    clearNewContactForm();
     closeContactOverlay();
+    window.location.reload();
     await renderContacts();
     
 }
@@ -66,6 +68,7 @@ async function loadContacts(path = "/contacts") {
  * Rendering the contact data into the HTML
  */
 async function renderContacts(contactID, name, mail) {    
+    document.getElementById('contactList').innerHTML += '';
     document.getElementById('contactList').innerHTML += `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
             <ul class="namesList" id="contactUlActive_${contactID}" onclick="activeContact('${contactID}'); renderClickedContact('${contactID}')">
@@ -121,8 +124,7 @@ function renderClickedContact(contactID) {/*HTML*/
                             Delete
                         </div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
         </div>
         
@@ -178,12 +180,12 @@ async function deleteContact(contactToDelete) {
         let response = await fetch(BASE_URL + "/contacts/" + contactToDelete + ".json", {
             method: 'DELETE',
         });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-        } 
-        catch (error) {
-            console.error("Error delete data in database:", error);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    } 
+    catch (error) {
+        console.error("Error delete data in database:", error);
     }
-        
+    window.location.reload();      
 }
