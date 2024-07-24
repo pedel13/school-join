@@ -211,8 +211,13 @@ button#guestLogIn {
 }
 
 .signUp-title {
+    display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+}
+
+.signUp-title > div > h1 {
+    margin-left: 48px;
 }
 
 .loginForm,
@@ -265,7 +270,7 @@ input[type=date] {
 
 #loginCredentials > form > input,
 #signUpCredentials > form > input {
-    width: 100%;
+    width: 100vw;
     max-width: 422px;
     height: 56px;
     max-height: 48px;

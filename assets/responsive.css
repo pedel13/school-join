@@ -51,6 +51,25 @@
     }
 }
 
+@media (max-width: 570px) {
+    /* Sign Up Page */
+    #signUpCredentials > form > input {
+        width: 70vw;
+    }
+
+    .signUp-title > div > h1 {
+        font-size: 48px !important;
+        margin-left: 24px;
+    }
+}
+
+@media (max-width: 500px) {
+    /* Sign Up Page */
+    .signUp-title > div > h1 {
+        font-size: 32px !important;
+    }
+}
+
 @media (max-width: 415px) {
     .join-logo {
         height: 80px;
@@ -75,6 +94,22 @@
 
     .footerLinks {
         font-size: 16px;
+    }
+
+    /* Sign Up Page */
+    .loginForm, .signUpForm {
+        padding: 42px 63px;
+    }
+    .signUp-title {
+        flex-direction: column-reverse;
+        justify-content: center!important;
+        align-items: center !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+    }
+
+    .signUp-title > div > h1 {
+        margin: 0 0 16px 0;
     }
 }
 
