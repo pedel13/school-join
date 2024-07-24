@@ -1,0 +1,19 @@
+@media (max-width: 800px) {
+    /* Login Page */
+    .resp-signUp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 24px;
+    }
+
+    .signUp_btn_desktop {
+        display: none;
+    }
+}
+
+@media (max-width: 670px) {
+    #loginForm {
+        max-width: 500px;
+    }
+}

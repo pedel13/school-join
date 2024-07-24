@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -9,8 +13,23 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    /*overflow-x: hidden;
+    overflow-y: hidden;*/
+}
+
+*::-webkit-scrollbar {
+    width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #f5f5f5;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #2A3647;
+    border: 1px solid #547BAF;
+    border-radius: 10px;
+    background-clip: padding-box;
 }
 
 /*##### General- & template stylings #####*/
@@ -143,7 +162,15 @@ section#sidebar > img {
     padding: 40px 80px;
 }
 
-.signUp_btn {
+.signUp_btn_desktop {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.signUp_btn_responsive {
     position: relative;
     display: flex;
     justify-content: center;
@@ -210,6 +237,7 @@ button#guestLogIn {
     align-items: center;
     flex-direction: column;
     background: #ffffff;
+    width: 100%;
     max-width: 652px;
     min-height: 400px;
     border-radius: 24px;
@@ -239,20 +267,24 @@ input[type=date] {
     font-size: 16px;
 }
 
+#loginCredentials {
+    width: 100%;
+}
+
 #loginCredentials > form {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-#loginCredentials > form:nth-of-type(2){
-    margin-top: 40px;
-}
-
 #loginCredentials > form > input,
 #signUpCredentials > form > input {
-    width: 422px;
+    width: 100%;
+    max-width: 422px;
+    height: 56px;
+    max-height: 48px;
     padding: 12px 30px 12px 21px !important;
     gap: 10px;
     border: 1px solid lightgray;
@@ -1413,4 +1445,8 @@ button#newContact {
 
 .alert-filled {
     border-color: #FF8190 !important;  
+}
+
+.resp-signUp {
+    display: none;
 }

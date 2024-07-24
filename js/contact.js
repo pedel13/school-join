@@ -69,7 +69,7 @@ async function loadContacts(path = "/contacts") {
  */
 async function renderContacts(contactID, name, mail) {    
     document.getElementById('contactList').innerHTML += '';
-    document.getElementById('contactList').innerHTML += `
+    document.getElementById('contactList').innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
             <ul class="namesList" id="contactUlActive_${contactID}" onclick="activeContact('${contactID}'); renderClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
@@ -93,19 +93,20 @@ async function renderContacts(contactID, name, mail) {
     console.log("Kontakt (Renderfunktion): ", localContactArray);
 }
 
-function renderClickedContact(contactID) {/*HTML*/
+function renderClickedContact(contactID, nameLetter) {
     let name = localContactArray[contactID]['name'];
     let email = localContactArray[contactID]['email'];
     let phone = localContactArray[contactID]['phone'];
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
     //document.getElementById(`renderedContactDetails`).classList.add('slide-right');
-    document.getElementById('renderedContactDetails').innerHTML += `
+    //filterNamesLetter(nameLetter);
+    document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
         <div id="contactSummary">
             <div id="contactTitle">
                 <div id="contactAvatar">
-                    <div class="credentialsCircle">
-                        FF
+                    <div class="credentialsCircle" id="credentialsCircle">
+                        ${nameLetter}
                     </div>
                 </div>
                 
@@ -144,6 +145,16 @@ function renderClickedContact(contactID) {/*HTML*/
             </div>
         </div>
     `;
+}
+
+function filterNamesLetter(contactID) {
+    let nameLetter = localContactArray[contactID]['name'];
+    nameLetter = contactID;
+    for (let index = 0; index < nameLetter.length; index++) {
+        if (nameLetter.includes(nameLetter)) {
+            return(nameLetter);
+        }
+    }
 }
 
 function openAddContactOverlay() {
