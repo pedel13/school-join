@@ -24,7 +24,7 @@
     <div class="loginHeader" id="header">
         <div>
             <a href="index.html">
-                <img src="img/join_logo.png" alt="">
+                <img src="img/join_logo.png" class="join-logo">
             </a>
         </div>
         <div class="signUp_btn_desktop">
@@ -50,19 +50,19 @@
                         <input type="checkbox" id="remember">
                         <span>Remember me</span>
                     </div>
-                    <div class="justify-content-evenly d-flex w-100">
-                    <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
-                    <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
+                    <div class="signUp_buttons">
+                        <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
+                        <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <div class="resp-signUp">
+    <div class="resp-signUp" id="resp-signUp">
         <div class="signUp_btn_responsive">
             <p>Not a Join user?</p>
-            &nbsp;
+            
             <a href="register.html">
                 <button id="signUp">Sign up</button>
             </a>

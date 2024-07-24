@@ -1,4 +1,10 @@
 @media (max-width: 800px) {
+    #email {
+        height: calc(-30px);
+    }
+}
+
+@media (max-width: 670px) {
     /* Login Page */
     .resp-signUp {
         display: flex;
@@ -10,10 +16,92 @@
     .signUp_btn_desktop {
         display: none;
     }
-}
 
-@media (max-width: 670px) {
     #loginForm {
         max-width: 500px;
+    }
+
+    button#logIn {
+        width: 90px;
+    } 
+
+    button#guestLogIn {
+        width: 156px;
+    }
+
+    button#logIn,
+    button#guestLogIn {
+        font-size: 16px !important;
+    }
+
+    #loginWrapper {
+        margin-top: 48px;
+    }
+
+    #loginForm { 
+        padding: 28px 80px;
+    }
+
+    #loginForm > h1 {
+        font-size: 48px !important;
+    }
+
+    .signUp_btn_responsive > p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 415px) {
+    .join-logo {
+        height: 80px;
+        width: 70px;
+    }
+
+    .loginHeader {
+        justify-content: center;
+    }
+
+    #loginForm > h1 {
+        font-size: 40px !important;
+    }
+
+    button#logIn {
+        width: 75px;
+    }
+
+    button#guestLogIn {
+        width: 115px;
+    }
+
+    .footerLinks {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    .signUp_buttons > button {
+        width: 100%;
+        display: block;
+        flex-direction: column;
+        margin-bottom: 12px;
+    }
+
+    button#logIn,
+    button#guestLogIn {
+        width: 200px;
+    }
+
+    .signUp_btn_responsive > * {
+        margin-bottom: 12px;
+    }
+    .signUp_btn_responsive {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 320px) {
+    button#logIn,
+    button#guestLogIn {
+        width: 150px !important;
     }
 }

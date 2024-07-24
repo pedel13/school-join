@@ -95,7 +95,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
     <div id="issueType" class="issueType ${element.categorySelect}">
     ${categoryText}
     </div>
-    <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
+    <img src="./img/icons/cancel-logo.png"  onclick="closeTaskOverlay()">
     </div>
     
     <div class="scrollbarTaskOverlayWrapper scrollbox">
@@ -139,7 +139,7 @@ function renderTaskEditor(taskId, task) {
     document.getElementById('taskOverlay').innerHTML = `
         <div  class="taskOverlayWrapper slide-right">
         <div  class="taskOverlayTypeEdite d-flex">
-            <img src="./img/icons/cancel-logo.png" alt="" onclick="closeTaskOverlay()">
+            <img src="./img/icons/cancel-logo.png"  onclick="closeTaskOverlay()">
         </div>
             <form class="main" onsubmit="changeTask(event,'${taskId}')">
                 <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
@@ -212,7 +212,7 @@ function renderTaskEditor(taskId, task) {
 
                 <div class="editTaskBottom d-flex">
                     <div>
-                        <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                        <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
                     </div>
                 </div>
             </form>

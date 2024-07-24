@@ -318,8 +318,8 @@ function renderAddOverlay(position) {
                             <p class="fSize-16">This field is required<span class="redStar">*</span></p>
         
                             <div id="createTaskButton">
-                                <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png" alt="" class="createTaskButtonImg"></button>
-                                <button id="create">Create Task <img src="./img/icons/check-icon.png" alt="" class="createTaskButtonImg"></button>
+                                <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg"></button>
+                                <button id="create">Create Task <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
                             </div>
                         </div>
                     </form>
