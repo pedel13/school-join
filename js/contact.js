@@ -123,7 +123,6 @@ async function renderContacts(contactID, name, mail, nameCharts, color) {
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
                         <div class="fc-white d-flex">
-                    <!-- TODO: Farbklasse dynamisch gestalten -->
                     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${color} -m-8">${nameCharts[0]}${nameCharts[1]}</p>
                     </div>
                         </div>
@@ -141,7 +140,7 @@ async function renderContacts(contactID, name, mail, nameCharts, color) {
     `;
 }
 
-function renderClickedContact(contactID, nameLetter) {
+function renderClickedContact(contactID) {
     let name = localContactArray[contactID]['name'];
     let email = localContactArray[contactID]['email'];
     let phone = localContactArray[contactID]['phone'];
@@ -193,16 +192,6 @@ function renderClickedContact(contactID, nameLetter) {
             </div>
         </div>
     `;
-}
-
-function filterNamesLetter(contactID) {
-    let nameLetter = localContactArray[contactID]['name'];
-    nameLetter = contactID;
-    for (let index = 0; index < nameLetter.length; index++) {
-        if (nameLetter.includes(nameLetter)) {
-            return (nameLetter);
-        }
-    }
 }
 
 function openAddContactOverlay() {
