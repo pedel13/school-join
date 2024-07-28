@@ -68,6 +68,21 @@
     .signUp-title > div > h1 {
         font-size: 32px !important;
     }
+
+    #loginForm {
+        max-width: 370px;
+    }
+
+    #loginCredentials > form > input {
+        max-width: 320px;
+    }
+
+    button#logIn {
+        max-width: 65px;
+    }
+    button#guestLogIn {
+        max-width: 130px;
+    }
 }
 
 @media (max-width: 415px) {
@@ -114,6 +129,15 @@
 }
 
 @media (max-width: 360px) {
+    /* Log-In Page */
+    .signUp_buttons {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
     .signUp_buttons > button {
         width: 100%;
         display: block;
@@ -121,22 +145,29 @@
         margin-bottom: 12px;
     }
 
-    button#logIn,
-    button#guestLogIn {
-        width: 200px;
+    #loginForm {
+        max-width: 320px;
     }
 
-    .signUp_btn_responsive > * {
-        margin-bottom: 12px;
+    #loginCredentials > form > input {
+        max-width: 280px;
     }
-    .signUp_btn_responsive {
-        flex-direction: column;
+
+    button#logIn {
+        width: 200px;
+        max-width: 200px!important;
+    }
+
+    button#guestLogIn {
+        width: 200px;
+        max-width: 200px;
     }
 }
 
 @media (max-width: 320px) {
-    button#logIn,
-    button#guestLogIn {
-        width: 150px !important;
+    /* Log-In Page */
+    #loginForm {
+        max-width: 250px;
     }
+
 }
