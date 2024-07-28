@@ -6,28 +6,74 @@ let localContactArray;
  * @function addContact
  */
 async function addContact() {
-    let contactName = document.getElementById('newContactName');
-    let contactMail = document.getElementById('newContactMail');
-    let contactPhone = document.getElementById('newContactPhone');
-    
-    await setContactToFirebase(contactName.value, contactMail.value, contactPhone.value);
+    let contactName = document.getElementById('newContactName').value;
+    let contactMail = document.getElementById('newContactMail').value;
+    let contactPhone = document.getElementById('newContactPhone').value;
+    let nameCharts = [];
+    nameCharts = splitName(contactName);
+    let contactColor = setColor();
+    await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
     clearNewContactForm();
     closeContactOverlay();
     window.location.reload();
-    await renderContacts();
-    
+}
+
+function setColor() {
+    let randomNumber = Math.floor(Math.random() * 7);
+    let color = '';
+    switch (randomNumber) {
+        case 0:
+            color = "bg-orange";
+            break;
+        case 1:
+            color = "bg-purple";
+            break;
+        case 2:
+            color = "bg-blue";
+            break;
+        case 3:
+            color = "bg-pink";
+            break;
+        case 4:
+            color = "bg-jelliow";
+            break;
+        case 5:
+            color = "bg-green";
+            break;
+        case 6:
+            color = "bg-dark-blue";
+            break;
+        case 7:
+            color = "bg-red";
+            break;
+        default:
+            break;
+    }
+    return color;
+}
+
+function splitName(data) {
+    var cdata = data.split(" ");
+    let firstName = cdata[0];
+    let secentName = cdata[1];
+    let nameCharts = [];
+    let firstChart = firstName.charAt(0);
+    let secentChart = secentName.charAt(0);
+    nameCharts.push(firstChart);
+    nameCharts.push(secentChart);
+    return nameCharts;
 }
 
 async function postContactData(path = "", data) {
     try {
-        let response = await fetch(BASE_URL + path + ".json",{
+        let response = await fetch(BASE_URL + path + ".json", {
             method: "POST",
             header: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data)
         });
-        
+
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -36,46 +82,49 @@ async function postContactData(path = "", data) {
     }
 }
 
-async function setContactToFirebase(name,email,phone) {
+async function setContactToFirebase(name, email, phone, nameCharts, contactColor) {
     let contactData = {
         "name": name,
         "email": email,
-        "phone": phone
+        "phone": phone,
+        "nameCharts": nameCharts,
+        "contactColor": contactColor,
     };
     await postContactData('contacts', contactData);
 }
 
-async function fetchContacts() {    
+async function fetchContacts() {
     await loadContacts();
 
     for (let contactID in localContactArray) {
         let element = localContactArray[contactID];
         let name = element.name;
         let mail = element.email;
-
-        renderContacts(contactID, name, mail);
+        let nameCharts = element.nameCharts;
+        let color = element.contactColor
+        renderContacts(contactID, name, mail, nameCharts, color);
     }
 
-    console.log('Kontakt (fetchContacts): ', localContactArray);
 }
 
 async function loadContacts(path = "/contacts") {
     let response = await fetch(BASE_URL + path + ".json");
-    localContactArray =  await response.json();
+    localContactArray = await response.json();
 }
 
 /**
  * Rendering the contact data into the HTML
  */
-async function renderContacts(contactID, name, mail) {    
-    document.getElementById('contactList').innerHTML += '';
+async function renderContacts(contactID, name, mail, nameCharts, color) {
     document.getElementById('contactList').innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
             <ul class="namesList" id="contactUlActive_${contactID}" onclick="activeContact('${contactID}'); renderClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
-                            <img src="./img/icons/person.png" alt="personImage">
+                        <div class="fc-white d-flex">
+                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${color} -m-8">${nameCharts[0]}${nameCharts[1]}</p>
+                    </div>
                         </div>
                         <div class="contact">
                             ${name}
@@ -89,24 +138,22 @@ async function renderContacts(contactID, name, mail) {
             </ul>
         </div>
     `;
-    
-    console.log("Kontakt (Renderfunktion): ", localContactArray);
 }
 
-function renderClickedContact(contactID, nameLetter) {
+function renderClickedContact(contactID) {
     let name = localContactArray[contactID]['name'];
     let email = localContactArray[contactID]['email'];
     let phone = localContactArray[contactID]['phone'];
+    let color = localContactArray[contactID]['contactColor'];
+    let nameCharts = localContactArray[contactID]['nameCharts'];
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
-    //document.getElementById(`renderedContactDetails`).classList.add('slide-right');
-    //filterNamesLetter(nameLetter);
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
         <div id="contactSummary">
             <div id="contactTitle">
                 <div id="contactAvatar">
-                    <div class="credentialsCircle" id="credentialsCircle">
-                        ${nameLetter}
+                    <div class="credentialsCircle ${color}" id="credentialsCircle">
+                        ${nameCharts[0]}${nameCharts[1]}
                     </div>
                 </div>
                 
@@ -147,16 +194,6 @@ function renderClickedContact(contactID, nameLetter) {
     `;
 }
 
-function filterNamesLetter(contactID) {
-    let nameLetter = localContactArray[contactID]['name'];
-    nameLetter = contactID;
-    for (let index = 0; index < nameLetter.length; index++) {
-        if (nameLetter.includes(nameLetter)) {
-            return(nameLetter);
-        }
-    }
-}
-
 function openAddContactOverlay() {
     document.getElementById('contactOverlay').classList.remove('d-none');
 }
@@ -194,9 +231,9 @@ async function deleteContact(contactToDelete) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } 
+    }
     catch (error) {
         console.error("Error delete data in database:", error);
     }
-    window.location.reload();      
+    window.location.reload();
 }

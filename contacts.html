@@ -79,12 +79,12 @@
                             <div class="close" onclick="closeContactOverlay()">
                                 <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img">
                             </div>
+                            <form onsubmit="addContact()" id="createNewContactForm">
                             <div id="addContactFormAvatar" class="addContactFormAvatar">
                                 <div class="avatar">
                                     <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                 </div>
                                 <div class="addContactForm">
-                                    <form onsubmit="" id="createNewContactForm">
                                         <input type="text" id="newContactName" class="icon-person" placeholder="Name" required>
                                         <label for="newContactName"></label>
                                         
@@ -93,21 +93,21 @@
                                         
                                         <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone" required>
                                         <label for="newContactPhone"></label>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="createContactButton">
-                                <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
-                                    Cancel
-                                    <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg">
-                                </button>
                                 
-                                <button id="createNewContact" class="createNewContact" type="button" onclick="addContact();">
-                                    Create Contact
-                                    <img src="./img/icons/check-icon.png"  class="createTaskButtonImg">
-                                </button>
-                            </div>
+                                <div class="createContactButton">
+                                    <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
+                                        Cancel
+                                        <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg">
+                                    </button>
+                                    
+                                    <button id="createNewContact" class="createNewContact" type="">
+                                        Create Contact
+                                        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg">
+                                    </button>
+                                </div>
+                            </form>
                             
                         </div>
                     </div>
