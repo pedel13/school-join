@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="assets/style.css">
-<link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
     <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
 
     <link rel="icon" type="image/png" href="img/join_logo.png">
@@ -36,7 +36,7 @@
             <div w3-include-html="./templates/header.html"></div>
 
             <!-- Join Title -->
-            <div class="d-flex flex-column">
+            <div class="d-flex flex-column" id="index-centerBox">
                 <div class="d-flex summary-title-box align-items-center">
                     <h1 class="summary-title-large">Join 360</h1>
                     <div class="summary-title-line"></div>
@@ -110,7 +110,7 @@
                                     <div>
                                         <p class="">
                                             <!-- TODO: Datum funktion -->
-                                            October 16,2022
+                                            October 16th, 2022
                                         </p>
                                     </div>
                                     <div>
@@ -170,12 +170,14 @@
                             </a>
                         </div>
                     </div>
-                    <div class="">
+                    <div class="welcome-text">
                         <!-- TODO: time funktion und user-namen funktion -->
                         <h3 class="summary-greeting" id="summary-time">Good morning</h3>
                         <h2 class="summary-greeting-name" id="summary-user">Sofia Müller</h2>
                     </div>
                 </div>
+                
+                <div w3-include-html="./templates/mobile-menu.html" id="mobileNavBar"></div>
             </div>
         </div>
     </div>

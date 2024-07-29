@@ -1,3 +1,82 @@
+@media (max-width: 1200px) {
+    /* index.html */
+    .welcome-text {
+        display: none;
+    }
+}
+
+@media (max-width: 1050px) {
+    /* index.html */
+    h1.project-title {
+        font-size: 32px !important;
+    }
+}
+
+@media (max-width: 970px) {
+    /* index.html */
+    h1.project-title {
+        font-size: 26px !important;
+    }
+
+    section#sidebar {
+        display: none !important;
+    }
+
+    #index-centerBox {
+        justify-content: center;
+        align-items: center;
+    }
+
+    #index-centerBox > div:nth-child(1) {
+        margin-left: 0 !important;
+    }
+
+    .summary-title-large {
+        font-size: 40px !important;
+    }
+
+    #mobileNavBar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .responsive-mobile-menu {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        position: absolute;
+        bottom: 0;
+        background-color: #2A3647;
+        padding: 0 16px;
+    }
+
+    .mobileMenu-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .mobileMenu-wrapper > a {
+        width: 76px;
+        height: 76px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .mobileMenu-wrapper > a > p {
+        font-size: 14px !important;
+        color: white !important;
+    }
+}
+
 @media (max-width: 800px) {
     #email {
         height: calc(-30px);

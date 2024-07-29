@@ -1438,3 +1438,7 @@ button#newContact {
 .resp-signUp {
     display: none;
 }
+
+.responsive-mobile-menu {
+    display: none;
+}
