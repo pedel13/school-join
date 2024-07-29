@@ -136,8 +136,8 @@ function removeNoTaskInProgress(taskInProgress = "") {
     element.classList.remove("d-none");
 }
 
-async function loadTasks() {
-    let response = await fetch(baseUrl + "/board/tasks" + ".json");
+async function loadTasks(path="") {
+    let response = await fetch(baseUrl + path + ".json");
     return await response.json();
 }
 
@@ -149,7 +149,7 @@ function cleanTaskboard() {
 }
 
 async function renderAllTasks() {
-    let tasks = await loadTasks();
+    let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
     cleanTaskboard();
     for (let taskId in tasks) {

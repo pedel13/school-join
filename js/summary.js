@@ -2,7 +2,7 @@ let urgentCount = 0;
 let taskCount = 0;
 
 async function summaryOnLoad(){
-    let tasks = await loadTasks();
+    let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
     for (let taskId in tasks) {
         let element = tasks[taskId];

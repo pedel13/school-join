@@ -3,19 +3,34 @@ let prio;
 let subtasklist = ['no'];
 let subtaskProovment = [];
 let expanded = false;
+let contacts;
 
-function showCheckboxes() {
-  var checkboxes = document.getElementById("checkboxes");
-  if (!expanded) {
-    checkboxes.style.display = "flex";
-    expanded = true;
-  } else {
-    checkboxes.style.display = "none";
-    expanded = false;
-  }
+async function loadUsableContacts() {
+    contacts = await loadTasks("/contacts");
+    for (const element in contacts) {
+        if (Object.hasOwnProperty.call(contacts, element)) {
+            const contact = contacts[element];
+            let initials = contact.nameCharts;
+            let name = contact.name;
+            let contactColor = contact.contactColor;
+            renderContactSelect(element, initials, name, contactColor);
+
+        }
+    }
 }
 
-async function addTask(event, position='') {
+function showCheckboxes() {
+    var checkboxes = document.getElementById("checkboxes");
+    if (!expanded) {
+        checkboxes.style.display = "flex";
+        expanded = true;
+    } else {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+}
+
+async function addTask(event, position = '') {
     event.preventDefault(event);
     await getInputs(position);
 }
@@ -32,7 +47,7 @@ async function getInputs(position) {
         "subtasks": subtasklist,
         "subtask": subtaskProovment
     };
-    
+
     await setTaskDataInDatabase(inputs);
     clearAddTask();
 
@@ -47,26 +62,26 @@ function clearAddTask() {
 
 async function setTaskDataInDatabase(data) {
     try {
-         let response = await fetch(baseUrl + "/board/tasks" + ".json", {
-             method: "POST",
-             headers: {
-                 "Content-Type": "application/json"
-             },
-             body: JSON.stringify(data)
-         });
-         if (!response.ok) {
-             throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            else{
-                window.location.assign('../board.html');
-         }
-         let responseData = await response.json();
+        let response = await fetch(baseUrl + "/board/tasks" + ".json", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        else {
+            window.location.assign('../board.html');
+        }
+        let responseData = await response.json();
     } catch (error) {
         console.error("Error setting data in database:", error);
     }
 }
 
-function openAddTaskOverlay(position='') {
+function openAddTaskOverlay(position = '') {
     document.getElementById('addTaskOverlay').classList.remove('d-none');
     renderAddOverlay(position);
 }
@@ -81,7 +96,7 @@ function prioButton(button, icon) {
 
     buttonSelected.classList.add("priorityButtonActiv");
     buttonSelected.classList.remove("priorityButton");
-    iconSelected.classList.add(icon+'Activ');
+    iconSelected.classList.add(icon + 'Activ');
     iconSelected.classList.remove(icon);
 }
 
@@ -93,11 +108,11 @@ function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     buttonSelected.classList.add("priorityButton");
     buttonSelected.classList.remove("priorityButtonActiv");
     iconSelected.classList.add(icon);
-    iconSelected.classList.remove(icon+'Activ');
+    iconSelected.classList.remove(icon + 'Activ');
     buttonOtherSelected.classList.add("priorityButton");
     buttonOtherSelected.classList.remove("priorityButtonActiv");
     iconOtherSelected.classList.add(iconOther);
-    iconOtherSelected.classList.remove(iconOther+'Activ');
+    iconOtherSelected.classList.remove(iconOther + 'Activ');
 }
 
 function prioButtonclear(button, icon) {
@@ -107,23 +122,23 @@ function prioButtonclear(button, icon) {
     buttonSelected.classList.add("priorityButton");
     buttonSelected.classList.remove("priorityButtonActiv");
     iconSelected.classList.add(icon);
-    iconSelected.classList.remove(icon+'Activ');
+    iconSelected.classList.remove(icon + 'Activ');
 }
 
 function prioButtonSelect(priority) {
     prio = priority;
     switch (prio) {
         case 'urgent':
-            prioButton('urgentButton','addTaskPrioUrgent');
-            prioButtonRemoveOther('mediumButton','addTaskPrioMedium','lowButton','addTaskPrioLow');
+            prioButton('urgentButton', 'addTaskPrioUrgent');
+            prioButtonRemoveOther('mediumButton', 'addTaskPrioMedium', 'lowButton', 'addTaskPrioLow');
             break;
         case 'medium':
-            prioButton('mediumButton','addTaskPrioMedium');
-            prioButtonRemoveOther('urgentButton','addTaskPrioUrgent','lowButton','addTaskPrioLow');
+            prioButton('mediumButton', 'addTaskPrioMedium');
+            prioButtonRemoveOther('urgentButton', 'addTaskPrioUrgent', 'lowButton', 'addTaskPrioLow');
             break;
         case 'low':
-            prioButton('lowButton','addTaskPrioLow');
-            prioButtonRemoveOther('urgentButton','addTaskPrioUrgent','mediumButton','addTaskPrioMedium');
+            prioButton('lowButton', 'addTaskPrioLow');
+            prioButtonRemoveOther('urgentButton', 'addTaskPrioUrgent', 'mediumButton', 'addTaskPrioMedium');
             break;
         default:
             break;
@@ -133,13 +148,13 @@ function prioButtonSelect(priority) {
 function prioButtonClearSelect() {
     switch (prio) {
         case 'urgent':
-            prioButtonclear('urgentButton','addTaskPrioUrgent');
+            prioButtonclear('urgentButton', 'addTaskPrioUrgent');
             break;
         case 'medium':
-            prioButtonclear('mediumButton','addTaskPrioMedium');
+            prioButtonclear('mediumButton', 'addTaskPrioMedium');
             break;
         case 'low':
-            prioButtonclear('lowButton','addTaskPrioLow');
+            prioButtonclear('lowButton', 'addTaskPrioLow');
             break;
         default:
             break;
@@ -148,13 +163,13 @@ function prioButtonClearSelect() {
 
 
 
-function editCreatSubtask(subtaskCreateCount ='', newSubtask = '') {
+function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
     document.getElementById('subtasks').removeAttribute("placeholder");
-    document.getElementById('subtasks').value=newSubtask;
+    document.getElementById('subtasks').value = newSubtask;
     deleteCreateSubtask(subtaskCreateCount);
 }
 
-function deleteCreateSubtask(subtaskCreateCount='') {
+function deleteCreateSubtask(subtaskCreateCount = '') {
     if (subtasklist.length === 1) {
         subtasklist = ['no'];
         subtaskProovment = ['no']
@@ -163,10 +178,10 @@ function deleteCreateSubtask(subtaskCreateCount='') {
         let subtaskCreateCountSplice = subtaskCreateCount;
         subtasklist.splice(subtaskCreateCountSplice, 1);
         subtaskProovment.splice(subtaskCreateCountSplice, 1);
-        }
+    }
     let element = document.getElementById('subtaskStorage');
     if (element) {
-        let child = document.querySelector('#subtaskCreate_'+subtaskCreateCount);;
+        let child = document.querySelector('#subtaskCreate_' + subtaskCreateCount);;
         if (child) {
             child.remove();
         }
@@ -177,11 +192,11 @@ function deleteCreateSubtask(subtaskCreateCount='') {
 
 function renderAllCreateSubtaskNew() {
     if (subtasklist[0] == 'no') {
-    } else{
+    } else {
         let i = 0;
         for (let subtask in subtasklist) {
-        renderCrateSubtask(subtasklist[i], i);
-        i ++;
+            renderCrateSubtask(subtasklist[i], i);
+            i++;
         }
     }
 }
@@ -193,13 +208,13 @@ function renderAllCreateSubtasks(taskId) {
     let subtask = element.subtasks;
     if (subtask == 'no') {
         subtasklist = ['no'];
-    } else{
-    for (let subtask in element.subtasks) {
-        subtasklist.push(element.subtasks[i]);
-        subtaskProovment.push(element.subtask[i]);
-    renderCrateSubtask(element.subtasks[i], i);
-    i ++;
-    }
+    } else {
+        for (let subtask in element.subtasks) {
+            subtasklist.push(element.subtasks[i]);
+            subtaskProovment.push(element.subtask[i]);
+            renderCrateSubtask(element.subtasks[i], i);
+            i++;
+        }
     }
 }
 
@@ -214,10 +229,23 @@ function addSubtaskAddArray() {
     subtasks.value = '';
     let subtaskCreateCount = subtasklist.length - 1;
     renderCrateSubtask(newSubtask, subtaskCreateCount);
-    }
-    
-    function renderCrateSubtask(newSubtask, subtaskCreateCount) {
-    
+}
+
+function renderContactSelect(element, initials, name, contactColor) {
+    document.getElementById('selectContacts').innerHTML += /*html*/ `
+        <label for="${element}" class="d-flex justify-content-between w-100">
+            <div class="d-flex align-items-center justify-content-between">
+                <p 
+                class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
+                ${initials[0]}${initials[1]}</p>
+                <p>${name}</p>
+            </div>
+            <input type="checkbox" id="${element}" />
+        </label>`
+}
+
+function renderCrateSubtask(newSubtask, subtaskCreateCount) {
+
     document.getElementById('subtaskStorage').innerHTML += `
         <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" class="justify-content-between">
             • ${newSubtask}

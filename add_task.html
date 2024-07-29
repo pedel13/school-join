@@ -21,7 +21,7 @@
     <title>Join</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); loadUsableContacts()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -66,8 +66,8 @@
                                     <div class="overSelect"></div>
                                 </div>
                                 <div id="checkboxes" class="">
-                                    <div class="d-flex flex-column w-100">
-                                        <label for="one" class="d-flex justify-content-between w-100">
+                                    <div class="d-flex flex-column w-100" id="selectContacts">
+                                        <!-- <label for="one" class="d-flex justify-content-between w-100">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <p
                                                     class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center bg-orange">
@@ -84,7 +84,7 @@
                                                 <p>First checkbox</p>
                                             </div>
                                             <input type="checkbox" id="one" />
-                                        </label>
+                                        </label> -->
 
                                     </div>
                                 </div>
