@@ -35,6 +35,11 @@
         font-size: 40px !important;
     }
 
+    #summary-button-box {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+    }
+
     #mobileNavBar {
         position: absolute;
         bottom: 0;
@@ -128,6 +133,11 @@
     .signUp_btn_responsive > p {
         font-size: 20px;
     }
+
+    /* index.html */
+    header > div > h1 {
+        margin-left: 16px !important;
+    }
 }
 
 @media (max-width: 570px) {
@@ -161,6 +171,11 @@
     }
     button#guestLogIn {
         max-width: 130px;
+    }
+
+    /* index.html */
+    #index-centerBox {
+        width: 75% !important;
     }
 }
 
