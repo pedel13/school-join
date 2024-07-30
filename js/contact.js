@@ -58,9 +58,11 @@ function splitName(data) {
     let secentName = cdata[1];
     let nameCharts = [];
     let firstChart = firstName.charAt(0);
+    let firstChartUpperCase = firstChart.toUpperCase();
     let secentChart = secentName.charAt(0);
-    nameCharts.push(firstChart);
-    nameCharts.push(secentChart);
+    let secentChartUpperCase = secentChart.toUpperCase();
+    nameCharts.push(firstChartUpperCase);
+    nameCharts.push(secentChartUpperCase);
     return nameCharts;
 }
 

@@ -4,18 +4,38 @@ let subtasklist = ['no'];
 let subtaskProovment = [];
 let expanded = false;
 let contacts;
+let selectContacts;
 
 async function loadUsableContacts() {
     contacts = await loadTasks("/contacts");
+    selectContacts = [];
     for (const element in contacts) {
-        if (Object.hasOwnProperty.call(contacts, element)) {
             const contact = contacts[element];
             let initials = contact.nameCharts;
             let name = contact.name;
             let contactColor = contact.contactColor;
-            renderContactSelect(element, initials, name, contactColor);
+            renderContactSelector(element, initials, name, contactColor);
+    }
+}
 
+function selectContact(contact="") {
+
+    let selectetContact = true;
+    let i = 0;
+    for (const element in selectContacts) {
+        
+        if (contact == selectContacts[element]) {
+            selectetContact = false;
+            selectContacts.splice(i, 1);
+            oldSelectedContact = document.getElementById("select"+contact)
+            oldSelectedContact.remove();
         }
+        i++;
+    }
+    if (selectetContact === true) {
+        selectContacts.push(contact);;
+        let newSelectedContact = contacts[contact];
+    renderSelectedContact(newSelectedContact, contact);
     }
 }
 
@@ -37,10 +57,10 @@ async function addTask(event, position = '') {
 
 async function getInputs(position) {
     let inputs = {
+        "selectContacts": selectContacts,
         "position": position,
         "title": document.getElementById('title').value,
         "description": document.getElementById('description').value,
-        "selectInputAssignee": document.getElementById('selectInputAssignee').value,
         "datePicker": document.getElementById('datePicker').value,
         "priority": prio,
         "categorySelect": document.getElementById('categorySelect').value,
@@ -231,7 +251,14 @@ function addSubtaskAddArray() {
     renderCrateSubtask(newSubtask, subtaskCreateCount);
 }
 
-function renderContactSelect(element, initials, name, contactColor) {
+function renderSelectedContact(newSelectedContact, contact) {
+    document.getElementById("selectedContact").innerHTML += `
+    <p
+    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${newSelectedContact.contactColor}" id="select${contact}">
+    ${newSelectedContact.nameCharts[0]}${newSelectedContact.nameCharts[1]}</p> `
+}
+
+function renderContactSelector(element, initials, name, contactColor) {
     document.getElementById('selectContacts').innerHTML += /*html*/ `
         <label for="${element}" class="d-flex justify-content-between w-100">
             <div class="d-flex align-items-center justify-content-between">
@@ -240,7 +267,7 @@ function renderContactSelect(element, initials, name, contactColor) {
                 ${initials[0]}${initials[1]}</p>
                 <p>${name}</p>
             </div>
-            <input type="checkbox" id="${element}" />
+            <input type="checkbox" id="${element}" onclick="selectContact('${element}')"/>
         </label>`
 }
 

@@ -151,6 +151,8 @@ function cleanTaskboard() {
 async function renderAllTasks() {
     let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
+    let contacts =  await loadTasks("/contacts");
+    localStorage.usableContacts = JSON.stringify(contacts);
     cleanTaskboard();
     for (let taskId in tasks) {
         let element = tasks[taskId];
@@ -158,6 +160,12 @@ async function renderAllTasks() {
         let categoryText = categoryFinder(element);
         countForNoTask(element.position);
         renderTask(element, taskId, subtask, categoryText);
+        for (let contact in element.selectContacts) {
+            let activeContactId = element.selectContacts[contact];
+            let activeContact = contacts[activeContactId];
+            console.log(activeContactId);
+                renderAktiveContakts(activeContact, activeContactId, taskId);
+        }
         subtaskCount = 0;
     }
     noTasksInProgress()
@@ -237,6 +245,12 @@ async function deleteTask(event, taskId) {
     closeTaskOverlay();
 }
 
+function renderAktiveContakts(activeContact, contactId, taskId) {
+    document.getElementById("selectContent"+taskId).innerHTML += `
+    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
+    `
+}
+
 function renderTask(task, taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
@@ -260,11 +274,7 @@ function renderTask(task, taskId, subtask, categoryText) {
                 </div>
             </div>
             <div class="d-flex justify-content-between">
-                <div class="fc-white d-flex">
-                    <!-- TODO: Farbklasse dynamisch gestalten -->
-                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-orange -m-8">PW</p>
-                    <!-- TODO: user-icons printer funktion -->
-                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-red -m-8">FF</p>
+                <div class="fc-white d-flex" id="selectContent${taskId}">
                 </div>
                 <div class="board-icon-importance board-icon-${task.priority}-prio">
                 </div>
