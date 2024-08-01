@@ -23,9 +23,15 @@ function closeTaskOverlay() {
 
 function takeElementFromTask(taskid) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
     let element = tasks[taskid];
     let categoryText = categoryFinder(element);
     renderTaskCardBig(element, categoryText, taskid);
+    for (let contact in element.selectContacts) {
+        let activeContactId = element.selectContacts[contact];
+        let activeContact = contacts[activeContactId];
+        renderContactNameInOverlai(activeContact.name)
+    }
 }
 
 function subtaskLoop(taskId) {
@@ -75,8 +81,15 @@ function taskEdit(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
     renderTaskEditor(taskId, task);
-    prioButtonSelect(task.priority)
+    prioButtonSelect(task.priority);
+    loadUsableContacts();
     renderAllCreateSubtasks(taskId);
+}
+
+function renderContactNameInOverlai(name) {
+    document.getElementById("selectedContactsInOferlai").innerHTML += `
+    <li>${name}</li>
+    `
 }
 
 
@@ -111,9 +124,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
 
     <div id="taskOverlayAssignee" class="taskOverlayAssignee">
         Assigned to:
-        <ul>
-            <li>Patrick</li>
-            <li>Farid</li>
+        <ul id="selectedContactsInOferlai">
         </ul>
     </div>
 
@@ -136,7 +147,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
 }
 
 function renderTaskEditor(taskId, task) {
-    document.getElementById('taskOverlay').innerHTML = `
+    document.getElementById('taskOverlay').innerHTML = /*html*/ `
         <div  class="taskOverlayWrapper slide-right">
         <div  class="taskOverlayTypeEdite d-flex">
             <img src="./img/icons/cancel-logo.png"  onclick="closeTaskOverlay()">
@@ -186,13 +197,24 @@ function renderTaskEditor(taskId, task) {
 
                         <div>&nbsp;</div>
 
-                        <div>
-                            <p class="fSize-20  editTaskWrapper">Assigned to</p>
-                            <select name="choose" id="selectInputAssignee">
-                                <option value="${task.selectInputAssignee}">${task.selectInputAssignee}</option>
-                                <option value="Test 1">Test 1</option>
-                                <option value="Test 2">Test 2</option>
-                            </select>
+                        <div class="gap-8">
+                            <p class="fSize-16 mb-8">Assigned to</p>
+                            <div>
+                                <div class="selectBox" onclick="showCheckboxes()">
+                                    <select id="selectInputAssignee">
+                                        <option disabled selected>Select contacts to assign</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes" class="">
+                                    <div class="d-flex flex-column w-100" id="selectContacts">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between mt-8">
+                                <div class="fc-white d-flex gap-10" id="selectedContact">
+                                </div>
+                            </div>
                         </div>
                         
                         <div>&nbsp;</div>

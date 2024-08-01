@@ -55,7 +55,7 @@ async function changeTask(event,taskId='') {
     let task = JSON.parse(localStorage.getItem("activeTask"));
     task["title"] = document.getElementById('title').value;
     task["description"] = document.getElementById('description').value;
-    task["selectInputAssignee"] = document.getElementById('selectInputAssignee').value;
+    task["selectContacts"] = selectContacts;
     task["datePicker"] = document.getElementById('datePicker').value;
     task["priority"] = prio;
     if (subtasklist[0] !== 'no') {
@@ -163,7 +163,6 @@ async function renderAllTasks() {
         for (let contact in element.selectContacts) {
             let activeContactId = element.selectContacts[contact];
             let activeContact = contacts[activeContactId];
-            console.log(activeContactId);
                 renderAktiveContakts(activeContact, activeContactId, taskId);
         }
         subtaskCount = 0;
