@@ -1,5 +1,5 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
-let prio;
+let prio = "-";
 let subtasklist = ['no'];
 let subtaskProovment = [];
 let expanded = false;
@@ -77,7 +77,7 @@ function clearAddTask() {
     subtasklist = ['no'];
     subtaskProovment = [];
     prioButtonClearSelect()
-    prio = '';
+    prio = '-';
 }
 
 async function setTaskDataInDatabase(data) {

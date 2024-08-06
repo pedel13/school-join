@@ -95,6 +95,40 @@ function reduceDroppedElement(elementPosition) {
 
 }
 
+function findeTask(value) {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let filter = value.toUpperCase();
+    cleanTaskboard();
+    for (let taskId in tasks) {
+        let element = tasks[taskId];
+        let titleTest = element.title;
+        let descriptionTest = element.description;
+            if (titleTest.toUpperCase().indexOf(filter) > -1) {
+                renderFindeTask(element, taskId, contacts);
+                } else {
+                    if (descriptionTest.toUpperCase().indexOf(filter) > -1) {
+                        renderFindeTask(element, taskId, contacts);
+                }
+            }
+        }
+            noTasksInProgress();
+}
+
+function renderFindeTask(element, taskId, contacts) {
+    let subtask = subtaskExist(element);
+    let categoryText = categoryFinder(element);
+    countForNoTask(element.position);
+    renderTask(element, taskId, subtask, categoryText);
+    for (let contact in element.selectContacts) {
+        let activeContactId = element.selectContacts[contact];
+        let activeContact = contacts[activeContactId];
+        renderAktiveContakts(activeContact, activeContactId, taskId);
+        }
+        subtaskCount = 0;
+    
+}
+
 function noTasksInProgress() {
     if (countOnToDo != 0) {
         addNoTaskInProgress("no-tasks-to-do");
@@ -146,6 +180,10 @@ function cleanTaskboard() {
     document.getElementById("board-task-on-in-progress").innerHTML = '';
     document.getElementById("board-task-on-await-feedback").innerHTML = '';
     document.getElementById("board-task-on-done").innerHTML = '';
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
 }
 
 async function renderAllTasks() {
@@ -167,7 +205,7 @@ async function renderAllTasks() {
         }
         subtaskCount = 0;
     }
-    noTasksInProgress()
+    noTasksInProgress();
 }
 
 function subtaskExist(task) {

@@ -30,7 +30,7 @@ function takeElementFromTask(taskid) {
     for (let contact in element.selectContacts) {
         let activeContactId = element.selectContacts[contact];
         let activeContact = contacts[activeContactId];
-        renderContactNameInOverlai(activeContact.name)
+        renderContactNameInOverlai(activeContact, activeContactId)
     }
 }
 
@@ -86,9 +86,13 @@ function taskEdit(taskId) {
     renderAllCreateSubtasks(taskId);
 }
 
-function renderContactNameInOverlai(name) {
+function renderContactNameInOverlai(activeContact, contactId) {
     document.getElementById("selectedContactsInOferlai").innerHTML += `
-    <li>${name}</li>
+    <li class="d-flex align-items-center">
+    <p class="rounded-100 fc-white board-user-icon d-flex align-items-center justify-content-center m-8 ${activeContact.contactColor}" id="${contactId}">
+    ${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
+    <p>${activeContact.name}</p>
+    </li>
     `
 }
 
