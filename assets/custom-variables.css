@@ -254,7 +254,7 @@ input {
 }
 
 .divider {
-    height: 100% !important;
+
     width: 1px !important;
     border-left: 1px solid grey !important;
 }
@@ -482,10 +482,6 @@ input {
 
 .technical-task {
     background-color: #1FD7C1;
-}
-
-.centerWrapperHeadline {
-    margin-left: 83px;
 }
 
 .addNewContactIcon {

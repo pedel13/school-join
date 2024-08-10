@@ -35,7 +35,7 @@ function setColor() {
             color = "bg-pink";
             break;
         case 4:
-            color = "bg-jelliow";
+            color = "bg-yellow";
             break;
         case 5:
             color = "bg-green";

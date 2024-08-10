@@ -1,19 +1,123 @@
+@media (max-width: 1530px) {
+    /* board.html (addTask-Overlay) */
+    .addTaskWrapperLeft {
+        margin-right: 24px;
+    }
+
+    .addTaskWrapperRight {
+        margin-left: 24px;
+    }
+
+    #title,
+    textarea,
+    #selectInputAssignee,
+    #datePicker,
+    #categorySelect,
+    .addTaskEnterSubtask {
+        width: 395px;
+    }
+
+    .priority {
+        width: 395px;
+    }
+
+    .addTaskOverlayHeadline {
+        justify-content: initial;
+        gap: 70%;
+    }
+
+    .addTaskOverlayHeadline > h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 1400px) {
+    /* board.html */
+    #mainWrapper {
+        padding-left: 40px;
+    }
+
+    /* board.html (addTask-Overlay) */
+    .addTaskWrapperLeft {
+        margin-right: 12px;
+    }
+
+    .addTaskWrapperRight {
+        margin-left: 12px;
+    }
+
+    #title,
+    textarea,
+    #selectInputAssignee,
+    #datePicker,
+    #categorySelect,
+    .addTaskEnterSubtask {
+        width: 300px;
+    }
+
+    .priority {
+        width: 300px;
+    }
+
+    .addTaskOverlayHeadline {
+        justify-content: initial;
+        gap: 70%;
+    }
+
+    .addTaskOverlayHeadline > h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 1360px) {
+    #mainWrapper {
+        width: 80%;
+        padding-left: 80px;
+    }
+}
+
 @media (max-width: 1200px) {
-    /* index.html */
+    /* index.html (dashboard) */
     .welcome-text {
         display: none;
     }
 }
 
+@media (max-width: 1120px) {
+    /* index.html (dashboard) */
+    .addTaskWrapper {
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .addTaskWrapperLeft {
+        margin-right: 0 !important;
+    }
+
+    .addTaskWrapperRight {
+        margin-left: 0 !important;
+    }
+
+    .outerTaskOverlayWrapper {
+        height: 75vh;
+    }
+}
+
 @media (max-width: 1050px) {
-    /* index.html */
+    /* index.html (dashboard) */
     h1.project-title {
         font-size: 32px !important;
     }
 }
 
 @media (max-width: 970px) {
-    /* index.html */
+    /* index.html (dashboard) */
     h1.project-title {
         font-size: 26px !important;
     }
@@ -134,7 +238,7 @@
         font-size: 20px;
     }
 
-    /* index.html */
+    /* index.html (dashboard) */
     header > div > h1 {
         margin-left: 16px !important;
     }
@@ -149,6 +253,17 @@
     .signUp-title > div > h1 {
         font-size: 48px !important;
         margin-left: 24px;
+    }
+
+    /* index.html (dashboard) */
+    #index-centerBox {
+        width: 100%;
+    }
+
+    #button-row1 > a ,
+    #button-row2 > div ,
+    #button-row3 > a {
+
     }
 }
 
@@ -173,7 +288,7 @@
         max-width: 130px;
     }
 
-    /* index.html */
+    /* index.html (dashboard) */
     #index-centerBox {
         width: 75% !important;
     }
