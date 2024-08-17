@@ -19,7 +19,7 @@ async function loadUsableContacts() {
 }
 
 function selectContact(contact="") {
-
+    contacts = JSON.parse(localStorage.getItem("usableContacts"));
     let selectetContact = true;
     let i = 0;
     for (const element in selectContacts) {
@@ -259,6 +259,7 @@ function renderSelectedContact(newSelectedContact, contact) {
 }
 
 function renderContactSelector(element, initials, name, contactColor) {
+    console.log("element:  "+element);
     document.getElementById('selectContacts').innerHTML += /*html*/ `
         <label for="${element}" class="d-flex justify-content-between w-100">
             <div class="d-flex align-items-center justify-content-between">
@@ -267,7 +268,7 @@ function renderContactSelector(element, initials, name, contactColor) {
                 ${initials[0]}${initials[1]}</p>
                 <p>${name}</p>
             </div>
-            <input type="checkbox" id="${element}" onclick="selectContact('${element}')"/>
+            <input type="checkbox" id="input${element}" onclick="selectContact('${element}')"/>
         </label>`
 }
 

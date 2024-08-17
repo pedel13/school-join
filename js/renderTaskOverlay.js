@@ -64,27 +64,53 @@ async function changeSubtaskProvement(i, taskId = '') {
 }
 
 async function updateSubtaskProvement(data = {}, path = '') {
-    try{
-    let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-}  catch (error) {
-    console.error("Error PUT data in database:", error);
-}
+    try {
+        let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+    } catch (error) {
+        console.error("Error PUT data in database:", error);
+    }
 }
 
-function taskEdit(taskId) {
+async function taskEdit(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
     renderTaskEditor(taskId, task);
     prioButtonSelect(task.priority);
-    loadUsableContacts();
+    await loadUsableContacts();
+    selectContacts = [];
+    for (let contact in task.selectContacts) {
+        let activeContactId = task.selectContacts[contact];
+        console.log("contact  :   " , contact);
+        console.log("activContactId:   " , activeContactId);
+        selectContact(activeContactId);
+        let checkboxId = `input${activeContactId}`;
+        let checkbox = document.getElementById(checkboxId);
+        console.log(checkbox)
+        if (checkbox) {
+            checkbox.checked = true;
+            console.log(true);
+        } else {
+            console.warn(`Checkbox mit ID input${activeContactId} nicht gefunden`);
+        }
+    }
     renderAllCreateSubtasks(taskId);
 }
+
+function renderContactNameInOverlaiEdit(activeContact, contactId) {
+    document.getElementById("selectedContactsInOferlai").innerHTML += `
+    <li class="d-flex align-items-center">
+    <p class="rounded-100 fc-white board-user-icon d-flex align-items-center justify-content-center m-8 ${activeContact.contactColor}" id="${contactId}">
+    ${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
+    </li>
+    `
+}
+
 
 function renderContactNameInOverlai(activeContact, contactId) {
     document.getElementById("selectedContactsInOferlai").innerHTML += `
@@ -201,12 +227,14 @@ function renderTaskEditor(taskId, task) {
 
                         <div>&nbsp;</div>
 
+
+
                         <div class="gap-8">
                             <p class="fSize-16 mb-8">Assigned to</p>
                             <div>
                                 <div class="selectBox" onclick="showCheckboxes()">
                                     <select id="selectInputAssignee">
-                                        <option disabled selected>Select contacts to assign</option>
+                                        <option value="" disabled selected>Select contacts to assign</option>
                                     </select>
                                     <div class="overSelect"></div>
                                 </div>
