@@ -22,8 +22,7 @@
     }
 
     .addTaskOverlayHeadline {
-        justify-content: initial;
-        gap: 70%;
+        justify-content: space-between;
     }
 
     .addTaskOverlayHeadline > h1 {
@@ -57,11 +56,6 @@
 
     .priority {
         width: 300px;
-    }
-
-    .addTaskOverlayHeadline {
-        justify-content: initial;
-        gap: 70%;
     }
 
     .addTaskOverlayHeadline > h1 {
@@ -106,11 +100,50 @@
 
     .outerTaskOverlayWrapper {
         height: 75vh;
+        overflow-y: auto;
     }
+
+    /*##### START Scrollbar #####*/
+    *::-webkit-scrollbar {
+        display: none;
+    }
+    /*##### END Scrollbar #####*/
+
+    /*##### START Add-Task FORM #####*/
+    .spacer,
+    .addTaskWrapperMid {
+        display: none;
+    }
+
+    .addTaskWrapperRight > div {
+        margin-bottom: 0;
+    }
+
+    .addTaskWrapperRight > div:last-child {
+        margin-bottom: 16px;
+    }
+
+    #addTaskBottom {
+        width: 60% !important;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #addTaskBottom > p {
+        font-size: 12px !important;
+        margin-bottom: 16px;
+    }
+
+    #createTaskButton {
+        max-width: 100%;
+    }
+    /*##### END Add-Task FORM #####*/
+
+
 }
 
 @media (max-width: 1050px) {
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     h1.project-title {
         font-size: 32px !important;
     }
@@ -151,6 +184,7 @@
         width: 100%;
     }
 
+    /*##### START Just Mobile Menu #####*/
     .responsive-mobile-menu {
         width: 100% !important;
         display: flex;
@@ -184,6 +218,29 @@
         font-size: 14px !important;
         color: white !important;
     }
+    /*##### END Just Mobile Menu #####*/
+
+    form.main {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .outerTaskOverlayWrapper {
+        width: 85vw;
+    }
+
+    /*##### START Slide Elements #####*/
+    @-webkit-keyframes slide-top {
+        100% { top: 10%; }
+    }
+
+    @keyframes slide-top {
+        100% { top: 10%; }
+    }
+    /*##### END Slide Elements #####*/
 }
 
 @media (max-width: 800px) {
@@ -242,6 +299,10 @@
     header > div > h1 {
         margin-left: 16px !important;
     }
+
+    textarea#description {
+        height: 90px !important;
+    }
 }
 
 @media (max-width: 570px) {
@@ -292,6 +353,39 @@
     #index-centerBox {
         width: 75% !important;
     }
+
+    /* board.html (Addtask-Form) */
+    #title,
+    textarea,
+    #selectInputAssignee,
+    #datePicker,
+    #categorySelect,
+    .priority,
+    .addTaskEnterSubtask {
+        width: 224px;
+    }
+
+    .addTaskWrapperRight {
+        align-items: center;
+    }
+
+    .priorityButton {
+        width: 70px;
+        font-size: 16px;
+    }
+
+    .priorityImg {
+        display: none;
+    }
+
+    div#addTaskBottom {
+        width: 100% !important;
+        justify-content: flex-start;
+    }
+
+    .addTaskEnterSubtask {
+        padding-right: 8px !important;
+    }
 }
 
 @media (max-width: 415px) {
@@ -334,6 +428,10 @@
 
     .signUp-title > div > h1 {
         margin: 0 0 16px 0;
+    }
+
+    .addTaskOverlayHeadline > h1 {
+        font-size: 24px !important;
     }
 }
 

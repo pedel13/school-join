@@ -38,6 +38,7 @@ img {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    overflow: hidden;
 }
 
 #centerWrapper {
@@ -599,6 +600,10 @@ textarea,
     gap: 10px;
     border: 1px solid lightgray !important;
     border-radius: 10px;
+}
+
+textarea {
+    resize: none;
 }
 
 #description {
