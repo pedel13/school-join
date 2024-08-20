@@ -1,5 +1,5 @@
 @media (max-width: 1530px) {
-    /* board.html (addTask-Overlay) */
+    /*##### board.html (addTask-Overlay) #####*/
     .addTaskWrapperLeft {
         margin-right: 24px;
     }
@@ -31,12 +31,12 @@
 }
 
 @media (max-width: 1400px) {
-    /* board.html */
+    /*##### board.html #####*/
     #mainWrapper {
         padding-left: 40px;
     }
 
-    /* board.html (addTask-Overlay) */
+    /*##### board.html (addTask-Overlay) #####*/
     .addTaskWrapperLeft {
         margin-right: 12px;
     }
@@ -70,15 +70,64 @@
     }
 }
 
+@media (max-width: 1320px) {
+    section#sidebar {
+        display: none !important;
+    }
+    /*##### START Just Mobile Menu #####*/
+    .responsive-mobile-menu {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: #2A3647;
+        padding: 0 16px;
+    }
+
+    .mobileMenu-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    .mobileMenu-wrapper > a {
+        width: 76px;
+        height: 76px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .mobileMenu-wrapper > a > p {
+        font-size: 14px !important;
+        color: white !important;
+    }
+    /*##### END Just Mobile Menu #####*/
+}
+
 @media (max-width: 1200px) {
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     .welcome-text {
         display: none;
     }
 }
 
+@media (max-width: 1170px) {
+    /*##### board.html #####*/
+    .centerWrapperHeadline > div#main {
+        flex-direction: column !important;
+    }
+}
+
 @media (max-width: 1120px) {
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     .addTaskWrapper {
         justify-content: center;
         align-items: center;
@@ -138,8 +187,16 @@
         max-width: 100%;
     }
     /*##### END Add-Task FORM #####*/
+}
 
+@media (max-width: 1072px) {
+    p#categoryTitle {
+        font-size: 14px;
+    }
 
+    .board-subtitle {
+        font-size: 18px !important;
+    }
 }
 
 @media (max-width: 1050px) {
@@ -149,14 +206,39 @@
     }
 }
 
-@media (max-width: 970px) {
-    /* index.html (dashboard) */
-    h1.project-title {
-        font-size: 26px !important;
+@media (max-width: 1000px) {
+    p#categoryTitle {
+        font-size: 12px;
     }
 
-    section#sidebar {
-        display: none !important;
+    .board-subtitle {
+        font-size: 16px !important;
+    }
+
+    #no-tasks-in-progress > p {
+        font-size: 14px !important;
+    }
+
+    #mainWrapper {
+        width: 100%;
+        padding: 0 0 0 24px !important;
+    }
+
+    #main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; }
+    #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; }
+    #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; }
+    #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; }
+}
+
+@media (max-width: 970px) {
+    /*##### index.html (dashboard) #####*/
+    h1.project-title {
+        font-size: 26px !important;
     }
 
     #index-centerBox {
@@ -183,42 +265,6 @@
         left: 0;
         width: 100%;
     }
-
-    /*##### START Just Mobile Menu #####*/
-    .responsive-mobile-menu {
-        width: 100% !important;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: row;
-        position: absolute;
-        bottom: 0;
-        background-color: #2A3647;
-        padding: 0 16px;
-    }
-
-    .mobileMenu-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: row;
-    }
-
-    .mobileMenu-wrapper > a {
-        width: 76px;
-        height: 76px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .mobileMenu-wrapper > a > p {
-        font-size: 14px !important;
-        color: white !important;
-    }
-    /*##### END Just Mobile Menu #####*/
 
     form.main {
         width: 100%;
@@ -250,7 +296,7 @@
 }
 
 @media (max-width: 670px) {
-    /* Login Page */
+    /*##### Login Page #####*/
     .resp-signUp {
         display: flex;
         justify-content: center;
@@ -295,7 +341,7 @@
         font-size: 20px;
     }
 
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     header > div > h1 {
         margin-left: 16px !important;
     }
@@ -306,7 +352,7 @@
 }
 
 @media (max-width: 570px) {
-    /* Sign Up Page */
+    /*##### Sign Up Page #####*/
     #signUpCredentials > form > input {
         width: 70vw;
     }
@@ -316,7 +362,7 @@
         margin-left: 24px;
     }
 
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     #index-centerBox {
         width: 100%;
     }
@@ -329,7 +375,7 @@
 }
 
 @media (max-width: 500px) {
-    /* Sign Up Page */
+    /*##### Sign Up Page #####*/
     .signUp-title > div > h1 {
         font-size: 32px !important;
     }
@@ -349,12 +395,12 @@
         max-width: 130px;
     }
 
-    /* index.html (dashboard) */
+    /*##### index.html (dashboard) #####*/
     #index-centerBox {
         width: 75% !important;
     }
 
-    /* board.html (Addtask-Form) */
+    /*##### board.html (Addtask-Form) #####*/
     #title,
     textarea,
     #selectInputAssignee,
@@ -414,7 +460,7 @@
         font-size: 16px;
     }
 
-    /* Sign Up Page */
+    /*##### Sign Up Page #####*/
     .loginForm, .signUpForm {
         padding: 42px 63px;
     }
@@ -436,7 +482,7 @@
 }
 
 @media (max-width: 360px) {
-    /* Log-In Page */
+    /*##### Log-In Page #####*/
     .signUp_buttons {
         width: 100% !important;
         display: flex;
@@ -472,7 +518,7 @@
 }
 
 @media (max-width: 320px) {
-    /* Log-In Page */
+    /*##### Log-In Page #####*/
     #loginForm {
         max-width: 250px;
     }

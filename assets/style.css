@@ -13,8 +13,6 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
-    /*overflow-x: hidden;
-    overflow-y: hidden;*/
 }
 
 /*##### General- & template stylings #####*/
@@ -58,7 +56,7 @@ img {
 
     padding: 10px;
     border-radius: 20px ;
-    border-top-right-radius: 0px !important;
+    border-top-right-radius: 0 !important;
     background-color:#2A3647;
     display: flex;
 
@@ -68,11 +66,11 @@ img {
 }
 
 .template-navbar-a {
-font-size: 16px !important;
-font-weight: 400 !important;
-line-height: 19.2px !important;
-color: #CDCDCD !important;
-padding: 16px;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 19.2px !important;
+    color: #CDCDCD !important;
+    padding: 16px;
 }
 
 .template-navbar-a:hover {
@@ -541,7 +539,7 @@ header > div > h1 {
     border-radius: 100%;
 }
 
-/* start bg-user colers */
+/* start bg-user colors */
 
 .bg-orange {
     background-color: #FF7A00;
@@ -769,7 +767,7 @@ textarea {
     margin-right: 8px;
 }
 
-.priorityButtonActiv {
+.priorityButtonActive {
     width: 136px;
     height: 56px;
     border-radius: 10px;
@@ -780,7 +778,7 @@ textarea {
     color: #ffffff;
 }
 
-.priorityButtonActiv:hover {
+.priorityButtonActive:hover {
     background: #FFA800 !important;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
 }
@@ -859,13 +857,11 @@ button#create {
 select {
     width: 480px;
 }
-
 /*##### END OF Add-task section #####*/
 
 /*##### START OF board.html section #####*/
 #addTask {
-    margin-right: 80px;
-}
+    margin-right: 80px;}
 
 /*##### END OF board.html section #####*/
 
@@ -944,24 +940,24 @@ select {
 }
 /* checkbox contacts */
   
-  .selectBox {
+.selectBox {
     position: relative;
-  }
+}
   
-  .selectBox select {
+.selectBox select {
     width: 100%;
-  }
+}
   
-  .overSelect {
+.overSelect {
     position: absolute;
     width: 100%;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-  }
+}
   
-  #checkboxes {
+#checkboxes {
     display: none;
     background-color: #ffffff;
     position: fixed;
@@ -970,9 +966,9 @@ select {
     overflow-y: scroll;
 }
   
-  #checkboxes label:hover {
+#checkboxes label:hover {
     background-color: #1e90ff;
-  }
+}
 /*##### END OF AddTASK Overlay section #####*/
 
 /*##### START OF Task Overlay section #####*/
@@ -1136,8 +1132,8 @@ ul {
 }
 
 .scrollbox {
-    overflow:scroll;
-    overflow-x:hidden;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 @supports (scrollbar-color: auto) {
@@ -1459,7 +1455,7 @@ button#newContact {
 
 .alert-massage {
     color: #FF8190;    
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 14.4px;

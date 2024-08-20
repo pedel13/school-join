@@ -292,7 +292,7 @@ function renderTask(task, taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
             <div class="d-flex align-items-center">
-                <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="">${categoryText}</p>
+                <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
             </div>
             <div>
                 <p class="board-card-subtitle" id="">${task.title}</p>

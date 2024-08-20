@@ -114,7 +114,7 @@ function prioButton(button, icon) {
     buttonSelected = document.getElementById(button);
     iconSelected = document.getElementById(icon);
 
-    buttonSelected.classList.add("priorityButtonActiv");
+    buttonSelected.classList.add("priorityButtonActive");
     buttonSelected.classList.remove("priorityButton");
     iconSelected.classList.add(icon + 'Activ');
     iconSelected.classList.remove(icon);
@@ -126,11 +126,11 @@ function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     buttonOtherSelected = document.getElementById(buttonOther);
     iconOtherSelected = document.getElementById(iconOther);
     buttonSelected.classList.add("priorityButton");
-    buttonSelected.classList.remove("priorityButtonActiv");
+    buttonSelected.classList.remove("priorityButtonActive");
     iconSelected.classList.add(icon);
     iconSelected.classList.remove(icon + 'Activ');
     buttonOtherSelected.classList.add("priorityButton");
-    buttonOtherSelected.classList.remove("priorityButtonActiv");
+    buttonOtherSelected.classList.remove("priorityButtonActive");
     iconOtherSelected.classList.add(iconOther);
     iconOtherSelected.classList.remove(iconOther + 'Activ');
 }
@@ -140,7 +140,7 @@ function prioButtonclear(button, icon) {
     iconSelected = document.getElementById(icon);
 
     buttonSelected.classList.add("priorityButton");
-    buttonSelected.classList.remove("priorityButtonActiv");
+    buttonSelected.classList.remove("priorityButtonActive");
     iconSelected.classList.add(icon);
     iconSelected.classList.remove(icon + 'Activ');
 }
