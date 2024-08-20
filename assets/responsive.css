@@ -233,6 +233,22 @@
     #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; }
     #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; }
     #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; }
+
+    .centerWrapper {
+        overflow-y: scroll;
+    }
+
+    #addTask {
+        margin-right: 10px !important;
+    }
+
+    .board-input {
+        width: 176px !important;
+    }
+
+    .board-input-total {
+        width: 240px !important;
+    }
 }
 
 @media (max-width: 970px) {
@@ -349,6 +365,23 @@
     textarea#description {
         height: 90px !important;
     }
+
+    /*##### board.html #####*/
+    .board-title {
+        font-size: 48px !important;
+    }
+    .board-input {
+        width: 128px !important;
+    }
+
+    .board-input-total {
+        width: 192px !important;
+    }
+
+    .board-add-task-button {
+        width: 128px !important;
+        font-size: 18px !important;
+    }
 }
 
 @media (max-width: 570px) {
@@ -367,11 +400,38 @@
         width: 100%;
     }
 
-    #button-row1 > a ,
-    #button-row2 > div ,
-    #button-row3 > a {
-
+    /*##### board.html (dashboard) #####*/
+    #main {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column !important;
+        align-items: center;
     }
+
+    .searchButtonBox {
+        flex-direction: column;
+    }
+
+    .headerBar {
+        flex-direction: column;
+    }
+
+    .headerBar > div {
+        margin-bottom: 16px;
+    }
+
+    .board-task-columns {
+        height: auto !important;
+    }
+
+    #mainWrapper {
+        padding: 0 !important;
+    }
+
+    #main > div.board-task-columns:nth-of-type(1) { width: 64%; }
+    #main > div.board-task-columns:nth-of-type(2) { width: 64%; }
+    #main > div.board-task-columns:nth-of-type(3) { width: 64%; }
+    #main > div.board-task-columns:nth-of-type(4) { width: 64%; }
 }
 
 @media (max-width: 500px) {
@@ -515,6 +575,10 @@
         width: 200px;
         max-width: 200px;
     }
+
+    h1.project-title {
+        font-size: 18px !important;
+    }
 }
 
 @media (max-width: 320px) {
@@ -522,5 +586,4 @@
     #loginForm {
         max-width: 250px;
     }
-
 }
