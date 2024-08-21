@@ -432,6 +432,10 @@
     #main > div.board-task-columns:nth-of-type(2) { width: 64%; }
     #main > div.board-task-columns:nth-of-type(3) { width: 64%; }
     #main > div.board-task-columns:nth-of-type(4) { width: 64%; }
+
+    .taskOverlayWrapper {
+        width: auto;
+    }
 }
 
 @media (max-width: 500px) {
