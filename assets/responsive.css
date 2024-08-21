@@ -303,6 +303,15 @@
         100% { top: 10%; }
     }
     /*##### END Slide Elements #####*/
+
+    /*##### START contact.html #####*/
+    #contactLeft {
+        width: 100%;
+    }
+
+    #contactsRight {
+        display: none !important;
+    }
 }
 
 @media (max-width: 800px) {
@@ -435,6 +444,14 @@
 
     .taskOverlayWrapper {
         width: auto;
+    }
+
+    #taskOverlayWrapper {
+        padding: 16px !important;
+    }
+
+    .taskOverlayTitle {
+        font-size: 40px !important;
     }
 }
 

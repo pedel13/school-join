@@ -52,17 +52,18 @@ img {
     width: 86vw;
 }
 
-.template-navbar{
-
+.template-navbar {
     padding: 10px;
     border-radius: 20px ;
     border-top-right-radius: 0 !important;
     background-color:#2A3647;
     display: flex;
-
     justify-content: space-evenly;
     flex-direction: column;
     text-align: left !important;
+    position: absolute;
+    right: -87px;
+    top: -22px;
 }
 
 .template-navbar-a {
