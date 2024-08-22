@@ -36,7 +36,7 @@ img {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #centerWrapper {
@@ -387,7 +387,8 @@ header > div:last-of-type > img:first-of-type {
 }
 
 header > div > h1 {
-    margin-left: 83px;
+    margin-left: 5%;
+    width: 100%;
 }
 
 .d-flex {
@@ -444,10 +445,10 @@ header > div > h1 {
 
 .head {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 250px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 }
 
 .head > img {
@@ -1486,3 +1487,10 @@ button#newContact {
 .responsive-mobile-menu {
     display: none;
 }
+
+.privacyWrapper,
+.legalWrapper,
+.helpWrapper {
+    padding: 5%;
+}
+
