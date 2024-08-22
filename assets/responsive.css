@@ -114,6 +114,11 @@
     .mobileMenu-wrapper > a {
         filter: brightness(1.5) !important;
     }
+
+    /*##### add_task.html #####*/
+    #addTaskMainWrapper {
+        align-items: center;
+    }
 }
 
 @media (max-width: 1200px) {
@@ -127,6 +132,14 @@
     /*##### board.html #####*/
     .centerWrapperHeadline > div#main {
         flex-direction: column !important;
+    }
+
+    .centerWrapperHeadline {
+        margin: 0 !important;
+    }
+
+    .mainAddTaskSite {
+        margin-left: 0 !important;
     }
 }
 
@@ -177,7 +190,7 @@
     }
 
     #addTaskBottom {
-        width: 60% !important;
+        width: 100% !important;
         flex-direction: column;
         align-items: flex-start;
     }
@@ -189,6 +202,11 @@
 
     #createTaskButton {
         max-width: 100%;
+        flex-direction: column;
+    }
+
+    #createTaskButton > button {
+        margin-bottom: 10px;
     }
     /*##### END Add-Task FORM #####*/
 }
@@ -569,6 +587,7 @@
     div#addTaskBottom {
         width: 100% !important;
         justify-content: flex-start;
+        align-items: center;
     }
 
     .addTaskEnterSubtask {
