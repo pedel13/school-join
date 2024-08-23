@@ -13,6 +13,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
+    overflow: hidden !important;
 }
 
 /*##### General- & template stylings #####*/
@@ -36,12 +37,13 @@ img {
     display: flex;
     justify-content: center;
     flex-direction: row;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #centerWrapper {
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .template-navbar-position {

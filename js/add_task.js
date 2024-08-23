@@ -93,7 +93,7 @@ async function setTaskDataInDatabase(data) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         else {
-            window.location.assign('../board.html');
+            window.location.assign('./board.html');
         }
         let responseData = await response.json();
     } catch (error) {
