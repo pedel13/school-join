@@ -337,11 +337,19 @@ footer {
     margin-bottom: 40px;
 }
 
-.big-logo {
+#big-logo {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    animation-name: example;
+    animation-duration: 1s;
+    animation-direction: reverse;
+}
+
+@keyframes login {
+    0%   {left:0; top:0;}
+    100% {left:50%; translate: -50%; top:0;}
 }
 
 button:hover {
@@ -1495,4 +1503,3 @@ button#newContact {
 .helpWrapper {
     padding: 5%;
 }
-
