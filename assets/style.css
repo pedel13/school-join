@@ -13,8 +13,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
-    /*overflow-x: hidden;
-    overflow-y: hidden;*/
+    overflow: hidden !important;
 }
 
 /*##### General- & template stylings #####*/
@@ -38,11 +37,13 @@ img {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    overflow: hidden;
 }
 
 #centerWrapper {
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .template-navbar-position {
@@ -53,25 +54,25 @@ img {
     width: 86vw;
 }
 
-.template-navbar{
-
+.template-navbar {
     padding: 10px;
     border-radius: 20px ;
-    border-top-right-radius: 0px !important;
+    border-top-right-radius: 0 !important;
     background-color:#2A3647;
     display: flex;
-
     justify-content: space-evenly;
     flex-direction: column;
     text-align: left !important;
+    position: absolute;
+    top: -22px;
 }
 
 .template-navbar-a {
-font-size: 16px !important;
-font-weight: 400 !important;
-line-height: 19.2px !important;
-color: #CDCDCD !important;
-padding: 16px;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 19.2px !important;
+    color: #CDCDCD !important;
+    padding: 16px;
 }
 
 .template-navbar-a:hover {
@@ -363,6 +364,10 @@ section#header {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
+section#header > header > div:nth-of-type(1) {
+
+}
+
 section#header > header > div:nth-of-type(2) {
     display: flex;
     justify-content: center;
@@ -384,7 +389,8 @@ header > div:last-of-type > img:first-of-type {
 }
 
 header > div > h1 {
-    margin-left: 83px;
+    margin-left: 5%;
+    width: 100%;
 }
 
 .d-flex {
@@ -441,10 +447,10 @@ header > div > h1 {
 
 .head {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     gap: 250px;
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 }
 
 .head > img {
@@ -483,6 +489,7 @@ header > div > h1 {
 .addTaskWrapper {
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 16px;
 }
 
 .addTaskWrapperLeft,
@@ -540,7 +547,7 @@ header > div > h1 {
     border-radius: 100%;
 }
 
-/* start bg-user colers */
+/* start bg-user colors */
 
 .bg-orange {
     background-color: #FF7A00;
@@ -577,7 +584,14 @@ header > div > h1 {
 /*  end bg-user colors */
 
 /*##### START OF Add-task section #####*/
-
+#addTaskMainWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding-left: 5%;
+}
 .centerWrapperHeadline {
     margin: 48px 0 48px 0;
 }
@@ -599,6 +613,10 @@ textarea,
     gap: 10px;
     border: 1px solid lightgray !important;
     border-radius: 10px;
+}
+
+textarea {
+    resize: none;
 }
 
 #description {
@@ -764,7 +782,7 @@ textarea,
     margin-right: 8px;
 }
 
-.priorityButtonActiv {
+.priorityButtonActive {
     width: 136px;
     height: 56px;
     border-radius: 10px;
@@ -775,7 +793,7 @@ textarea,
     color: #ffffff;
 }
 
-.priorityButtonActiv:hover {
+.priorityButtonActive:hover {
     background: #FFA800 !important;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
 }
@@ -854,13 +872,11 @@ button#create {
 select {
     width: 480px;
 }
-
 /*##### END OF Add-task section #####*/
 
 /*##### START OF board.html section #####*/
 #addTask {
-    margin-right: 80px;
-}
+    margin-right: 80px;}
 
 /*##### END OF board.html section #####*/
 
@@ -939,24 +955,24 @@ select {
 }
 /* checkbox contacts */
   
-  .selectBox {
+.selectBox {
     position: relative;
-  }
+}
   
-  .selectBox select {
+.selectBox select {
     width: 100%;
-  }
+}
   
-  .overSelect {
+.overSelect {
     position: absolute;
     width: 100%;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-  }
+}
   
-  #checkboxes {
+#checkboxes {
     display: none;
     background-color: #ffffff;
     position: fixed;
@@ -965,9 +981,9 @@ select {
     overflow-y: scroll;
 }
   
-  #checkboxes label:hover {
+#checkboxes label:hover {
     background-color: #1e90ff;
-  }
+}
 /*##### END OF AddTASK Overlay section #####*/
 
 /*##### START OF Task Overlay section #####*/
@@ -1004,7 +1020,7 @@ select {
 }
 
 .issueType {
-    height: 28px;
+    height: 40px;
     padding: 6px;
     border-radius: 10px;
     color: #ffffff;
@@ -1072,7 +1088,7 @@ ul {
 
 /* TASK-OVERLAY SLIDING FROM RIGHT */
 .slide-right {
-    position: absolute;
+    position: initial;
     right: -100%;
     -webkit-animation: slide-right 0.5s forwards;
     -webkit-animation-delay: 150ms;
@@ -1131,8 +1147,8 @@ ul {
 }
 
 .scrollbox {
-    overflow:scroll;
-    overflow-x:hidden;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 @supports (scrollbar-color: auto) {
@@ -1454,7 +1470,7 @@ button#newContact {
 
 .alert-massage {
     color: #FF8190;    
-    font-family: Poppins;
+    font-family: "Poppins", sans-serif;
     font-size: 12px;
     font-weight: 400;
     line-height: 14.4px;
@@ -1473,3 +1489,10 @@ button#newContact {
 .responsive-mobile-menu {
     display: none;
 }
+
+.privacyWrapper,
+.legalWrapper,
+.helpWrapper {
+    padding: 5%;
+}
+
