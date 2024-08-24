@@ -289,6 +289,7 @@ function renderAktiveContakts(activeContact, contactId, taskId) {
 }
 
 function renderTask(task, taskId, subtask, categoryText) {
+    console.log(task.position);
     document.getElementById(task.position).innerHTML += `
         <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
             <div class="d-flex align-items-center">
