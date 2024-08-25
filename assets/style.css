@@ -13,7 +13,7 @@ body {
     font-family: 'Inter', sans-serif !important;
     font-size: 24px;
     background: #F6F7F8 !important;
-    overflow: hidden !important;
+    /*overflow: hidden !important;*/
 }
 
 /*##### General- & template stylings #####*/
@@ -348,8 +348,28 @@ footer {
 }
 
 @keyframes login {
-    0%   {left:0; top:0;}
-    100% {left:50%; translate: -50%; top:0;}
+    0% {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 450px;
+        height: 450px;
+        z-index: 1;
+    }
+
+    100% {
+        position: absolute;
+        top: 5%;
+        left: 5%;
+        transform: translate( -5%, -5%);
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.login {
+    animation: login 1000ms;
 }
 
 button:hover {

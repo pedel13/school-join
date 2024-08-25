@@ -54,5 +54,5 @@ async function fetchUserData() {
 async function onloadLogin() {
     localStorage.clear();
     await fetchUserData();
-    showLogoAnimation();
+    //showLogoAnimation();
 }
