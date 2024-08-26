@@ -194,6 +194,7 @@ button#guestLogIn {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 48px;
 }
 
 .logIn-link {
@@ -347,24 +348,38 @@ footer {
     animation-direction: reverse;
 }
 
-@keyframes login {
+@keyframes fadeIn {
     0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 1350ms;
+}
+
+@keyframes login {
+    from {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 450px;
-        height: 450px;
-        z-index: 1;
+        width: 50vw;
+        height: 70vh;
+        z-index: 99;
     }
 
-    100% {
+    to {
         position: absolute;
         top: 5%;
-        left: 5%;
-        transform: translate( -5%, -5%);
-        width: 100px;
-        height: 100px;
+        left: 8%;
+        transform: translate( -5%, -8%);
+        width: 101px;
+        height: 128px;
     }
 }
 
