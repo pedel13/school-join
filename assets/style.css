@@ -338,16 +338,7 @@ footer {
     margin-bottom: 40px;
 }
 
-#big-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    animation-name: example;
-    animation-duration: 1s;
-    animation-direction: reverse;
-}
-
+/*##### START LOGIN ANIMATION #####*/
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -386,6 +377,7 @@ footer {
 .login {
     animation: login 1000ms;
 }
+/*##### END LOGIN ANIMATION #####*/
 
 button:hover {
     background: #4589FF !important;

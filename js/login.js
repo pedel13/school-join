@@ -35,7 +35,7 @@ function wrongPassword() {
     passwordInput.classList.add("alert-filled");
 }
 
-function removeWrongPasword(passwordInput) {
+function removeWrongPassword(passwordInput) {
     document.getElementById('massageBoxEmail').classList.add("d-none");
     passwordInput.classList.remove("alert-filled");
 }
@@ -54,5 +54,4 @@ async function fetchUserData() {
 async function onloadLogin() {
     localStorage.clear();
     await fetchUserData();
-    //showLogoAnimation();
 }
