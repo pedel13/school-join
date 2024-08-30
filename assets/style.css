@@ -70,7 +70,7 @@ img {
 .template-navbar-a {
     font-size: 16px !important;
     font-weight: 400 !important;
-    line-height: 19.2px !important;
+    line-height: 19px !important;
     color: #CDCDCD !important;
     padding: 16px;
 }
@@ -930,6 +930,7 @@ select {
     position: fixed;
     overflow: hidden;
     top: 0;
+    left: 0;
     z-index: 2;
 }
 
@@ -939,7 +940,7 @@ select {
     width: 65vw;
     padding: 50px;
     border-radius: 40px;
-    position: absolute;
+    position: relative;
 }
 
 .outerTaskOverlayWrapper > * {
@@ -1011,7 +1012,7 @@ select {
     display: none;
     background-color: #ffffff;
     position: fixed;
-    width: 475.6px;
+    width: 475px;
     max-height: 336px;
     overflow-y: scroll;
 }
@@ -1125,10 +1126,10 @@ ul {
 .slide-right {
     position: initial;
     right: -100%;
-    -webkit-animation: slide-right 0.5s forwards;
-    -webkit-animation-delay: 150ms;
-    animation: slide-right 0.5s forwards;
-    animation-delay: 150ms;
+    -webkit-animation: slide-right 0.5s forwards !important;
+    -webkit-animation-delay: 150ms !important;
+    animation: slide-right 0.5s forwards !important;
+    animation-delay: 150ms !important;
 }
 
 @-webkit-keyframes slide-right {
@@ -1204,6 +1205,7 @@ ul {
 .contactOverlayWrapper {
     display: flex;
     min-height: 592px;
+    top: 25%;
 }
 
 .contactOverlayLeft {
@@ -1240,10 +1242,11 @@ input#newContactName,
 input#newContactMail,
 input#newContactPhone {
     width: 402px;
-    height: 40px;
+    height: 56px;
     border-radius: 10px;
     border: 2px solid lightgray;
     padding: 4px 4px 4px 16px;
+    margin-bottom: 24px;
 }
 
 .addContactForm > form {
@@ -1274,6 +1277,9 @@ input#newContactPhone {
 
 .avatar {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .avatar-img {
@@ -1286,13 +1292,23 @@ input#newContactPhone {
     width: 745px;
 }
 
-.createContactButton {
+
+.createContact {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     gap: 24px;
     margin-right: 48px;
+}
 
+.spaceDivContacts {
+    width: 65%;
+}
+
+.createContactButton {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
 }
 
 .clearNewContact {
@@ -1508,7 +1524,7 @@ button#newContact {
     font-family: "Poppins", sans-serif;
     font-size: 12px;
     font-weight: 400;
-    line-height: 14.4px;
+    line-height: 14px;
     text-align: left !important;
     height: 24px;   
 }
