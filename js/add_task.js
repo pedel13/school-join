@@ -9,6 +9,7 @@ let selectContacts;
 async function loadUsableContacts() {
     contacts = await loadTasks("/contacts");
     selectContacts = [];
+    prioButtonSelect('medium');
     for (const element in contacts) {
             const contact = contacts[element];
             let initials = contact.nameCharts;
@@ -22,9 +23,11 @@ function selectContact(contact="") {
     contacts = JSON.parse(localStorage.getItem("usableContacts"));
     let selectetContact = true;
     let i = 0;
+    let checkbox = document.getElementById("input"+contact);
     for (const element in selectContacts) {
         
         if (contact == selectContacts[element]) {
+            checkbox.checked = false;
             selectetContact = false;
             selectContacts.splice(i, 1);
             oldSelectedContact = document.getElementById("select"+contact)
@@ -33,11 +36,23 @@ function selectContact(contact="") {
         i++;
     }
     if (selectetContact === true) {
+        checkbox.checked = true;
         selectContacts.push(contact);;
         let newSelectedContact = contacts[contact];
     renderSelectedContact(newSelectedContact, contact);
     }
 }
+
+document.addEventListener("click", function(event) {
+    var checkboxes = document.getElementById("checkboxes");
+    var selectBox = document.querySelector(".selectBox");
+
+    // Überprüfe, ob der Klick außerhalb des Auswahlfeldes war
+    if (expanded && !selectBox.contains(event.target) && !checkboxes.contains(event.target)) {
+        checkboxes.style.display = "none";
+        expanded = false;
+    }
+});
 
 function showCheckboxes() {
     var checkboxes = document.getElementById("checkboxes");
@@ -102,6 +117,7 @@ async function setTaskDataInDatabase(data) {
 }
 
 function openAddTaskOverlay(position = '') {
+    loadUsableContacts();
     document.getElementById('addTaskOverlay').classList.remove('d-none');
     renderAddOverlay(position);
 }
@@ -259,16 +275,15 @@ function renderSelectedContact(newSelectedContact, contact) {
 }
 
 function renderContactSelector(element, initials, name, contactColor) {
-    console.log("element:  "+element);
     document.getElementById('selectContacts').innerHTML += /*html*/ `
-        <label for="${element}" class="d-flex justify-content-between w-100">
+        <label for="${element}" class="d-flex justify-content-between w-100" onclick="selectContact('${element}')">
             <div class="d-flex align-items-center justify-content-between">
                 <p 
                 class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
                 ${initials[0]}${initials[1]}</p>
                 <p>${name}</p>
             </div>
-            <input type="checkbox" id="input${element}" onclick="selectContact('${element}')"/>
+            <input type="checkbox" id="input${element}"/>
         </label>`
 }
 
@@ -312,13 +327,24 @@ function renderAddOverlay(position) {
         
                                 <div class="spacer">&nbsp;</div>
         
-                                <div>
-                                    <p class="fSize-16">Assigned to</p>
-                                    <select name="choose" id="selectInputAssignee">
-                                        <option value="Assigned to...">Assigned to...</option>
-                                        <option value="Test 1">Test 1</option>
-                                        <option value="Test 2">Test 2</option>
-                                    </select>
+                                <div class="gap-8">
+                                    <p class="fSize-16 mb-8">Assigned to</p>
+                                    <div>
+                                        <div class="selectBox" onclick="showCheckboxes()">
+                                            <select id="selectInputAssignee">
+                                                <option value="" disabled selected>Select contacts to assign</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes" class="">
+                                            <div class="d-flex flex-column w-100" id="selectContacts">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-8">
+                                        <div class="fc-white d-flex gap-10" id="selectedContact">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
         

@@ -169,7 +169,7 @@ function renderClickedContact(contactID) {
                             Edit
                         </div>
                         
-                        <div id="deleteCurrentContact" onclick="deleteContact('${contactID}')">
+                        <div id="deleteCurrentContact" onclick="deletecontactInTasks(event,'${contactID}')">
                             <img src="./img/icons/delete_icon.svg" alt="delete">
                             Delete
                         </div>
@@ -225,9 +225,11 @@ function editContact() {
 
 }
 
-async function deleteContact(contactToDelete) {
+async function deleteContact(path="", contactToDelete) {
+    path = path+contactToDelete+`.json`;
+    console.log(path);
     try {
-        let response = await fetch(BASE_URL + "/contacts/" + contactToDelete + ".json", {
+        let response = await fetch(BASE_URL + path, {
             method: 'DELETE',
         });
         if (!response.ok) {
@@ -237,5 +239,36 @@ async function deleteContact(contactToDelete) {
     catch (error) {
         console.error("Error delete data in database:", error);
     }
-    window.location.reload();
+}
+
+async function deletecontactInTasks(event,contactToDelete="") {
+    event.preventDefault(event);
+    let tasks = await loadTasks("/board/tasks");
+    let contactprof;
+    let activeContactPosition;
+    for (let taskId in tasks) {
+        let element = tasks[taskId];
+        let contactsInTask = element.selectContacts;
+        contactprof=false;
+        if (typeof(contactsInTask) != "undefined") {
+            for (let contact in contactsInTask) {
+                console.log("contactToDelete:   "+ contactToDelete);
+                console.log("contact:    " + contactsInTask[contact]);
+                if (contactsInTask[contact] == contactToDelete){
+                    console.log("test in if");
+                    activeContactPosition = contact;
+                    contactprof=true;
+                }
+            }
+        }else{
+            console.log("keine Contacts");
+        }
+
+        if (contactprof === true) {
+            contactsInTask.splice(activeContactPosition, 1);
+             await updateTask(`/board/tasks/${taskId}/selectContacts`,contactsInTask)
+        }
+    }
+    await deleteContact('/contacts/', contactToDelete);
+    location.reload();
 }

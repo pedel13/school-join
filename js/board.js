@@ -22,7 +22,7 @@ async function drop(dropPosition) {
     dropCard["position"] = dropPosition;
     localStorage.activeTask = JSON.stringify(dropCard);
     localStorage.setItem("taskId", `${cardDraggedId}`);
-    await updateTask();
+    await updateTask(`/board/tasks/${cardDraggedId}`,dropCard);
     countOnToDo = 0;
     countOnInProgress = 0;
     countOnAwaitFeedback = 0;
@@ -30,22 +30,22 @@ async function drop(dropPosition) {
     renderAllTasks();
 }
 
-async function updateTask() {
-    let task = localStorage.getItem("activeTask");
-    let taskId = localStorage.getItem("taskId");
+async function updateTask(path="",task) {
+    console.log(path);
+    console.log(task);
     try {
-        let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+        let response = await fetch(baseUrl + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: task
+            body: JSON.stringify(task)
         }); 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
     }  catch (error) {
-        console.error("Error PUT data in database:", error);
+        console.error("Error PUT data in database:", error, response);
     }
 }
 
@@ -62,9 +62,7 @@ async function changeTask(event,taskId='') {
         task["subtasks"] = subtasklist;
         task["subtask"] = subtaskProofment;
     }
-    localStorage.activeTask = JSON.stringify(task);
-    localStorage.setItem("taskId", `${taskId}`);
-    await updateTask();
+    await updateTask(`/board/tasks/${taskId}`,task);
     closeTaskOverlay();
 }
 
@@ -171,7 +169,18 @@ function removeNoTaskInProgress(taskInProgress = "") {
 }
 
 async function loadTasks(path="") {
-    let response = await fetch(baseUrl + path + ".json");
+    //let response = await fetch(baseUrl + path + ".json");
+    let response;
+    try {
+         response = await fetch(baseUrl + path + ".json", {
+            method: 'GET',
+        });
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+        } catch (error) {
+            console.error("Error GET data in database:", error);
+        }
     return await response.json();
 }
 
@@ -198,11 +207,6 @@ async function renderAllTasks() {
         let categoryText = categoryFinder(element);
         countForNoTask(element.position);
         renderTask(element, taskId, subtask, categoryText);
-        for (let contact in element.selectContacts) {
-            let activeContactId = element.selectContacts[contact];
-            let activeContact = contacts[activeContactId];
-                renderAktiveContakts(activeContact, activeContactId, taskId);
-        }
         subtaskCount = 0;
     }
     noTasksInProgress();
