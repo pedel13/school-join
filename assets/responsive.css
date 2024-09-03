@@ -126,6 +126,65 @@
     .welcome-text {
         display: none;
     }
+
+    /*##### AddContact Overlay #####*/
+    .contactOverlayWrapper {
+        width: 80%;
+    }
+
+    .contactOverlayLeft {
+        display: none !important;
+    }
+
+    .contactOverlayLeftMobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 32px;
+    }
+
+    .contactOverlayLeftMobile > img {
+        margin: 16px 0 24px 0;
+    }
+
+    .contactOverlayLeft > h1 {
+        font-size: 32px;
+    }
+
+    .contactOverlayRight {
+        padding: 10px;
+        border-top-left-radius: 30px;
+        border-bottom-left-radius: 30px;
+    }
+
+    .close {
+        height: 40px;
+        margin: 16px 16px 0 0;
+    }
+
+    .addContactFormAvatar {
+        width: 85%;
+    }
+
+    .avatar {
+        margin-left: 16px;
+    }
+
+    .addContactForm {
+        margin-left: 32px;
+    }
+
+    .spaceDivContacts {
+        display: none;
+    }
+
+    .createContact {
+        margin-right: 0 !important;
+    }
+    .createContactButton {
+        margin-left: 47px !important;
+    }
 }
 
 @media (max-width: 1170px) {
@@ -339,6 +398,38 @@
 @media (max-width: 800px) {
     #email {
         height: calc(-30px);
+    }
+}
+
+@media (max-width: 850px) {
+    /*##### AddContact Overlay #####*/
+    #createNewContactForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .addContactFormAvatar {
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar {
+        display: none;
+    }
+
+    .addContactForm {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0 !important;
+    }
+
+    .createContactButton {
+        margin-left: 0 !important;
     }
 }
 
@@ -592,6 +683,16 @@
 
     .addTaskEnterSubtask {
         padding-right: 8px !important;
+    }
+}
+
+@media (max-width: 430px) {
+    /*##### AddContact Overlay #####*/
+
+    input#newContactName,
+    input#newContactMail,
+    input#newContactPhone {
+        width: 75% !important;
     }
 }
 

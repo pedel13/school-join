@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="git conflict second big one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/responsive.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts.html" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.html" afterDir="false" />
     </list>
@@ -97,8 +98,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-410509235cf1-JavaScript-PS-242.20224.427" />
-        <option value="bundled-php-predefined-a98d8de5180a-d6acee4cb394-com.jetbrains.php.sharedIndexes-PS-242.20224.427" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-PS-242.21829.154" />
+        <option value="bundled-php-predefined-a98d8de5180a-4d9f4c849d09-com.jetbrains.php.sharedIndexes-PS-242.21829.154" />
       </set>
     </attachedChunks>
   </component>
@@ -152,7 +153,12 @@
       <workItem from="1724330184193" duration="5064000" />
       <workItem from="1724354019623" duration="2537000" />
       <workItem from="1724403464892" duration="7139000" />
-      <workItem from="1724845699574" duration="6585000" />
+      <workItem from="1724845699574" duration="7212000" />
+      <workItem from="1725261473303" duration="108000" />
+      <workItem from="1725261605794" duration="1955000" />
+      <workItem from="1725348439792" duration="11000" />
+      <workItem from="1725360892688" duration="3999000" />
+      <workItem from="1725367160572" duration="1595000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />

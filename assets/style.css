@@ -1203,8 +1203,10 @@ ul {
 
 /*##### START OF AddContact Overlay section #####*/
 .contactOverlayWrapper {
+    width: 100%;
+    min-height: 592px !important;
     display: flex;
-    min-height: 592px;
+    justify-content: center;
     top: 25%;
 }
 
@@ -1224,6 +1226,10 @@ ul {
 .contactOverlayLeft > * {
     margin-bottom: 24px;
     color: #ffffff;
+}
+
+.contactOverlayLeftMobile {
+    display: none;
 }
 
 .contactJoinLogo {
@@ -1298,7 +1304,7 @@ input#newContactPhone {
     justify-content: center;
     align-items: center;
     gap: 24px;
-    margin-right: 48px;
+    margin-right: 62px;
 }
 
 .spaceDivContacts {
@@ -1309,6 +1315,10 @@ input#newContactPhone {
     display: flex;
     justify-content: flex-start !important;
     align-items: center;
+}
+
+.createContactButton > button:nth-of-type(2) {
+    margin-left: 12px;
 }
 
 .clearNewContact {
