@@ -688,6 +688,9 @@
 
 @media (max-width: 430px) {
     /*##### AddContact Overlay #####*/
+    .contactOverlayLeftMobile > h1 {
+        font-size: 28px !important;
+    }
 
     input#newContactName,
     input#newContactMail,
