@@ -154,8 +154,7 @@
 
     .contactOverlayRight {
         padding: 10px;
-        border-top-left-radius: 30px;
-        border-bottom-left-radius: 30px;
+        border-radius: 30px;
     }
 
     .close {
@@ -692,11 +691,26 @@
         font-size: 28px !important;
     }
 
+    .contactOverlayLeftMobile > p {
+        font-size: 16px !important;
+    }
+
     input#newContactName,
     input#newContactMail,
     input#newContactPhone {
-        width: 75% !important;
+        width: 90% !important;
     }
+
+    .createContactButton {
+        width: 100%;
+        flex-direction: column !important;
+    }
+
+    .createContactButton > button {
+        width: 100% !important;
+        margin: 0 0 8px 0 !important;
+    }
+
 }
 
 @media (max-width: 415px) {
