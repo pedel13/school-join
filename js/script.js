@@ -4,14 +4,12 @@ async function init(i) {
     await includeHTML();
     let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
     if (abelToUse === false){
-        let sidebarlink1 = document.getElementById('sidebarlink-1');
-        let sidebarlink2 = document.getElementById('sidebarlink-2');
-        let sidebarlink3 = document.getElementById('sidebarlink-3');
-        let sidebarlink4 = document.getElementById('sidebarlink-4');
-        sidebarlink1.classList.add('d-none');
-        sidebarlink2.classList.add('d-none');
-        sidebarlink3.classList.add('d-none');
-        sidebarlink4.classList.add('d-none');
+        for (let i = 1; i < 5; i++) {
+        let sidebarlink = document.getElementById(`sidebarlink-${i}`);
+        sidebarlink.classList.add('d-none');
+        let sidebarlinkMobail = document.getElementById(`sidebarlinkMobail-${i}`);
+        sidebarlinkMobail.classList.add('d-none');
+        }
     }
     let sidebarlinkCofferd = document.getElementById(`sidebarlink-${i}`);
     sidebarlinkCofferd.classList.add(`bgActiceMenu`);
