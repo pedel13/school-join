@@ -2,6 +2,25 @@
 const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 async function init() {
     await includeHTML();
+    let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
+    if (abelToUse === false){
+        let sidebarlink1 = document.getElementById('sidebarlink-1');
+        let sidebarlink2 = document.getElementById('sidebarlink-2');
+        let sidebarlink3 = document.getElementById('sidebarlink-3');
+        let sidebarlink4 = document.getElementById('sidebarlink-4');
+        sidebarlink1.classList.add('d-none');
+        sidebarlink2.classList.add('d-none');
+        sidebarlink3.classList.add('d-none');
+        sidebarlink4.classList.add('d-none');
+    }
+}
+
+function testingUser() {
+    let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
+    if (abelToUse === false){
+        var link = document.getElementById("backLink");
+        link.setAttribute('href', "../login.html");
+    }
 }
 
 document.addEventListener('keydown', evt => {

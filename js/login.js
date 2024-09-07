@@ -15,6 +15,7 @@ async function login(event) {
             if (password === SINGLE_CONTACT.password) {
                 console.log("Folgenden User gefunden:", SINGLE_CONTACT)
                 let activeUserName = SINGLE_CONTACT.name;
+                localStorage.setItem("abelToUse", true);
                 localStorage.setItem("activeUserName", `${activeUserName}`);
                 window.location.assign('./index.html');
             }
@@ -42,6 +43,7 @@ function removeWrongPassword(passwordInput) {
 
 async function guestLogin() {
     localStorage.setItem("activeUserName", ``);
+    localStorage.setItem("abelToUse", true);
     window.open("index.html", "_self");
 }
 
@@ -53,5 +55,6 @@ async function fetchUserData() {
 }
 async function onloadLogin() {
     localStorage.clear();
+    localStorage.setItem("abelToUse", false);
     await fetchUserData();
 }

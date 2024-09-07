@@ -18,7 +18,7 @@
     <title>Join</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); testingUser()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -30,7 +30,7 @@
             <div class="legalWrapper">
                 <div class="head margin-bottom-0">
                     <h1>Legal Notice</h1>
-                    <a href="index.html">
+                    <a id="backLink" href="index.html">
                         <img src="img/icons/arrow-left-blue.png" alt="allow left">
                     </a>
                 </div>

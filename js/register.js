@@ -57,6 +57,7 @@ async function addUser(event) {
         } else {
             if (password.value === passwordConfirm.value) {
                 localStorage.setItem("activeUserName", `${name.value}`);
+                localStorage.setItem("abelToUse", true);
                 await setToFirebase(name.value,email.value,password.value);  
             } else {   
                 document.getElementById('massageBox').classList.remove("d-none");
