@@ -13,7 +13,10 @@ function openTaskOverlay(taskId = "") {
     else {
         subtaskLoop(taskId);
     }
-    document.getElementById('taskOverlay').classList.remove('d-none');
+    let overlay = document.getElementById('taskOverlay');
+    overlay.classList.remove('d-none');
+    isTaskOverlayJustOpened = true;
+    setTimeout(() => { isTaskOverlayJustOpened = false; }, 100);
 }
 
 function closeTaskOverlay() {
@@ -94,7 +97,6 @@ async function taskEdit(taskId) {
         console.log(checkbox)
         if (checkbox) {
             checkbox.checked = true;
-            console.log(true);
         } else {
             console.warn(`Checkbox mit ID input${activeContactId} nicht gefunden`);
         }

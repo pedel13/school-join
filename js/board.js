@@ -29,14 +29,15 @@ async function drop(dropPosition) {
     renderAllTasks();
 }
 
-async function updateTask(task,path) {
+async function updateTask(element,path="") {
+    console.log(path);
     try {
         let response = await fetch(baseUrl + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: task
+            body: element
         }); 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);

@@ -113,7 +113,10 @@ async function setTaskDataInDatabase(data) {
 }
 
 async function openAddTaskOverlay(position = '') {
-    document.getElementById('addTaskOverlay').classList.remove('d-none');
+    let overlay = document.getElementById('addTaskOverlay');
+    overlay.classList.remove('d-none');
+    isAddTaskOverlayJustOpened = true;
+    setTimeout(() => { isAddTaskOverlayJustOpened = false; }, 100); 
     renderAddOverlay(position);
     await loadUsableContacts();
 }
@@ -300,7 +303,7 @@ function renderCrateSubtask(newSubtask, subtaskCreateCount) {
 function renderAddOverlay(position) {
     document.getElementById('addTaskOverlay').innerHTML = ''
     document.getElementById('addTaskOverlay').innerHTML = `            
-        <div class="outerTaskOverlayWrapper slide-top">
+        <div id="outerTaskOverlayWrapper" class="outerTaskOverlayWrapper slide-top">
                 <div class="addTaskOverlayHeadline">
                     <h1>Add Task</h1>
                     <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">

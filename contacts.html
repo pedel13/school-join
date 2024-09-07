@@ -36,20 +36,144 @@
             <div id="contactsMain">
                 <div id="contactLeft">
                     <div class="newContactButton">
-                        <button id="newContact" onclick="openAddContactOverlay()">
+                        <button id="newContact" type="button" onclick="openAddContactOverlay()">
                             Add new contact
                             <div class="addNewContactIcon"></div>
                         </button>
                     </div>
                     
-                    <div id="contactList">
+                    <div id="contactList-A" class="d-none">
+                        <h2 class="contactLetter">
+                            A
+                        </h2>
+                    </div>
+                    <div id="contactList-B" class="d-none">
+                        <h2 class="contactLetter">
+                            B
+                        </h2>
+                    </div>
+                    <div id="contactList-C" class="d-none">
+                        <h2 class="contactLetter">
+                            C
+                        </h2>
+                    </div>
+                    <div id="contactList-D" class="d-none">
+                        <h2 class="contactLetter">
+                            D
+                        </h2>
+                    </div>
+                    <div id="contactList-E" class="d-none">
+                        <h2 class="contactLetter">
+                            E
+                        </h2>
+                    </div>
+                    <div id="contactList-F" class="d-none">
                         <h2 class="contactLetter">
                             F
                         </h2>
-                        <!--  Renderfunktion renderContacts()  -->
+                    </div>
+                    <div id="contactList-G" class="d-none">
+                        <h2 class="contactLetter">
+                            G
+                        </h2>
+                    </div>
+                    <div id="contactList-H" class="d-none">
+                        <h2 class="contactLetter">
+                            H
+                        </h2>
+                    </div>
+                    <div id="contactList-I" class="d-none">
+                        <h2 class="contactLetter">
+                            I
+                        </h2>
+                    </div>
+                    <div id="contactList-J" class="d-none">
+                        <h2 class="contactLetter">
+                            J
+                        </h2>
+                    </div>
+                    <div id="contactList-K" class="d-none">
+                        <h2 class="contactLetter">
+                            K
+                        </h2>
+                    </div>
+                    <div id="contactList-L" class="d-none">
+                        <h2 class="contactLetter">
+                            L
+                        </h2>
+                    </div>
+                    <div id="contactList-M" class="d-none">
+                        <h2 class="contactLetter">
+                            M
+                        </h2>
+                    </div>
+                    <div id="contactList-N" class="d-none">
+                        <h2 class="contactLetter">
+                            N
+                        </h2>
+                    </div>
+                    <div id="contactList-O" class="d-none">
+                        <h2 class="contactLetter">
+                            O
+                        </h2>
+                    </div>
+                    <div id="contactList-P" class="d-none">
+                        <h2 class="contactLetter">
+                            P
+                        </h2>
+                    </div>
+                    <div id="contactList-Q" class="d-none">
+                        <h2 class="contactLetter">
+                            Q
+                        </h2>
+                    </div>
+                    <div id="contactList-R" class="d-none">
+                        <h2 class="contactLetter">
+                            R
+                        </h2>
+                    </div>
+                    <div id="contactList-S" class="d-none">
+                        <h2 class="contactLetter">
+                            S
+                        </h2>
+                    </div>
+                    <div id="contactList-T" class="d-none">
+                        <h2 class="contactLetter">
+                            T
+                        </h2>
+                    </div>
+                    <div id="contactList-U" class="d-none">
+                        <h2 class="contactLetter">
+                            U
+                        </h2>
+                    </div>
+                    <div id="contactList-V" class="d-none">
+                        <h2 class="contactLetter">
+                            V
+                        </h2>
+                    </div>
+                    <div id="contactList-W" class="d-none">
+                        <h2 class="contactLetter">
+                            W
+                        </h2>
+                    </div>
+                    <div id="contactList-X" class="d-none">
+                        <h2 class="contactLetter">
+                            X
+                        </h2>
+                    </div>
+                    <div id="contactList-Y" class="d-none">
+                        <h2 class="contactLetter">
+                            Y
+                        </h2>
+                    </div>
+                    <div id="contactList-Z" class="d-none">
+                        <h2 class="contactLetter">
+                            Z
+                        </h2>
                     </div>
                 </div>
-                
+
                 <div id="contactsRight">
                     <div id="contactRightHeadSection">
                         <div class="contactHeadline">
@@ -86,13 +210,13 @@
                                 <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                             </div>
                             
-                            <form onsubmit="addContact()" id="createNewContactForm">
+                            <form onsubmit="addContact(event)" id="createNewContactForm">
                                 <div id="addContactFormAvatar" class="addContactFormAvatar">
-                                    <div class="avatar">
+                                    <div class="avatar" id="avatar">
                                         <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                     </div>
                                     <div class="addContactForm">
-                                            <input type="text" id="newContactName" class="icon-person" placeholder="Name" required>
+                                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
                                             <label for="newContactName"></label>
                                             
                                             <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
