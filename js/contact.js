@@ -169,7 +169,7 @@ function renderClickedContact(contactID) {
                             Edit
                         </div>
                         
-                        <div id="deleteCurrentContact" onclick="deleteContact('${contactID}')">
+                        <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
                             <img src="./img/icons/delete_icon.svg" alt="delete">
                             Delete
                         </div>
@@ -223,6 +223,31 @@ function clearNewContactForm() {
 
 function editContact() {
 
+}
+
+async function deleteContactEverywhere(contactID) {
+    await surcheContactsInTasks(contactID);
+    await  deleteContact(contactID);
+}
+
+async function surcheContactsInTasks(contactID) {
+    let tasks = await loadTasks("/board/tasks");
+    let contactIsInTask = false;
+    for (const taskId in tasks) {
+        contactIsInTask = false;
+            const element = tasks[taskId];
+            let contactsInTask = element.selectContacts;
+            for (const activeContactCount in contactsInTask) {
+                let activeContactId = contactsInTask[activeContactCount];
+                    if (contactID == activeContactId){
+                        contactIsInTask = true;
+                        contactsInTask.splice(activeContactCount,1);
+                    }
+            }
+            let elementAsStringify = JSON.stringify(element);
+        updateTask(elementAsStringify,`/board/tasks/${taskId}`)
+    }
+    
 }
 
 async function deleteContact(contactToDelete) {

@@ -20,9 +20,8 @@ async function drop(dropPosition) {
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
-    localStorage.activeTask = JSON.stringify(dropCard);
-    localStorage.setItem("taskId", `${cardDraggedId}`);
-    await updateTask();
+    let elementAsStringify = JSON.stringify(dropCard);
+    await updateTask(elementAsStringify,`/board/tasks/${cardDraggedId}`);
     countOnToDo = 0;
     countOnInProgress = 0;
     countOnAwaitFeedback = 0;
@@ -30,11 +29,9 @@ async function drop(dropPosition) {
     renderAllTasks();
 }
 
-async function updateTask() {
-    let task = localStorage.getItem("activeTask");
-    let taskId = localStorage.getItem("taskId");
+async function updateTask(task,path) {
     try {
-        let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+        let response = await fetch(baseUrl + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -50,7 +47,7 @@ async function updateTask() {
 }
 
 
-async function changeTask(event,taskId='') {
+async function changeTask(event,taskId="") {
     event.preventDefault(event);
     let task = JSON.parse(localStorage.getItem("activeTask"));
     task["title"] = document.getElementById('title').value;
@@ -62,9 +59,8 @@ async function changeTask(event,taskId='') {
         task["subtasks"] = subtasklist;
         task["subtask"] = subtaskProofment;
     }
-    localStorage.activeTask = JSON.stringify(task);
-    localStorage.setItem("taskId", `${taskId}`);
-    await updateTask();
+    let taskAsStringify = JSON.stringify(task);
+    await updateTask(taskAsStringify,`/board/tasks/${taskId}`);
     closeTaskOverlay();
 }
 

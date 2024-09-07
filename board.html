@@ -41,7 +41,6 @@
                         <div class="searchButtonBox d-flex align-items-center justify-content-evenly gap-32">
                             <div class="board-input-total d-flex align-items-center justify-content-between">
                                 <input id="findeTaskInput" type="text" class="board-input" placeholder="Find Task" onkeyup="findeTask(value)">
-                                <!-- TODO: onclick funktion -->
                                 <button class="d-flex" id="board-search-button" onclick="">
                                     <div class="board-vertical-line"></div>
                                     <div class="board-search-padding">
@@ -49,7 +48,7 @@
                                     </div>
                                 </button>
                             </div>
-                            <button class="board-add-task-button d-flex justify-content-evenly align-items-center" id="addTask" onclick="openAddTaskOverlay()">
+                            <button class="board-add-task-button d-flex justify-content-evenly align-items-center" id="addTask" onclick="openAddTaskOverlay('board-task-on-to-do')">
                                 <p>add task</p>
                                 <div class="board-add-task-icon-white"></div>
                             </button>
