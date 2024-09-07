@@ -30,7 +30,6 @@ async function drop(dropPosition) {
 }
 
 async function updateTask(element,path="") {
-    console.log(path);
     try {
         let response = await fetch(baseUrl + path + ".json", {
             method: 'PUT',

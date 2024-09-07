@@ -68,8 +68,6 @@ function splitName(data) {
 }
 
 async function postContactData(path = "", data) {
-    console.log("Sending data to:", BASE_URL + path + ".json");
-        console.log("Data:", data);
     try {
         let response = await fetch(BASE_URL + path + ".json", {
             method: "POST",
@@ -110,13 +108,13 @@ async function fetchContacts() {
         let contactAlphabetElement = document.getElementById(`contactList-${nameCharts[0]}`);
         if (contactAlphabetElement.classList.contains("d-none")) {
             contactAlphabetElement.classList.remove("d-none");
-          }
+        }
         renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement);
     }
 
 }
 
-async function loadContacts(path="") {
+async function loadContacts(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
     localContactArray = await response.json();
 }
@@ -127,7 +125,7 @@ async function loadContacts(path="") {
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
     contactAlphabetElement.innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
-            <ul class="namesList" id="contactUlActive_${contactID}" onclick="activeContact('${contactID}'); renderClickedContact('${contactID}')">
+            <ul class="namesList" id="contactUlActive_${contactID}" onclick="surcheRenderPositionClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
@@ -147,6 +145,16 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
             </ul>
         </div>
     `;
+}
+function surcheRenderPositionClickedContact(contactId) {
+    let testForOferlay = document.getElementById("contactsRight");
+    renderClickedContact(contactId);
+    if (matchMedia`(max-width: 970px)`.matches) {
+        testForOferlay.classList.remove('max-w-970');
+        document.getElementById('contactRightHeadSection').classList.add('max-w-970');
+        document.getElementById('contactLeft').classList.add('max-w-970');
+        document.getElementById('contactRightHeadSectionMobile').classList.remove('d-none')
+    }
 }
 
 function renderClickedContact(contactID) {
@@ -200,7 +208,36 @@ function renderClickedContact(contactID) {
                 <a href="tel:${phone}" class="phoneLink">${phone}</a>
             </div>
         </div>
+        <div  class="iconSircelContactPosition">
+        <div id="contact-Navbar" class="contact-navbar-position d-none">
+            <div class="contact-navbar">
+                    <div id="editCurrentContact" onclick="editContact('${contactID}')">
+                        <img src="./img/icons/edit_icon.svg" alt="edit">
+                        Edit
+                    </div>
+                        
+                    <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
+                        <img src="./img/icons/delete_icon.svg" alt="delete">
+                        Delete
+                    </div>
+                </div>
+        </div>
+            <div class="iconSircelContact">
+                <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
+            </div>
+        </div>
     `;
+}
+
+function contactNavbarOpenClose() {
+    let navbarOpenOrClose = document.getElementById("contact-Navbar");
+    if (hasClass(navbarOpenOrClose,'d-none')) {
+        navbarOpenOrClose.classList.remove("d-none");
+        isContactOverlayJustOpened = true;
+        setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
+    } else {
+        navbarOpenOrClose.classList.add("d-none");
+    }
 }
 
 function openAddContactOverlay() {
@@ -231,22 +268,22 @@ function clearNewContactForm() {
     document.getElementById('newContactPhone').value = '';
 }
 
-async function editContact(contactId="") {
+async function editContact(contactId = "") {
     var form = document.getElementById("createNewContactForm");
     form.onsubmit = null;
-        form.onsubmit = function() {
-            return editContactToFirebase(event,contactId);
-        };
-        var deleteButtenExistContact = document.getElementById("clearNewContact");
-        deleteButtenExistContact.onclick = null;
-            deleteButtenExistContact.onclick = function() {
-                return deleteContactEverywhere(contactId);
-            };
+    form.onsubmit = function () {
+        return editContactToFirebase(event, contactId);
+    };
+    var deleteButtenExistContact = document.getElementById("clearNewContact");
+    deleteButtenExistContact.onclick = null;
+    deleteButtenExistContact.onclick = function () {
+        return deleteContactEverywhere(contactId);
+    };
     await renderEditContatsOferlay(contactId);
     openAddContactOverlay();
 }
 
-async function renderEditContatsOferlay(contactId){
+async function renderEditContatsOferlay(contactId) {
     await loadContacts("/contacts");
     let name = localContactArray[contactId]['name'];
     let email = localContactArray[contactId]['email'];
@@ -267,7 +304,7 @@ async function renderEditContatsOferlay(contactId){
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
     <h1>Edit contact</h1>
     <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
-        document.getElementById("contactOverlayLeftMobile").innerHTML = /*html*/ `<h1>Edit contact</h1>
+    document.getElementById("contactOverlayLeftMobile").innerHTML = /*html*/ `<h1>Edit contact</h1>
         <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
 }
 
@@ -278,9 +315,7 @@ async function editContactToFirebase(event, contactId) {
     localContactArray[contactId]['phone'] = document.getElementById('newContactPhone').value;
     localContactArray[contactId]['nameCharts'] = splitName(localContactArray[contactId]['name']);
     let dataAsStringify = JSON.stringify(localContactArray[contactId]);
-    console.log("localContactArray[contactId]    ",localContactArray[contactId]);
-    console.log("dataAsStringify    " ,dataAsStringify);
-    await updateTask(dataAsStringify,`/contacts/${contactId}`)
+    await updateTask(dataAsStringify, `/contacts/${contactId}`)
     clearNewContactForm();
     closeContactOverlay();
     window.location.reload();
@@ -288,7 +323,7 @@ async function editContactToFirebase(event, contactId) {
 
 async function deleteContactEverywhere(contactID) {
     await surcheContactsInTasks(contactID);
-    await  deleteContact(contactID);
+    await deleteContact(contactID);
 }
 
 async function surcheContactsInTasks(contactID) {
@@ -296,19 +331,19 @@ async function surcheContactsInTasks(contactID) {
     let contactIsInTask = false;
     for (const taskId in tasks) {
         contactIsInTask = false;
-            const element = tasks[taskId];
-            let contactsInTask = element.selectContacts;
-            for (const activeContactCount in contactsInTask) {
-                let activeContactId = contactsInTask[activeContactCount];
-                    if (contactID == activeContactId){
-                        contactIsInTask = true;
-                        contactsInTask.splice(activeContactCount,1);
-                    }
+        const element = tasks[taskId];
+        let contactsInTask = element.selectContacts;
+        for (const activeContactCount in contactsInTask) {
+            let activeContactId = contactsInTask[activeContactCount];
+            if (contactID == activeContactId) {
+                contactIsInTask = true;
+                contactsInTask.splice(activeContactCount, 1);
             }
-            let elementAsStringify = JSON.stringify(element);
-        updateTask(elementAsStringify,`/board/tasks/${taskId}`)
+        }
+        let elementAsStringify = JSON.stringify(element);
+        updateTask(elementAsStringify, `/board/tasks/${taskId}`)
     }
-    
+
 }
 
 async function deleteContact(contactToDelete) {

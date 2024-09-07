@@ -13,7 +13,6 @@ async function login(event) {
         if (email === SINGLE_CONTACT.email) {
             counter ++;
             if (password === SINGLE_CONTACT.password) {
-                console.log("Folgenden User gefunden:", SINGLE_CONTACT)
                 let activeUserName = SINGLE_CONTACT.name;
                 localStorage.setItem("abelToUse", true);
                 localStorage.setItem("activeUserName", `${activeUserName}`);

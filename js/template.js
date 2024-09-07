@@ -19,6 +19,8 @@ function templateNavbarOpenClose() {
     let navbarOpenOrClose = document.getElementById("header-Navbar");
     if (hasClass(navbarOpenOrClose,'d-none')) {
         navbarOpenOrClose.classList.remove("d-none");
+        isContactOverlayJustOpened = true;
+    setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
     } else {
         navbarOpenOrClose.classList.add("d-none");
     }

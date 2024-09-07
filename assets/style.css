@@ -31,6 +31,21 @@ img {
     cursor: pointer !important;
 }
 
+.bgActiceMenu {
+    background: #091931 !important;
+}
+
+.sideBarContainerLinkMobail {
+    width: 80px;
+    height: 76px;
+}
+
+.sideBarContainerLink {
+    width: 232px;
+    display: flex;
+    padding-left: 48px;
+}
+
 #bodyWrapper {
     width: 100vw;
     height: 100vh;
@@ -52,6 +67,8 @@ img {
     align-items: end;
     justify-content: end;
     width: 86vw;
+    top: 122px;
+    right: 18px;
 }
 
 .template-navbar {
@@ -122,8 +139,8 @@ section#sidebar > img {
 
 #sidebar-content > a {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: start;
     text-decoration: none !important;
     color: #ffffff;
 }
@@ -400,10 +417,6 @@ section#header {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-section#header > header > div:nth-of-type(1) {
-
-}
-
 section#header > header > div:nth-of-type(2) {
     display: flex;
     justify-content: center;
@@ -529,7 +542,7 @@ header > div > h1 {
 .addTaskWrapper {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: -16px;
 }
 
 .addTaskWrapperLeft,
@@ -1022,7 +1035,6 @@ select {
     display: none;
     background-color: #ffffff;
     position: fixed;
-    width: 475px;
     max-height: 336px;
     overflow-y: scroll;
 }
@@ -1212,6 +1224,13 @@ ul {
 /*##### END OF Task Overlay section #####*/
 
 /*##### START OF AddContact Overlay section #####*/
+#contactRightHeadSectionMobile{
+    column-gap: 16px;
+}
+
+.backArow {
+    margin-right: 24px;
+}
 .contactOverlayWrapper {
     width: 100%;
     min-height: 592px !important;
@@ -1225,7 +1244,6 @@ ul {
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
     width: 467px;
-    /*width: 467px;*/
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -1371,7 +1389,7 @@ input[required] {
     height: 100vh;
 }
 
-#contactList {
+.contactList {
     padding: 0 24px 32px 16px;
     max-height: 85%;
     overflow-y: auto;
@@ -1453,6 +1471,13 @@ button#newContact {
 .spacerDiv {
     height: 100%;
     width: 5px;
+    background: #29ABE2;
+    border-radius: 3px;
+}
+
+.spacerDivLying {
+    height: 5px;
+    width: 90px;
     background: #29ABE2;
     border-radius: 3px;
 }

@@ -89,16 +89,11 @@ async function taskEdit(taskId) {
     selectContacts = [];
     for (let contact in task.selectContacts) {
         let activeContactId = task.selectContacts[contact];
-        console.log("contact  :   " , contact);
-        console.log("activContactId:   " , activeContactId);
         selectContact(activeContactId);
         let checkboxId = `input${activeContactId}`;
         let checkbox = document.getElementById(checkboxId);
-        console.log(checkbox)
         if (checkbox) {
             checkbox.checked = true;
-        } else {
-            console.warn(`Checkbox mit ID input${activeContactId} nicht gefunden`);
         }
     }
     renderAllCreateSubtasks(taskId);

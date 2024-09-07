@@ -100,7 +100,6 @@ async function postUserData(path = "", data) {
         window.location.href = '../index.html';
     } catch (error) {
         console.error('Es gab einen Fehler beim Posten der Benutzerdaten:', error);
-        alert('Es gab einen Fehler beim Posten der Benutzerdaten.');
     }
 }
 

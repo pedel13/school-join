@@ -26,7 +26,7 @@
     <title>Join - Summary</title>
 </head>
 
-<body onload="init(); summaryOnLoad()">
+<body onload="init(1); summaryOnLoad()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
@@ -43,10 +43,8 @@
                     <h3 class="summary-title-small">Key Metrics at a Glance</h3>
                 </div>
                 <div class="align-items-center d-flex">
-                    <!-- TODO: container mit zählfunktion -->
                     <div class="d-flex flex-column summary-button-box justify-content-between" id="summary-button-box">
 
-                        <!-- Tt-do -done container -->
                         <div class="summary-button-size-large d-flex justify-content-between" id="button-row1">
                             <a href="./board.html" class="text-decoration-none summary-button-color rounded-30">
                                 <div class="d-flex align-items-center justify-content-center summary-button-size-medium summary-todo">
@@ -170,7 +168,6 @@
                         </div>
                     </div>
                     <div class="welcome-text" id="userName">
-                        <!-- TODO: time funktion und user-namen funktion -->
                         <h3 class="summary-greeting" id="summary-time">Good morning</h3>
                         <h2 class="summary-greeting-name" id="summary-user">Sofia Müller</h2>
                     </div>
