@@ -31,8 +31,11 @@ img {
     cursor: pointer !important;
 }
 
-.bgActiceMenu {
+.bgActiveMenu {
     background: #091931 !important;
+    height: 48px;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .sideBarContainerLinkMobail {

@@ -12,10 +12,10 @@ async function init(i) {
         }
     }
     let sidebarlinkCofferd = document.getElementById(`sidebarlink-${i}`);
-    sidebarlinkCofferd.classList.add(`bgActiceMenu`);
+    sidebarlinkCofferd.classList.add(`bgActiveMenu`);
     if (i<=4){
         let futter = document.getElementById(`sidebarlinkMobail-${i}`);
-        futter.classList.add(`bgActiceMenu`);
+        futter.classList.add(`bgActiveMenu`);
     }
 }
 

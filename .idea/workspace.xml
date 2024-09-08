@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="536ea78a-68f0-45ee-ae12-36ab1ca5dd12" name="Changes" comment="git conflict second big one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +158,8 @@
       <workItem from="1725348439792" duration="11000" />
       <workItem from="1725360892688" duration="3999000" />
       <workItem from="1725367160572" duration="1898000" />
-      <workItem from="1725369160736" duration="9195000" />
+      <workItem from="1725369160736" duration="9240000" />
+      <workItem from="1725799578111" duration="2797000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />
