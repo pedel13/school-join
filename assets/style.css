@@ -38,7 +38,7 @@ img {
     border-radius: 10px;
 }
 
-.sideBarContainerLinkMobail {
+.sideBarContainerLinkMobile {
     width: 80px;
     height: 76px;
 }
@@ -1231,7 +1231,7 @@ ul {
     column-gap: 16px;
 }
 
-.backArow {
+.backArrow {
     margin-right: 24px;
 }
 .contactOverlayWrapper {
