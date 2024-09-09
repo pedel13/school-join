@@ -23,7 +23,7 @@
 <body onload="onloadLogin()">
     <div class="loginHeader" id="header">
         <div>
-            <img src="img/logoLoginPage.svg" class="join-logo login">
+            <img src="img/logoLoginPage.svg" class="join-logo login" alt="join-logo">
         </div>
         <div class="signUp_btn_desktop">
             <p>Not a Join user?</p>
@@ -40,12 +40,23 @@
             <span class="headlineBorder">&nbsp;</span>
             <div id="loginCredentials">
                 <form onsubmit="login(event);">
-                    <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
-                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPassword(this)" required>
-                    <div id="massageBoxEmail" class="d-none" style="width: 100%;"><span class="alert-massage">Wrong password Ups! Try again.</span>
+                    <label for="email">
+                        <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
+                    </label>
+                    
+                    <label for="password">
+                        <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPassword(this)" required>
+                    </label>
+                    
+                    <div id="massageBoxEmail" class="d-none" style="width: 100%;">
+                        <span class="alert-massage">Wrong password Ups! Try again.</span>
                     </div>
+                    
                     <div class="checkBox">
-                        <input type="checkbox" id="remember">
+                        <label for="remember">
+                            <input type="checkbox" id="remember">
+                        </label>
+                        
                         <span>Remember me</span>
                     </div>
                     <div class="signUp_buttons">
