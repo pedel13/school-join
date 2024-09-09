@@ -64,6 +64,10 @@ img {
     overflow-y: scroll;
 }
 
+#innerCenterBoxMobile {
+    display: none;
+}
+
 .template-navbar-position {
     position: fixed;
     display: flex;

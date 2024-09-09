@@ -208,7 +208,7 @@ function renderClickedContact(contactID) {
                 <a href="tel:${phone}" class="phoneLink">${phone}</a>
             </div>
         </div>
-        <div  class="iconSircelContactPosition">
+        <div  class="iconCircleContactPosition">
         <div id="contact-Navbar" class="contact-navbar-position d-none">
             <div class="contact-navbar">
                     <div id="editCurrentContact" onclick="editContact('${contactID}')">
@@ -222,7 +222,7 @@ function renderClickedContact(contactID) {
                     </div>
                 </div>
         </div>
-            <div class="iconSircelContact">
+            <div class="iconCircleContact">
                 <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
             </div>
         </div>
