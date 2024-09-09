@@ -40,22 +40,19 @@
             <span class="headlineBorder">&nbsp;</span>
             <div id="loginCredentials">
                 <form onsubmit="login(event);">
-                    <label for="email">
-                        <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
-                    </label>
+                    <label for="email"></label>
+                    <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
                     
-                    <label for="password">
-                        <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPassword(this)" required>
-                    </label>
+                    <label for="password"></label>
+                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPassword(this)" required>
                     
                     <div id="massageBoxEmail" class="d-none" style="width: 100%;">
                         <span class="alert-massage">Wrong password Ups! Try again.</span>
                     </div>
                     
                     <div class="checkBox">
-                        <label for="remember">
-                            <input type="checkbox" id="remember">
-                        </label>
+                        <label for="remember"></label>
+                        <input type="checkbox" id="remember">
                         
                         <span>Remember me</span>
                     </div>
