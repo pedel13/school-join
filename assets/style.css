@@ -147,9 +147,13 @@ section#sidebar > img {
 #sidebar-content > a {
     display: flex;
     justify-content: left;
-    align-items: start;
+    align-items: center;
     text-decoration: none !important;
     color: #ffffff;
+}
+
+#sidebar-content > * {
+    font-size: 16px !important;
 }
 
 #sidebar-content > a > img {

@@ -814,6 +814,7 @@
 }
 
 @media (max-width: 415px) {
+    /*##### login page #####*/
     .join-logo {
         height: 80px;
         width: 70px;
@@ -835,14 +836,71 @@
         width: 115px;
     }
 
+    /*##### summary page #####*/
+    #innerCenterBoxMobile {
+        width: 300px;
+    }
+
+    #innerCenterBoxMobile > h1,
+    #innerCenterBoxMobile > h3 {
+        font-size: 26px !important;
+    }
+
+    #summary-toDo,
+    #summary-done,
+    #summary-urgent,
+    #summary-all-tasks,
+    #summary-taskInProgress,
+    #summary-awaitFeedback {
+        font-size: 40px !important;
+    }
+
+    .summary-button-text-medium {
+        font-size: 16px !important;
+    }
+
+    .summary-button-box {
+        margin-top: 16px !important;
+    }
+
+    .summary-button-size-medium {
+        width: 147px !important;
+    }
+
+    #button-row2 {
+        width: 306px;
+    }
+
+    .summary-date {
+        font-size: 15px !important;
+    }
+
+    .summary-date-text {
+        font-size: 15px !important;
+    }
+
+    #button-row3 {
+        max-width: 306px;
+    }
+
+    #button-row3 > * {
+        width: 94px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 16px;
+    }
+
     .footerLinks {
         font-size: 16px;
     }
 
     /*##### Sign Up Page #####*/
-    .loginForm, .signUpForm {
+    .loginForm,
+    .signUpForm {
         padding: 42px 63px;
     }
+
     .signUp-title {
         flex-direction: column-reverse;
         justify-content: center!important;
@@ -858,6 +916,7 @@
     .addTaskOverlayHeadline > h1 {
         font-size: 24px !important;
     }
+
     #contactTitle {
         gap: 30px;
     }
