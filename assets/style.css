@@ -163,11 +163,9 @@ section#sidebar > img {
 .sideBar-footer {
     margin-bottom: 4rem;
 }
-
 /*##### END OF sidebar stylings #####*/
 
 /*##### START OF logIn stylings #####*/
-
 .loginHeader {
     display: flex;
     justify-content: space-between;
@@ -553,7 +551,7 @@ header > div > h1 {
 .addTaskWrapper {
     display: flex;
     justify-content: flex-start;
-    margin-bottom: -16px;
+    margin-top: 24px;
 }
 
 .addTaskWrapperLeft,
@@ -654,7 +652,6 @@ header > div > h1 {
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 5%;
 }
 .centerWrapperHeadline {
     margin: 48px 0 48px 0;
@@ -715,9 +712,12 @@ textarea {
     margin-left: 48px;
 }
 
-.addTaskWrapperRight > div {
-    margin-bottom: 48px;
+.addTaskWrapperLeft > div {
+    margin-bottom: -12px;
+}
 
+.addTaskWrapperRight > div {
+    margin-bottom: 24px;
 }
 
 .addTaskPrioLow {
@@ -901,6 +901,7 @@ button.priorityButton:active .addTaskPrioUrgent {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 0 100px 0;
 }
 
 #createTaskButton {

@@ -269,9 +269,9 @@ input {
 }
 
 .divider {
-
     width: 1px !important;
     border-left: 1px solid grey !important;
+    margin: 0 32px;
 }
 
 .spacer {
