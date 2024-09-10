@@ -261,6 +261,10 @@
     .board-input-total {
         width: 240px !important;
     }
+
+    #addTaskMainWrapper {
+        padding-left: 0 !important;
+    }
 }
 
 @media (max-width: 970px) {
