@@ -140,6 +140,45 @@
         margin-bottom: 32px;
     }
 
+    .contactWrapperTop,
+    .contactWrapperBottom {
+        width: 100%;
+    }
+
+    .contactWrapperTop {
+        background-color: #2A3647;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        height: 352px;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+    }
+
+    .contactWrapperBottom {
+        height: 408px;
+        margin-bottom: 20px;
+    }
+
+    .addContactFormAvatarMobile {
+        margin-top: -67px;
+    }
+
+    .addContactFormAvatarMobile,
+    .addContactFormMobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100% !important;
+    }
+
+    .contactOverlayMobileTop {
+        margin-bottom: 130px;
+        color: #ffffff;
+    }
+
     .contactOverlayLeftMobile > img {
         margin: 16px 0 24px 0;
     }
@@ -163,22 +202,27 @@
     }
 
     .avatar {
-        margin-left: 16px;
+        margin-bottom: 20px;
     }
 
     .addContactForm {
         margin-left: 32px;
     }
 
-    .spaceDivContacts {
-        display: none;
-    }
-
     .createContact {
         margin-right: 0 !important;
     }
-    .createContactButton {
-        margin-left: 47px !important;
+
+    .createContactButton > * {
+        width: 197px !important;
+    }
+
+    .contactOverlayWrapper {
+        display: none !important;
+    }
+
+    .contactOverlayWrapperMobile {
+        display: flex !important;
     }
 }
 
@@ -361,10 +405,6 @@
         align-items: center;
     }
 
-    .avatar {
-        display: none;
-    }
-
     .addContactForm {
         width: 100% !important;
         display: flex;
@@ -542,8 +582,7 @@
         bottom: 116px;
         right: 24px;
         width: 56px;
-        height:56px;
-        padding: 12px 0 0 0;
+        height: 56px;
         border-radius: 100%;
         background: #2A3647;
         border: 1px solid #2A3647;
@@ -720,6 +759,47 @@
     }
 }
 
+@media (max-width: 525px) {
+    /*##### AddContact Overlay #####*/
+    .contactOverlayLeftMobile > h1 {
+        font-size: 28px !important;
+    }
+
+    .contactOverlayLeftMobile > p {
+        font-size: 16px !important;
+    }
+
+    input#newContactName,
+    input#newContactMail,
+    input#newContactPhone {
+        width: 90% !important;
+    }
+
+    .createContactButton {
+        width: 100%;
+        flex-direction: column !important;
+    }
+
+    .clearNewContact {
+        display: none !important;
+    }
+
+    .createContactButton > button {
+        width: 100% !important;
+        margin: 0 0 8px 0 !important;
+    }
+
+    footer {
+        bottom: auto !important;
+        margin-top: 48px;
+        font-size: 20px !important;
+    }
+
+    .head {
+        gap: 0 !important;
+    }
+}
+
 @media (max-width: 500px) {
     /*##### Sign Up Page #####*/
     .signUp-title > div > h1 {
@@ -800,40 +880,13 @@
         width: 100% !important;
         margin: 8px 0 !important;
     }
-}
 
-@media (max-width: 430px) {
-    /*##### AddContact Overlay #####*/
-    .contactOverlayLeftMobile > h1 {
-        font-size: 28px !important;
-    }
-
-    .contactOverlayLeftMobile > p {
-        font-size: 16px !important;
-    }
-
-    input#newContactName,
-    input#newContactMail,
-    input#newContactPhone {
-        width: 90% !important;
-    }
-
-    .createContactButton {
-        width: 100%;
-        flex-direction: column !important;
-    }
-
-    .createContactButton > button {
-        width: 100% !important;
-        margin: 0 0 8px 0 !important;
-    }
-
-    footer {
-        bottom: auto !important;
-        margin-top: 48px;
+    .contactOverlayMobileTop {
+        margin-bottom: 100px;
+        color: #ffffff;
+        padding: 40px;
         font-size: 20px !important;
     }
-
 }
 
 @media (max-width: 415px) {

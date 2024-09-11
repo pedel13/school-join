@@ -1244,6 +1244,7 @@ ul {
 .backArrow {
     margin-right: 24px;
 }
+
 .contactOverlayWrapper {
     width: 100%;
     min-height: 592px !important;
@@ -1267,6 +1268,16 @@ ul {
 .contactOverlayLeft > * {
     margin-bottom: 24px;
     color: #ffffff;
+}
+
+.contactOverlayWrapperMobile {
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .contactOverlayLeftMobile {
@@ -1311,6 +1322,14 @@ input#newContactPhone {
     display: flex;
     justify-content: flex-end;
     height: 120px;
+    margin: 16px 16px 0 0;
+}
+
+.closeMobile {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    height: 36px;
     margin: 16px 16px 0 0;
 }
 
