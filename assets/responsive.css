@@ -224,6 +224,11 @@
     .contactOverlayWrapperMobile {
         display: flex !important;
     }
+
+    #index-centerBox {
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (max-width: 1170px) {
@@ -315,11 +320,6 @@
     /*##### index.html (dashboard) #####*/
     h1.project-title {
         font-size: 26px !important;
-    }
-
-    #index-centerBox {
-        justify-content: center;
-        align-items: center;
     }
 
     #index-centerBox > div:nth-child(1) {
