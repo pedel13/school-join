@@ -947,7 +947,12 @@ select {
 
 /*##### START OF board.html section #####*/
 #addTask {
-    margin-right: 80px;}
+    margin-right: 80px;
+}
+
+.headerBar {
+    margin-top: 24px;
+}
 
 /*##### END OF board.html section #####*/
 
