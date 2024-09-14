@@ -108,7 +108,8 @@ img {
 /*##### START OF sidebar stylings #####*/
 
 
-#sidebar {
+#sidebar, 
+#sidebarNoUser {
     position: relative;
     width: 232px;
     height: 100%;
@@ -116,22 +117,26 @@ img {
     background-color: #2A3647;
 }
 
-#sideBarContainer {
+#sideBarContainer,
+#sidebarNoUserContainer {
     height: 100%;
 }
 
-section#sidebar {
+section#sidebar, 
+section#sidebarNoUser  {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
 }
 
-section#sidebar > div:first-of-type > a > img {
+section#sidebar > div:first-of-type > a > img, 
+section#sidebarNoUser > div:first-of-type > a > img {
     margin-top: 50px;
 }
 
-section#sidebar > img {
+section#sidebar > img, 
+section#sidebarNoUser > img {
     width: 100px;
     height: 122px;
 }

@@ -65,7 +65,8 @@
 }
 
 @media (max-width: 1320px) {
-    section#sidebar {
+    section#sidebar,
+    section#sidebarNoUser {
         display: none !important;
     }
     /*##### START Just Mobile Menu #####*/

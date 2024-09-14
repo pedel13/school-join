@@ -21,11 +21,12 @@
 <body onload="init(6); testingUser()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
-            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
+            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
+            <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
         </div>
 
         <div id="centerWrapper" class="centerWrapper">
-            <div w3-include-html="./templates/header.html"></div>
+            <div w3-include-html="./templates/header.html" id="header"></div>
 
             <div class="legalWrapper">
                 <div class="head margin-bottom-0">

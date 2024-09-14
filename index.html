@@ -29,11 +29,12 @@
 <body onload="init(1); summaryOnLoad()">
     <div id="bodyWrapper" class="bodyWrapper">
         <div id="sideBarWrapper" class="sideBarWrapper">
-            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer"></div>
+            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
+            <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
         </div>
 
         <div id="centerWrapper" class="centerWrapper">
-            <div w3-include-html="./templates/header.html"></div>
+            <div w3-include-html="./templates/header.html" id="header"></div>
 
             <!-- Join Title -->
             <div class="d-flex flex-column" id="index-centerBox">
@@ -112,8 +113,7 @@
                                 <div class="d-flex flex-column">
                                     <div>
                                         <p class="summary-date">
-                                            <!-- TODO: Datum funktion -->
-                                            October 16th, 2022
+                                            October 20th, 2024
                                         </p>
                                     </div>
                                     <div>
@@ -174,8 +174,8 @@
                         </div>
                     </div>
                     <div class="welcome-text" id="userName">
-                        <h3 class="summary-greeting" id="summary-time">Good morning</h3>
-                        <h2 class="summary-greeting-name" id="summary-user">Sofia Müller</h2>
+                        <h3 class="summary-greeting" id="summary-time"></h3>
+                        <h2 class="summary-greeting-name" id="summary-user"></h2>
                     </div>
                 </div>
                 

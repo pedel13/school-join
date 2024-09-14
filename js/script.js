@@ -1,16 +1,11 @@
 //Firebase Realtime-Database URL
 const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 async function init(i) {
-    await includeHTML();
     let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
     if (abelToUse === false){
-        for (let i = 1; i < 5; i++) {
-        let sidebarlink = document.getElementById(`sidebarlink-${i}`);
-        sidebarlink.classList.add('d-none');
-        let sidebarlinkMobail = document.getElementById(`sidebarlinkMobail-${i}`);
-        sidebarlinkMobail.classList.add('d-none');
-        }
-    }
+        await includeHTMLNoUser();
+    }else {
+        await includeHTML();}
     let sidebarlinkCofferd = document.getElementById(`sidebarlink-${i}`);
     sidebarlinkCofferd.classList.add(`bgActiveMenu`);
     if (i<=4){
