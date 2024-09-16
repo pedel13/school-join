@@ -1,7 +1,5 @@
-
 let localUser;
 let counter = 0;
-
 
 async function login(event) {
     event.preventDefault();
@@ -14,7 +12,7 @@ async function login(event) {
             counter ++;
             if (password === SINGLE_CONTACT.password) {
                 let activeUserName = SINGLE_CONTACT.name;
-                localStorage.setItem("abelToUse", true);
+                localStorage.setItem("ableToUse", true);
                 localStorage.setItem("activeUserName", `${activeUserName}`);
                 window.location.assign('./index.html');
             }
@@ -42,7 +40,7 @@ function removeWrongPassword(passwordInput) {
 
 async function guestLogin() {
     localStorage.setItem("activeUserName", ``);
-    localStorage.setItem("abelToUse", true);
+    localStorage.setItem("ableToUse", true);
     window.open("index.html", "_self");
 }
 
@@ -54,6 +52,6 @@ async function fetchUserData() {
 }
 async function onloadLogin() {
     localStorage.clear();
-    localStorage.setItem("abelToUse", false);
+    localStorage.setItem("ableToUse", false);
     await fetchUserData();
 }

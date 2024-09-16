@@ -40,7 +40,6 @@ function summaryGetTime() {
         greet = 'Good evening';
     }
     return greet;
-
 }
 
 function renderTaskCounts() {

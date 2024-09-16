@@ -18,7 +18,6 @@ function checkName(name) {
     } 
 }
 
-
 function checkEmail(email) {
     emailCheck = 0;
     for (const user in localUser) {
@@ -34,7 +33,6 @@ function checkEmail(email) {
         email.classList.add("alert-filled");
         email.classList.add("m-0");
     }
-    
 }
 
 function alertClassRemove(element, massageBox) {
@@ -57,7 +55,7 @@ async function addUser(event) {
         } else {
             if (password.value === passwordConfirm.value) {
                 localStorage.setItem("activeUserName", `${name.value}`);
-                localStorage.setItem("abelToUse", true);
+                localStorage.setItem("ableToUse", true);
                 await setToFirebase(name.value,email.value,password.value);  
             } else {   
                 document.getElementById('massageBox').classList.remove("d-none");

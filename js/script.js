@@ -1,22 +1,22 @@
 //Firebase Realtime-Database URL
 const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 async function init(i) {
-    let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
-    if (abelToUse === false){
+    let ableToUse = JSON.parse(localStorage.getItem("ableToUse"));
+    if (ableToUse === false){
         await includeHTMLNoUser();
     }else {
         await includeHTML();}
     let sidebarlinkCofferd = document.getElementById(`sidebarlink-${i}`);
     sidebarlinkCofferd.classList.add(`bgActiveMenu`);
     if (i<=4){
-        let futter = document.getElementById(`sidebarlinkMobail-${i}`);
+        let futter = document.getElementById(`sidebarLinkMobile-${i}`);
         futter.classList.add(`bgActiveMenu`);
     }
 }
 
 function testingUser() {
-    let abelToUse = JSON.parse(localStorage.getItem("abelToUse"));
-    if (abelToUse === false){
+    let ableToUse = JSON.parse(localStorage.getItem("ableToUse"));
+    if (ableToUse === false){
         var link = document.getElementById("backLink");
         link.setAttribute('href', "../login.html");
     }
@@ -43,23 +43,23 @@ document.addEventListener('keydown', evt => {
 
 document.addEventListener('click', function(event) {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
-    let tibeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
+    let typeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
     if (addTaskOverlay && !addTaskOverlay.classList.contains('d-none')) {
-        if (!tibeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
+        if (!typeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
             closeAddTaskOverlay();
         }
     }
     let taskOverlay = document.getElementById('taskOverlay');
-    let tibeOnTaskOverlay = document.getElementById('taskOverlayWrapper');
+    let typeOnTaskOverlay = document.getElementById('taskOverlayWrapper');
     if (taskOverlay && !taskOverlay.classList.contains('d-none')) {
-        if (!tibeOnTaskOverlay.contains(event.target) && !isTaskOverlayJustOpened) {
+        if (!typeOnTaskOverlay.contains(event.target) && !isTaskOverlayJustOpened) {
             closeTaskOverlay();
         }
     }
     let closeOpenContactOverlay = document.getElementById('contactOverlay');
-    let tibeOnContactOverlay = document.getElementById('contactOverlayWrapper');
+    let typeOnContactOverlay = document.getElementById('contactOverlayWrapper');
     if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
-        if (!tibeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
+        if (!typeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
             closeContactOverlay();
         }
     }

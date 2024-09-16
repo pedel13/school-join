@@ -1,7 +1,3 @@
-function renderTaskOverlay() {
-
-}
-
 function openTaskOverlay(taskId = "") {
     takeElementFromTask(taskId);
     let tasks = JSON.parse(localStorage.getItem("tasks"));

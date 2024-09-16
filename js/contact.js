@@ -279,11 +279,11 @@ async function editContact(contactId = "") {
     deleteButtenExistContact.onclick = function () {
         return deleteContactEverywhere(contactId);
     };
-    await renderEditContatsOferlay(contactId);
+    await renderEditContactsOverlay(contactId);
     openAddContactOverlay();
 }
 
-async function renderEditContatsOferlay(contactId) {
+async function renderEditContactsOverlay(contactId) {
     await loadContacts("/contacts");
     let name = localContactArray[contactId]['name'];
     let email = localContactArray[contactId]['email'];
@@ -322,11 +322,11 @@ async function editContactToFirebase(event, contactId) {
 }
 
 async function deleteContactEverywhere(contactID) {
-    await surcheContactsInTasks(contactID);
+    await searchContactsInTasks(contactID);
     await deleteContact(contactID);
 }
 
-async function surcheContactsInTasks(contactID) {
+async function searchContactsInTasks(contactID) {
     let tasks = await loadTasks("/board/tasks");
     let contactIsInTask = false;
     for (const taskId in tasks) {
@@ -343,7 +343,6 @@ async function surcheContactsInTasks(contactID) {
         let elementAsStringify = JSON.stringify(element);
         updateTask(elementAsStringify, `/board/tasks/${taskId}`)
     }
-
 }
 
 async function deleteContact(contactToDelete) {
