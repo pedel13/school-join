@@ -6,8 +6,8 @@ async function init(i) {
         await includeHTMLNoUser();
     }else {
         await includeHTML();}
-    let sidebarlinkCofferd = document.getElementById(`sidebarlink-${i}`);
-    sidebarlinkCofferd.classList.add(`bgActiveMenu`);
+    let sidebarlinkCovered = document.getElementById(`sidebarlink-${i}`);
+    sidebarlinkCovered.classList.add(`bgActiveMenu`);
     if (i<=4){
         let futter = document.getElementById(`sidebarLinkMobile-${i}`);
         futter.classList.add(`bgActiveMenu`);
