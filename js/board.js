@@ -119,7 +119,7 @@ function renderFindeTask(element, taskId, contacts) {
     for (let contact in element.selectContacts) {
         let activeContactId = element.selectContacts[contact];
         let activeContact = contacts[activeContactId];
-        renderAktiveContakts(activeContact, activeContactId, taskId);
+        renderActiveContacts(activeContact, activeContactId, taskId);
         }
         subtaskCount = 0;
     
@@ -197,7 +197,7 @@ async function renderAllTasks() {
         for (let contact in element.selectContacts) {
             let activeContactId = element.selectContacts[contact];
             let activeContact = contacts[activeContactId];
-                renderAktiveContakts(activeContact, activeContactId, taskId);
+                renderActiveContacts(activeContact, activeContactId, taskId);
         }
         subtaskCount = 0;
     }
@@ -278,7 +278,7 @@ async function deleteTask(event, taskId) {
     closeTaskOverlay();
 }
 
-function renderAktiveContakts(activeContact, contactId, taskId) {
+function renderActiveContacts(activeContact, contactId, taskId) {
     document.getElementById("selectContent"+taskId).innerHTML += `
     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
     `
