@@ -4,7 +4,6 @@
 # bg = background
 # fSize = font-size //e.g. fSize21 = font-size: 21px
 */
-
 h1 {
     margin-block-end: 0;
 }
@@ -506,3 +505,85 @@ input {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.gap-4 {
+    gap: 4px;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-32 {
+    gap: 32px;
+}
+
+.m-8 {
+    margin: 8px !important;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.-m-8 {
+    margin-right: -8px;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+}
+
+.rounded-8 {
+    border-radius: 8px;
+}
+
+.rounded-100 {
+    border-radius: 100%;
+}
+
+/* start bg-user colors */
+.bg-orange {
+    background-color: #FF7A00;
+}
+
+.bg-purple {
+    background-color: #9327FF;
+}
+
+.bg-blue {
+    background-color: #6E52FF;
+}
+
+.bg-pink {
+    background-color: #FC71FF;
+}
+
+.bg-yellow {
+    background-color: #FFBB2B;
+}
+
+.bg-green {
+    background-color: #1FD7C1;
+}
+
+.bg-dark-blue {
+    background-color: #462F8A;
+}
+
+.bg-red {
+    background-color: #FF4646;
+}
+/*  end bg-user colors */

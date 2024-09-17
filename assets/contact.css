@@ -1,0 +1,360 @@
+/*##### START OF AddContact Overlay section #####*/
+#contactRightHeadSectionMobile{
+    column-gap: 16px;
+}
+
+.backArrow {
+    margin-right: 24px;
+}
+
+.contactOverlayWrapper {
+    width: 100%;
+    min-height: 592px !important;
+    display: flex;
+    justify-content: center;
+    top: 25%;
+}
+
+.contactOverlayLeft {
+    background-color: #2A3647;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    width: 467px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 130px 0 40px 40px;
+}
+
+.contactOverlayLeft > * {
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.contactOverlayWrapperMobile {
+    width: 80%;
+    background-color: #ffffff;
+    border-radius: 31px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contactOverlayLeftMobile {
+    display: none;
+}
+
+.contactJoinLogo {
+    width: 56px;
+    height: 66px;
+}
+
+.addContactFormAvatar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+input#newContactName,
+input#newContactMail,
+input#newContactPhone {
+    width: 402px;
+    height: 56px;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    padding: 4px 4px 4px 16px;
+    margin-bottom: 24px;
+}
+
+.addContactForm > form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.addContactForm > form > * {
+    margin-bottom: 16px;
+}
+
+.close {
+    display: flex;
+    justify-content: flex-end;
+    height: 120px;
+    margin: 16px 16px 0 0;
+}
+
+.closeMobile {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    height: 36px;
+    margin: 16px 16px 0 0;
+}
+
+.close-img {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.avatar-img {
+    height: 134px;
+    width: 134px;
+}
+
+.contactOverlayRight {
+    background-color: #ffffff;
+    width: 745px;
+}
+
+
+.createContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-right: 62px;
+}
+
+.spaceDivContacts {
+    width: 65%;
+}
+
+.createContactButton {
+    display: flex;
+    justify-content: flex-start !important;
+    align-items: center;
+}
+
+.createContactButton > button:nth-of-type(2) {
+    margin-left: 12px;
+}
+
+.clearNewContact {
+    background-color: #ffffff !important;
+    color: #2A3647 !important;
+    width: 130px !important;
+    border: 1px solid #2A3647 !important;
+}
+
+.clearNewContact,
+.createNewContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    width: 200px;
+    height: 50px;
+    border-radius: 10px;
+    background: #2A3647;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/*##### END OF AddContact Overlay section #####*/
+
+
+
+input[required] {
+    border-color: red;
+}
+
+#contactsMain {
+    display: flex;
+    margin-top: 1px;
+}
+
+#contactLeft {
+    justify-content: center;
+    background: #fff;
+    width: 456px;
+}
+
+.contactList {
+    padding: 0 24px 32px 16px;
+    max-height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.contactLetter {
+    width: 352px;
+    font-size: 24px;
+    font-weight: normal;
+    display: flex;
+    padding: 17px 36px;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.activeContact {
+    background-color: #2A3647;
+    color: #ffffff;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.namesList {
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    padding: 8px 0 0 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.contactItem {
+    width: 352px;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 15px 24px;
+}
+
+.innerContactDetailWrapper {
+    display: flex;
+}
+
+#userProfile {
+    padding-right: 32px;
+}
+
+.emailLink {
+    color: #007cee;
+    font-size: 16px;
+}
+
+.newContactButton {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+button#newContact {
+    width: 90%;
+    height: 50px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: bold;
+    border: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #2A3647;
+}
+
+#contactsRight {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 80px 0 0 40px;
+}
+
+.spacerDiv {
+    height: 100%;
+    width: 5px;
+    background: #29ABE2;
+    border-radius: 3px;
+}
+
+.spacerDivLying {
+    height: 5px;
+    width: 90px;
+    background: #29ABE2;
+    border-radius: 3px;
+}
+
+#contactRightHeadSection {
+    width: 80%;
+    height: 64px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+
+#contactTitle {
+    width: 80%;
+    display: flex;
+    gap: 60px;
+}
+
+#contactAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    border: 5px solid #ffffff;
+}
+
+.credentialsCircle {
+    color: #ffffff;
+    height: 110px;
+    width: 119px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.currentName {
+    font-size: 47px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+#editButtons {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#editCurrentContact,
+#deleteCurrentContact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#editCurrentContact:hover,
+#deleteCurrentContact:hover {
+    cursor: pointer;
+    color: #0100FF;
+}
+
+#contactDetails {
+    margin-top: 40px;
+    column-gap: 24px;
+    font-size: 16px;
+}
+
+#contactDetails > p {
+    font-size: 22px;
+}
+
+#contactDetails > * {
+    margin-bottom: 32px;
+}
+
+.mailLink:hover,
+.phoneLink:hover {
+    cursor: pointer;
+    color: #007cee;
+}

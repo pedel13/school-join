@@ -1051,9 +1051,3 @@
         max-width: 250px;
     }
 }
-
-@media (min-width: 970px) {
-.min-w-970 {
-    display: none !important;
-}
-}
