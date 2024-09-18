@@ -23,10 +23,10 @@
     <title>Join - Sign up</title>
 </head>
 
-<body onload="fetchUserData()">
+<body onload="fetchUserData(); buttonEnabler()">
     <div class="loginHeader">
         <div>
-            <img src="img/join_logo.png" >
+            <img src="img/join_logo.png" alt="join-logo">
         </div>
     </div>
 
@@ -34,7 +34,7 @@
         <div id="signUpForm" class="signUpForm">
             <div class="signUp-title">
             <a class="logIn-link" href="./login.html">
-                <img class="logIn-arrow" src="./img/icons/arrow-left-blue.png" >
+                <img class="logIn-arrow" src="./img/icons/arrow-left-blue.png" alt="left-arrow">
             </a>
             <div>
                 <h1 class="fSize-61">Sign up</h1>
@@ -61,7 +61,7 @@
                             <a href="privacy.html" target="_self">Privacy policy</a>
                         </span>
                     </div>
-                    <button class="btn bg-join-blue fc-white fSize-16" id="signUp">Sign up</button>
+                    <button class="disabledButton" id="signUp">Sign up</button>
                 </form>
                 <div id="msgBox" class="msgBox">
 

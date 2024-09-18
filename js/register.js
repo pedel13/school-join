@@ -101,4 +101,22 @@ async function postUserData(path = "", data) {
     }
 }
 
+function buttonEnabler() {
+    const name = document.getElementById("name");
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("passwordConfirm");
+    const signUpBtn = document.getElementById("signUp");
+    signUpBtn.disabled = true;
+    if (name.value.length <= 0 && email.value.length <= 0 && password.value.length <= 0 && confirmPassword.value.length <= 0) {
+        signUpBtn.disabled = true;
+    }
+    else {
+        confirmPassword.addEventListener("keyup", ()=> {
+            signUpBtn.classList.remove("disabledButton");
+            signUpBtn.disabled = false;
+        })
+    }
+}
+
 

@@ -264,6 +264,10 @@
     .taskOverlayTitle {
         font-size: 40px !important;
     }
+
+    #addTask {
+        display: none;
+    }
 }
 
 @media (max-width: 525px) {
