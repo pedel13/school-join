@@ -309,7 +309,7 @@ function renderAddOverlay(position) {
                     <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
                 </div>
                 <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
-                    <form class="main" onsubmit="addTask('${position}')">
+                    <form class="main" onsubmit="addTask(event,'${position}')">
                         <div id="addTaskWrapper" class="addTaskWrapper">
                             <div class="addTaskWrapperLeft">
                                 <div>
