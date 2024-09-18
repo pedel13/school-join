@@ -107,16 +107,20 @@ function buttonEnabler() {
     const password = document.getElementById("password");
     const confirmPassword = document.getElementById("passwordConfirm");
     const signUpBtn = document.getElementById("signUp");
-    signUpBtn.disabled = true;
-    if (name.value.length <= 0 && email.value.length <= 0 && password.value.length <= 0 && confirmPassword.value.length <= 0) {
-        signUpBtn.disabled = true;
-    }
-    else {
-        confirmPassword.addEventListener("keyup", ()=> {
-            signUpBtn.classList.remove("disabledButton");
-            signUpBtn.disabled = false;
-        })
-    }
+    const checkBox = document.getElementById("registerCheckbox");
+    
+    addEventListener("submit", event => {
+        if (name.value.length <= 0 && email.value.length <= 0 && password.value.length <= 0 && confirmPassword.value.length <= 0 && checkBox.checked === false) {
+            signUpBtn.disabled = true;
+            console.log("asdsadas")
+        }
+        else {
+            confirmPassword.addEventListener("keyup", ()=> {
+                signUpBtn.classList.remove("disabledButton");
+                signUpBtn.disabled = false;
+            })
+        }
+    })
 }
 
 
