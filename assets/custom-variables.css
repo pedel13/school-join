@@ -106,7 +106,7 @@ input {
 }
 
 ::placeholder {
-    color: #ADADAD !important;
+    color: #000000 !important;
 }
 
 .summary-button-color {

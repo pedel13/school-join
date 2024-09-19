@@ -16,6 +16,12 @@ body {
     /*overflow: hidden !important;*/
 }
 
+input,
+textarea {
+    font-family: inherit !important;
+    color: black !important;
+}
+
 /*##### General- & template stylings #####*/
 p, h1, h2, h3, h4, h5, h6 {
     margin: 0;
