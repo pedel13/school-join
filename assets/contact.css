@@ -15,6 +15,10 @@
     top: 25%;
 }
 
+.contactOverlayWrapperMobile {
+    display: none !important;
+}
+
 .contactOverlayLeft {
     background-color: #2A3647;
     border-top-left-radius: 30px;
@@ -179,7 +183,6 @@ input[required] {
 }
 
 #contactLeft {
-    justify-content: center;
     background: #fff;
     width: 456px;
 }
@@ -189,6 +192,18 @@ input[required] {
     max-height: 85%;
     overflow-y: auto;
     overflow-x: hidden;
+}
+
+.contactList:last-of-type {
+    padding-bottom: 48px;
+}
+
+.iconCircleContactPosition {
+    height: 1px;
+}
+
+.contactListWrapper {
+    padding-bottom: 48px;
 }
 
 .contactLetter {
