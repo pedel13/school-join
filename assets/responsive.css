@@ -14,10 +14,14 @@
     #selectInputAssignee,
     #datePicker,
     #categorySelect,
+    #subtaskStorage,
     .addTaskEnterSubtask {
         width: 395px;
     }
 
+    #subtaskStorage {
+        padding-left: 0 !important;
+    }
     .priority {
         width: 395px;
     }
@@ -28,6 +32,15 @@
 
     .addTaskOverlayHeadline > h1 {
         font-size: 32px;
+    }
+
+    /*##### AddTask Form page #####*/
+    #checkboxes {
+        max-width: 395px;
+    }
+
+    #addTaskBottom {
+        width: 100% !important;
     }
 }
 
@@ -44,6 +57,7 @@
     #selectInputAssignee,
     #datePicker,
     #categorySelect,
+    #subtaskStorage,
     .addTaskEnterSubtask {
         width: 300px;
     }
@@ -61,6 +75,17 @@
     #mainWrapper {
         width: 80%;
         padding-left: 80px;
+    }
+
+    /*##### AddTask Form page #####*/
+    #checkboxes {
+        max-width: 300px !important;
+        font-size: 18px;
+        padding: 4px;
+    }
+
+    #selectContacts {
+        font-size: 12px !important;
     }
 }
 

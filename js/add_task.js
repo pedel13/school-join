@@ -291,7 +291,7 @@ function renderCrateSubtask(newSubtask, subtaskCreateCount) {
     document.getElementById('subtaskStorage').innerHTML += `
         <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" class="justify-content-between">
             • ${newSubtask}
-            <div class="d-flex">
+            <div class="d-flex" id="subTaskButton">
                 <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
                 <div class="addTaskSubtaskVertikalLine"></div>
                 <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
