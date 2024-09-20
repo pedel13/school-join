@@ -399,6 +399,11 @@
         padding: 40px;
         font-size: 20px !important;
     }
+
+    /*##### Add-Task page #####*/
+    #subtaskStorage {
+        width: 224px;
+    }
 }
 
 @media (max-width: 415px) {

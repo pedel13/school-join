@@ -56,14 +56,14 @@ function setColor() {
 function splitName(data) {
     let cdata = data.split(" ");
     let firstName = cdata[0];
-    let secentName = cdata[1];
+    let secondName = cdata[1];
     let nameCharts = [];
     let firstChart = firstName.charAt(0);
     let firstChartUpperCase = firstChart.toUpperCase();
-    let secentChart = secentName.charAt(0);
-    let secentChartUpperCase = secentChart.toUpperCase();
+    let secondChart = secondName.charAt(0);
+    let secondChartUpperCase = secondChart.toUpperCase();
     nameCharts.push(firstChartUpperCase);
-    nameCharts.push(secentChartUpperCase);
+    nameCharts.push(secondChartUpperCase);
     return nameCharts;
 }
 
@@ -247,7 +247,8 @@ function openAddContactOverlay() {
     setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
 }
 
-function closeContactOverlay() {
+function closeContactOverlay(event) {
+    event.preventDefault(event);
     document.getElementById('contactOverlay').classList.add('d-none');
 }
 

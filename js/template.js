@@ -2,10 +2,10 @@ async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        console.log(includeElements);
+        //console.log(includeElements);
         let file = element.getAttribute("w3-include-html"); // "includes/header.html"
         if (element.id === 'sideBarContainer' || element.id === 'header' || element.id ==='mobileNavBar') {
-            console.log("element    : ", element);
+            //console.log("element    : ", element);
             let resp = await fetch(file);
             if (resp.ok) {
                 element.innerHTML = await resp.text();
@@ -21,10 +21,10 @@ async function includeHTMLNoUser() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        console.log(includeElements);
+        //console.log(includeElements);
         let file = element.getAttribute("w3-include-html"); // "includes/header.html"
         if (element.id === 'sidebarNoUserContainer' || element.id === 'header') {
-            console.log("element    : ", element);
+            //console.log("element    : ", element);
             let resp = await fetch(file);
             if (resp.ok) {
                 element.innerHTML = await resp.text();
