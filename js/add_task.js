@@ -1,6 +1,6 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio = "-";
-let subtasklist = ['no'];
+let subtasklist = [];
 let subtaskProovment = [];
 let expanded = false;
 let contacts;
@@ -85,7 +85,7 @@ async function getInputs(position) {
 }
 
 function clearAddTask() {
-    subtasklist = ['no'];
+    subtasklist = [];
     subtaskProovment = [];
     prioButtonClearSelect()
     prio = '-';
@@ -206,8 +206,8 @@ function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
 
 function deleteCreateSubtask(subtaskCreateCount = '') {
     if (subtasklist.length === 1) {
-        subtasklist = ['no'];
-        subtaskProovment = ['no']
+        subtasklist = [];
+        subtaskProovment = []
     }
     else {
         let subtaskCreateCountSplice = subtaskCreateCount;
@@ -226,7 +226,7 @@ function deleteCreateSubtask(subtaskCreateCount = '') {
 }
 
 function renderAllCreateSubtaskNew() {
-    if (subtasklist[0] == 'no') {
+    if (subtasklist.length < 1) {
     } else {
         let i = 0;
         for (let subtask in subtasklist) {
@@ -242,7 +242,7 @@ function renderAllCreateSubtasks(taskId) {
     let element = tasks[taskId];
     let subtask = element.subtasks;
     if (subtask == 'no') {
-        subtasklist = ['no'];
+        subtasklist = [];
     } else {
         for (let subtask in element.subtasks) {
             subtasklist.push(element.subtasks[i]);
@@ -255,7 +255,7 @@ function renderAllCreateSubtasks(taskId) {
 
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
-    if (subtasklist[0] == 'no') {
+    if (subtasklist.length < 1) {
         subtasklist = [];
         subtaskProovment = [];
     }

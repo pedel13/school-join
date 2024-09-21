@@ -1,6 +1,6 @@
 /* Local variables */
 let localContactArray;
-
+let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 /**
  * Creates new Contact-Data and saves them to the Database
  * @function addContact
@@ -15,8 +15,8 @@ async function addContact(event) {
     let contactColor = setColor();
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
     clearNewContactForm();
-    closeContactOverlay();
-    window.location.reload();
+    closeContactOverlay(event);
+    fetchContacts();
 }
 
 function setColor() {
@@ -97,8 +97,15 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
     await postContactData("contacts", contactDataAsString);
 }
 
+function clearContactrendering() {
+    for (let i = 0; i < alphabet.length; i++) {
+        document.getElementById(`contactList-${alphabet[i]}`).innerHTML ='';
+    }
+}
+
 async function fetchContacts() {
     await loadContacts("/contacts");
+    clearContactrendering();
     for (let contactID in localContactArray) {
         let element = localContactArray[contactID];
         let name = element.name;
@@ -318,8 +325,9 @@ async function editContactToFirebase(event, contactId) {
     let dataAsStringify = JSON.stringify(localContactArray[contactId]);
     await updateTask(dataAsStringify, `/contacts/${contactId}`)
     clearNewContactForm();
-    closeContactOverlay();
-    window.location.reload();
+    closeContactOverlay(event);
+    fetchContacts();
+    surcheRenderPositionClickedContact(contactId);
 }
 
 async function deleteContactEverywhere(contactID) {
@@ -358,5 +366,7 @@ async function deleteContact(contactToDelete) {
     catch (error) {
         console.error("Error delete data in database:", error);
     }
-    window.location.reload();
+    fetchContacts();
+    document.getElementById('renderedContactDetails').innerHTML = "";
+    document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }

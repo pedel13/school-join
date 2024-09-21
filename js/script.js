@@ -36,7 +36,7 @@ document.addEventListener('keydown', evt => {
 
         let closeOpenContactOverlay = document.getElementById('contactOverlayWrapper');
         if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
-            closeContactOverlay();
+            closeContactOverlay(evt);
         }
     }
 });
@@ -58,9 +58,17 @@ document.addEventListener('click', function(event) {
     }
     let closeOpenContactOverlay = document.getElementById('contactOverlay');
     let typeOnContactOverlay = document.getElementById('contactOverlayWrapper');
+    let typeOnContactOverlayMobile = document.getElementById('contactOverlayWrapperMobile');
     if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
-        if (!typeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
-            closeContactOverlay();
+        if (document.documentElement.clientWidth > 1200) {
+            console.log('Greater!');
+                if (!typeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
+                    closeContactOverlay(event);
+          }
+        }else{
+            if (!typeOnContactOverlayMobile.contains(event.target)&& !isContactOverlayJustOpened) {
+                closeContactOverlay(event);
+            }
         }
     }
     let navbarOpenOrClose = document.getElementById("header-Navbar");

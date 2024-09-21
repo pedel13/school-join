@@ -55,9 +55,9 @@ async function changeTask(event,taskId="") {
     task["selectContacts"] = selectContacts;
     task["datePicker"] = document.getElementById('datePicker').value;
     task["priority"] = prio;
-    if (subtasklist[0] !== 'no') {
+    if (subtasklist.length >  0) {
         task["subtasks"] = subtasklist;
-        task["subtask"] = subtaskProofment;
+        task["subtask"] = subtaskProofments;
     }
     let taskAsStringify = JSON.stringify(task);
     await updateTask(taskAsStringify,`/board/tasks/${taskId}`);
@@ -75,15 +75,12 @@ function reduceDroppedElement(elementPosition) {
         case "board-task-on-to-do":
             countOnToDo--;
             break;
-
         case "board-task-on-in-progress":
             countOnInProgress--;
             break;
-
         case "board-task-on-await-feedback":
             countOnAwaitFeedback--;
             break;
-
         case "board-task-on-done":
             countOnDone--;
             break;
@@ -128,30 +125,22 @@ function renderFindeTask(element, taskId, contacts) {
 function noTasksInProgress() {
     if (countOnToDo != 0) {
         addNoTaskInProgress("no-tasks-to-do");
-    }
-
-    else {
+    }else {
         removeNoTaskInProgress("no-tasks-to-do");
     }
-
     if (countOnInProgress != 0) {
         addNoTaskInProgress("no-tasks-in-progress");
-    }
-    else {
+    }else {
         removeNoTaskInProgress("no-tasks-in-progress");
     }
-
     if (countOnAwaitFeedback != 0) {
         addNoTaskInProgress("no-tasks-await-feedback");
-    }
-    else {
+    }else {
         removeNoTaskInProgress("no-tasks-await-feedback");
     }
-
     if (countOnDone != 0) {
         addNoTaskInProgress("no-tasks-Done");
-    }
-    else {
+    }else {
         removeNoTaskInProgress("no-tasks-Done");
     }
 }
@@ -206,11 +195,11 @@ async function renderAllTasks() {
 
 function subtaskExist(task) {
     let subtask = " ";
-    if (task.subtasks == "no") {
-        subtask = "d-none";
-    }
-    else {
+    let testingSubtask = task.subtasks;
+    if (typeof testingSubtask !== 'undefined' && testingSubtask) {
         subtaskCounter(task);
+    }else {
+        subtask = "d-none";
     }
     return subtask;
 }
@@ -227,10 +216,8 @@ function subtaskCounter(task) {
         }
         i++;
         subtaskCount++;
-
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
-
 }
 
 function categoryFinder(task) {
@@ -248,15 +235,12 @@ function countForNoTask(positionFromCard) {
         case "board-task-on-to-do":
             countOnToDo++;
             break;
-
         case "board-task-on-in-progress":
             countOnInProgress++;
             break;
-
         case "board-task-on-await-feedback":
             countOnAwaitFeedback++;
             break;
-
         case "board-task-on-done":
             countOnDone++;
             break;

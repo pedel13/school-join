@@ -3,11 +3,11 @@ function openTaskOverlay(taskId = "") {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let task = tasks[taskId];
     localStorage.activeTask = JSON.stringify(task);
-    if (task.subtasks == 'no') {
-        document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
-    }
-    else {
+    let testingSubtask = task.subtasks;
+    if (typeof testingSubtask !== 'undefined' && testingSubtask) {
         subtaskLoop(taskId);
+    }else {
+        document.getElementById('taskOverlayCheckbox').innerHTML = 'no subtask'
     }
     let overlay = document.getElementById('taskOverlay');
     overlay.classList.remove('d-none');
@@ -17,7 +17,7 @@ function openTaskOverlay(taskId = "") {
 
 function closeTaskOverlay() {
     document.getElementById('taskOverlay').classList.add('d-none');
-    location.reload();
+    renderAllTasks();
 }
 
 function takeElementFromTask(taskid) {
