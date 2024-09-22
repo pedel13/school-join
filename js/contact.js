@@ -97,7 +97,7 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
     await postContactData("contacts", contactDataAsString);
 }
 
-function clearContactrendering() {
+function clearContactRendering() {
     for (let i = 0; i < alphabet.length; i++) {
         document.getElementById(`contactList-${alphabet[i]}`).innerHTML ='';
     }
@@ -105,7 +105,7 @@ function clearContactrendering() {
 
 async function fetchContacts() {
     await loadContacts("/contacts");
-    clearContactrendering();
+    clearContactRendering();
     for (let contactID in localContactArray) {
         let element = localContactArray[contactID];
         let name = element.name;
@@ -132,7 +132,7 @@ async function loadContacts(path = "") {
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
     contactAlphabetElement.innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
-            <ul class="namesList" id="contactUlActive_${contactID}" onclick="surcheRenderPositionClickedContact('${contactID}')">
+            <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
@@ -153,11 +153,11 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
         </div>
     `;
 }
-function surcheRenderPositionClickedContact(contactId) {
-    let testForOferlay = document.getElementById("contactsRight");
+function searchRenderPositionClickedContact(contactId) {
+    let testForOverlay = document.getElementById("contactsRight");
     renderClickedContact(contactId);
     if (matchMedia`(max-width: 970px)`.matches) {
-        testForOferlay.classList.remove('max-w-970');
+        testForOverlay.classList.remove('max-w-970');
         document.getElementById('contactRightHeadSection').classList.add('max-w-970');
         document.getElementById('contactLeft').classList.add('max-w-970');
         document.getElementById('contactRightHeadSectionMobile').classList.remove('d-none')
@@ -327,7 +327,7 @@ async function editContactToFirebase(event, contactId) {
     clearNewContactForm();
     closeContactOverlay(event);
     fetchContacts();
-    surcheRenderPositionClickedContact(contactId);
+    searchRenderPositionClickedContact(contactId);
 }
 
 async function deleteContactEverywhere(contactID) {
