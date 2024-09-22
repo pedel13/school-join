@@ -255,7 +255,6 @@ function openAddContactOverlay() {
 }
 
 function closeContactOverlay(event) {
-    event.preventDefault(event);
     document.getElementById('contactOverlay').classList.add('d-none');
 }
 
@@ -274,6 +273,7 @@ function clearNewContactForm() {
     document.getElementById('newContactName').value = '';
     document.getElementById('newContactMail').value = '';
     document.getElementById('newContactPhone').value = '';
+    closeContactOverlay();
 }
 
 async function editContact(contactId = "") {
