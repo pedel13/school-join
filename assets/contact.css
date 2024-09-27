@@ -184,7 +184,15 @@ input[required] {
 
 #contactLeft {
     background: #fff;
-    width: 456px;
+    min-width: 456px;
+    height: 100vh;
+    overflow-y: auto;
+    padding-bottom: 60px;
+}
+
+.contactsMainWrapper {
+    overflow-y: hidden !important;
+    width: 100%;
 }
 
 .contactList {
