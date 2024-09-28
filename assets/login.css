@@ -4,6 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 40px 80px;
+    height: 208px;
 }
 
 .signUp_btn_desktop {
@@ -200,12 +201,13 @@ input[type=date] {
 }
 
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
+    margin-top: 160px;
     margin-bottom: 40px;
 }
 

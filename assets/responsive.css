@@ -69,6 +69,11 @@
     .addTaskOverlayHeadline > h1 {
         font-size: 32px;
     }
+
+    /*##### AddTask Form page #####*/
+    #checkboxes {
+        max-width: 300px;
+    }
 }
 
 @media (max-width: 1360px) {

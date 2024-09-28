@@ -111,7 +111,7 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
     await postContactData("contacts", contactDataAsString);
 }
 
-function clearContactrendering() {
+function clearContactRendering() {
     for (let i = 0; i < alphabet.length; i++) {
         document.getElementById(`contactListContent-${alphabet[i]}`).innerHTML = '';
     }
@@ -147,7 +147,7 @@ async function loadContacts(path = "") {
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetContentElement) {
     contactAlphabetContentElement.innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
-            <ul class="namesList" id="contactUlActive_${contactID}" onclick="surcheRenderPositionClickedContact('${contactID}')">
+            <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
@@ -173,7 +173,7 @@ function surcheRenderPositionClickedContact(contactId) {
     let testForOferlay = document.getElementById("contactsRight");
     renderClickedContact(contactId);
     if (matchMedia`(max-width: 970px)`.matches) {
-        testForOferlay.classList.remove('max-w-970');
+        testForOverlay.classList.remove('max-w-970');
         document.getElementById('contactRightHeadSection').classList.add('max-w-970');
         document.getElementById('contactLeft').classList.add('max-w-970');
         document.getElementById('contactRightHeadSectionMobile').classList.remove('d-none')

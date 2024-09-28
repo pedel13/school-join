@@ -360,3 +360,7 @@ header > div > h1 {
     padding: 5%;
 }
 
+.board-tasks-card:hover {
+    transform: rotate(1deg);
+    transition: all 100ms ease-in-out;
+}
