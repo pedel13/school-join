@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" type="text/css" href="assets/style.css">
     <link rel="stylesheet" type="text/css" href="assets/contact.css">
     <link rel="stylesheet" type="text/css" href="assets/addTask.css">
     <link rel="stylesheet" type="text/css" href="assets/responsive.css">
     <link rel="stylesheet" type="text/css" href="assets/mobile.css">
     <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
-    
+
     <link rel="icon" type="image/png" href="img/join_logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    
-    <script src="js/script.js"></script>
-    <script src="js/summary.js"></script>
-    <script src="/js/add_task.js"></script>
-    <script src="/js/renderTaskOverlay.js"></script>
-    <script src="js/board.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/contact.js"></script>
+
+    <script src="./js/script.js"></script>
+    <script src="./js/summary.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="./js/renderTaskOverlay.js"></script>
+    <script src="./js/board.js"></script>
+    <script src="./js/template.js"></script>
+    <script src="./js/contact.js"></script>
     <title>Join - Contacts</title>
 </head>
 
@@ -33,10 +34,10 @@
             <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
             <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
         </div>
-        
+
         <div id="centerWrapper" class="centerWrapper">
             <div w3-include-html="./templates/header.html" id="header"></div>
-            
+
             <div id="contactsMain">
                 <div id="contactLeft">
                     <div class="newContactButton max-w-670">
@@ -46,159 +47,186 @@
                         </button>
                     </div>
                     <div class="contactListWithButton">
-                        <div  class="iconCircleContactPosition" onclick="openAddContactOverlay()">
+                        <div class="iconCircleContactPosition" onclick="openAddContactOverlay()">
                             <div class="iconCircleContact">
                                 <img src="./img/icons/person_add.png" alt="">
                             </div>
                         </div>
-                        
+
                         <div id="contactListWrapper" class="contactListWrapper">
                             <div id="contactList-A" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     A
                                 </h2>
+                                <div id="contactListContent-A"></div>
                             </div>
                             <div id="contactList-B" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     B
                                 </h2>
+                                <div id="contactListContent-B"></div>
                             </div>
                             <div id="contactList-C" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     C
                                 </h2>
+                                <div id="contactListContent-C"></div>
                             </div>
                             <div id="contactList-D" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     D
                                 </h2>
+                                <div id="contactListContent-D"></div>
                             </div>
                             <div id="contactList-E" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     E
                                 </h2>
+                                <div id="contactListContent-E"></div>
                             </div>
                             <div id="contactList-F" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     F
                                 </h2>
+                                <div id="contactListContent-F"></div>
                             </div>
                             <div id="contactList-G" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     G
                                 </h2>
+                                <div id="contactListContent-G"></div>
                             </div>
                             <div id="contactList-H" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     H
                                 </h2>
+                                <div id="contactListContent-H"></div>
                             </div>
                             <div id="contactList-I" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     I
                                 </h2>
+                                <div id="contactListContent-I"></div>
                             </div>
                             <div id="contactList-J" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     J
                                 </h2>
+                                <div id="contactListContent-J"></div>
                             </div>
                             <div id="contactList-K" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     K
                                 </h2>
+                                <div id="contactListContent-K"></div>
                             </div>
                             <div id="contactList-L" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     L
                                 </h2>
+                                <div id="contactListContent-L"></div>
                             </div>
                             <div id="contactList-M" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     M
                                 </h2>
+                                <div id="contactListContent-M"></div>
                             </div>
                             <div id="contactList-N" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     N
                                 </h2>
+                                <div id="contactListContent-N"></div>
                             </div>
                             <div id="contactList-O" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     O
                                 </h2>
+                                <div id="contactListContent-O"></div>
                             </div>
                             <div id="contactList-P" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     P
                                 </h2>
+                                <div id="contactListContent-P"></div>
                             </div>
                             <div id="contactList-Q" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     Q
                                 </h2>
+                                <div id="contactListContent-Q"></div>
                             </div>
                             <div id="contactList-R" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     R
                                 </h2>
+                                <div id="contactListContent-R"></div>
                             </div>
                             <div id="contactList-S" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     S
                                 </h2>
+                                <div id="contactListContent-S"></div>
                             </div>
                             <div id="contactList-T" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     T
                                 </h2>
+                                <div id="contactListContent-T"></div>
                             </div>
                             <div id="contactList-U" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     U
                                 </h2>
+                                <div id="contactListContent-U"></div>
                             </div>
                             <div id="contactList-V" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     V
                                 </h2>
+                                <div id="contactListContent-V"></div>
                             </div>
                             <div id="contactList-W" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     W
                                 </h2>
+                                <div id="contactListContent-W"></div>
                             </div>
                             <div id="contactList-X" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     X
                                 </h2>
+                                <div id="contactListContent-X"></div>
                             </div>
                             <div id="contactList-Y" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     Y
                                 </h2>
+                                <div id="contactListContent-Y"></div>
                             </div>
                             <div id="contactList-Z" class="contactList d-none">
                                 <h2 class="contactLetter">
                                     Z
                                 </h2>
+                                <div id="contactListContent-Z"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                    
-                    <div id="contactsRight" class="max-w-970">
-                        <div id="contactRightHeadSection">
-                            <div class="contactHeadline">
-                                <h1>Contacts</h1>
-                            </div>
+
+                <div id="contactsRight" class="max-w-970">
+                    <div id="contactRightHeadSection">
+                        <div class="contactHeadline">
+                            <h1>Contacts</h1>
+                        </div>
                         <div class="spacerDiv">&nbsp;</div>
                         <div class="slogan">
                             Better with a team
                         </div>
                     </div>
-                    
-                    <div id="contactRightHeadSectionMobile" class="d-flex align-items-center justify-content-between min-w-970 d-none">
+
+                    <div id="contactRightHeadSectionMobile"
+                        class="d-flex align-items-center justify-content-between min-w-970 d-none">
                         <div>
                             <div class="contactHeadline m-b-16 ">
                                 <h2>Contacts</h2>
@@ -207,10 +235,10 @@
                                 Better with a team
                             </div>
                             <div class="spacerDivLying m-b-64">
-                            
+
                             </div>
                         </div>
-                        
+
                         <div>
                             <a href="./contacts.html">
                                 <img src="./img/icons/arrow-left-blue.png" class="backArrow" alt="allow left">
@@ -220,50 +248,58 @@
                     <div id="renderedContactDetails" class="d-none">
                     </div>
                 </div>
-                
+
                 <div id="contactOverlay" class="contactOverlay d-none">
                     <div id="contactOverlayWrapperMobile" class="contactOverlayWrapperMobile">
                         <div id="contactWrapperTop" class="contactWrapperTop">
                             <div class="closeMobile">
-                                <img src="./img/icons/cancel-logo-white.png" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
+                                <img src="./img/icons/cancel-logo-white.png" alt="cancel" class="close-img"
+                                    onclick="closeContactOverlay()">
                             </div>
-                            
+
                             <div id="contactOverlayMobileTop" class="contactOverlayMobileTop">
                                 <h1>Add contact</h1>
                                 <p>Tasks are better with a team!</p>
                                 <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                             </div>
                         </div>
-                        
+
                         <div id="contactWrapperBottom" class="contactWrapperBottom">
                             <div id="contactOverlayMobileBottom" class="contactOverlayMobileBottom">
-                                <form onsubmit="addContact(event)" id="createNewContactForm">
+                                <form onsubmit="addContactMobile(event)" id="createNewContactFormMobile">
                                     <div id="addContactFormAvatarMobile" class="addContactFormAvatarMobile">
-                                        <div class="avatar" id="avatar">
+                                        <div class="avatar" id="avatarMobile">
                                             <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                         </div>
                                         <div class="addContactFormMobile">
-                                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
-                                            <label for="newContactName"></label>
-                                            
-                                            <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
-                                            <label for="newContactMail"></label>
-                                            
-                                            <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone" required>
-                                            <label for="newContactPhone"></label>
+                                            <input type="text" id="newContactNameMobile" class="icon-person"
+                                                pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name"
+                                                placeholder="Name" required>
+                                            <label for="newContactNameMobile"></label>
+
+                                            <input type="email" id="newContactMailMobile" class="icon-letter"
+                                                placeholder="Mail" required>
+                                            <label for="newContactMailMobile"></label>
+
+                                            <input type="text" id="newContactPhoneMobile" class="icon-phone"
+                                                placeholder="Phone" required>
+                                            <label for="newContactPhoneMobile"></label>
                                         </div>
                                     </div>
-                                    
-                                    <div class="createContact">
+
+                                    <div class="createContact" id="createNewContactMobile">
                                         <div class="createContactButton">
-                                            <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
+                                            <button id="clearNewContactMobile" class="clearNewContact" type="button"
+                                                onclick="clearNewContactFormNotClose()">
                                                 Cancel
-                                                <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg" alt="cancel_logo">
+                                                <img src="./img/icons/cancel-logo.png" class="createTaskButtonImg"
+                                                    alt="cancel_logo">
                                             </button>
-                                            
-                                            <button id="createNewContact" class="createNewContact">
+
+                                            <button id="createNewContactMobile" class="createNewContact">
                                                 Create Contact
-                                                <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+                                                <img src="./img/icons/check-icon.png" class="createTaskButtonImg"
+                                                    alt="check_icon">
                                             </button>
                                         </div>
                                     </div>
@@ -271,7 +307,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="contactOverlayWrapper" class="contactOverlayWrapper">
                         <div id="contactOverlayLeft" class="contactOverlayLeft">
                             <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
@@ -279,12 +315,13 @@
                             <p>Tasks are better with a team!</p>
                             <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                         </div>
-                        
+
                         <div id="contactOverlayRight" class="contactOverlayRight">
                             <div class="close">
-                                <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
+                                <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img"
+                                    onclick="closeContactOverlay(event)">
                             </div>
-                            
+
                             <div id="contactOverlayLeftMobile" class="contactOverlayLeftMobile">
                                 <div class="innerContactOverlayLeftMobile" id="innerContactOverlayLeftMobile">
                                     <h1>Add contact</h1>
@@ -292,49 +329,54 @@
                                     <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                                 </div>
                             </div>
-                            
+
                             <form onsubmit="addContact(event)" id="createNewContactForm">
                                 <div id="addContactFormAvatar" class="addContactFormAvatar">
                                     <div class="avatar" id="avatar">
                                         <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                     </div>
                                     <div class="addContactForm">
-                                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
-                                            <label for="newContactName"></label>
-                                            
-                                            <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
-                                            <label for="newContactMail"></label>
-                                            
-                                            <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone" required>
-                                            <label for="newContactPhone"></label>
-                                        </div>
+                                        <input type="text" id="newContactName" class="icon-person"
+                                            pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name"
+                                            placeholder="Name" required>
+
+                                        <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail"
+                                            required>
+
+                                        <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone"
+                                            required>
                                     </div>
-                                    
-                                    <div class="createContact">
-                                        <div class="spaceDivContacts">
-                                            &nbsp;
-                                        </div>
-                                        <div class="createContactButton">
-                                            <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
-                                                Cancel
-                                                <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg" alt="cancel_logo">
-                                            </button>
-                                            
-                                            <button id="createNewContact" class="createNewContact">
-                                                Create Contact
-                                                <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
-                                            </button>
-                                        </div>
+                                </div>
+
+                                <div class="createContact" id="createNewContact">
+                                    <div class="spaceDivContacts">
+                                        &nbsp;
                                     </div>
+                                    <div class="createContactButton">
+                                        <button id="clearNewContact" class="clearNewContact" type="button"
+                                            onclick="clearNewContactFormNotClose()">
+                                            Cancel
+                                            <img src="./img/icons/cancel-logo.png" class="createTaskButtonImg"
+                                                alt="cancel_logo">
+                                        </button>
+
+                                        <button id="createNewContact" class="createNewContact">
+                                            Create Contact
+                                            <img src="./img/icons/check-icon.png" class="createTaskButtonImg"
+                                                alt="check_icon">
+                                        </button>
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
-                    
-                </div>                
+
+                </div>
             </div>
         </div>
-        
+
         <div w3-include-html="./templates/mobile-menu.html" id="mobileNavBar"></div>
     </div>
 </body>
+
 </html>

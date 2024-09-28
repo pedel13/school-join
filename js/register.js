@@ -112,7 +112,6 @@ function buttonEnabler() {
     addEventListener("submit", event => {
         if (name.value.length <= 0 && email.value.length <= 0 && password.value.length <= 0 && confirmPassword.value.length <= 0 && checkBox.checked === false) {
             signUpBtn.disabled = true;
-            //console.log("Angekommen")
         }
         else {
             confirmPassword.addEventListener("keyup", ()=> {

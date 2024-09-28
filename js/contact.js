@@ -1,9 +1,9 @@
 /* Local variables */
 let localContactArray;
-let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 /**
  * Creates new Contact-Data and saves them to the Database
- * @function addContact
+ * @function addContact 
  */
 async function addContact(event) {
     event.preventDefault(event);
@@ -14,9 +14,23 @@ async function addContact(event) {
     nameCharts = splitName(contactName);
     let contactColor = setColor();
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
-    clearNewContactForm();
-    closeContactOverlay(event);
-    fetchContacts();
+    closeContactOverlay();
+    await fetchContacts();
+    surcheRenderPositionClickedContact(contactId);
+}
+
+async function addContactMobile(event) {
+    event.preventDefault(event);
+    let contactName = document.getElementById('newContactNameMobile').value;
+    let contactMail = document.getElementById('newContactMailMobile').value;
+    let contactPhone = document.getElementById('newContactPhoneMobile').value;
+    let nameCharts = [];
+    nameCharts = splitName(contactName);
+    let contactColor = setColor();
+    await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
+    closeContactOverlay();
+    await fetchContacts();
+    surcheRenderPositionClickedContact(contactId);
 }
 
 function setColor() {
@@ -99,26 +113,27 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
 
 function clearContactrendering() {
     for (let i = 0; i < alphabet.length; i++) {
-        document.getElementById(`contactList-${alphabet[i]}`).innerHTML ='';
+        document.getElementById(`contactListContent-${alphabet[i]}`).innerHTML = '';
     }
 }
 
 async function fetchContacts() {
-    await loadContacts("/contacts");
+    let contacts =  await loadTasks("/contacts");
+    localStorage.usableContacts = JSON.stringify(contacts);
     clearContactrendering();
-    for (let contactID in localContactArray) {
-        let element = localContactArray[contactID];
+    for (let contactID in contacts) {
+        let element = contacts[contactID];
         let name = element.name;
         let mail = element.email;
         let nameCharts = element.nameCharts;
         let color = element.contactColor;
         let contactAlphabetElement = document.getElementById(`contactList-${nameCharts[0]}`);
+        let contactAlphabetContentElement = document.getElementById(`contactListContent-${nameCharts[0]}`);
         if (contactAlphabetElement.classList.contains("d-none")) {
             contactAlphabetElement.classList.remove("d-none");
         }
-        renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement);
+        renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetContentElement);
     }
-
 }
 
 async function loadContacts(path = "") {
@@ -129,8 +144,8 @@ async function loadContacts(path = "") {
 /**
  * Rendering the contact data into the HTML
  */
-async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
-    contactAlphabetElement.innerHTML += /*html*/ `
+async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetContentElement) {
+    contactAlphabetContentElement.innerHTML += /*html*/ `
         <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
             <ul class="namesList" id="contactUlActive_${contactID}" onclick="surcheRenderPositionClickedContact('${contactID}')">
                 <li id="contactItem_${contactID}" class="contactItem">
@@ -153,6 +168,7 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
         </div>
     `;
 }
+
 function surcheRenderPositionClickedContact(contactId) {
     let testForOferlay = document.getElementById("contactsRight");
     renderClickedContact(contactId);
@@ -165,11 +181,13 @@ function surcheRenderPositionClickedContact(contactId) {
 }
 
 function renderClickedContact(contactID) {
-    let name = localContactArray[contactID]['name'];
-    let email = localContactArray[contactID]['email'];
-    let phone = localContactArray[contactID]['phone'];
-    let color = localContactArray[contactID]['contactColor'];
-    let nameCharts = localContactArray[contactID]['nameCharts'];
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactID];
+    let name = contact['name'];
+    let email = contact['email'];
+    let phone = contact['phone'];
+    let color = contact['contactColor'];
+    let nameCharts = contact['nameCharts'];
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
@@ -215,22 +233,23 @@ function renderClickedContact(contactID) {
                 <a href="tel:${phone}" class="phoneLink">${phone}</a>
             </div>
         </div>
-        <div  class="iconCircleContactPosition">
-        <div id="contact-Navbar" class="contact-navbar-position d-none">
-            <div class="contact-navbar">
-                    <div id="editCurrentContact" onclick="editContact('${contactID}')">
-                        <img src="./img/icons/edit_icon.svg" alt="edit">
-                        Edit
-                    </div>
+        <div  class="iconCircleContactPosition" onclick="contactNavbarOpenClose()">
+            <div id="contact-Navbar" class="contact-navbar-position d-none">
+                <div class="contact-navbar">
+                        <div id="editCurrentContact" onclick="editContact('${contactID}')">
+                            <img src="./img/icons/edit_icon.svg" alt="edit">
+                            Edit
+                        </div>
                         
-                    <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
-                        <img src="./img/icons/delete_icon.svg" alt="delete">
-                        Delete
+                        <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
+                            <img src="./img/icons/delete_icon.svg" alt="delete">
+                            Delete
+                        </div>
                     </div>
                 </div>
-        </div>
-            <div class="iconCircleContact">
-                <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
+                <div class="iconCircleContact">
+                    <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
+                </div>
             </div>
         </div>
     `;
@@ -238,7 +257,7 @@ function renderClickedContact(contactID) {
 
 function contactNavbarOpenClose() {
     let navbarOpenOrClose = document.getElementById("contact-Navbar");
-    if (hasClass(navbarOpenOrClose,'d-none')) {
+    if (hasClass(navbarOpenOrClose, 'd-none')) {
         navbarOpenOrClose.classList.remove("d-none");
         isContactOverlayJustOpened = true;
         setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
@@ -254,8 +273,8 @@ function openAddContactOverlay() {
     setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
 }
 
-function closeContactOverlay(event) {
-    event.preventDefault(event);
+function closeContactOverlay() {
+    clearNewContactForm();
     document.getElementById('contactOverlay').classList.add('d-none');
 }
 
@@ -270,64 +289,263 @@ function activeContact() {
     });
 }
 
-function clearNewContactForm() {
-    document.getElementById('newContactName').value = '';
-    document.getElementById('newContactMail').value = '';
-    document.getElementById('newContactPhone').value = '';
+function clearNewContactFormNotClose() {
+    document.getElementById("newContactNameMobile").innerHTML = '';
+    document.getElementById("newContactMailMobile").innerHTML = '';
+    document.getElementById("newContactPhoneMobile").innerHTML = '';
+    document.getElementById("newContactName").innerHTML = '';
+    document.getElementById("newContactMail").innerHTML = '';
+    document.getElementById("newContactPhone").innerHTML = '';
 }
 
-async function editContact(contactId = "") {
+function clearNewContactForm() {
+    document.getElementById('contactOverlay').value = `<div id="contactOverlayWrapperMobile" class="contactOverlayWrapperMobile">
+                        <div id="contactWrapperTop" class="contactWrapperTop">
+                            <div class="closeMobile">
+                                <img src="./img/icons/cancel-logo-white.png" alt="cancel" class="close-img"
+                                    onclick="closeContactOverlay()">
+                            </div>
+
+                            <div id="contactOverlayMobileTop" class="contactOverlayMobileTop">
+                                <h1>Add contact</h1>
+                                <p>Tasks are better with a team!</p>
+                                <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+                            </div>
+                        </div>
+
+                        <div id="contactWrapperBottom" class="contactWrapperBottom">
+                            <div id="contactOverlayMobileBottom" class="contactOverlayMobileBottom">
+                                <form onsubmit="addContactMobile(event)" id="createNewContactFormMobile">
+                                    <div id="addContactFormAvatarMobile" class="addContactFormAvatarMobile">
+                                        <div class="avatar" id="avatarMobile">
+                                            <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                                        </div>
+                                        <div class="addContactFormMobile">
+                                            <input type="text" id="newContactNameMobile" class="icon-person"
+                                                pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name"
+                                                placeholder="Name" required>
+                                            <label for="newContactNameMobile"></label>
+
+                                            <input type="email" id="newContactMailMobile" class="icon-letter"
+                                                placeholder="Mail" required>
+                                            <label for="newContactMailMobile"></label>
+
+                                            <input type="text" id="newContactPhoneMobile" class="icon-phone"
+                                                placeholder="Phone" required>
+                                            <label for="newContactPhoneMobile"></label>
+                                        </div>
+                                    </div>
+
+                                    <div class="createContact" id="createNewContactMobile">
+                                        <div class="createContactButton">
+                                            <button id="clearNewContactMobile" class="clearNewContact" type="button"
+                                                onclick="clearNewContactFormNotClose()">
+                                                Cancel
+                                                <img src="./img/icons/cancel-logo.png" class="createTaskButtonImg"
+                                                    alt="cancel_logo">
+                                            </button>
+
+                                            <button id="createNewContactMobile" class="createNewContact">
+                                                Create Contact
+                                                <img src="./img/icons/check-icon.png" class="createTaskButtonImg"
+                                                    alt="check_icon">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="contactOverlayWrapper" class="contactOverlayWrapper">
+                        <div id="contactOverlayLeft" class="contactOverlayLeft">
+                            <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+                            <h1>Add contact</h1>
+                            <p>Tasks are better with a team!</p>
+                            <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+                        </div>
+
+                        <div id="contactOverlayRight" class="contactOverlayRight">
+                            <div class="close">
+                                <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img"
+                                    onclick="closeContactOverlay(event)">
+                            </div>
+
+                            <div id="contactOverlayLeftMobile" class="contactOverlayLeftMobile">
+                                <div class="innerContactOverlayLeftMobile" id="innerContactOverlayLeftMobile">
+                                    <h1>Add contact</h1>
+                                    <p>Tasks are better with a team!</p>
+                                    <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+                                </div>
+                            </div>
+
+                            <form onsubmit="addContact(event)" id="createNewContactForm">
+                                <div id="addContactFormAvatar" class="addContactFormAvatar">
+                                    <div class="avatar" id="avatar">
+                                        <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                                    </div>
+                                    <div class="addContactForm">
+                                        <input type="text" id="newContactName" class="icon-person"
+                                            pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name"
+                                            placeholder="Name" required>
+
+                                        <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail"
+                                            required>
+
+                                        <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="createContact" id="createNewContact">
+                                    <div class="spaceDivContacts">
+                                        &nbsp;
+                                    </div>
+                                    <div class="createContactButton">
+                                        <button id="clearNewContact" class="clearNewContact" type="button"
+                                            onclick="clearNewContactFormNotClose()">
+                                            Cancel
+                                            <img src="./img/icons/cancel-logo.png" class="createTaskButtonImg"
+                                                alt="cancel_logo">
+                                        </button>
+
+                                        <button id="createNewContact" class="createNewContact">
+                                            Create Contact
+                                            <img src="./img/icons/check-icon.png" class="createTaskButtonImg"
+                                                alt="check_icon">
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>`;
+}
+
+async function editContact(contactId) {
     var form = document.getElementById("createNewContactForm");
     form.onsubmit = null;
-    form.onsubmit = function () {
-        return editContactToFirebase(event, contactId);
-    };
-    var deleteButtenExistContact = document.getElementById("clearNewContact");
-    deleteButtenExistContact.onclick = null;
-    deleteButtenExistContact.onclick = function () {
-        return deleteContactEverywhere(contactId);
+    form.onsubmit = function (event) {
+        event.preventDefault();
+        return editContactToFirebase(contactId);
     };
     await renderEditContactsOverlay(contactId);
+    await editContactMobile(contactId);
     openAddContactOverlay();
 }
 
+async function editContactMobile(contactId) {
+    var form = document.getElementById("createNewContactFormMobile");
+    form.onsubmit = null;
+    form.onsubmit = function (event) {
+        event.preventDefault();
+        return editContactToFirebaseMobile(contactId);
+    };
+    await renderEditContactsOverlayMobile(contactId);
+}
+
 async function renderEditContactsOverlay(contactId) {
-    await loadContacts("/contacts");
-    let name = localContactArray[contactId]['name'];
-    let email = localContactArray[contactId]['email'];
-    let phone = localContactArray[contactId]['phone'];
-    let color = localContactArray[contactId]['contactColor'];
-    let nameCharts = localContactArray[contactId]['nameCharts'];
-    document.getElementById("newContactName").value = name;
-    document.getElementById("newContactMail").value = email;
-    document.getElementById("newContactPhone").value = phone;
-    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactId];
+    let color = contact['contactColor'];
+    let nameCharts = contact['nameCharts'];
+    document.getElementById("newContactName").value = contact['name'];
+    document.getElementById("newContactMail").value = contact['email'];
+    document.getElementById("newContactPhone").value = contact['phone'];
     document.getElementById("avatar").innerHTML =  /*html*/ `<div id="contactAvatar">
     <div class="credentialsCircle ${color}" id="credentialsCircle">
         ${nameCharts[0]}${nameCharts[1]}
     </div>
 </div>`
-    document.getElementById("createNewContact").innerHTML = /*html*/ `Save
-        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`
+document.getElementById("createNewContact").innerHTML = /*html*/`<div class="createContactButton">
+                                            <button id="clearNewContactMobile" class="clearNewContact" type="button"
+                                                onclick="deleteContactEverywhere('${contactId}')">
+                                                Delete
+                                            </button>
+
+                                            <button id="createNewContactMobile" class="createNewContact">
+                                            Save
+                                            <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+                                            </button>
+                                        </div>`;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
     <h1>Edit contact</h1>
-    <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
-    document.getElementById("contactOverlayLeftMobile").innerHTML = /*html*/ `<h1>Edit contact</h1>
-        <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
+    <img src="./img/icons/blue-borderLine.png" alt="blue-border">`;
 }
 
-async function editContactToFirebase(event, contactId) {
-    event.preventDefault(event);
-    localContactArray[contactId]['name'] = document.getElementById('newContactName').value;
-    localContactArray[contactId]['email'] = document.getElementById('newContactMail').value;
-    localContactArray[contactId]['phone'] = document.getElementById('newContactPhone').value;
-    localContactArray[contactId]['nameCharts'] = splitName(localContactArray[contactId]['name']);
-    let dataAsStringify = JSON.stringify(localContactArray[contactId]);
-    await updateTask(dataAsStringify, `/contacts/${contactId}`)
-    clearNewContactForm();
-    closeContactOverlay(event);
-    fetchContacts();
-    surcheRenderPositionClickedContact(contactId);
+async function renderEditContactsOverlayMobile(contactId) {
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactId];
+    let color = contact['contactColor'];
+    let nameCharts = contact['nameCharts'];
+    document.getElementById("newContactNameMobile").value = contact['name'];
+    document.getElementById("newContactMailMobile").value = contact['email'];
+    document.getElementById("newContactPhoneMobile").value = contact['phone'];
+    document.getElementById("contactOverlayLeftMobile").innerHTML = /*html*/ `<h1>Edit contact</h1>
+        <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
+    document.getElementById("avatarMobile").innerHTML =  /*html*/ `<div id="contactAvatarMobile">
+        <div class="credentialsCircle ${color}" id="credentialsCircle">
+        ${nameCharts[0]}${nameCharts[1]}
+    </div>
+</div>`;
+        document.getElementById("createNewContactMobile").innerHTML = /*html*/`<div class="createContactButton">
+        <button id="clearNewContactMobile" class="clearNewContact" type="button"
+            onclick="deleteContactEverywhere('${contactId}')">
+            delete
+        </button>
+    
+        <button id="createNewContactMobile" class="createNewContact">
+        Save
+        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+        </button>
+    </div>`;
+}
+
+async function editContactToFirebase(contactId) {
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactId];
+    contact["name"] = document.getElementById('newContactName').value;
+    contact["email"] = document.getElementById('newContactMail').value;
+    contact["phone"] = document.getElementById('newContactPhone').value;
+    contact["nameCharts"] = splitName(contact['name']);
+    let dataAsStringify = JSON.stringify(contact);
+    await updateContact(dataAsStringify, `contacts/${contactId}`);
+    closeContactOverlay();
+    await fetchContacts();
+    renderClickedContact(contactId);
+}
+
+async function editContactToFirebaseMobile(contactId) {
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactId];
+    contact["name"] = document.getElementById('newContactNameMobile').value;
+    contact["email"] = document.getElementById('newContactMailMobile').value;
+    contact["phone"] = document.getElementById('newContactPhoneMobile').value;
+    contact["nameCharts"] = splitName(contact['name']);
+    let dataAsStringify = JSON.stringify(contact);
+    await updateContact(dataAsStringify, `contacts/${contactId}`);
+    closeContactOverlay();
+    await fetchContacts();
+    renderClickedContact(contactId);
+}
+
+async function updateContact(element,path="") {
+    console.log(BASE_URL);
+    console.log(BASE_URL + path + ".json",);
+    try {
+        let response = await fetch(BASE_URL + path + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: element
+        });
+        if (!response.ok) {
+            console.error(`Error status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    } catch (error) {
+        console.error("Error PUT data in database:", error);
+    }
 }
 
 async function deleteContactEverywhere(contactID) {
@@ -350,13 +568,13 @@ async function searchContactsInTasks(contactID) {
             }
         }
         let elementAsStringify = JSON.stringify(element);
-        updateTask(elementAsStringify, `/board/tasks/${taskId}`)
+        updateTask(elementAsStringify, `board/tasks/${taskId}`)
     }
 }
 
 async function deleteContact(contactToDelete) {
     try {
-        let response = await fetch(BASE_URL + "/contacts/" + contactToDelete + ".json", {
+        let response = await fetch(BASE_URL + "contacts/" + contactToDelete + ".json", {
             method: 'DELETE',
         });
         if (!response.ok) {
@@ -366,7 +584,7 @@ async function deleteContact(contactToDelete) {
     catch (error) {
         console.error("Error delete data in database:", error);
     }
-    fetchContacts();
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
+    await fetchContacts();
 }

@@ -21,7 +21,7 @@ async function drop(dropPosition) {
     reduceDroppedElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
     let elementAsStringify = JSON.stringify(dropCard);
-    await updateTask(elementAsStringify,`/board/tasks/${cardDraggedId}`);
+    await updateTask(elementAsStringify,`board/tasks/${cardDraggedId}`);
     countOnToDo = 0;
     countOnInProgress = 0;
     countOnAwaitFeedback = 0;
@@ -31,17 +31,18 @@ async function drop(dropPosition) {
 
 async function updateTask(element,path="") {
     try {
-        let response = await fetch(baseUrl + path + ".json", {
+        let response = await fetch(BASE_URL + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: element
-        }); 
+        });
         if (!response.ok) {
+            console.error(`Error status: ${response.status}`);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    }  catch (error) {
+    } catch (error) {
         console.error("Error PUT data in database:", error);
     }
 }
@@ -60,7 +61,7 @@ async function changeTask(event,taskId="") {
         task["subtask"] = subtaskProofments;
     }
     let taskAsStringify = JSON.stringify(task);
-    await updateTask(taskAsStringify,`/board/tasks/${taskId}`);
+    await updateTask(taskAsStringify,`board/tasks/${taskId}`);
     closeTaskOverlay();
 }
 
