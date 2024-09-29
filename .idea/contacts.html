@@ -221,18 +221,63 @@
                     </div>
                 </div>
                 
-                <div id="contactOverlay" class="contactOverlay">
-                    <div id="contactOverlayWrapper" class="contactOverlayWrapper">
-                        <div id="contactOverlayLeft" class="contactOverlayLeft">
-                            <div class="close">
-                                <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
+                <div id="contactOverlay" class="contactOverlay d-none">
+                    <div id="contactOverlayWrapperMobile" class="contactOverlayWrapperMobile">
+                        <div id="contactWrapperTop" class="contactWrapperTop">
+                            <div class="closeMobile">
+                                <img src="./img/icons/cancel-logo-white.png" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
                             </div>
-                            <div class="innerContactOverlayLeftContent">
-                                <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+                            
+                            <div id="contactOverlayMobileTop" class="contactOverlayMobileTop">
                                 <h1>Add contact</h1>
                                 <p>Tasks are better with a team!</p>
                                 <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                             </div>
+                        </div>
+                        
+                        <div id="contactWrapperBottom" class="contactWrapperBottom">
+                            <div id="contactOverlayMobileBottom" class="contactOverlayMobileBottom">
+                                <form onsubmit="addContact(event)" id="createNewContactForm">
+                                    <div id="addContactFormAvatarMobile" class="addContactFormAvatarMobile">
+                                        <div class="avatar" id="avatar">
+                                            <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                                        </div>
+                                        <div class="addContactFormMobile">
+                                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
+                                            <label for="newContactName"></label>
+                                            
+                                            <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
+                                            <label for="newContactMail"></label>
+                                            
+                                            <input type="text" id="newContactPhone" class="icon-phone" placeholder="Phone" required>
+                                            <label for="newContactPhone"></label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="createContact">
+                                        <div class="createContactButton">
+                                            <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
+                                                Cancel
+                                                <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg" alt="cancel_logo">
+                                            </button>
+                                            
+                                            <button id="createNewContact" class="createNewContact">
+                                                Create Contact
+                                                <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="contactOverlayWrapper" class="contactOverlayWrapper">
+                        <div id="contactOverlayLeft" class="contactOverlayLeft">
+                            <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+                            <h1>Add contact</h1>
+                            <p>Tasks are better with a team!</p>
+                            <img src="./img/icons/blue-borderLine.png" alt="blue-border">
                         </div>
                         
                         <div id="contactOverlayRight" class="contactOverlayRight">
@@ -240,13 +285,20 @@
                                 <img src="./img/icons/cancel-logo.png" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
                             </div>
                             
-                            <div class="formWrapper">
-                                <form onsubmit="addContact(event)" id="createNewContactForm">
-                                    <div id="addContactFormAvatar" class="addContactFormAvatar">
-                                        <div class="avatar" id="avatar">
-                                            <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
-                                        </div>
-                                        <div class="addContactForm">
+                            <div id="contactOverlayLeftMobile" class="contactOverlayLeftMobile">
+                                <div class="innerContactOverlayLeftMobile" id="innerContactOverlayLeftMobile">
+                                    <h1>Add contact</h1>
+                                    <p>Tasks are better with a team!</p>
+                                    <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+                                </div>
+                            </div>
+                            
+                            <form onsubmit="addContact(event)" id="createNewContactForm">
+                                <div id="addContactFormAvatar" class="addContactFormAvatar">
+                                    <div class="avatar" id="avatar">
+                                        <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                                    </div>
+                                    <div class="addContactForm">
                                             <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
                                             <label for="newContactName"></label>
                                             
@@ -274,8 +326,7 @@
                                             </button>
                                         </div>
                                     </div>
-                                </form>
-                            </div>
+                            </form>
                         </div>
                     </div>
                     

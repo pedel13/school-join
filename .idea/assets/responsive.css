@@ -157,59 +157,18 @@
     /*##### AddContact Overlay #####*/
     .contactOverlayWrapper {
         width: 80%;
-        flex-direction: column;
     }
 
     .contactOverlayLeft {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-        width: 100%;
-        border-top-right-radius: 30px;
-        border-bottom-left-radius: 0;
+        display: none !important;
     }
 
-    .contactOverlayRight {
-        width: 100%;
-        border-top-right-radius: 0 !important;
-        border-top-left-radius: 0 !important;
-        padding: 40px !important;
-    }
-
-    #createNewContactForm {
+    .contactOverlayLeftMobile {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-top: -100px;
-    }
-
-    #addContactFormAvatar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .addContactForm {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin-left: 0 !important;
-    }
-
-    .spaceDivContacts {
-        display: none;
-    }
-
-    #contactOverlayRight > div.close {
-        display: none;
-    }
-
-    .contactJoinLogo {
-        display: none;
+        margin-bottom: 32px;
     }
 
     .contactWrapperTop,
@@ -287,6 +246,10 @@
 
     .createContactButton > * {
         width: 197px !important;
+    }
+
+    .contactOverlayWrapper {
+        display: none !important;
     }
 
     .contactOverlayWrapperMobile {

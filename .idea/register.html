@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/login.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
+
+    <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="js/script.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/summary.js"></script>
+    <script src="js/register.js"></script> 
+    
+    <title>Join - Sign up</title>
+</head>
+
+<body onload="fetchUserData(); buttonEnabler()">
+    <div class="loginHeader">
+        <div>
+            <img src="img/join_logo.png" alt="join-logo">
+        </div>
+    </div>
+
+    <div id="signUpWrapper" class="signUpWrapper">
+        <div id="signUpForm" class="signUpForm">
+            <div class="signUp-title">
+            <a class="logIn-link" href="./login.html">
+                <img class="logIn-arrow" src="./img/icons/arrow-left-blue.png" alt="left-arrow">
+            </a>
+            <div>
+                <h1 class="fSize-61">Sign up</h1>
+            </div>
+            <div class="logIn-arrow"></div>
+        </div>
+        <span class="headlineBorder">&nbsp;</span>
+            <div id="signUpCredentials">
+                <!-- <form id="userCredentialsSignup"> -->
+                    <form action="" onsubmit="addUser(event)" id="formIdSignup">
+                        <input type="text" autocomplete="Name" placeholder="Name" name="name" id="name" class="icon-person form-control" onclick="alertClassRemove(this, 'massageBoxName')" onchange="checkName(this)" required>
+                        <div id="massageBoxName" class="d-none d-flex w-100"><span class="alert-massage">Ups! this name already exists</span>
+                        </div>
+                        <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" onclick="alertClassRemove(this, 'massageBoxEmail')" onchange="checkEmail(this)" required>
+                        <div id="massageBoxEmail" class="d-none d-flex w-100"><span class="alert-massage">Ups! this email already exists</span>
+                        </div>
+                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" required>
+                    <input type="password" autocomplete="current-password" placeholder="Confirm Password" name="passwordConfirm" id="passwordConfirm" class="icon-lock" onclick="alertClassRemove(this, 'massageBox')" required>
+                    <div id="massageBox" class="d-none d-flex w-100"><span class="alert-massage">Ups! your password don’t match</span>
+                        </div>
+                    <div class="signUpCheckBox">
+                        <input type="checkbox" id="registerCheckbox" required>
+                        <span>I accept the
+                            <a href="privacy.html" target="_self">Privacy policy</a>
+                        </span>
+                    </div>
+                    <button id="signUp">Sign up</button>
+                </form>
+                <div id="msgBox" class="msgBox">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footerLinks fc-grey">
+            <a href="privacy.html" target="_self" class="fc-grey">Privacy Policy</a>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="footerLinks fc-grey">
+            <a href="legal.html" target="_self" class="fc-grey">Legal Notice</a>
+        </div>
+    </footer>
+</body>
+</html>

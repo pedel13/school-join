@@ -12,6 +12,7 @@
     min-height: 592px !important;
     display: flex;
     justify-content: center;
+    top: 25%;
 }
 
 .contactOverlayWrapperMobile {

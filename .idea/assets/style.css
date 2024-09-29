@@ -1,0 +1,366 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 24px;
+    background: #F6F7F8 !important;
+    /*overflow: hidden !important;*/
+}
+
+input,
+textarea {
+    font-family: inherit !important;
+    color: black !important;
+}
+
+/*##### General- & template stylings #####*/
+p, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
+a,
+img {
+    cursor: pointer !important;
+}
+
+.bgActiveMenu {
+    background: #091931 !important;
+    height: 48px;
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.sideBarContainerLinkMobile {
+    width: 80px;
+    height: 76px;
+}
+
+.sideBarContainerLink {
+    width: 232px;
+    display: flex;
+    padding-left: 48px;
+}
+
+#bodyWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+#centerWrapper {
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+#innerCenterBoxMobile {
+    display: none;
+}
+
+.template-navbar-position {
+    position: fixed;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 86vw;
+    top: 122px;
+    right: 18px;
+}
+
+.template-navbar {
+    padding: 10px;
+    border-radius: 20px ;
+    border-top-right-radius: 0 !important;
+    background-color:#2A3647;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: left !important;
+    position: absolute;
+    top: -22px;
+}
+
+.template-navbar-a {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 19px !important;
+    color: #CDCDCD !important;
+    padding: 16px;
+}
+
+.template-navbar-a:hover {
+    background-color: #2A3D59;
+}
+/*##### END OF General- & template stylings #####*/
+
+/*##### START OF sidebar stylings #####*/
+#sidebar, 
+#sidebarNoUser {
+    position: relative;
+    width: 232px;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, 1);
+    background-color: #2A3647;
+}
+
+#sideBarContainer,
+#sidebarNoUserContainer {
+    height: 100%;
+}
+
+section#sidebar, 
+section#sidebarNoUser  {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+section#sidebar > div:first-of-type > a > img, 
+section#sidebarNoUser > div:first-of-type > a > img {
+    margin-top: 50px;
+}
+
+section#sidebar > img, 
+section#sidebarNoUser > img {
+    width: 100px;
+    height: 122px;
+}
+
+#sidebar-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#sidebar-content > a {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    text-decoration: none !important;
+    color: #ffffff;
+}
+
+#sidebar-content > * {
+    font-size: 16px !important;
+}
+
+#sidebar-content > a > img {
+    margin-right: 12px;
+}
+
+.sideBar-footer {
+    margin-bottom: 4rem;
+}
+/*##### END OF sidebar stylings #####*/
+
+button:hover {
+    background: #4589FF !important;
+    border: #4589FF !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25) !important;
+}
+
+button#guestLogIn:hover {
+    background: #ffffff !important;
+    color: #4589FF !important;
+    border: 1px solid #4589FF !important;
+}
+
+.container {
+    margin-left: 232px !important;
+}
+
+section#header {
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+section#header > header > div:nth-of-type(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+header {
+    background-color: #ffffff;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.20) !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header > div:last-of-type > img:first-of-type {
+    margin-right: 24px;
+}
+
+.project-title {
+    font-size: 24px;
+}
+
+header > div > h1 {
+    margin-left: 5%;
+    width: 100%;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.justify-content-end{
+    justify-content: end;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.justify-content-around {
+    justify-content: space-around;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+.justify-content-evenly {
+    justify-content: space-evenly;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.m-0 {
+    margin: 0 !important;
+}
+
+.wrap {
+    padding: 50px 100px 0 350px;
+}
+
+.main > div > h3 {
+    margin-top: 24px !important;
+}
+
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 250px;
+    margin-bottom: 50px;
+}
+
+.head > img {
+    height: 30px;
+    width: 30px;
+    vertical-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#mainWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-left: 80px;
+}
+
+#mainWrapper > * {
+    width: 100%;
+}
+
+.main > div > h3 {
+    margin-bottom: 10px;
+}
+
+.addTaskWrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 24px;
+}
+
+.addTaskWrapperLeft,
+.addTaskWrapperRight {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+/*##### START OF board.html section #####*/
+#addTask {
+    margin-right: 80px;
+}
+
+.headerBar {
+    margin-top: 24px;
+}
+
+/*##### END OF board.html section #####*/
+
+.alert-massage {
+    color: #FF8190;    
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left !important;
+    height: 24px;   
+}
+
+.alert-filled {
+    border-color: #FF8190 !important;  
+}
+
+.resp-signUp {
+    display: none;
+}
+
+.responsive-mobile-menu {
+    display: none;
+}
+
+.privacyWrapper,
+.legalWrapper,
+.helpWrapper {
+    padding: 5%;
+}
+
+.board-tasks-card:hover {
+    transform: rotate(1deg);
+    transition: all 100ms ease-in-out;
+}
