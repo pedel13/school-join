@@ -61,7 +61,6 @@ document.addEventListener('click', function(event) {
     let typeOnContactOverlayMobile = document.getElementById('contactOverlayWrapperMobile');
     if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
         if (document.documentElement.clientWidth > 1200) {
-            console.log('Greater!');
                 if (!typeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
                     closeContactOverlay(event);
           }
