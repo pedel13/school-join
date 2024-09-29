@@ -90,6 +90,10 @@ input#newContactPhone {
     margin: 16px 16px 0 0;
 }
 
+.close-white {
+    display: none;
+}
+
 .closeMobile {
     width: 100%;
     display: flex;
@@ -240,6 +244,14 @@ input[required] {
     font-size: 20px;
     font-weight: 400;
     padding: 15px 24px;
+}
+
+.innerTopContactOverlayLeftContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .innerContactDetailWrapper {

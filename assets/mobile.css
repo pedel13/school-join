@@ -409,6 +409,19 @@
     #checkboxes {
         max-width: 224px !important;
     }
+
+    /*##### AddContact Form overlay #####*/
+    .innerContactOverlayLeftContent > h1 {
+        font-size: 40px;
+    }
+
+    #contactOverlayLeft {
+        padding-left: 40px !important;
+    }
+
+    .close-white {
+        margin: -130px 0 0 0 !important;
+    }
 }
 
 @media (max-width: 415px) {
@@ -518,6 +531,11 @@
     #contactTitle {
         gap: 30px;
     }
+
+    /*##### AddContact overlay  #####*/
+    .createContactButton > button {
+        width: 80% !important;
+    }
 }
 
 @media (max-width: 360px) {
@@ -571,4 +589,10 @@
     #loginForm {
         max-width: 250px;
     }
+}
+
+
+/*##### Responsive HEIGHT #####*/
+@media (max-height: 667px) {
+
 }
