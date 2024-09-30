@@ -312,7 +312,7 @@ async function renderEditContactsOverlay(contactId) {
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
     <h1>Edit contact</h1>
     <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
-    document.getElementById("contactOverlayLeftMobile").innerHTML = /*html*/ `<h1>Edit contact</h1>
+    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<h1>Edit contact</h1>
         <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
 }
 
