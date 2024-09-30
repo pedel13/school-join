@@ -200,6 +200,7 @@ function renderClickedContact(contactID) {
     let nameCharts = localContactArray[contactID]['nameCharts'];
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
+    document.getElementById(`contactDetailWrapper`).classList.add("activeContact");
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
         <div id="contactSummary">
             <div id="contactTitle">

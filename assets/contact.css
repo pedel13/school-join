@@ -223,13 +223,6 @@ input[required] {
     border-bottom: 1px solid #d7d7d7;
 }
 
-.activeContact {
-    background-color: #2A3647;
-    color: #ffffff;
-    border-radius: 8px;
-    height: 100%;
-}
-
 .namesList {
     display: flex;
     flex-direction: column;
@@ -244,6 +237,19 @@ input[required] {
     font-size: 20px;
     font-weight: 400;
     padding: 15px 24px;
+}
+
+.contactDetailWrapper:hover {
+    background-color: #BDC1C5;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.activeContact {
+    background-color: #BDC1C5;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 100%;
 }
 
 .innerTopContactOverlayLeftContent {
