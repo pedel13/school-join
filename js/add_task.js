@@ -1,7 +1,7 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
 let prio = "-";
-let subtasklist = [];
-let subtaskProovment = [];
+let subtaskList = [];
+let subtaskProvement = [];
 let expanded = false;
 let contacts;
 let selectContacts;
@@ -20,12 +20,11 @@ async function loadUsableContacts() {
 
 function selectContact(contact="") {
     contacts = JSON.parse(localStorage.getItem("usableContacts"));
-    let selectetContact = true;
+    let selectedContact = true;
     let i = 0;
     for (const element in selectContacts) {
-        
         if (contact == selectContacts[element]) {
-            selectetContact = false;
+            selectedContact = false;
             selectContacts.splice(i, 1);
             document.getElementById(`input${contact}`).checked = false;
             oldSelectedContact = document.getElementById("select"+contact)
@@ -33,7 +32,7 @@ function selectContact(contact="") {
         }
         i++;
     }
-    if (selectetContact === true) {
+    if (selectedContact === true) {
         selectContacts.push(contact);
         document.getElementById(`input${contact}`).checked = true;
         let newSelectedContact = contacts[contact];
@@ -75,8 +74,8 @@ async function getInputs(position) {
         "datePicker": document.getElementById('datePicker').value,
         "priority": prio,
         "categorySelect": document.getElementById('categorySelect').value,
-        "subtasks": subtasklist,
-        "subtask": subtaskProovment
+        "subtasks": subtaskList,
+        "subtask": subtaskProvement
     };
 
     await setTaskDataInDatabase(inputs);
@@ -85,8 +84,8 @@ async function getInputs(position) {
 }
 
 function clearAddTask() {
-    subtasklist = [];
-    subtaskProovment = [];
+    subtaskList = [];
+    subtaskProvement = [];
     prioButtonClearSelect()
     prio = '-';
 }
@@ -205,14 +204,14 @@ function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
 }
 
 function deleteCreateSubtask(subtaskCreateCount = '') {
-    if (subtasklist.length === 1) {
-        subtasklist = [];
-        subtaskProovment = []
+    if (subtaskList.length === 1) {
+        subtaskList = [];
+        subtaskProvement = []
     }
     else {
         let subtaskCreateCountSplice = subtaskCreateCount;
-        subtasklist.splice(subtaskCreateCountSplice, 1);
-        subtaskProovment.splice(subtaskCreateCountSplice, 1);
+        subtaskList.splice(subtaskCreateCountSplice, 1);
+        subtaskProvement.splice(subtaskCreateCountSplice, 1);
     }
     let element = document.getElementById('subtaskStorage');
     if (element) {
@@ -226,11 +225,11 @@ function deleteCreateSubtask(subtaskCreateCount = '') {
 }
 
 function renderAllCreateSubtaskNew() {
-    if (subtasklist.length < 1) {
+    if (subtaskList.length < 1) {
     } else {
         let i = 0;
-        for (let subtask in subtasklist) {
-            renderCrateSubtask(subtasklist[i], i);
+        for (let subtask in subtaskList) {
+            renderCrateSubtask(subtaskList[i], i);
             i++;
         }
     }
@@ -242,11 +241,11 @@ function renderAllCreateSubtasks(taskId) {
     let element = tasks[taskId];
     let subtask = element.subtasks;
     if (subtask == 'no') {
-        subtasklist = [];
+        subtaskList = [];
     } else {
         for (let subtask in element.subtasks) {
-            subtasklist.push(element.subtasks[i]);
-            subtaskProovment.push(element.subtask[i]);
+            subtaskList.push(element.subtasks[i]);
+            subtaskProvement.push(element.subtask[i]);
             renderCrateSubtask(element.subtasks[i], i);
             i++;
         }
@@ -255,14 +254,14 @@ function renderAllCreateSubtasks(taskId) {
 
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
-    if (subtasklist.length < 1) {
-        subtasklist = [];
-        subtaskProovment = [];
+    if (subtaskList.length < 1) {
+        subtaskList = [];
+        subtaskProvement = [];
     }
-    subtasklist.push(newSubtask);
-    subtaskProovment.push("false");
+    subtaskList.push(newSubtask);
+    subtaskProvement.push("false");
     subtasks.value = '';
-    let subtaskCreateCount = subtasklist.length - 1;
+    let subtaskCreateCount = subtaskList.length - 1;
     renderCrateSubtask(newSubtask, subtaskCreateCount);
 }
 

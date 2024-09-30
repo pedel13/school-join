@@ -1,13 +1,15 @@
-//Firebase Realtime-Database URL
+/**
+ * Firebase Realtime-Database URL
+ */
 const BASE_URL = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app/";
 async function init(i) {
     let ableToUse = JSON.parse(localStorage.getItem("ableToUse"));
     if (ableToUse === false){
         await includeHTMLNoUser();
-    }else {
+    } else {
         await includeHTML();}
-    let sidebarlinkCovered = document.getElementById(`sidebarlink-${i}`);
-    sidebarlinkCovered.classList.add(`bgActiveMenu`);
+    let sidebarLinkCovered = document.getElementById(`sidebarlink-${i}`);
+    sidebarLinkCovered.classList.add(`bgActiveMenu`);
     if (i<=4){
         let futter = document.getElementById(`sidebarLinkMobile-${i}`);
         futter.classList.add(`bgActiveMenu`);
@@ -22,6 +24,9 @@ function testingUser() {
     }
 }
 
+/**
+ * Allows to use button to execute functions, e.g. Close overlay with Escape button
+ */
 document.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
         let closeOpenAddTaskOverlay = document.getElementById('addTaskOverlay');

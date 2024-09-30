@@ -1,6 +1,10 @@
 let urgentCount = 0;
 let taskCount = 0;
 
+/**
+ * Initially loads all tasks in the summary view
+ * @function summaryOnload
+ */
 async function summaryOnLoad(){
     let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
@@ -22,12 +26,20 @@ async function summaryOnLoad(){
     countOnDone = 0;
 }
 
+/**
+ * Initially loads all tasks which has the priority
+ * @function urgentCounting
+ */
 function urgentCounting(priority) {
     if (priority == 'urgent'){
         urgentCount++;
     }
 }
 
+/**
+ * Check the time to set the proper greeting for the user
+ * @function summaryGetTime
+ */
 function summaryGetTime() {
     const d = new Date();
     let hours = d.getHours();
@@ -42,6 +54,19 @@ function summaryGetTime() {
     return greet;
 }
 
+/**
+ * Renders the user greeting
+ * @function summaryOnload
+ */
+function renderUserGreeting(greet, activeUserName) {
+    document.getElementById('summary-time').innerHTML = `${greet}`;
+    document.getElementById('summary-user').innerHTML = `${activeUserName}`;
+}
+
+/**
+ * Renders all existing tasks on the summary site for each category
+ * @function renderTaskCounts
+ */
 function renderTaskCounts() {
     document.getElementById('summary-toDo').innerHTML =`${countOnToDo}`;
     document.getElementById('summary-done').innerHTML =`${countOnDone}`;
@@ -49,9 +74,4 @@ function renderTaskCounts() {
     document.getElementById('summary-all-tasks').innerHTML =`${taskCount}`;
     document.getElementById('summary-taskInProgress').innerHTML =`${countOnInProgress}`;
     document.getElementById('summary-awaitFeedback').innerHTML =`${countOnAwaitFeedback}`;
-}
-
-function renderUserGreeting(greet, activeUserName) {
-    document.getElementById('summary-time').innerHTML = `${greet}`;
-    document.getElementById('summary-user').innerHTML = `${activeUserName}`;
 }

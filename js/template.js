@@ -1,3 +1,7 @@
+/**
+ * Adds an HTML element where this tag is used. In this case head- and sidebar navigation
+ * @function includeHTML
+ */
 async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -17,6 +21,10 @@ async function includeHTML() {
     document.getElementById("sideBarContainer").classList.remove("d-none");
 }
 
+/**
+ * Adds and shows only this HTML-element for guest user
+ * @function includeHTMLNoUser
+ */
 async function includeHTMLNoUser() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
@@ -40,6 +48,10 @@ function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 }
 
+/**
+ * Adds the new user data to the database
+ * @function templateNavbarOpenClose
+ */
 function templateNavbarOpenClose() {
     let navbarOpenOrClose = document.getElementById("header-Navbar");
     if (hasClass(navbarOpenOrClose,'d-none')) {

@@ -55,8 +55,8 @@ async function changeTask(event,taskId="") {
     task["selectContacts"] = selectContacts;
     task["datePicker"] = document.getElementById('datePicker').value;
     task["priority"] = prio;
-    if (subtasklist.length >  0) {
-        task["subtasks"] = subtasklist;
+    if (subtaskList.length >  0) {
+        task["subtasks"] = subtaskList;
         task["subtask"] = subtaskProofments;
     }
     let taskAsStringify = JSON.stringify(task);

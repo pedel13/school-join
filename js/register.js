@@ -41,6 +41,10 @@ function alertClassRemove(element, massageBox) {
     document.getElementById(`${massageBox}`).classList.add("d-none");
 }
 
+/**
+ * Adds a new user after filled form and checks if everything is filled in properly
+ * @function addUser
+ */
 async function addUser(event) {
     event.preventDefault();
     let password = document.getElementById("password");
@@ -66,6 +70,10 @@ async function addUser(event) {
     }
 }
 
+/**
+ * Adds the new user data
+ * @function setToFirebase
+ */
 async function setToFirebase(name,email,password) {
     let userData = {
         "name": name,
@@ -75,13 +83,10 @@ async function setToFirebase(name,email,password) {
     await postUserData('users', userData);
 }
 
-function clearRegisterForm() {
-    document.getElementById("password").value = '';
-    document.getElementById("passwordConfirm").value = '';
-    document.getElementById("email").value = '';
-    document.getElementById("name").value = '';
-}
-
+/**
+ * Adds the new user data to the database
+ * @function setToFirebase
+ */
 async function postUserData(path = "", data) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -100,27 +105,3 @@ async function postUserData(path = "", data) {
         console.error('Es gab einen Fehler beim Posten der Benutzerdaten:', error);
     }
 }
-
-function buttonEnabler() {
-    const name = document.getElementById("name");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const confirmPassword = document.getElementById("passwordConfirm");
-    const signUpBtn = document.getElementById("signUp");
-    const checkBox = document.getElementById("registerCheckbox");
-    
-    addEventListener("submit", event => {
-        if (name.value.length <= 0 && email.value.length <= 0 && password.value.length <= 0 && confirmPassword.value.length <= 0 && checkBox.checked === false) {
-            signUpBtn.disabled = true;
-            //console.log("Angekommen")
-        }
-        else {
-            confirmPassword.addEventListener("keyup", ()=> {
-                signUpBtn.classList.remove("disabledButton");
-                signUpBtn.disabled = false;
-            })
-        }
-    })
-}
-
-

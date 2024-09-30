@@ -2,7 +2,7 @@
 let localContactArray;
 let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 /**
- * Creates new Contact-Data and saves them to the Database
+ * Creates new Contact-Dataset
  * @function addContact
  */
 async function addContact(event) {
@@ -19,6 +19,10 @@ async function addContact(event) {
     fetchContacts();
 }
 
+/**
+ * Sets the background color of a contact avatar
+ * @function setColor
+ */
 function setColor() {
     let randomNumber = Math.floor(Math.random() * 7);
     let color = '';
@@ -53,6 +57,10 @@ function setColor() {
     return color;
 }
 
+/**
+ * Splits the name of a contact in his first letters to show them inside the contact avatar
+ * @function splitName
+ */
 function splitName(data) {
     let cdata = data.split(" ");
     let firstName = cdata[0];
@@ -85,6 +93,11 @@ async function postContactData(path = "", data) {
     }
 }
 
+
+/**
+ * Sets the new contact to the database
+ * @function setContactToFirebase
+ */
 async function setContactToFirebase(name, email, phone, nameCharts, contactColor) {
     let contactData = {
         "name": name,
@@ -97,12 +110,20 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
     await postContactData("contacts", contactDataAsString);
 }
 
+/**
+ * Clears all loaded contacts to reload them after fetching contact data
+ * @function clearContactRendering
+ */
 function clearContactRendering() {
     for (let i = 0; i < alphabet.length; i++) {
         document.getElementById(`contactList-${alphabet[i]}`).innerHTML ='';
     }
 }
 
+/**
+ * Fetching all contact data on loading the page
+ * @function fetchContacts
+ */
 async function fetchContacts() {
     await loadContacts("/contacts");
     clearContactRendering();
@@ -128,6 +149,7 @@ async function loadContacts(path = "") {
 
 /**
  * Rendering the contact data into the HTML
+ * @function renderContacts
  */
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
     contactAlphabetElement.innerHTML += /*html*/ `
@@ -153,6 +175,7 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
         </div>
     `;
 }
+
 function searchRenderPositionClickedContact(contactId) {
     let testForOverlay = document.getElementById("contactsRight");
     renderClickedContact(contactId);
@@ -164,6 +187,11 @@ function searchRenderPositionClickedContact(contactId) {
     }
 }
 
+
+/**
+ * Rendering the contact details into the HTML
+ * @function renderClickedContacts
+ */
 function renderClickedContact(contactID) {
     let name = localContactArray[contactID]['name'];
     let email = localContactArray[contactID]['email'];
@@ -276,6 +304,10 @@ function clearNewContactForm() {
     closeContactOverlay();
 }
 
+/**
+ * Allows to edit a contact
+ * @function editContact
+ */
 async function editContact(contactId = "") {
     var form = document.getElementById("createNewContactForm");
     form.onsubmit = null;
@@ -291,6 +323,10 @@ async function editContact(contactId = "") {
     openAddContactOverlay();
 }
 
+/**
+ * Rendering the contact details for editing
+ * @function renderContacts
+ */
 async function renderEditContactsOverlay(contactId) {
     await loadContacts("/contacts");
     let name = localContactArray[contactId]['name'];
@@ -302,20 +338,32 @@ async function renderEditContactsOverlay(contactId) {
     document.getElementById("newContactMail").value = email;
     document.getElementById("newContactPhone").value = phone;
     document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
-    document.getElementById("avatar").innerHTML =  /*html*/ `<div id="contactAvatar">
-    <div class="credentialsCircle ${color}" id="credentialsCircle">
-        ${nameCharts[0]}${nameCharts[1]}
-    </div>
-</div>`
-    document.getElementById("createNewContact").innerHTML = /*html*/ `Save
-        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`
-    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
-    <h1>Edit contact</h1>
-    <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
-    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `<h1>Edit contact</h1>
-        <img src="./img/icons/blue-borderLine.png" alt="blue-border">`
+    document.getElementById("avatar").innerHTML =  /*html*/ `
+        <div id="contactAvatar">
+            <div class="credentialsCircle ${color}" id="credentialsCircle">
+                ${nameCharts[0]}${nameCharts[1]}
+            </div>
+        </div>
+    `;
+    document.getElementById("createNewContact").innerHTML = /*html*/ `
+        Save
+        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+    `;
+    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
+        <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+        <h1>Edit contact</h1>
+        <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+    `;
+    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
+        <h1>Edit contact</h1>
+        <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+    `;
 }
 
+/**
+ * Send the edited contact details to the database
+ * @function editContactToFirebase
+ */
 async function editContactToFirebase(event, contactId) {
     event.preventDefault(event);
     localContactArray[contactId]['name'] = document.getElementById('newContactName').value;
@@ -330,11 +378,19 @@ async function editContactToFirebase(event, contactId) {
     searchRenderPositionClickedContact(contactId);
 }
 
+/**
+ * Deletes the contact
+ * @function deleteContactEverywhere
+ */
 async function deleteContactEverywhere(contactID) {
     await searchContactsInTasks(contactID);
     await deleteContact(contactID);
 }
 
+/**
+ * Searching a contact inside a Task
+ * @function editContactToFirebase
+ */
 async function searchContactsInTasks(contactID) {
     let tasks = await loadTasks("/board/tasks");
     let contactIsInTask = false;
