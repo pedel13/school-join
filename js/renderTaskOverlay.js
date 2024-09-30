@@ -107,16 +107,6 @@ async function taskEdit(taskId) {
     renderAllCreateSubtasks(taskId);
 }
 
-function renderContactNameInOverlayEdit(activeContact, contactId) {
-    document.getElementById("selectedContactsInOverlay").innerHTML += `
-        <li class="d-flex align-items-center">
-            <p class="rounded-100 fc-white board-user-icon d-flex align-items-center justify-content-center m-8 ${activeContact.contactColor}" id="${contactId}">
-                ${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}
-            </p>
-        </li>
-    `;
-}
-
 function renderContactNameInOverlay(activeContact, contactId) {
     document.getElementById("selectedContactsInOverlay").innerHTML += `
         <li class="d-flex align-items-center">

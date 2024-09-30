@@ -47,37 +47,36 @@ document.addEventListener('keydown', evt => {
 });
 
 document.addEventListener('click', function(event) {
-    console.log(event.target);
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     let typeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
     if (addTaskOverlay && !addTaskOverlay.classList.contains('d-none')) {
-        if (!typeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
+        if (typeOnAddTaskOverlay && !typeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
             closeAddTaskOverlay();
         }
     }
     let taskOverlay = document.getElementById('taskOverlay');
     let typeOnTaskOverlay = document.getElementById('taskOverlayWrapper');
     if (taskOverlay && !taskOverlay.classList.contains('d-none')) {
-        if (!typeOnTaskOverlay.contains(event.target) && !isTaskOverlayJustOpened) {
+        if (typeOnTaskOverlay && !typeOnTaskOverlay.contains(event.target) && !isTaskOverlayJustOpened) {
             closeTaskOverlay();
         }
     }
     let closeOpenContactOverlay = document.getElementById('contactOverlay');
     let typeOnContactOverlay = document.getElementById('contactOverlayWrapper');
-    if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
+    if (closeOpenContactOverlay && closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
             if (!typeOnContactOverlay.contains(event.target)&& !isContactOverlayJustOpened) {
                 closeContactOverlay();
             }
     }
     let navbarOpenOrClose = document.getElementById("header-Navbar");
     if (navbarOpenOrClose && !navbarOpenOrClose.classList.contains("d-none")) {
-        if (!navbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
+        if (navbarOpenOrClose && !navbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
             navbarOpenOrClose.classList.add("d-none");
         }
     }
     let contactNavbarOpenOrClose = document.getElementById("contact-Navbar");
     if (contactNavbarOpenOrClose && !contactNavbarOpenOrClose.classList.contains("d-none")) {
-        if (!contactNavbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
+        if (contactNavbarOpenOrClose && !contactNavbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
             contactNavbarOpenOrClose.classList.add("d-none");
         }
     }
