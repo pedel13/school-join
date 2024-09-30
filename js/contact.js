@@ -15,7 +15,7 @@ async function addContact(event) {
     let contactColor = setColor();
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
     clearNewContactForm();
-    closeContactOverlay(event);
+    closeContactOverlay();
     fetchContacts();
 }
 
@@ -116,7 +116,7 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
  */
 function clearContactRendering() {
     for (let i = 0; i < alphabet.length; i++) {
-        document.getElementById(`contactList-${alphabet[i]}`).innerHTML ='';
+        document.getElementById(`contactListContent-${alphabet[i]}`).innerHTML ='';
     }
 }
 
@@ -134,10 +134,11 @@ async function fetchContacts() {
         let nameCharts = element.nameCharts;
         let color = element.contactColor;
         let contactAlphabetElement = document.getElementById(`contactList-${nameCharts[0]}`);
+        let contactAlphabetRenderElement = document.getElementById(`contactListContent-${nameCharts[0]}`);
         if (contactAlphabetElement.classList.contains("d-none")) {
             contactAlphabetElement.classList.remove("d-none");
         }
-        renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement);
+        renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetRenderElement);
     }
 
 }
@@ -193,14 +194,16 @@ function searchRenderPositionClickedContact(contactId) {
  * @function renderClickedContacts
  */
 function renderClickedContact(contactID) {
-    let name = localContactArray[contactID]['name'];
-    let email = localContactArray[contactID]['email'];
-    let phone = localContactArray[contactID]['phone'];
-    let color = localContactArray[contactID]['contactColor'];
-    let nameCharts = localContactArray[contactID]['nameCharts'];
+    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contact = contacts[contactID];
+    let name = contact['name'];
+    let email = contact['email'];
+    let phone = contact['phone'];
+    let color = contact['contactColor'];
+    let nameCharts = contact['nameCharts'];
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
-    document.getElementById(`contactDetailWrapper`).classList.add("activeContact");
+    //document.getElementById(`contactDetailWrapper`).classList.add("activeContact");
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
         <div id="contactSummary">
             <div id="contactTitle">
@@ -283,10 +286,6 @@ function openAddContactOverlay() {
     setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
 }
 
-function closeContactOverlay(event) {
-    document.getElementById('contactOverlay').classList.add('d-none');
-}
-
 function activeContact() {
     const navLinkEls = document.querySelectorAll('.contactDetailWrapper');
 
@@ -302,7 +301,11 @@ function clearNewContactForm() {
     document.getElementById('newContactName').value = '';
     document.getElementById('newContactMail').value = '';
     document.getElementById('newContactPhone').value = '';
-    closeContactOverlay();
+}
+
+function closeContactOverlay() {
+    clearNewContactForm();
+    document.getElementById('contactOverlay').classList.add('d-none');
 }
 
 /**
@@ -374,7 +377,7 @@ async function editContactToFirebase(event, contactId) {
     let dataAsStringify = JSON.stringify(localContactArray[contactId]);
     await updateTask(dataAsStringify, `/contacts/${contactId}`)
     clearNewContactForm();
-    closeContactOverlay(event);
+    closeContactOverlay();
     fetchContacts();
     searchRenderPositionClickedContact(contactId);
 }
