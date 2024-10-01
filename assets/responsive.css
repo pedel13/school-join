@@ -366,10 +366,10 @@
         flex-wrap: wrap;
     }
 
-    #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; }
-    #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; }
-    #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; }
-    #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; }
+    #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; min-height: 40vh }
 
     .centerWrapper {
         overflow-y: hidden;

@@ -588,8 +588,7 @@
 /*##### boart min width:570 px #####*/
 
 
-@media (min-width: 570px) {
-    
+@media (min-width: 800px) {
     .taskOverlayWrapper {
         width: auto;
     }
@@ -625,4 +624,4 @@
     .arrow-up-board-task-on-done {
         display: none;
     }
-    }
+}

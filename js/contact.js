@@ -158,7 +158,7 @@ function highlightContactCard() {
  */
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
     contactAlphabetElement.innerHTML += /*html*/ `
-        <div id="contactDetailWrapper_${contactID} contactListCard" class="contactDetailWrapper">
+        <div id="${contactID}" class="contactDetailWrapper">
             <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}'); highlightContactCard()">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
@@ -205,7 +205,7 @@ function renderClickedContact(contactID) {
     let phone = contact['phone'];
     let color = contact['contactColor'];
     let nameCharts = contact['nameCharts'];
-    document.getElementById('contactListCard').classList.add('activeContact');
+    renderContactHighlight(contactID);
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
@@ -270,6 +270,19 @@ function renderClickedContact(contactID) {
             </div>
         </div>
     `;
+}
+
+
+let anyID;
+function renderContactHighlight(contactID) {
+    if(anyID) {
+        document.getElementById(`${anyID}`).classList.remove('activeContact');
+    }
+    document.getElementById(`${contactID}`).classList.add('activeContact');
+    console.log(anyID);
+    anyID = contactID;
+    console.log(contactID);
+    
 }
 
 function contactNavbarOpenClose() {

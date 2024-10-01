@@ -62,7 +62,7 @@
                 
                 <div class="main d-flex board-all-columns" id="main">
                     <!-- to-do  -->
-                    <div class="board-task-columns">
+                    <div class="board-task-columns" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">To Do</p>
@@ -73,12 +73,12 @@
                             <div id="no-tasks-to-do" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks To do</p>
                             </div>
-                            <div id="board-task-on-to-do" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-to-do" class="board-tasks-card d-flex flex-column">
                             </div>
                         </div>
                     </div>
                     <!-- in progress  -->
-                    <div class="board-task-columns">
+                    <div class="board-task-columns" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">In progress</p>
@@ -90,12 +90,12 @@
                             <div id="no-tasks-in-progress" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks In progress</p>
                             </div>
-                            <div id="board-task-on-in-progress" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-in-progress" class="board-tasks-card d-flex flex-column">
                             </div>
                         </div>
                     </div>
                     <!-- await feedback  -->
-                    <div class="board-task-columns">
+                    <div class="board-task-columns" ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Await feedback</p>
@@ -106,12 +106,12 @@
                             <div id="no-tasks-await-feedback" class="board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Await feedback</p>
                             </div>
-                            <div id="board-task-on-await-feedback"  ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-await-feedback" class="board-tasks-card d-flex flex-column">
                             </div>
                         </div>
                     </div>
                     <!-- done  -->
-                    <div class="board-task-columns d-flex flex-column">
+                    <div class="board-task-columns d-flex flex-column" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Done</p>
@@ -122,7 +122,7 @@
                             <div id="no-tasks-Done" class="d-none board-no-tasks d-flex align-items-center justify-content-center">
                                 <p>No tasks Done</p>
                             </div>
-                            <div id="board-task-on-done" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)" class="board-tasks-card d-flex flex-column">
+                            <div id="board-task-on-done" class="board-tasks-card d-flex flex-column">
                             </div>
                         </div>
                     </div>
