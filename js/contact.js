@@ -148,14 +148,18 @@ async function loadContacts(path = "") {
     localContactArray = await response.json();
 }
 
+function highlightContactCard() {
+    //
+}
+
 /**
  * Rendering the contact data into the HTML
  * @function renderContacts
  */
 async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
     contactAlphabetElement.innerHTML += /*html*/ `
-        <div id="contactDetailWrapper_${contactID}" class="contactDetailWrapper">
-            <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}')">
+        <div id="contactDetailWrapper_${contactID} contactListCard" class="contactDetailWrapper">
+            <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}'); highlightContactCard()">
                 <li id="contactItem_${contactID}" class="contactItem">
                     <div class="innerContactDetailWrapper">
                         <div id="userProfile">
@@ -201,9 +205,9 @@ function renderClickedContact(contactID) {
     let phone = contact['phone'];
     let color = contact['contactColor'];
     let nameCharts = contact['nameCharts'];
+    document.getElementById('contactListCard').classList.add('activeContact');
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
-    //document.getElementById(`contactDetailWrapper`).classList.add("activeContact");
     document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
         <div id="contactSummary">
             <div id="contactTitle">
