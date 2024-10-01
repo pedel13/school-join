@@ -85,7 +85,71 @@ function reduceDroppedElement(elementPosition) {
             countOnDone--;
             break;
     }
+}
 
+function taskGoBackNext(position) {
+
+    switch (position) {
+        case "board-task-on-in-progress":  
+        position = "board-task-on-to-do";
+            break;
+            case "board-task-on-await-feedback":  
+            position = "board-task-on-in-progress";
+            break;
+            case "board-task-on-done":
+                position = "board-task-on-await-feedback";
+            break;
+        default:
+            break;
+    }
+    return position;
+}
+
+function taskGoForwardNext(position) {
+    switch (position) {
+        case "board-task-on-to-do":
+            position = "board-task-on-in-progress";
+            break;
+            case "board-task-on-in-progress":  
+            position = "board-task-on-await-feedback";
+            break;
+            case "board-task-on-await-feedback":  
+            position = "board-task-on-done";
+            break;
+        default:
+            break;
+    }
+    return position;
+}
+
+async function taskGoBack(position="", taskId="") {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let dropCard = tasks[taskId];
+    reduceDroppedElement(dropCard["position"]);
+    dropCard["position"] = taskGoBackNext(position);
+    let elementAsStringify = JSON.stringify(dropCard);
+    await updateTask(elementAsStringify,`/board/tasks/${taskId}`);
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
+    document.getElementById('taskOverlay').classList.add('d-none');
+    renderAllTasks();
+}
+
+async function taskGoForward(position="", taskId="") {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let dropCard = tasks[taskId];
+    reduceDroppedElement(dropCard["position"]);
+    dropCard["position"] = taskGoForwardNext(position);
+    let elementAsStringify = JSON.stringify(dropCard);
+    await updateTask(elementAsStringify,`/board/tasks/${taskId}`);
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
+    document.getElementById('taskOverlay').classList.add('d-none');
+    renderAllTasks();
 }
 
 function findeTask(value) {
@@ -187,8 +251,8 @@ async function renderAllTasks() {
             let activeContactId = element.selectContacts[contact];
             let activeContact = contacts[activeContactId];
                 renderActiveContacts(activeContact, activeContactId, taskId);
-        }
         subtaskCount = 0;
+    }
     }
     noTasksInProgress();
 }
@@ -269,13 +333,13 @@ function renderActiveContacts(activeContact, contactId, taskId) {
 }
 
 function renderTask(task, taskId, subtask, categoryText) {
-    document.getElementById(task.position).innerHTML += `
+    document.getElementById(task.position).innerHTML += /*html*/`
         <div id="taskID_${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column hoverRotation">
             <div class="d-flex align-items-center justify-content-between">
                 <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
                 <div id="moveButtons">
-                    <img src="../img/icons/arrow_upward.svg" alt="arrow_upward" onclick="">
-                    <img src="../img/icons/arrow_downward.svg" alt="arrow_downward" onclick="">
+                    <img src="../img/icons/arrow_upward.svg" alt="arrow_upward" class="arrow-up-${task.position}" onclick="taskGoBack('${task.position}', '${taskId}')">
+                    <img src="../img/icons/arrow_downward.svg" alt="arrow_downward" class="arrow-down-${task.position}" onclick="taskGoForward('${task.position}', '${taskId}')">
                 </div>
             </div>
             <div>

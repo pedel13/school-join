@@ -1,4 +1,10 @@
+.arrow-up-board-task-on-to-do {
+    display: none;
+}
 
+.arrow-down-board-task-on-done {
+    display: none;
+}
 
 @media (max-width: 670px) {
     /*##### Login Page #####*/
@@ -252,18 +258,6 @@
     #main > div.board-task-columns:nth-of-type(2) { width: 64%; }
     #main > div.board-task-columns:nth-of-type(3) { width: 64%; }
     #main > div.board-task-columns:nth-of-type(4) { width: 64%; }
-
-    .taskOverlayWrapper {
-        width: auto;
-    }
-
-    #taskOverlayWrapper {
-        padding: 16px !important;
-    }
-
-    .taskOverlayTitle {
-        font-size: 40px !important;
-    }
 
     /*##### Add Task Page #####*/
     #addTask {
@@ -590,3 +584,45 @@
         max-width: 250px;
     }
 }
+
+/*##### boart min width:570 px #####*/
+
+
+@media (min-width: 570px) {
+    
+    .taskOverlayWrapper {
+        width: auto;
+    }
+
+    #taskOverlayWrapper {
+        padding: 16px !important;
+    }
+
+    .taskOverlayTitle {
+        font-size: 40px !important;
+    }
+        
+    .arrow-down-board-task-on-to-do {
+        display: none;
+    }
+    
+    .arrow-up-board-task-on-in-progress {
+        display: none;
+    }
+    
+    .arrow-down-board-task-on-in-progress {
+        display: none;
+    }
+    
+    .arrow-up-board-task-on-await-feedback {
+        display: none;
+    }
+    
+    .arrow-down-board-task-on-await-feedback {
+        display: none;
+    }
+    
+    .arrow-up-board-task-on-done {
+        display: none;
+    }
+    }
