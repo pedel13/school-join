@@ -332,6 +332,16 @@ header > div > h1 {
     margin-top: 24px;
 }
 
+#taskID {
+    justify-content: space-between;
+}
+
+.moveButtons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 /*##### END OF board.html section #####*/
 
 .alert-massage {
@@ -362,7 +372,12 @@ header > div > h1 {
     padding: 5%;
 }
 
-.board-tasks-card:hover {
+/*.board-tasks-card:hover {
     transform: rotate(1deg);
     transition: all 100ms ease-in-out;
+}*/
+
+#hoverRotation:hover {
+    transform: rotate(1deg) !important;
+    transition: all 100ms ease-in-out !important;
 }

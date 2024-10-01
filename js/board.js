@@ -270,8 +270,8 @@ function renderActiveContacts(activeContact, contactId, taskId) {
 
 function renderTask(task, taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += `
-        <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
-            <div class="d-flex align-items-center">
+        <div id="taskID_${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column hoverRotation">
+            <div class="d-flex align-items-center justify-content-between">
                 <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
                 <div id="moveButtons">
                     <img src="../img/icons/arrow_upward.svg" alt="arrow_upward" onclick="">
@@ -279,10 +279,10 @@ function renderTask(task, taskId, subtask, categoryText) {
                 </div>
             </div>
             <div>
-                <p class="board-card-subtitle" id="">${task.title}</p>
+                <p class="board-card-subtitle">${task.title}</p>
             </div>
             <div>
-                <p class="board-description" id="">${task.description}</p>
+                <p class="board-description">${task.description}</p>
             </div>
             <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
                 <div class="board-progressbar-full rounded-8">
