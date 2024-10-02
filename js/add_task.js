@@ -77,10 +77,8 @@ async function getInputs(position) {
         "subtasks": subtaskList,
         "subtask": subtaskProvement
     };
-
     await setTaskDataInDatabase(inputs);
     clearAddTask();
-
 }
 
 function clearAddTask() {
@@ -88,6 +86,12 @@ function clearAddTask() {
     subtaskProvement = [];
     prioButtonClearSelect()
     prio = '-';
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('datePicker').value = '';
+    document.getElementById('categorySelect').value = '';
+    document.getElementById('subtaskStorage').innerHTML = '';
+    document.getElementById('selectedContact').innerHTML = '';
 }
 
 async function setTaskDataInDatabase(data) {

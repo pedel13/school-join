@@ -79,7 +79,6 @@
 @media (max-width: 1360px) {
     #mainWrapper {
         width: 80%;
-        padding-left: 80px;
     }
 
     /*##### AddTask Form page #####*/
@@ -323,7 +322,15 @@
 }
 
 @media (max-width: 1120px) {
+    #mainWrapper {
+        width: 100%;
+        padding: 0 0 0 24px !important;
+    }
 
+    #main {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 
 @media (max-width: 1072px) {
@@ -354,16 +361,6 @@
 
     #no-tasks-in-progress > p {
         font-size: 14px !important;
-    }
-
-    #mainWrapper {
-        width: 100%;
-        padding: 0 0 0 24px !important;
-    }
-
-    #main {
-        display: flex;
-        flex-wrap: wrap;
     }
 
     #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; min-height: 40vh }
@@ -461,12 +458,6 @@
     
 }
 
-@media (max-width: 800px) {
-    #email {
-        height: calc(-30px);
-    }
-}
-
 @media (max-width: 850px) {
     /*##### AddContact Overlay #####*/
     #createNewContactForm {
@@ -496,6 +487,9 @@
 }
 
 @media (max-width: 800px) {
+    #email {
+        height: calc(-30px);
+    }
 
     /*##### index.html (dashboard) #####*/
     .addTaskWrapper {
@@ -567,4 +561,59 @@
         overflow-y: scroll;
     }
 
+    .moveArrows {
+        width: 26px !important;
+        height: 26px !important;
+    }
+
+    #selectedContactsInOverlay {
+        padding-left: 0 !important;
+    }
+
+    .taskOverlayWrapper {
+        width: auto !important;
+    }
+
+    .taskOverlayTitle {
+        font-size: 40px !important;
+    }
+}
+
+/*##### ATTENTION: MIN-WIDTH #####*/
+@media (min-width: 800px) {
+    .taskOverlayTitle {
+        font-size: 40px !important;
+    }
+
+    .arrow-down-board-task-on-to-do {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-in-progress {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-in-progress {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-await-feedback {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-await-feedback {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-done {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-to-do {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-done {
+        display: none;
+    }
 }

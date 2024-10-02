@@ -338,8 +338,8 @@ function renderTask(task, taskId, subtask, categoryText) {
             <div class="d-flex align-items-center justify-content-between">
                 <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
                 <div id="moveButtons">
-                    <img src="../img/icons/arrow_upward.svg" alt="arrow_upward" class="arrow-up-${task.position}" onclick="taskGoBack('${task.position}', '${taskId}')">
-                    <img src="../img/icons/arrow_downward.svg" alt="arrow_downward" class="arrow-down-${task.position}" onclick="taskGoForward('${task.position}', '${taskId}')">
+                    <img src="img/icons/arrow_upward_32px.png" alt="arrow_upward" class="arrow-up-${task.position} moveArrows" onclick="taskGoBack('${task.position}', '${taskId}')">
+                    <img src="img/icons/arrow_downward_32px.png" alt="arrow_downward" class="arrow-down-${task.position} moveArrows" onclick="taskGoForward('${task.position}', '${taskId}')">
                 </div>
             </div>
             <div>
