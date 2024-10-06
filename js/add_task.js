@@ -6,6 +6,11 @@ let expanded = false;
 let contacts;
 let selectContacts;
 
+/**
+ * loadUsableContacts()
+ * ladet alle verfügbaren kontakte und läst sie der reie nach in den selector rendern
+ */
+
 async function loadUsableContacts() {
     contacts = await loadTasks("/contacts");
     selectContacts = [];
@@ -19,10 +24,20 @@ async function loadUsableContacts() {
     dataPickerForTuday();
 }
 
+/**
+ * dataPickerForTuday()
+ * verhindert das vergangene taten im task verwendet werden können
+ */
+
 function dataPickerForTuday() {
     let today = new Date().toISOString().split('T')[0];
     document.getElementById("datePicker").setAttribute('min', today);
 }
+
+/**
+ * selectContact()
+ * kontroliert ob der kontakt schon ausgewält ist und löst in doder fügt in hinzu
+ */
 
 function selectContact(contact="") {
     contacts = JSON.parse(localStorage.getItem("usableContacts"));
@@ -46,6 +61,11 @@ function selectContact(contact="") {
     }
 }
 
+/**
+ * addEventListener()
+ * schliest das kontaktauswal dropdown beim kliken auserhalb des dropdowns
+ */
+
 document.addEventListener('click', function(event) {
     var checkboxes = document.getElementById("checkboxes");
     var selectBox = document.querySelector(".selectBox");
@@ -54,6 +74,11 @@ document.addEventListener('click', function(event) {
         expanded = false;
     }
 });
+
+/**
+ * showCheckboxes()
+ * öfnet und schlist das drobdown
+ */
 
 function showCheckboxes() {
     var checkboxes = document.getElementById("checkboxes");
@@ -66,10 +91,20 @@ function showCheckboxes() {
     }
 }
 
+/**
+ * addTask()
+ * stopt seite von reload
+ */
+
 async function addTask(event, position = '') {
     event.preventDefault(event);
     await getInputs(position);
 }
+
+/**
+ *  getInputs()
+ * speichert den neuen task in einem json und übergipt sie der funktion setTaskDataInDatabase()
+ */
 
 async function getInputs(position) {
     let inputs = {
@@ -87,6 +122,11 @@ async function getInputs(position) {
     await clearAddTask();
 }
 
+/**
+ * clearAddTask()
+ * setzt alle inputfelder und wariablen zurück von addtask.html und dem addtask oferlai
+ */
+
 async function clearAddTask() {
     subtaskList = [];
     subtaskProvement = [];
@@ -101,6 +141,11 @@ async function clearAddTask() {
     document.getElementById('selectContacts').innerHTML = '';
     await loadUsableContacts();
 }
+
+/**
+ * setTaskDataInDatabase()
+ * setzt einen neuen task in der datenbank ap unter board/tasks
+ */
 
 async function setTaskDataInDatabase(data) {
     try {
@@ -123,6 +168,12 @@ async function setTaskDataInDatabase(data) {
     }
 }
 
+/**
+ * openAddTaskOverlay()
+ * entfernt displai: none von dem addTaskOferlay und setzt einen teimer um das schlisen duch das nickt aufs oferlay klicken zu verhindern
+ * bis der teimer abgelaufen ist
+ */
+
 async function openAddTaskOverlay(position = '') {
     let overlay = document.getElementById('addTaskOverlay');
     overlay.classList.remove('d-none');
@@ -132,9 +183,19 @@ async function openAddTaskOverlay(position = '') {
     await loadUsableContacts();
 }
 
+/**
+ * closeAddTaskOverlay()
+ * fügt dem addTaskOverlay die klasse d-none hinzu
+ */
+
 function closeAddTaskOverlay() {
     document.getElementById('addTaskOverlay').classList.add('d-none');
 }
+
+/**
+ * prioButton()
+ * fügt dem gedückten priobutton die farbe hinzu und die farbe des icons
+ */
 
 function prioButton(button, icon) {
     buttonSelected = document.getElementById(button);
@@ -145,6 +206,11 @@ function prioButton(button, icon) {
     iconSelected.classList.add(icon + 'Activ');
     iconSelected.classList.remove(icon);
 }
+
+/**
+ * prioButtonRemoveOther()
+ * setzt die aktiven button zurück auser der gerade aktivirt wurde
+ */
 
 function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     buttonSelected = document.getElementById(button);
@@ -161,6 +227,11 @@ function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     iconOtherSelected.classList.remove(iconOther + 'Activ');
 }
 
+/**
+ * prioButtonRemoveOther()
+ * setzt die aktiven button zurück
+ */
+
 function prioButtonclear(button, icon) {
     buttonSelected = document.getElementById(button);
     iconSelected = document.getElementById(icon);
@@ -170,6 +241,11 @@ function prioButtonclear(button, icon) {
     iconSelected.classList.add(icon);
     iconSelected.classList.remove(icon + 'Activ');
 }
+
+/**
+ * prioButtonSelect()
+ * wechselt die prio und läst den aktiven button endern 
+ */
 
 function prioButtonSelect(priority) {
     prio = priority;
@@ -191,6 +267,11 @@ function prioButtonSelect(priority) {
     }
 }
 
+/**
+ * prioButtonClearSelect()
+ * kontroliert den aktiven button und läst ihn zurüksetzen
+ */
+
 function prioButtonClearSelect() {
     switch (prio) {
         case 'urgent':
@@ -208,11 +289,21 @@ function prioButtonClearSelect() {
     prioButtonSelect('medium');
 }
 
+/**
+ * editCreatSubtask()
+ * löst den subtask und schreibt in in das imputfeld um ihn zu bearbeiten
+ */
+
 function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
     document.getElementById('subtasks').removeAttribute("placeholder");
     document.getElementById('subtasks').value = newSubtask;
     deleteCreateSubtask(subtaskCreateCount);
 }
+
+/**
+ * deleteCreateSubtask()
+ * entfernt den zu löschenden subtask aus der liste und löst in global
+ */
 
 function deleteCreateSubtask(subtaskCreateCount = '') {
     if (subtaskList.length === 1) {
@@ -235,6 +326,11 @@ function deleteCreateSubtask(subtaskCreateCount = '') {
     renderAllCreateSubtaskNew();
 }
 
+/**
+ * renderAllCreateSubtaskNew()
+ * renderd die liste der existierenden subtask nach dem einer gelöst wurde neu
+ */
+
 function renderAllCreateSubtaskNew() {
     if (subtaskList.length < 1) {
     } else {
@@ -245,6 +341,11 @@ function renderAllCreateSubtaskNew() {
         }
     }
 }
+
+/**
+ * renderAllCreateSubtasks()
+ * rendert alle bestehenden subtask ins overlay
+ */
 
 function renderAllCreateSubtasks(taskId) {
     let i = 0;
@@ -263,6 +364,11 @@ function renderAllCreateSubtasks(taskId) {
     }
 }
 
+/**
+ * addSubtaskAddArray()
+ * fügt die erstelten subtask dem globalem array hinzu
+ */
+
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
     if (subtaskList.length < 1) {
@@ -276,12 +382,22 @@ function addSubtaskAddArray() {
     renderCrateSubtask(newSubtask, subtaskCreateCount);
 }
 
+/**
+ * renderSelectedContact()
+ * rendert die das icon des ausgewälten kontakt hinzu
+ */
+
 function renderSelectedContact(newSelectedContact, contact) {
     document.getElementById("selectedContact").innerHTML += `
     <p
     class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${newSelectedContact.contactColor}" id="select${contact}">
     ${newSelectedContact.nameCharts[0]}${newSelectedContact.nameCharts[1]}</p> `
 }
+
+/**
+ * renderContactSelector()
+ * rendert die zur auswahlstehenden kontakte in das dropdown 
+ */
 
 function renderContactSelector(element, initials, name, contactColor) {
     document.getElementById('selectContacts').innerHTML += /*html*/ `
@@ -296,6 +412,11 @@ function renderContactSelector(element, initials, name, contactColor) {
         </label>`
 }
 
+/**
+ * renderCrateSubtask()
+ * rendert den existirenden subtask hinzu
+ */
+
 function renderCrateSubtask(newSubtask, subtaskCreateCount) {
 
     document.getElementById('subtaskStorage').innerHTML += `
@@ -309,6 +430,11 @@ function renderCrateSubtask(newSubtask, subtaskCreateCount) {
         </li>
     `;
 }
+
+/**
+ * renderAddOverlay()
+ * rendert das addTaskOferlay mit der ensprechender position
+ */
 
 function renderAddOverlay(position) {
     document.getElementById('addTaskOverlay').innerHTML = ''

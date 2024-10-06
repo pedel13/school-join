@@ -10,10 +10,19 @@ let subtaskCountProvement = 0;
 function allowDrop(ev) {
     ev.preventDefault();
 }
-
+/** 
+ * drag(id) speichert die id des tasks global
+ */
 function drag(id) {
     cardDraggedId = id;
 }
+
+/**
+ * 
+ *  drop(dropPosition)
+ * enderd die position und gibt sie danach der ubdateTask funktion
+ *  und läst die task neu rendern
+ */
 
 async function drop(dropPosition) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -28,6 +37,11 @@ async function drop(dropPosition) {
     countOnDone = 0;
     renderAllTasks();
 }
+
+/**
+ * ubdateTask()
+ * gibt einen PUT fetch mit variablem pfad und data ans backend
+ */
 
 async function updateTask(element,path="") {
     try {
@@ -46,6 +60,10 @@ async function updateTask(element,path="") {
     }
 }
 
+/**
+ * changeTask()
+ * überschreibt die geänderten variablen eines tasks Global mit den im inputfeld und läst sie durch ubdateTask() ins beckand schreiben
+ */
 
 async function changeTask(event,taskId="") {
     event.preventDefault(event);
@@ -64,11 +82,11 @@ async function changeTask(event,taskId="") {
     closeTaskOverlay();
 }
 
-
-function removeDraggedCard() {
-    const element = document.getElementById(cardDraggedId);
-    element.remove();
-}
+/**
+ * 
+ *  reduceDroppedElement()
+ * reduzirt den zälhler um 1 an der position wo mit dreg and dropp en element entfernt hat
+ */
 
 function reduceDroppedElement(elementPosition) {
     switch (elementPosition) {
@@ -86,6 +104,12 @@ function reduceDroppedElement(elementPosition) {
             break;
     }
 }
+
+/**
+ * 
+ * taskGoBackNext()
+ * verändert die position von dem verschobenen task ohne dragand drop und gipt diese an die funktion taskGoBack() zurück
+ */
 
 function taskGoBackNext(position) {
 
@@ -105,6 +129,12 @@ function taskGoBackNext(position) {
     return position;
 }
 
+/** 
+* taskGoBackNext()
+* verändert die position von dem verschobenen task ohne dragand drop und gipt diese an die funktion taskGoForward() zurück
+*/
+
+
 function taskGoForwardNext(position) {
     switch (position) {
         case "board-task-on-to-do":
@@ -122,6 +152,13 @@ function taskGoForwardNext(position) {
     return position;
 }
 
+/**
+ * 
+ *  taskGoBack()
+ *  setzt die position im aufgabenfeld zurück und gibt sie danach der funktion ubdateTask one drag and drop
+ *  und läst die task neu rendern
+ */
+
 async function taskGoBack(position="", taskId="") {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let dropCard = tasks[taskId];
@@ -137,6 +174,13 @@ async function taskGoBack(position="", taskId="") {
     renderAllTasks();
 }
 
+/**
+ * 
+ *  taskGoBack()
+ *  setzt die position im aufgabenfeld nach forne und gibt sie danach der funktion ubdateTask one drag and drop
+ *  und läst die task neu rendern
+ */
+
 async function taskGoForward(position="", taskId="") {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let dropCard = tasks[taskId];
@@ -151,6 +195,12 @@ async function taskGoForward(position="", taskId="") {
     document.getElementById('taskOverlay').classList.add('d-none');
     renderAllTasks();
 }
+
+/**
+ * 
+ *  findeTask()
+ *  sucht task die den gewünsten suchbegriff im titel oder in der beschreibung haben und rendert nur dise
+ */
 
 function findeTask(value) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -172,6 +222,12 @@ function findeTask(value) {
             noTasksInProgress();
 }
 
+/**
+ * 
+ * renderFindeTask()
+ * läst den gefundenen task rendern und läst die forhandenen contakte reinrendern
+ */
+
 function renderFindeTask(element, taskId, contacts) {
     let subtask = subtaskExist(element);
     let categoryText = categoryFinder(element);
@@ -185,6 +241,11 @@ function renderFindeTask(element, taskId, contacts) {
         subtaskCount = 0;
     
 }
+
+/**
+ * noTasksInprogress()
+ * kontroliert ob tasks in der jeweiligen spalte vorhanden sind und läst das no task feld erscheinen oder verschwinden
+ */
 
 function noTasksInProgress() {
     if (countOnToDo != 0) {
@@ -209,20 +270,40 @@ function noTasksInProgress() {
     }
 }
 
+/**
+ * addNoTaskInProgress()
+ * läst das no task feld in der ensprechnden spalte erscheinen oder verschwinden
+ */
+
 function addNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.add("d-none");
 }
+
+/**
+ * addNoTaskInProgress()
+ * läst das no task feld in der ensprechnden spalte erscheinen oder verschwinden
+ */
 
 function removeNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.remove("d-none");
 }
 
+/**
+ * loadTasks()
+ * laded daten mit variablem pfad fom backand
+ */
+
 async function loadTasks(path="") {
     let response = await fetch(baseUrl + path + ".json");
     return await response.json();
 }
+
+/**
+ * cleanTaskboard()
+ * loscht die tasks aus den entsprechenden progress spalten und setzt die dazugehörigen zäler wider auf 0
+ */
 
 function cleanTaskboard() {
     document.getElementById("board-task-on-to-do").innerHTML = '';
@@ -235,6 +316,11 @@ function cleanTaskboard() {
     countOnDone = 0;
 }
 
+/**
+ * renderAllTasks()
+ * ladet alle task fom backend und speichert sie lokal, lert das bord und rändert die task neu
+ */
+
 async function renderAllTasks() {
     let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
@@ -243,19 +329,15 @@ async function renderAllTasks() {
     cleanTaskboard();
     for (let taskId in tasks) {
         let element = tasks[taskId];
-        let subtask = subtaskExist(element);
-        let categoryText = categoryFinder(element);
-        countForNoTask(element.position);
-        renderTask(element, taskId, subtask, categoryText);
-        for (let contact in element.selectContacts) {
-            let activeContactId = element.selectContacts[contact];
-            let activeContact = contacts[activeContactId];
-                renderActiveContacts(activeContact, activeContactId, taskId);
-        subtaskCount = 0;
-    }
+        renderFindeTask(element, taskId, contacts);
     }
     noTasksInProgress();
 }
+
+/**
+ * subtaskExist()
+ * kontroliert ob ein oder mehrere subtasks vorhanden sind und rendert die progresbar oder läst sie verschwinden
+ */
 
 function subtaskExist(task) {
     let subtask = " ";
@@ -267,6 +349,11 @@ function subtaskExist(task) {
     }
     return subtask;
 }
+
+/**
+ * subtaskCounter()
+ * zählt die subtasks und berechned wie viel protzent davon erledigt sind
+ */
 
 function subtaskCounter(task) {
     let subtask = task.subtasks;
@@ -282,6 +369,11 @@ function subtaskCounter(task) {
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
 }
 
+/**
+ * categoryFinder()
+ * kontroliert welcher kategorie der task angehört und setzt den dazugehörigen text fest da das abgespeicherte nur die klasse festlegt fiür die farbe
+ */
+
 function categoryFinder(task) {
     let categoryText = "";
     if (task.categorySelect == "technical-task") {
@@ -291,6 +383,11 @@ function categoryFinder(task) {
     }
     return categoryText;
 }
+
+/**
+ * countForNoTask()
+ * zält die task in der jeweiligen progress spalte um rauszufinden wo kein task ist
+ */
 
 function countForNoTask(positionFromCard) {
     switch (positionFromCard) {
@@ -309,6 +406,11 @@ function countForNoTask(positionFromCard) {
     }
 }
 
+/**
+ * deleteTask()
+ * löst einen bestimten task anhand seiner id
+ */
+
 async function deleteTask(event, taskId) {
     event.preventDefault(event);
     try {
@@ -324,11 +426,21 @@ async function deleteTask(event, taskId) {
     closeTaskOverlay();
 }
 
+/**
+ * renderActiveContacts()
+ * rendert das icon eines zugeteilten kontakt in einen task
+ */
+
 function renderActiveContacts(activeContact, contactId, taskId) {
     document.getElementById("selectContent"+taskId).innerHTML += `
     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
     `
 }
+
+/**
+ * renderTask()
+ * rendert eine task karte in die richtige progress spalte
+ */
 
 function renderTask(task, taskId, subtask, categoryText) {
     document.getElementById(task.position).innerHTML += /*html*/`
