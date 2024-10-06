@@ -14,9 +14,8 @@ async function addContact(event) {
     nameCharts = splitName(contactName);
     let contactColor = setColor();
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
-    clearNewContactForm();
     closeContactOverlay();
-    fetchContacts();
+    await fetchContacts();
 }
 
 /**
@@ -198,7 +197,7 @@ function searchRenderPositionClickedContact(contactId) {
  * @function renderClickedContacts
  */
 function renderClickedContact(contactID) {
-    let contacts = JSON.parse(localStorage.getItem("usableContacts"));
+    let contacts = localContactArray;
     let contact = contacts[contactID];
     let name = contact['name'];
     let email = contact['email'];
@@ -392,9 +391,8 @@ async function editContactToFirebase(event, contactId) {
     localContactArray[contactId]['nameCharts'] = splitName(localContactArray[contactId]['name']);
     let dataAsStringify = JSON.stringify(localContactArray[contactId]);
     await updateTask(dataAsStringify, `/contacts/${contactId}`)
-    clearNewContactForm();
+    await fetchContacts();
     closeContactOverlay();
-    fetchContacts();
     searchRenderPositionClickedContact(contactId);
 }
 
@@ -442,7 +440,7 @@ async function deleteContact(contactToDelete) {
     catch (error) {
         console.error("Error delete data in database:", error);
     }
-    fetchContacts();
+    await fetchContacts();
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }

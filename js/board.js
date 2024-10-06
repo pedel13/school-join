@@ -272,13 +272,11 @@ function subtaskCounter(task) {
     let subtask = task.subtasks;
     subtaskProofments = task.subtask;
     subtaskCount = 0;
-    let i = 0;
     subtaskCountProvement = 0;
-    for (const element of subtask) {
-        if (subtaskProofments[i] == 'true') {
-            subtaskCountProvement++;
+    for (let i=0; i<subtask.length; i++) {
+        if (subtaskProofments[i] === 'true') {
+            subtaskCountProvement = subtaskCountProvement+1;
         }
-        i++;
         subtaskCount++;
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;

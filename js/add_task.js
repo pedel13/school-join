@@ -1,5 +1,5 @@
 const baseUrl = "https://remotestorage-join189-default-rtdb.europe-west1.firebasedatabase.app";
-let prio = "-";
+let prio = 'medium';
 let subtaskList = [];
 let subtaskProvement = [];
 let expanded = false;
@@ -16,6 +16,12 @@ async function loadUsableContacts() {
             let contactColor = contact.contactColor;
             renderContactSelector(element, initials, name, contactColor);
     }
+    dataPickerForTuday();
+}
+
+function dataPickerForTuday() {
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("datePicker").setAttribute('min', today);
 }
 
 function selectContact(contact="") {
@@ -78,20 +84,22 @@ async function getInputs(position) {
         "subtask": subtaskProvement
     };
     await setTaskDataInDatabase(inputs);
-    clearAddTask();
+    await clearAddTask();
 }
 
-function clearAddTask() {
+async function clearAddTask() {
     subtaskList = [];
     subtaskProvement = [];
     prioButtonClearSelect()
-    prio = '-';
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('datePicker').value = '';
     document.getElementById('categorySelect').value = '';
+    document.getElementById('subtasks').value = '';
     document.getElementById('subtaskStorage').innerHTML = '';
     document.getElementById('selectedContact').innerHTML = '';
+    document.getElementById('selectContacts').innerHTML = '';
+    await loadUsableContacts();
 }
 
 async function setTaskDataInDatabase(data) {
@@ -197,6 +205,7 @@ function prioButtonClearSelect() {
         default:
             break;
     }
+    prioButtonSelect('medium');
 }
 
 
