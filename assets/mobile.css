@@ -260,6 +260,11 @@
     #addTask {
         display: none;
     }
+
+    /*##### Privacy.html #####*/
+    .privacyWrapper > div > h1 {
+        font-size: 36px !important;
+    }
 }
 
 @media (max-width: 525px) {
@@ -533,6 +538,12 @@
     .createContactButton > button {
         width: 80% !important;
     }
+
+    /*##### Privacy.html #####*/
+    .privacyWrapper > div > h1,
+    .privacyWrapper > div > h2 {
+        font-size: 28px !important;
+    }
 }
 
 @media (max-width: 360px) {
@@ -639,6 +650,22 @@
         position: absolute;
         top: 20px;
         right: 40px;
+    }
+
+    .innerContactOverlayLeftContent {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .innerContactOverlayLeftContent > h1 {
+        font-size: 24px !important;
+    }
+
+    .innerContactOverlayLeftContent > p {
+        font-size: 18px !important;
     }
 
     /*##### Tasks (Add & Edit) #####*/

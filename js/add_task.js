@@ -208,8 +208,6 @@ function prioButtonClearSelect() {
     prioButtonSelect('medium');
 }
 
-
-
 function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
     document.getElementById('subtasks').removeAttribute("placeholder");
     document.getElementById('subtasks').value = newSubtask;

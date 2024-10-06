@@ -331,6 +331,16 @@
         display: flex;
         flex-wrap: wrap;
     }
+
+    /*##### Addtask.html #####*/
+    .divider {
+        margin: 0 0 24px 0!important;
+    }
+
+    #outerTaskOverlayWrapper {
+        width: 85vw !important;
+    }
+
 }
 
 @media (max-width: 1072px) {
@@ -455,7 +465,7 @@
     button#newContact {
         max-width: 352px;
     }
-    
+
 }
 
 @media (max-width: 850px) {
