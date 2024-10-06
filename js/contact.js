@@ -292,6 +292,10 @@ function contactNavbarOpenClose() {
     }
 }
 
+/**
+ * Opens the overlay for adding a contact
+ * @function openAddContactOverlay
+ */
 function openAddContactOverlay() {
     let overlay = document.getElementById('contactOverlay');
     overlay.classList.remove('d-none');
@@ -299,9 +303,12 @@ function openAddContactOverlay() {
     setTimeout(() => { isContactOverlayJustOpened = false; }, 100);
 }
 
+/**
+ * Highlights the clicked contact
+ * @function activeContact
+ */
 function activeContact() {
     const navLinkEls = document.querySelectorAll('.contactDetailWrapper');
-
     navLinkEls.forEach(navLinkEl => {
         navLinkEl.addEventListener('click', () => {
             document.querySelector('.activeContact')?.classList.remove('activeContact');
@@ -310,12 +317,20 @@ function activeContact() {
     });
 }
 
+/**
+ * Clears all inputs from add contact formular
+ * @function clearNewContactForm
+ */
 function clearNewContactForm() {
     document.getElementById('newContactName').value = '';
     document.getElementById('newContactMail').value = '';
     document.getElementById('newContactPhone').value = '';
 }
 
+/**
+ * Closes the opened contact overlay
+ * @function closeContactOverlay
+ */
 function closeContactOverlay() {
     clearNewContactForm();
     document.getElementById('contactOverlay').classList.add('d-none');
@@ -428,6 +443,10 @@ async function searchContactsInTasks(contactID) {
     }
 }
 
+/**
+ * Deletes the whole entry of a contact
+ * @function deleteContact
+ */
 async function deleteContact(contactToDelete) {
     try {
         let response = await fetch(BASE_URL + "/contacts/" + contactToDelete + ".json", {

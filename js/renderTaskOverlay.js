@@ -40,7 +40,10 @@ function takeElementFromTask(taskid) {
         renderContactNameInOverlay(activeContact, activeContactId)
     }
 }
-
+/**
+ * Look if there is a subtask checked and if it is it will render the progress bar
+ * @function subtaskLoop
+ */
 function subtaskLoop(taskId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
@@ -107,6 +110,10 @@ async function taskEdit(taskId) {
     renderAllCreateSubtasks(taskId);
 }
 
+/**
+ * Renders the name of a clicked contact
+ * @function renderContactNameInOverlay
+ */
 function renderContactNameInOverlay(activeContact, contactId) {
     document.getElementById("selectedContactsInOverlay").innerHTML += `
         <li class="d-flex align-items-center">
@@ -118,7 +125,10 @@ function renderContactNameInOverlay(activeContact, contactId) {
     `;
 }
 
-
+/**
+ * Renders the newly added subtask inside the ticket
+ * @function renderContactNameInOverlay
+ */
 function renderSubTasks(subtask, taskId, i, checkBox = '') {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
         <div class="checkBox">
