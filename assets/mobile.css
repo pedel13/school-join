@@ -609,6 +609,7 @@
     }
 }
 
+/*##### iPhone SE #####*/
 @media (max-height: 667px) {
     /*##### Contacts #####*/
     .contactOverlayWrapper {
@@ -681,5 +682,23 @@
 
     .addTaskWrapper {
         margin-top: 60px!important;
+    }
+
+    .loginHeader {
+        height: 120px !important;
+    }
+
+    .loginHeader > div > img {
+        width: 64px !important;
+        height: 78px !important;
+    }
+
+    .signUpWrapper {
+        margin-top: 0 !important;
+    }
+
+    /*##### login.html #####*/
+    .loginHeader {
+        padding: 4.5% 0 0 5%;
     }
 }

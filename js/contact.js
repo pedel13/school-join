@@ -383,12 +383,12 @@ async function renderEditContactsOverlay(contactId) {
     `;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
         <!--img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo"-->
-        <img src="./img/cancel-logo-white.png" alt="join-logo" class="">
+        <img src="./img/cancel-logo-white.png" alt="join-logo" class="white-cancel">
         <h1>Edit contact</h1>
         <img src="./img/icons/blue-borderLine.png" alt="blue-border">
     `;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
-        <img src="../img/icons/cancel-logo-white.png" alt="cross" class="cancelContactEdit" onclick="closeContactOverlay()">
+        <img src="../img/icons/cancel-logo-white.png" alt="cross" class="cancelContactEdit white-cancel" onclick="closeContactOverlay()">
         <h1>Edit contact</h1>
         <img src="./img/icons/blue-borderLine.png" alt="blue-border">
     `;

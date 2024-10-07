@@ -212,7 +212,7 @@ footer {
 }
 
 .fadeIn {
-    animation: fadeIn 1350ms;
+    animation: fadeIn 1000ms;
 }
 
 @keyframes login {
@@ -237,6 +237,6 @@ footer {
 }
 
 .login {
-    animation: login 900ms;
+    animation: login 1000ms;
 }
 /*##### END LOGIN ANIMATION #####*/

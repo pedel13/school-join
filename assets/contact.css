@@ -125,6 +125,8 @@ input#newContactPhone {
 .contactOverlayRight {
     background-color: #ffffff;
     width: 745px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
 }
 
 

@@ -380,3 +380,7 @@ header > div > h1 {
 .iconCircleContact {
     display: none;
 }
+
+.white-cancel {
+    display: none;
+}
