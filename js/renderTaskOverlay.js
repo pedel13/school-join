@@ -71,6 +71,8 @@ async function changeSubtaskProvement(i, taskId = '') {
         subtaskCheckbox[i] = 'false';
         await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
     }
+    element.subtask = subtaskCheckbox;
+    localStorage.tasks = JSON.stringify(tasks);
 }
 
 async function updateSubtaskProvement(data = {}, path = '') {
