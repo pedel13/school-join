@@ -354,6 +354,7 @@ function renderAllCreateSubtasks(taskId) {
  */
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
+    if (newSubtask == ""){}else{
     if (subtaskList.length < 1) {
         subtaskList = [];
         subtaskProvement = [];
@@ -363,6 +364,7 @@ function addSubtaskAddArray() {
     subtasks.value = '';
     let subtaskCreateCount = subtaskList.length - 1;
     renderCrateSubtask(newSubtask, subtaskCreateCount);
+}
 }
 
 /**
