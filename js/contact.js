@@ -416,8 +416,10 @@ async function editContactToFirebase(event, contactId) {
  * @function deleteContactEverywhere
  */
 async function deleteContactEverywhere(contactID) {
+    anyID = null;
     await searchContactsInTasks(contactID);
     await deleteContact(contactID);
+    await fetchContacts();
 }
 
 /**
