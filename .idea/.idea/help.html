@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
+
+    <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="js/script.js"></script>
+    <script src="js/template.js"></script>
+    
+    <title>Join</title>
+</head>
+
+<body onload="init()">
+<div id="bodyWrapper" class="bodyWrapper">
+    <div id="sideBarWrapper" class="sideBarWrapper">
+        <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
+        <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
+    </div>
+    
+    <div id="centerWrapper" class="centerWrapper">
+        <div w3-include-html="./templates/header.html" id="header"></div>
+        
+        <div class="helpWrapper">
+            <div class="head">
+                <h1>Help</h1>
+                <a href="index.html">
+                    <img src="img/icons/arrow-left-blue.png" alt="allow left">
+                </a>
+            </div>
+            
+            <div>
+                <p>
+                    Welcome to the help page for Join, your guide to using our kanban project management tool.
+                    Here, we'll provide an overview of what Join is, how it can benefit you, and how to use it.
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>What is Join?</h3>
+                <p>
+                    Join is a kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the Developer Akademie.
+                    <br><br>
+                    Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work, limit work-in-progress, and maximize efficiency (or flow). Join leverages the principles of kanban to help users manage their tasks and projects in an intuitive, visual interface.
+                    <br><br>
+                    It is important to note that Join is designed as an educational exercise and is not intended for extensive business usage. While we strive to ensure the best possible user experience, we cannot guarantee consistent availability, reliability, accuracy, or other aspects of quality regarding Join.
+                    <br><br>
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>How to use it</h3>
+                <p>Here is a step-by-step guide on how to use Join:</p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>1. Exploring the Board</h3>
+                <p>
+                    When you log in to Join, you'll find a default board. This board
+                    represents your project and contains four default lists: "To Do", "In
+                    Progress", “Await feedback” and "Done".
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>2. Creating Contacts</h3>
+                <p>
+                    In Join, you can add contacts to collaborate on your projects. Go to
+                    the "Contacts" section, click on "New contact", and fill in the
+                    required information. Once added, these contacts can be assigned tasks
+                    and they can interact with the tasks on the board.
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>3. Adding Cards</h3>
+                <p>
+                    Now that you've added your contacts, you can start adding cards. Cards
+                    represent individual tasks. Click the "+" button under the appropriate
+                    list to create a new card. Fill in the task details in the card, like
+                    task name, description, due date, assignees, etc.
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>4. Moving Cards</h3>
+                <p>
+                    As the task moves from one stage to another, you can reflect that on
+                    the board by dragging and dropping the card from one list to another.
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3>5. Deleting Cards</h3>
+                <p>
+                    Once a task is completed, you can either move it to the "Done" list or
+                    delete it. Deleting a card will permanently remove it from the board.
+                    Please exercise caution when deleting cards, as this action is
+                    irreversible. Remember that using Join effectively requires consistent
+                    updates from you and your team to ensure the board reflects the
+                    current state of your project. Have more questions about Join? Feel
+                    free to contact us at [Your Contact Email]. We're here to help you!
+                </p>
+            </div>
+            
+            <br><br>
+            
+            <div>
+                <h3></h3>
+                <p>Enjoy using Join!</p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+</body>
+</html>

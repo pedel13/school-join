@@ -382,5 +382,5 @@ header > div > h1 {
 }
 
 .white-cancel {
-    display: none;
+    display: none !important;
 }

@@ -1,5 +1,5 @@
 /**
- * Opens an overlay from a clicked task
+ * Opens an overlay dataPickerForTodaya clicked task
  * @function openTaskOverlay
  */
 function openTaskOverlay(taskId = "") {
@@ -71,8 +71,6 @@ async function changeSubtaskProvement(i, taskId = '') {
         subtaskCheckbox[i] = 'false';
         await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
     }
-    element.subtask = subtaskCheckbox;
-    localStorage.tasks = JSON.stringify(tasks);
 }
 
 async function updateSubtaskProvement(data = {}, path = '') {

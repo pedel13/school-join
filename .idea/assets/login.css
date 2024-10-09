@@ -23,17 +23,6 @@
     gap: 30px;
 }
 
-.disabledButton {
-    width: 90px !important;
-    height: 50px !important;
-    border-radius: 10px !important;
-    border: none !important;
-    background: grey !important;
-    color: #000000 !important;
-    font-size: 16px !important;
-    font-weight: bold !important;
-}
-
 button#signUp {
     width: 90px;
     height: 50px;
@@ -223,7 +212,7 @@ footer {
 }
 
 .fadeIn {
-    animation: fadeIn 1350ms;
+    animation: fadeIn 1000ms;
 }
 
 @keyframes login {
@@ -239,9 +228,9 @@ footer {
 
     to {
         position: absolute;
-        top: 5%;
-        left: 8%;
-        transform: translate( -5%, -8%);
+        top: 4.5%;
+        left: 6%;
+        transform: translate( -4.5%, -6%);
         width: 101px;
         height: 128px;
     }

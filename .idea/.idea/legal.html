@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
+
+    <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="js/script.js"></script>
+    <script src="js/template.js"></script>
+    <title>Join</title>
+</head>
+
+<body onload="init(6); testingUser()">
+    <div id="bodyWrapper" class="bodyWrapper">
+        <div id="sideBarWrapper" class="sideBarWrapper">
+            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
+            <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
+        </div>
+
+        <div id="centerWrapper" class="centerWrapper">
+            <div w3-include-html="./templates/header.html" id="header"></div>
+
+            <div class="legalWrapper">
+                <div class="head margin-bottom-0">
+                    <h1>Legal Notice</h1>
+                    <a id="backLink" href="index.html">
+                        <img src="img/icons/arrow-left-blue.png" alt="allow left">
+                    </a>
+                </div>
+
+                <div>
+                    <h3>Imprint</h3>
+                    <ul>
+                        <li>Farid & Patrick</li>
+                        <li>Mustermannstraße 42</li>
+                        <li>60599 Frankfurt am Main</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Exploring the Board</h3>
+                    <p>
+                        Email: [Email]
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Acceptance of terms</h3>
+                    <p>
+                        By accessing and using Join (Product), you acknowledge and agree to the following terms and conditions,
+                        and any policies, guidelines, or amendments thereto that may be presented to you from time to time.
+                        We, the listed students, may update or change the terms and conditions from time to time without notice.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Scope and ownership of the product</h3>
+                    <p>
+                        Join has been developed as part of a student group project in a web development bootcamp at the Developer Akademie GmbH.
+                        It has an educational purpose and is not intended for extensive personal & business usage. As such,
+                        we cannot guarantee consistent availability, reliability, accuracy, or any other aspect of quality regarding this Product.
+                        The design of Join is owned by the Developer Akademie GmbH. Unauthorized use, reproduction, modification,
+                        distribution, or replication of the design is strictly prohibited.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Proprietary rights</h3>
+                    <p>
+                        Aside from the design owned by Developer Akademie GmbH, we, the listed students, retain all proprietary rights in Join,
+                        including any associated copyrighted material, trademarks, and other proprietary information.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Use of the product</h3>
+                    <p>
+                        Join is intended to be used for lawful purposes only, in accordance with all applicable laws and regulations.
+                        Any use of Join for illegal activities, or to harass, harm, threaten, or intimidate another person, is strictly prohibited.
+                        You are solely responsible for your interactions with other users of Join.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Disclaimer of warranties and limitation of liability</h3>
+                    <p>
+                        Join is provided "as is" without warranty of any kind, whether express or implied,
+                        including but not limited to the implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+                        In no event will we, the listed students, or the Developer Akademie, be liable for any direct, indirect, incidental, special,
+                        consequential or exemplary damages, including but not limited to, damages for loss of profits, goodwill, use, data,
+                        or other intangible losses, even if we have been advised of the possibility of such damages,
+                        arising out of or in connection with the use or performance of Join.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Indemnity</h3>
+                    <p>
+                        You agree to indemnify, defend and hold harmless us, the listed students, the Developer Akademie, and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to your use of Join and/or your breach of this Legal Notice.
+                        <br><br>
+                        For any questions or notices, please contact us at [Contact Email].
+                        <br><br>
+                        Date: May 15, 2024
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div w3-include-html="./templates/mobile-menu.html" id="mobileNavBar"></div>
+    </div>
+</body>
+</html>

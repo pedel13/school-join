@@ -1,0 +1,589 @@
+/*
+# fc = font-color
+# fs = font-size
+# bg = background
+# fSize = font-size //e.g. fSize21 = font-size: 21px
+*/
+h1 {
+    margin-block-end: 0;
+}
+
+button,
+input {
+    cursor: pointer;
+}
+
+.bg-join-blue {
+    background-color: #2A3647 !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.fc-white {
+    color: #ffffff !important;
+}
+
+.fc-grey {
+    color: #A8A8A8 !important;
+}
+
+.fc-join-blue {
+    color: #2A3647 !important;
+}
+
+.border-join-blue {
+    border: 1px solid #2A3647 !important;
+}
+
+.fSize-16 {
+    font-size: 16px !important;
+}
+
+.fSize-21 {
+    font-size: 21px !important;
+}
+
+.fSize-20 {
+    font-size: 20px !important;
+}
+
+.fSize-61 {
+    font-size: 61px !important;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-auto{
+    width: auto;
+}
+
+.m-b-16 {
+    margin-bottom: 16px;
+}
+
+.m-b-64 {
+    margin-bottom: 64px;
+}
+
+.icon-letter {
+    position: relative;
+    background-image: url("../img/icons/mail.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+.icon-lock {
+    position: relative;
+    background-image: url("../img/icons/lock.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+.icon-phone {
+    position: relative;
+    background-image: url("../img/icons/phone.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+.icon-person {
+    position: relative;
+    background-image: url("../img/icons/person.png");
+    background-repeat: no-repeat;
+    background-position: center right 20px;
+    background-size: 20px;
+}
+
+::placeholder {
+    color: #000000 !important;
+}
+
+.summary-button-color {
+    color: black;
+    background-color: #ffffff;
+}
+
+.summary-button-color:hover {
+    color: #ffffff !important;
+    background-color: #2A3647 !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.summary-button-color:active {
+    color: black !important;
+    background-color: #ffffff!important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.summary-button-number {
+    font-size: 64px;
+    font-weight: 600;
+}
+
+.summary-button-text-small {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.summary-button-text-medium {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.summary-button-text-large {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.summary-title-large {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.summary-title-small {
+    font-size: 27px;
+    font-weight: 400;
+}
+
+.summary-greeting {
+    font-size: 47px;
+    font-weight: 500;
+}
+
+.summary-greeting-name {
+    font-size: 64px;
+    font-weight: 700;
+    color: #29ABE2;
+}
+
+.summary-button-size-small {
+    width: 168px;
+    height: 168px;
+}
+
+.summary-button-size-medium {
+    width: 264px;
+    height: 168px;
+}
+
+.summary-button-size-large {
+    width: 560px;
+    height: 168px;
+}
+
+.summary-button-width-text {
+    width: 93px !important;
+    text-align: center;
+}
+
+.summary-button-box {
+    height: 562px !important;
+    margin-top: 56px !important;
+    margin-left: 83px !important;
+    margin-right: 80px !important;
+}
+
+.summary-title-box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 30px;
+    margin-top: 100px;
+    margin-left: 83px;
+}
+
+.summary-line {
+    width: 2px !important;
+    height: 102px !important;
+    background-color: #D1D1D1;
+}
+
+.summary-title-line {
+    width: 3px !important;
+    height: 59px !important;
+    background-color: #29ABE2;
+}
+
+.summary-todo-icon {
+    width: 69px !important;
+    height: 69px !important;
+    background-image: url(../img/icons/todo_icon.png);
+    background-repeat: no-repeat;
+}
+
+.summary-todo:hover .summary-todo-icon {
+    background-image: url(../img/icons/todo_hover_icon.png) !important;
+}
+
+.summary-todo:active .summary-todo-icon {
+    background-image: url(../img/icons/todo_icon.png) !important;
+}
+
+.summary-done-icon {
+    width: 69px !important;
+    height: 69px !important;
+    background-image: url(../img/icons/done_icon.png);
+    background-repeat: no-repeat;
+}
+
+.summary-done:hover .summary-done-icon {
+    background-image: url(../img/icons/done_hover_icon.png) !important;
+}
+
+.summary-done:active .summary-done-icon {
+    background-image: url(../img/icons/done_icon.png) !important;
+}
+
+.summary-icon-numberbox {
+    width: 130px !important;
+    height: 96px !important;
+}
+
+.p-10 {
+    padding: 10px;
+}
+
+.link-noDeco-black {
+    text-decoration: none;
+    color: #000000;
+}
+
+.margin-bottom-0 {
+    margin-bottom: 0 !important;
+}
+
+.redStar {
+    color: red !important;
+}
+
+.divider {
+    width: 1px !important;
+    border-left: 1px solid grey !important;
+    margin: 0 32px;
+}
+
+.spacer {
+    margin-top: 24px;
+}
+
+
+.board-title {
+    font-weight: 700;
+    font-size: 61px;
+}
+
+.board-task-lanes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.board-subtitle {
+    font-weight: 700;
+    font-size: 20px;
+    color: #42526E;
+}
+
+.board-add-task-icon-white {
+    width: 32px;
+    height: 32px;
+    background-image: url(../img/icons/add-white.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.board-add-task-button {
+    background-color: #2A3647;
+    width: 160px;
+    height: 48px;
+    border-radius: 10px;
+    color: white;
+    font-size: 21px;
+    font-weight: 700;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.board-add-task-button:hover {
+    background-color: #29ABE2 !important;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+}
+
+.board-input-total {
+    border-radius: 10px;
+    background-color: white;
+    border: 1px #A8A8A8;
+    width: 312px;
+    height: 48px;
+}
+
+.board-input {
+    border: none;
+    padding-left: 16px;
+    width: 228px;
+}
+
+.board-input, .board-input::placeholder {
+    font-size: 20px;
+    font-weight: 400 !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.board-vertical-line {
+    width: 1px;
+    height: 31px;
+    background-color: #D1D1D1;
+}
+
+.board-search {
+    background-image: url(../img/icons/board-search.png);
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+}
+
+.board-search:hover {
+    background-color: #EEEEEE;
+}
+
+.board-search-padding {
+    padding-left: 16px;
+    padding-right: 16px;
+    display: inline;
+}
+
+#board-search-button {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+}
+
+.board-no-tasks {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: "Open Sans", sans-serif;
+    width: 100%;
+    height: 48px;
+    border-radius: 10px;
+    background-color: #E7E7E7;
+    border: dashed 1px #A8A8A8;
+    outline: 1px solid #E7E7E7;
+}
+
+.board-tasks {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.board-headline {
+    max-width: 1056px;
+    margin-top: 80px;
+    margin-left: 64px;
+}
+
+.board-all-columns {
+    gap: 24px;
+}
+
+.board-task-columns {
+    width: 252px;
+}
+
+.board-tasks-card {
+    row-gap: 16px;
+    min-height: 40vh;
+}
+
+.board-user {
+    font-size: 16px;
+    font-weight: 400 !important;
+    padding: 4px 16px 4px 16px;
+    height: 27px !important;
+    max-width: 220px;
+}
+
+.board-card-subtitle {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.board-description {
+    font-size: 16px;
+    font-weight: 400;
+    color:#A8A8A8;
+}
+
+.board-user-icon {
+    font-size: 12px;
+    font-weight: 400;
+    width: 32px;
+    height: 32px;
+    border: solid #ffffff 1px;
+}
+
+.board-subtasks {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.board-progressbar-full {
+    background-color: #F4F4F4;
+    width: 128px;
+    height: 8px;
+}
+
+.board-progressbar {
+    background-color: #4589FF;
+    height: 8px;
+}
+
+.board-icon-importance {
+    width: 32px;
+    height: 32px;
+}
+
+.board-icon-low-prio {
+    background-image: url(../img/icons/low_icon.png);
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 100%;
+}
+
+.board-icon-medium-prio{
+    background-image: url(../img/icons/medium-colored-icon.png);
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.board-icon-urgent-prio{
+    background-image: url(../img/icons/urgent_icon.png);
+    width: 32px;
+    height: 32px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.board-task-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.08);
+    gap: 10px;
+    padding: 16px;
+}
+
+.user-story {
+    background-color: #0038FF;
+}
+
+.technical-task {
+    background-color: #1FD7C1;
+}
+
+.addNewContactIcon {
+    width: 32px;
+    height: 32px;
+    background-image: url(../img/icons/person_add.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gap-4 {
+    gap: 4px;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.gap-32 {
+    gap: 32px;
+}
+
+.m-8 {
+    margin: 8px !important;
+}
+
+.mb-8 {
+    margin-bottom: 8px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.-m-8 {
+    margin-right: -8px;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.rounded-30 {
+    border-radius: 30px;
+}
+
+.rounded-8 {
+    border-radius: 8px;
+}
+
+.rounded-100 {
+    border-radius: 100%;
+}
+
+/* start bg-user colors */
+.bg-orange {
+    background-color: #FF7A00;
+}
+
+.bg-purple {
+    background-color: #9327FF;
+}
+
+.bg-blue {
+    background-color: #6E52FF;
+}
+
+.bg-pink {
+    background-color: #FC71FF;
+}
+
+.bg-yellow {
+    background-color: #FFBB2B;
+}
+
+.bg-green {
+    background-color: #1FD7C1;
+}
+
+.bg-dark-blue {
+    background-color: #462F8A;
+}
+
+.bg-red {
+    background-color: #FF4646;
+}
+/*  end bg-user colors */

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/login.css">
+    <link rel="stylesheet" type="text/css" href="assets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
+
+    <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="js/script.js"></script>
+    <script src="js/register.js"></script>
+    <script src="js/login.js"></script>
+    
+    <title>Join - Login</title>
+</head>
+
+<body onload="onloadLogin()">
+    <div class="loginHeader" id="header">
+        <div>
+            <img src="img/logoLoginPage.svg" class="join-logo login" alt="join-logo">
+        </div>
+        <div class="signUp_btn_desktop">
+            <p>Not a Join user?</p>
+            &nbsp;
+            <a href="register.html">
+                <button id="signUp">Sign up</button>
+            </a>
+        </div>
+    </div>
+
+    <div id="loginWrapper" class="loginWrapper fadeIn">
+        <div id="loginForm" class="loginForm">
+            <h1 class="fSize-61">Log in</h1>
+            <span class="headlineBorder">&nbsp;</span>
+            <div id="loginCredentials">
+                <form onsubmit="login(event);">
+                    <label for="email"></label>
+                    <input type="email" autocomplete="email" placeholder="Email" name="email" id="email" class="icon-letter form-control" required>
+                    
+                    <label for="password"></label>
+                    <input type="password" autocomplete="new-password" placeholder="Password" name="password" id="password" class="icon-lock" onclick="removeWrongPassword(this)" required>
+                    
+                    <div id="massageBoxEmail" class="d-none" style="width: 100%;">
+                        <span class="alert-massage">Wrong password Ups! Try again.</span>
+                    </div>
+                    
+                    <div class="checkBox">
+                        <label for="remember"></label>
+                        <input type="checkbox" id="remember">
+                        
+                        <span>Remember me</span>
+                    </div>
+                    <div class="signUp_buttons">
+                        <button class="btn bg-join-blue fc-white fSize-21" id="logIn">Log in</button>
+                        <button class="btn bg-transparent fc-join-blue fSize-21 border-join-blue" id="guestLogIn" onclick="guestLogin()">Guest Log in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="resp-signUp" id="resp-signUp">
+        <div class="signUp_btn_responsive">
+            <p>Not a Join user?</p>
+            
+            <a href="register.html">
+                <button id="signUp">Sign up</button>
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footerLinks fc-grey">
+            <a href="privacy.html" target="_self" class="fc-grey">Privacy Policy</a>
+        </div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="footerLinks link-noDeco-black">
+            <a href="legal.html" target="_self" class="fc-grey">Legal Notice</a>
+        </div>
+    </footer>
+</body>
+</html>

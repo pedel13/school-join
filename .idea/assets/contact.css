@@ -12,7 +12,6 @@
     min-height: 592px !important;
     display: flex;
     justify-content: center;
-    top: 25%;
 }
 
 .contactOverlayWrapperMobile {
@@ -91,6 +90,10 @@ input#newContactPhone {
     margin: 16px 16px 0 0;
 }
 
+.close-white {
+    display: none;
+}
+
 .closeMobile {
     width: 100%;
     display: flex;
@@ -122,6 +125,8 @@ input#newContactPhone {
 .contactOverlayRight {
     background-color: #ffffff;
     width: 745px;
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
 }
 
 
@@ -220,13 +225,6 @@ input[required] {
     border-bottom: 1px solid #d7d7d7;
 }
 
-.activeContact {
-    background-color: #2A3647;
-    color: #ffffff;
-    border-radius: 8px;
-    height: 100%;
-}
-
 .namesList {
     display: flex;
     flex-direction: column;
@@ -241,6 +239,27 @@ input[required] {
     font-size: 20px;
     font-weight: 400;
     padding: 15px 24px;
+}
+
+.contactDetailWrapper:hover {
+    background-color: #BDC1C5;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.activeContact {
+    background-color: #BDC1C5;
+    cursor: pointer;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.innerTopContactOverlayLeftContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .innerContactDetailWrapper {
@@ -377,4 +396,16 @@ button#newContact {
 .phoneLink:hover {
     cursor: pointer;
     color: #007cee;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }

@@ -79,7 +79,6 @@
 @media (max-width: 1360px) {
     #mainWrapper {
         width: 80%;
-        padding-left: 80px;
     }
 
     /*##### AddTask Form page #####*/
@@ -157,18 +156,67 @@
     /*##### AddContact Overlay #####*/
     .contactOverlayWrapper {
         width: 80%;
+        flex-direction: column;
     }
 
     .contactOverlayLeft {
-        display: none !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 365px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 0;
+        padding-left: 0 !important;
     }
 
-    .contactOverlayLeftMobile {
+    .contactOverlayRight {
+        width: 100%;
+        border-top-right-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+        padding: 40px !important;
+    }
+
+    #createNewContactForm {
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-bottom: 32px;
+        margin-top: -100px;
+    }
+
+    #addContactFormAvatar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .addContactForm {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: 0 !important;
+    }
+
+    .spaceDivContacts {
+        display: none;
+    }
+
+    #contactOverlayRight > div.close {
+        display: none;
+    }
+
+    .close-white {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        margin: -130px 16px 119px 0;
+    }
+
+    .contactJoinLogo {
+        display: none;
     }
 
     .contactWrapperTop,
@@ -248,10 +296,6 @@
         width: 197px !important;
     }
 
-    .contactOverlayWrapper {
-        display: none !important;
-    }
-
     .contactOverlayWrapperMobile {
         display: flex !important;
     }
@@ -278,6 +322,24 @@
 }
 
 @media (max-width: 1120px) {
+    #mainWrapper {
+        width: 100%;
+        padding: 0 0 0 24px !important;
+    }
+
+    #main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /*##### Addtask.html #####*/
+    .divider {
+        margin: 0 0 24px 0!important;
+    }
+
+    #outerTaskOverlayWrapper {
+        width: 85vw !important;
+    }
 
 }
 
@@ -311,20 +373,10 @@
         font-size: 14px !important;
     }
 
-    #mainWrapper {
-        width: 100%;
-        padding: 0 0 0 24px !important;
-    }
-
-    #main {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; }
-    #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; }
-    #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; }
-    #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; }
+    #main > div.board-task-columns:nth-of-type(1) { width: 46%; order: 1; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(2) { width: 46%; order: 2; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(3) { width: 46%; order: 3; min-height: 40vh }
+    #main > div.board-task-columns:nth-of-type(4) { width: 46%; order: 4; min-height: 40vh }
 
     .centerWrapper {
         overflow-y: hidden;
@@ -413,13 +465,7 @@
     button#newContact {
         max-width: 352px;
     }
-    
-}
 
-@media (max-width: 800px) {
-    #email {
-        height: calc(-30px);
-    }
 }
 
 @media (max-width: 850px) {
@@ -451,6 +497,9 @@
 }
 
 @media (max-width: 800px) {
+    #email {
+        height: calc(-30px);
+    }
 
     /*##### index.html (dashboard) #####*/
     .addTaskWrapper {
@@ -522,4 +571,59 @@
         overflow-y: scroll;
     }
 
+    .moveArrows {
+        width: 26px !important;
+        height: 26px !important;
+    }
+
+    #selectedContactsInOverlay {
+        padding-left: 0 !important;
+    }
+
+    .taskOverlayWrapper {
+        width: auto !important;
+    }
+
+    .taskOverlayTitle {
+        font-size: 40px !important;
+    }
+}
+
+/*##### ATTENTION: MIN-WIDTH #####*/
+@media (min-width: 800px) {
+    .taskOverlayTitle {
+        font-size: 40px !important;
+    }
+
+    .arrow-down-board-task-on-to-do {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-in-progress {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-in-progress {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-await-feedback {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-await-feedback {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-done {
+        display: none;
+    }
+
+    .arrow-up-board-task-on-to-do {
+        display: none;
+    }
+
+    .arrow-down-board-task-on-done {
+        display: none;
+    }
 }
