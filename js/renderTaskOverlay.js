@@ -1,5 +1,5 @@
 /**
- * Opens an overlay from a clicked task
+ * Opens an overlay dataPickerForTodaya clicked task
  * @function openTaskOverlay
  */
 function openTaskOverlay(taskId = "") {

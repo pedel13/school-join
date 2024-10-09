@@ -304,6 +304,14 @@
         justify-content: center;
         align-items: center;
     }
+
+    .cancelContactEdit {
+
+    }
+
+    .white-cancel {
+        display: block !important;
+    }
 }
 
 @media (max-width: 1170px) {

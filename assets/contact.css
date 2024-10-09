@@ -27,7 +27,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    padding: 130px 0 40px 40px;
+    padding: 100px 0 40px 40px;
 }
 
 .contactOverlayLeft > * {
@@ -106,8 +106,6 @@ input#newContactPhone {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    height: 40px;
-    width: 40px;
 }
 
 .avatar {

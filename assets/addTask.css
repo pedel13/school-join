@@ -345,7 +345,7 @@ select {
 .outerTaskOverlayWrapper > * {
     width: 100%;
 }
-/* TASK-OVERLAY SLIDING FROM TOP */
+/* TASK-OVERLAY SLIDING dataPickerForTodayTOP */
 .slide-top {
     position: absolute;
     top: -100%;
@@ -362,7 +362,7 @@ select {
 @keyframes slide-top {
     100% { top: 15%; }
 }
-/* END OF TASK-OVERLAY SLIDING FROM TOP */
+/* END OF TASK-OVERLAY SLIDING dataPickerForTodayTOP */
 
 .addTaskWrapperOverlay {
     height: 450px;
@@ -534,7 +534,7 @@ ul {
     outline: inherit;
 }
 
-/* TASK-OVERLAY SLIDING FROM RIGHT */
+/* TASK-OVERLAY SLIDING dataPickerForTodayRIGHT */
 .slide-right {
     position: initial;
     right: -100%;
@@ -555,7 +555,7 @@ ul {
 #board-task-on-done:hover {
     cursor: pointer;
 }
-/* END OF TASK-OVERLAY SLIDING FROM RIGHT */
+/* END OF TASK-OVERLAY SLIDING dataPickerForTodayRIGHT */
 
 /* start of EDIT-OVERLAY selection  */
 .editTaskBottom {
