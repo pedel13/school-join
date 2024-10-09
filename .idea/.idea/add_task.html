@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/addTask.css">
+    <link rel="stylesheet" type="text/css" href="assets/responsive.css">
+    <link rel="stylesheet" type="text/css" href="assets/mobile.css">
+    <link rel="stylesheet" type="text/css" href="assets/custom-variables.css">
+
+    <link rel="icon" type="image/png" href="img/join_logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <script src="./js/script.js"></script>
+    <script src="./js/template.js"></script>
+    <script src="./js/add_task.js"></script>
+    <script src="js/board.js"></script>
+    <title>Join - Add Task</title>
+</head>
+
+<body onload="init(2); loadUsableContacts()">
+    <div id="bodyWrapper" class="bodyWrapper">
+        <div id="sideBarWrapper" class="sideBarWrapper">
+            <div w3-include-html="./templates/sidebar.html" id="sideBarContainer" class="d-none"></div>
+            <div w3-include-html="./templates/sidebarNoUser.html" id="sidebarNoUserContainer" class="d-none"></div>
+        </div>
+
+        <div id="centerWrapper" class="centerWrapper">
+            <div w3-include-html="./templates/header.html" id="header"></div>
+            
+            <div id="addTaskMainWrapper">
+                <div class="centerWrapperHeadline">
+                    <h1 class="mainAddTaskSite">Add Task</h1>
+                </div>
+                
+                <div id="addTaskMainForm" class="addTaskMainForm">
+                    <form class="main" onsubmit="addTask(event, 'board-task-on-to-do')">
+                        <div id="addTaskWrapper" class="addTaskWrapper">
+                            <div class="addTaskWrapperLeft">
+                                <div>
+                                    <p class="fSize-16 mb-8">Title<span class="redStar">*</span></p>
+                                    <label for="title">
+                                        <input type="text" id="title" placeholder="Enter Title" required />
+                                    </label>
+                                </div>
+                                
+                                <div class="spacer">&nbsp;</div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Description</p>
+                                    <label for="description">
+                                        <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                                    </label>
+                                </div>
+                                
+                                <div class="spacer">&nbsp;</div>
+                                
+                                <div class="gap-8">
+                                    <p class="fSize-16 mb-8">Assigned to</p>
+                                    <div>
+                                        <div class="selectBox" onclick="showCheckboxes()">
+                                            <select id="selectInputAssignee">
+                                                <option value="" disabled selected>Select contacts to assign</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes" class="">
+                                            <div class="d-flex flex-column" id="selectContacts">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-8">
+                                        <div class="fc-white d-flex gap-10" id="selectedContact">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="addTaskWrapperMid divider">&nbsp;</div>
+                            
+                            <div class="addTaskWrapperRight">
+                                <div>
+                                    <p class="fSize-16 mb-8">Due Date<span class="redStar">*</span></p>
+                                    <label for="datePicker">
+                                        <input type="date" id="datePicker" required>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Prio</p>
+                                    <div id="priority" class="priority d-flex">
+                                        <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Urgent
+                                            <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                        </button>
+                                        <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly priorityButtonActive">
+                                            Medium
+                                            <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
+                                        </button>
+                                        <button id="lowButton" type="button" onclick="prioButtonSelect('low')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Low
+                                            <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
+                                    <label for="categorySelect">
+                                        <select name="choose" id="categorySelect" required>
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="technical-task">Technical-Task</option>
+                                            <option value="user-story">User-Story</option>
+                                        </select>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Subtasks</p>
+                                    <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                                        <label for="subTasks" id="subTaskLabel">
+                                            <input type="text" id="subtasks" placeholder="Enter Subtasks" />
+                                        </label>
+                                        <button class="d-flex" id="addTaskAddSubtaskButton" type="button"
+                                                onclick="addSubtaskAddArray()">
+                                            <div class="addTaskAdd"></div>
+                                        </button>
+                                    </div>
+                                    <ul id="subtaskStorage"></ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="addTaskBottom" class="addTaskBottom">
+                            <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+                            
+                            <div id="createTaskButton">
+                                <button type="button" onclick="clearAddTask()" id="clear">Clear
+                                    <img src="./img/icons/cancel-logo.png" class="createTaskButtonImg">
+                                </button>
+                                <button id="create">Create Task
+                                    <img src="./img/icons/check-icon.png" class="createTaskButtonImg">
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div w3-include-html="./templates/mobile-menu.html" id="mobileNavBar"></div>
+    </div>
+</body>
+
+</html>

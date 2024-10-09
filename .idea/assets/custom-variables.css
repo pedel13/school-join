@@ -406,7 +406,7 @@ input {
 
 .board-tasks-card {
     row-gap: 16px;
-    min-height: 40vh;
+    min-height: auto;
 }
 
 .board-user {

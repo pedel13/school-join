@@ -11,17 +11,26 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
+/** 
+ * @function drag()
+ * speichert die id des tasks global
+ */
 function drag(id) {
     cardDraggedId = id;
 }
 
+/**
+ * @function drop()
+ * rendert die position und gibt sie danach der updateTask funktion
+ * und lässt die task neu rendern
+ */
 async function drop(dropPosition) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
     dropCard["position"] = dropPosition;
     let elementAsStringify = JSON.stringify(dropCard);
-    await updateTask(elementAsStringify,`board/tasks/${cardDraggedId}`);
+    await updateTask(elementAsStringify,`/board/tasks/${cardDraggedId}`);
     countOnToDo = 0;
     countOnInProgress = 0;
     countOnAwaitFeedback = 0;
@@ -29,25 +38,31 @@ async function drop(dropPosition) {
     renderAllTasks();
 }
 
+/**
+ * @function updateTask()
+ * gibt einen PUT fetch mit variablem pfad und data ans backend
+ */
 async function updateTask(element,path="") {
     try {
-        let response = await fetch(BASE_URL + path + ".json", {
+        let response = await fetch(baseUrl + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: element
-        });
+        }); 
         if (!response.ok) {
-            console.error(`Error status: ${response.status}`);
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } catch (error) {
+    }  catch (error) {
         console.error("Error PUT data in database:", error);
     }
 }
 
-
+/**
+ * @function changeTask()
+ * überschreibt die geänderten Variablen eines tasks Global mit den im input und lässt sie durch updateTask() ins backend schreiben
+ */
 async function changeTask(event,taskId="") {
     event.preventDefault(event);
     let task = JSON.parse(localStorage.getItem("activeTask"));
@@ -56,21 +71,19 @@ async function changeTask(event,taskId="") {
     task["selectContacts"] = selectContacts;
     task["datePicker"] = document.getElementById('datePicker').value;
     task["priority"] = prio;
-    if (subtasklist.length >  0) {
-        task["subtasks"] = subtasklist;
+    if (subtaskList.length >  0) {
+        task["subtasks"] = subtaskList;
         task["subtask"] = subtaskProofments;
     }
     let taskAsStringify = JSON.stringify(task);
-    await updateTask(taskAsStringify,`board/tasks/${taskId}`);
+    await updateTask(taskAsStringify,`/board/tasks/${taskId}`);
     closeTaskOverlay();
 }
 
-
-function removeDraggedCard() {
-    const element = document.getElementById(cardDraggedId);
-    element.remove();
-}
-
+/**
+ * @function reduceDroppedElement()
+ * reduziert den zähler um 1 an der position wo mit drag & drop ein element entfernt
+ */
 function reduceDroppedElement(elementPosition) {
     switch (elementPosition) {
         case "board-task-on-to-do":
@@ -86,9 +99,96 @@ function reduceDroppedElement(elementPosition) {
             countOnDone--;
             break;
     }
-
 }
 
+/**
+ * 
+ * @function taskGoBackNext()
+ * verändert die position von dem verschobenen task ohne drag & drop und gibt diese an die funktion taskGoBack() zurück
+ */
+function taskGoBackNext(position) {
+
+    switch (position) {
+        case "board-task-on-in-progress":  
+        position = "board-task-on-to-do";
+            break;
+            case "board-task-on-await-feedback":  
+            position = "board-task-on-in-progress";
+            break;
+            case "board-task-on-done":
+                position = "board-task-on-await-feedback";
+            break;
+        default:
+            break;
+    }
+    return position;
+}
+
+/** 
+* @function taskGoBackNext()
+* verändert die position von dem verschobenen tasks ohne drag & drop und gibt diese an die funktion taskGoForward() zurück
+*/
+function taskGoForwardNext(position) {
+    switch (position) {
+        case "board-task-on-to-do":
+            position = "board-task-on-in-progress";
+            break;
+            case "board-task-on-in-progress":  
+            position = "board-task-on-await-feedback";
+            break;
+            case "board-task-on-await-feedback":  
+            position = "board-task-on-done";
+            break;
+        default:
+            break;
+    }
+    return position;
+}
+
+/**
+ *  taskGoBack()
+ *  setzt die position im aufgabenfeld zurück und gibt sie danach der funktion updateTask one drag and drop
+ *  und läst die task neu rendern
+ */
+async function taskGoBack(position="", taskId="") {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let dropCard = tasks[taskId];
+    reduceDroppedElement(dropCard["position"]);
+    dropCard["position"] = taskGoBackNext(position);
+    let elementAsStringify = JSON.stringify(dropCard);
+    await updateTask(elementAsStringify,`/board/tasks/${taskId}`);
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
+    document.getElementById('taskOverlay').classList.add('d-none');
+    renderAllTasks();
+}
+
+/**
+ *  @function taskGoBack()
+ *  setzt die position im aufgabenfeld nach vorne und gibt sie danach der funktion updateTask one drag & drop
+ *  und lässt die tasks neu rendern
+ */
+async function taskGoForward(position="", taskId="") {
+    let tasks = JSON.parse(localStorage.getItem("tasks"));
+    let dropCard = tasks[taskId];
+    reduceDroppedElement(dropCard["position"]);
+    dropCard["position"] = taskGoForwardNext(position);
+    let elementAsStringify = JSON.stringify(dropCard);
+    await updateTask(elementAsStringify,`/board/tasks/${taskId}`);
+    countOnToDo = 0;
+    countOnInProgress = 0;
+    countOnAwaitFeedback = 0;
+    countOnDone = 0;
+    document.getElementById('taskOverlay').classList.add('d-none');
+    renderAllTasks();
+}
+
+/**
+ *  @function findeTask()
+ *  sucht task die den gewünschten suchbegriff im titel oder in der beschreibung haben und rendert nur diese
+ */
 function findeTask(value) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let contacts = JSON.parse(localStorage.getItem("usableContacts"));
@@ -105,10 +205,15 @@ function findeTask(value) {
                         renderFindeTask(element, taskId, contacts);
                 }
             }
-        }
-            noTasksInProgress();
+    }
+    noTasksInProgress();
 }
 
+/**
+ * 
+ * @function renderFindeTask()
+ * lässt den gefundenen task rendern und lässt die vorhandenen Kontakte reinrendern
+ */
 function renderFindeTask(element, taskId, contacts) {
     let subtask = subtaskExist(element);
     let categoryText = categoryFinder(element);
@@ -123,6 +228,10 @@ function renderFindeTask(element, taskId, contacts) {
     
 }
 
+/**
+ * @function noTasksInProgress()
+ * kontrolliert ob tasks in der jeweiligen spalte vorhanden sind und lässt das no task feld erscheinen oder verschwinden
+ */
 function noTasksInProgress() {
     if (countOnToDo != 0) {
         addNoTaskInProgress("no-tasks-to-do");
@@ -146,21 +255,37 @@ function noTasksInProgress() {
     }
 }
 
+/**
+ * @function addNoTaskInProgress()
+ * läst das no task feld in der entsprechenden Spalte erscheinen oder verschwinden
+ */
 function addNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.add("d-none");
 }
 
+/**
+ * @function addNoTaskInProgress()
+ * lädt das no task feld in der entsprechenden Spalte und lässt es erscheinen oder verschwinden
+ */
 function removeNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);
     element.classList.remove("d-none");
 }
 
+/**
+ * @function loadTasks()
+ * lädt daten mit variablem pfad vom backand
+ */
 async function loadTasks(path="") {
     let response = await fetch(baseUrl + path + ".json");
     return await response.json();
 }
 
+/**
+ * @function cleanTaskboard()
+ * löscht die tasks aus den entsprechenden progress spalten und setzt die dazugehörigen zähler wieder auf 0
+ */
 function cleanTaskboard() {
     document.getElementById("board-task-on-to-do").innerHTML = '';
     document.getElementById("board-task-on-in-progress").innerHTML = '';
@@ -172,6 +297,10 @@ function cleanTaskboard() {
     countOnDone = 0;
 }
 
+/**
+ * @function renderAllTasks()
+ * ladet alle tasks fom backend und speichert sie lokal, leert das bord und rendert die tasks neu
+ */
 async function renderAllTasks() {
     let tasks = await loadTasks("/board/tasks");
     localStorage.tasks = JSON.stringify(tasks);
@@ -180,19 +309,15 @@ async function renderAllTasks() {
     cleanTaskboard();
     for (let taskId in tasks) {
         let element = tasks[taskId];
-        let subtask = subtaskExist(element);
-        let categoryText = categoryFinder(element);
-        countForNoTask(element.position);
-        renderTask(element, taskId, subtask, categoryText);
-        for (let contact in element.selectContacts) {
-            let activeContactId = element.selectContacts[contact];
-            let activeContact = contacts[activeContactId];
-                renderActiveContacts(activeContact, activeContactId, taskId);
-        }
-        subtaskCount = 0;
+        renderFindeTask(element, taskId, contacts);
     }
     noTasksInProgress();
 }
+
+/**
+ * @function subtaskExist()
+ * kontrolliert, ob ein oder mehrere subtasks vorhanden sind und rendert die progressbar oder läst sie verschwinden
+ */
 
 function subtaskExist(task) {
     let subtask = " ";
@@ -205,21 +330,29 @@ function subtaskExist(task) {
     return subtask;
 }
 
+/**
+ * @function subtaskCounter()
+ * zählt die subtasks und berechnet wie viel prozent davon erledigt sind
+ */
+
 function subtaskCounter(task) {
     let subtask = task.subtasks;
     subtaskProofments = task.subtask;
     subtaskCount = 0;
-    let i = 0;
     subtaskCountProvement = 0;
-    for (const element of subtask) {
-        if (subtaskProofments[i] == 'true') {
-            subtaskCountProvement++;
+    for (let i=0; i<subtask.length; i++) {
+        if (subtaskProofments[i] === 'true') {
+            subtaskCountProvement = subtaskCountProvement+1;
         }
-        i++;
         subtaskCount++;
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
 }
+
+/**
+ * @function categoryFinder()
+ * kontrolliert welcher kategorie der task angehört und setzt den dazugehörigen text fest da das abgespeicherte nur die klasse festlegt für die farbe
+ */
 
 function categoryFinder(task) {
     let categoryText = "";
@@ -230,6 +363,11 @@ function categoryFinder(task) {
     }
     return categoryText;
 }
+
+/**
+ * @function countForNoTask()
+ * zählt die tasks in der jeweiligen progress spalte, um herauszufinden, wo kein task ist
+ */
 
 function countForNoTask(positionFromCard) {
     switch (positionFromCard) {
@@ -248,6 +386,11 @@ function countForNoTask(positionFromCard) {
     }
 }
 
+/**
+ * @function deleteTask()
+ * löst einen bestimmten task anhand seiner id
+ */
+
 async function deleteTask(event, taskId) {
     event.preventDefault(event);
     try {
@@ -263,23 +406,35 @@ async function deleteTask(event, taskId) {
     closeTaskOverlay();
 }
 
+/**
+ * @function renderActiveContacts()
+ * rendert das icon eines zugeteilten kontakt in einen task
+ */
 function renderActiveContacts(activeContact, contactId, taskId) {
     document.getElementById("selectContent"+taskId).innerHTML += `
     <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
     `
 }
 
+/**
+ * @function renderTask()
+ * rendert eine task karte in die richtige progress spalte
+ */
 function renderTask(task, taskId, subtask, categoryText) {
-    document.getElementById(task.position).innerHTML += `
-        <div id="${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column">
-            <div class="d-flex align-items-center">
+    document.getElementById(task.position).innerHTML += /*html*/`
+        <div id="taskID_${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column hoverRotation">
+            <div class="d-flex align-items-center justify-content-between">
                 <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
+                <div id="moveButtons">
+                    <img src="img/icons/arrow_upward_32px.png" alt="arrow_upward" class="arrow-up-${task.position} moveArrows" onclick="taskGoBack('${task.position}', '${taskId}')">
+                    <img src="img/icons/arrow_downward_32px.png" alt="arrow_downward" class="arrow-down-${task.position} moveArrows" onclick="taskGoForward('${task.position}', '${taskId}')">
+                </div>
             </div>
             <div>
-                <p class="board-card-subtitle" id="">${task.title}</p>
+                <p class="board-card-subtitle">${task.title}</p>
             </div>
             <div>
-                <p class="board-description" id="">${task.description}</p>
+                <p class="board-description">${task.description}</p>
             </div>
             <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
                 <div class="board-progressbar-full rounded-8">
