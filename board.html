@@ -62,7 +62,7 @@
                 
                 <div class="main d-flex board-all-columns" id="main">
                     <!-- to-do  -->
-                    <div class="board-task-columns" ondrop="drop('board-task-on-to-do')" ondragover="allowDrop(event)">
+                    <div class="board-task-columns" id="board-task-on-to-do-highlight" ondrop="drop('board-task-on-to-do','board-task-on-to-do-highlight')" ondragover="allowDrop(event)" ondragenter="highlightDropZone('board-task-on-to-do-highlight')" ondragleave="removeHighlightDropZone('board-task-on-to-do-highlight')">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">To Do</p>
@@ -78,11 +78,11 @@
                         </div>
                     </div>
                     <!-- in progress  -->
-                    <div class="board-task-columns" ondrop="drop('board-task-on-in-progress')" ondragover="allowDrop(event)">
+                    <div class="board-task-columns" id="board-task-on-in-progress-highlight" ondrop="drop('board-task-on-in-progress', 'board-task-on-in-progress-highlight')" ondragover="allowDrop(event)" ondragenter="highlightDropZone('board-task-on-in-progress-highlight')" ondragleave="removeHighlightDropZone('board-task-on-in-progress-highlight')">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">In progress</p>
-                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-in-progress')" title="Klick to add a new task">
+                                <img src="./img/icons/plus_button.svg" alt="plus_button" onclick="openAddTaskOverlay('board-task-on-in-progress')"  title="Klick to add a new task">
                             </div>
                         
                         </div>
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <!-- await feedback  -->
-                    <div class="board-task-columns" ondrop="drop('board-task-on-await-feedback')" ondragover="allowDrop(event)">
+                    <div class="board-task-columns" id="board-task-on-await-feedback-highlight" ondrop="drop('board-task-on-await-feedback', 'board-task-on-await-feedback-highlight')" ondragover="allowDrop(event)" ondragenter="highlightDropZone('board-task-on-await-feedback-highlight')" ondragleave="removeHighlightDropZone('board-task-on-await-feedback-highlight')">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Await feedback</p>
@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <!-- done  -->
-                    <div class="board-task-columns d-flex flex-column" ondrop="drop('board-task-on-done')" ondragover="allowDrop(event)">
+                    <div class="board-task-columns d-flex flex-column" id="board-task-on-done-highlight" ondrop="drop('board-task-on-done', 'board-task-on-done-highlight')" ondragover="allowDrop(event)" ondragenter="highlightDropZone('board-task-on-done-highlight')" ondragleave="removeHighlightDropZone('board-task-on-done-highlight')">
                         <div>
                             <div class="board-task-lanes">
                                 <p class="board-subtitle">Done</p>

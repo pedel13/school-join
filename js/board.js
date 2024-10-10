@@ -24,7 +24,7 @@ function drag(id) {
  * rendert die position und gibt sie danach der updateTask funktion
  * und lässt die task neu rendern
  */
-async function drop(dropPosition) {
+async function drop(dropPosition, zoneId) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let dropCard = tasks[cardDraggedId];
     reduceDroppedElement(dropCard["position"]);
@@ -35,6 +35,7 @@ async function drop(dropPosition) {
     countOnInProgress = 0;
     countOnAwaitFeedback = 0;
     countOnDone = 0;
+    dropremoveHighlightDropZone(zoneId);
     renderAllTasks();
 }
 
@@ -454,5 +455,24 @@ function renderTask(task, taskId, subtask, categoryText) {
             </div>
         </div>
     `;
+}
+
+// Wenn das Element über einer Drop-Zone schwebt, wird die Highlight-Klasse hinzugefügt
+function highlightDropZone(zoneId="") {
+    const dropZone = document.getElementById(zoneId);
+    dropZone.classList.add('highlight');
+}
+
+// Entfernt die Highlight-Klasse, wenn das Element die Drop-Zone verlässt
+function removeHighlightDropZone(zoneId="") {
+    const dropZone = document.getElementById(zoneId);
+    dropZone.classList.remove('highlight');
+}
+
+// Wenn das Element fallengelassen wird, wird die Highlight-Klasse entfernt
+function dropremoveHighlightDropZone(zoneId) {
+    const dropZone = document.getElementById(zoneId);
+    dropZone.classList.remove('highlight');
+    // Hier kann der Code hinzugefügt werden, der das tatsächliche Verschieben der Aufgabe regelt
 }
 
