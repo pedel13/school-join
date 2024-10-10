@@ -201,20 +201,6 @@ footer {
 }
 
 /*##### START LOGIN ANIMATION #####*/
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.fadeIn {
-    animation: fadeIn 1000ms;
-}
-
 @keyframes login {
     from {
         position: absolute;
@@ -223,7 +209,10 @@ footer {
         transform: translate(-50%, -50%);
         width: 50vw;
         height: 70vh;
-        z-index: 99;
+        z-index: 100;
+        background: transparent !important;
+        background-image: url("../img/join_logo_for_sidebar.png");
+        background-repeat: no-repeat;
     }
 
     to {
@@ -233,10 +222,36 @@ footer {
         transform: translate( -4.5%, -6%);
         width: 101px;
         height: 128px;
+        background: transparent !important;
     }
 }
 
 .login {
-    animation: login 1000ms;
+    animation: login 1000ms forwards;
+}
+
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #2A3647;
+        width: 100vw;
+        height: 100vh;
+        z-index: 99;
+        opacity: 1;
+    }
+
+    99% {
+        background-color: #2A3647;
+        opacity: 1;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+.backgroundAnimation {
+    animation: backgroundAnimation 1000ms forwards;
 }
 /*##### END LOGIN ANIMATION #####*/

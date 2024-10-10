@@ -382,14 +382,14 @@ function renderSelectedContact(newSelectedContact, contact) {
  */
 function renderContactSelector(element, initials, name, contactColor) {
     document.getElementById('selectContacts').innerHTML += /*html*/ `
-        <label for="${element}" onclick="selectContact('${element}')" class="d-flex justify-content-between w-100">
+        <label for="${element}" onclick="selectContact('${element}')" class="d-flex justify-content-between w-100 contactLabels" id="contactLabels">
             <div class="d-flex align-items-center justify-content-between">
-                <p 
-                class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
-                ${initials[0]}${initials[1]}</p>
+                <p class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
+                    ${initials[0]}${initials[1]}
+                </p>
                 <p>${name}</p>
             </div>
-            <input type="checkbox" id="input${element}"/>
+            <input type="checkbox" id="input${element}" class="addTaskContactInput"/>
         </label>`
 }
 
