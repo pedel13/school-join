@@ -207,12 +207,10 @@ footer {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 50vw;
-        height: 70vh;
+        width: 101px;
+        height: 128px;
         z-index: 100;
-        background: transparent !important;
-        background-image: url("../img/join_logo_for_sidebar.png");
-        background-repeat: no-repeat;
+        opacity: 0;
     }
 
     to {
@@ -222,17 +220,43 @@ footer {
         transform: translate( -4.5%, -6%);
         width: 101px;
         height: 128px;
-        background: transparent !important;
+        opacity: 1;
     }
 }
-
 .login {
     animation: login 1000ms forwards;
 }
 
+@keyframes loginAnimation {
+    from {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 202px;
+        height: 256px;
+        z-index: 100;
+        opacity: 1;
+    }
+
+    to {
+        position: absolute;
+        top: 4.5%;
+        left: 6%;
+        transform: translate( -4.5%, -6%);
+        width: 101px;
+        height: 128px;
+        opacity: 0;
+    }
+}
+
+.loginAnimation {
+    display: none;
+}
+
 @keyframes backgroundAnimation {
     0% {
-        background-color: #2A3647;
+        background-color: #F6F7F8;
         width: 100vw;
         height: 100vh;
         z-index: 99;
@@ -240,7 +264,7 @@ footer {
     }
 
     99% {
-        background-color: #2A3647;
+        background-color: #F6F7F8;
         opacity: 1;
         width: 100vw;
         height: 100vh;
@@ -252,6 +276,6 @@ footer {
 }
 
 .backgroundAnimation {
-    animation: backgroundAnimation 1000ms forwards;
+    animation: backgroundAnimation 1000ms;
 }
 /*##### END LOGIN ANIMATION #####*/

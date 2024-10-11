@@ -44,6 +44,15 @@
         font-size: 20px;
     }
 
+    .backgroundAnimation {
+        background-color: #2A3647 !important;
+    }
+
+    .loginAnimation {
+        display: block !important;
+        animation: loginAnimation 1000ms forwards;
+    }
+
     /*##### index.html (dashboard) #####*/
     header > div > h1 {
         margin-left: 16px !important;
