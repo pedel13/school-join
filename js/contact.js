@@ -192,85 +192,6 @@ function searchRenderPositionClickedContact(contactId) {
 }
 
 
-/**
- * Rendering the contact details into the HTML
- * @function renderClickedContacts
- */
-function renderClickedContact(contactID) {
-    let contacts = localContactArray;
-    let contact = contacts[contactID];
-    let name = contact['name'];
-    let email = contact['email'];
-    let phone = contact['phone'];
-    let color = contact['contactColor'];
-    let nameCharts = contact['nameCharts'];
-    renderContactHighlight(contactID);
-    document.getElementById('renderedContactDetails').innerHTML = "";
-    document.getElementById(`renderedContactDetails`).classList.remove('d-none');
-    document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
-        <div id="contactSummary">
-            <div id="contactTitle">
-                <div id="contactAvatar">
-                    <div class="credentialsCircle ${color}" id="credentialsCircle">
-                        ${nameCharts[0]}${nameCharts[1]}
-                    </div>
-                </div>
-                
-                <div id="editName">
-                    <div class="currentName">
-                        ${name}
-                    </div>
-                    <div id="editButtons">
-                        <div id="editCurrentContact" onclick="editContact('${contactID}')">
-                            <img src="./img/icons/edit_icon.svg" alt="edit">
-                            Edit
-                        </div>
-                        
-                        <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
-                            <img src="./img/icons/delete_icon.svg" alt="delete">
-                            Delete
-                        </div>
-                    </div>
-                </div>                
-            </div>
-        </div>
-        
-        <div id="contactDetails">
-            <p>Contact Information</p>
-            <div id="contactDetailMail">
-                <b>Email:</b>
-                <br>
-                <br>
-                <a href="mailto:${email}" class="mailLink">${email}</a>
-            </div>
-            <div id="contactDetailPhone">
-                <b>Phone:</b>
-                <br>
-                <br>
-                <a href="tel:${phone}" class="phoneLink">${phone}</a>
-            </div>
-        </div>
-        <div  class="iconCircleContactPosition">
-        <div id="contact-Navbar" class="contact-navbar-position d-none">
-            <div class="contact-navbar">
-                    <div id="editCurrentContact" onclick="editContact('${contactID}')">
-                        <img src="./img/icons/edit_icon.svg" alt="edit">
-                        Edit
-                    </div>
-                        
-                    <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
-                        <img src="./img/icons/delete_icon.svg" alt="delete">
-                        Delete
-                    </div>
-                </div>
-        </div>
-            <div class="iconCircleContact">
-                <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
-            </div>
-        </div>
-    `;
-}
-
 
 let anyID;
 function renderContactHighlight(contactID) {
@@ -353,50 +274,6 @@ async function editContact(contactId = "") {
     };
     await renderEditContactsOverlay(contactId);
     openAddContactOverlay();
-}
-
-/**
- * Rendering the contact details for editing
- * @function renderContacts
- */
-async function renderEditContactsOverlay(contactId) {
-    await loadContacts("/contacts");
-    let name = localContactArray[contactId]['name'];
-    let email = localContactArray[contactId]['email'];
-    let phone = localContactArray[contactId]['phone'];
-    let color = localContactArray[contactId]['contactColor'];
-    let nameCharts = localContactArray[contactId]['nameCharts'];
-    document.getElementById("newContactName").value = name;
-    document.getElementById("newContactMail").value = email;
-    document.getElementById("newContactPhone").value = phone;
-    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
-    document.getElementById("avatar").innerHTML =  /*html*/ `
-        <div id="contactAvatar">
-            <div class="credentialsCircle ${color}" id="credentialsCircle">
-                ${nameCharts[0]}${nameCharts[1]}
-            </div>
-        </div>
-    `;
-    document.getElementById("createNewContact").innerHTML = /*html*/ `
-        Save
-        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
-    `;
-    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
-        <img src="./img/cancel-logo-white.png" alt="join-logo" class="white-cancel">
-        <h1>Edit contact</h1>
-        <img src="./img/icons/blue-borderLine.png" alt="blue-border">
-    `;
-    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
-        <div class="contactOverlayLeft">
-            <div class="close-white">
-                <img src="../img/icons/cancel-logo-white.png" alt="cross" class="cancelContactEdit white-cancel" onclick="closeContactOverlay()">
-            </div>
-            <div class="innerContactOverlayLeftContent">
-                <h1>Edit contact</h1>
-                <img src="./img/icons/blue-borderLine.png" alt="blue-border">
-            </div>
-        </div>
-    `;
 }
 
 /**

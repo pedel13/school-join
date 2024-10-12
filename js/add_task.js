@@ -38,17 +38,19 @@ function dataPickerForToday() {
  * kontrolliert ob der kontakt schon ausgewählt ist und löst in oder fügt in hinzu
  */
 function selectContact(contact="") {
+    let contactmarker = document.getElementById(`contactLabels${contact}`);
     contacts = JSON.parse(localStorage.getItem("usableContacts"));
-    selectContactForLoop();
+    let selectedContact = selectContactForLoop(contact, contactmarker);
     if (selectedContact === true) {
         selectContacts.push(contact);
         document.getElementById(`input${contact}`).checked = true;
+        contactmarker.classList.add("addedContacts");
         let newSelectedContact = contacts[contact];
     renderSelectedContact(newSelectedContact, contact);
     }
 }
 
-function selectContactForLoop() {
+function selectContactForLoop(contact,contactmarker) {
     let selectedContact = true;
     let i = 0;
     for (const element in selectContacts) {
@@ -56,11 +58,13 @@ function selectContactForLoop() {
             selectedContact = false;
             selectContacts.splice(i, 1);
             document.getElementById(`input${contact}`).checked = false;
-            oldSelectedContact = document.getElementById("select"+contact)
+            oldSelectedContact = document.getElementById("select"+contact);
+            contactmarker.classList.remove("addedContacts");
             oldSelectedContact.remove();
         }
         i++;
     }
+    return selectedContact;
 }
 
 /**
@@ -387,7 +391,7 @@ function renderSelectedContact(newSelectedContact, contact) {
  */
 function renderContactSelector(element, initials, name, contactColor) {
     document.getElementById('selectContacts').innerHTML += /*html*/ `
-        <label for="${element}" onclick="selectContact('${element}')" class="d-flex justify-content-between w-100 contactLabels" id="contactLabels">
+        <label for="${element}" onclick="selectContact('${element}')" class="d-flex justify-content-between w-100 contactLabels" id="contactLabels${element}">
             <div class="d-flex align-items-center justify-content-between">
                 <p class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
                     ${initials[0]}${initials[1]}
