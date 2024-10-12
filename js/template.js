@@ -6,16 +6,13 @@ async function includeHTML() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        //console.log(includeElements);
         let file = element.getAttribute("w3-include-html"); // "includes/header.html"
         if (element.id === 'sideBarContainer' || element.id === 'header' || element.id ==='mobileNavBar') {
-            //console.log("element    : ", element);
             let resp = await fetch(file);
             if (resp.ok) {
                 element.innerHTML = await resp.text();
             } else {
-                element.innerHTML = 'Page not found';
-            }
+                element.innerHTML = 'Page not found';}
         }
     }
     document.getElementById("sideBarContainer").classList.remove("d-none");
@@ -29,10 +26,8 @@ async function includeHTMLNoUser() {
     let includeElements = document.querySelectorAll('[w3-include-html]');
     for (let i = 0; i < includeElements.length; i++) {
         const element = includeElements[i];
-        //console.log(includeElements);
         let file = element.getAttribute("w3-include-html"); // "includes/header.html"
         if (element.id === 'sidebarNoUserContainer' || element.id === 'header') {
-            //console.log("element    : ", element);
             let resp = await fetch(file);
             if (resp.ok) {
                 element.innerHTML = await resp.text();
@@ -43,11 +38,9 @@ async function includeHTMLNoUser() {
     }
     document.getElementById("sidebarNoUserContainer").classList.remove("d-none");
 }
-
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 }
-
 /**
  * Adds the new user data to the database
  * @function templateNavbarOpenClose
@@ -61,4 +54,363 @@ function templateNavbarOpenClose() {
     } else {
         navbarOpenOrClose.classList.add("d-none");
     }
+}
+/**
+ * @function renderAddOverlay()
+ * rendert das addTaskOverlay mit der entsprechenden position
+ */
+function renderAddOverlay(position) {
+    document.getElementById('addTaskOverlay').innerHTML = ''
+    document.getElementById('addTaskOverlay').innerHTML = `            
+        <div id="outerTaskOverlayWrapper" class="outerTaskOverlayWrapper slide-top">
+            <div class="addTaskOverlayHeadline">
+                <h1>Add Task</h1>
+                <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
+            </div>
+            <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
+                <form class="main" onsubmit="addTask(event,'${position}')">
+                    <div id="addTaskWrapper" class="addTaskWrapper">
+                        <div class="addTaskWrapperLeft">
+                            <div>
+                                <p class="fSize-16">Title<span class="redStar">*</span></p>
+                                <input type="text" id="title" placeholder="Enter Title" required/>
+                            </div>
+                            <div class="spacer">&nbsp;</div>
+                            <div>
+                                <p class="fSize-16">Description</p>
+                                <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                            </div>
+                            <div class="spacer">&nbsp;</div>
+                            <div class="gap-8">
+                                <p class="fSize-16 mb-8">Assigned to</p>
+                                <div>
+                                    <div class="selectBox" onclick="showCheckboxes()">
+                                        <select id="selectInputAssignee">
+                                            <option value="" disabled selected>Select contacts to assign</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="checkboxes" class="">
+                                        <div class="d-flex flex-column w-100" id="selectContacts">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-8">
+                                    <div class="fc-white d-flex gap-10" id="selectedContact">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="addTaskWrapperMid divider">&nbsp;</div>
+                        <div class="addTaskWrapperRight">
+                            <div>
+                                <p class="fSize-16">Due Date<span class="redStar">*</span></p>
+                                <input type="date" id="datePicker" required>
+                            </div>
+                            <div>
+                                <p class="fSize-16">Prio</p>
+                                <div id="priority" class="priority d-flex">
+                                    <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        Urgent
+                                        <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                    </button>
+                                    <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        Medium
+                                        <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
+                                    </button>
+                                    <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                        Low
+                                        <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <p class="fSize-16">Category<span class="redStar">*</span></p>
+                                <select name="choose" id="categorySelect" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <option value="technical-task">Technical-Task</option>
+                                    <option value="user-story">User-Story</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p class="fSize-16">Subtasks</p>
+                                <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                                <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                    <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
+                                            <div class="addTaskAdd"></div>
+                                    </button>
+                                </div>
+                                <lu id="subtaskStorage"></lu>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="addTaskBottom" class="addTaskBottom">
+                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>   
+                        <div id="createTaskButton">
+                            <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg"></button>
+                            <button id="create">Create Task <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>`
+}
+/**
+ * Renders the name of a clicked contact
+ * @function renderContactNameInOverlay
+ */
+function renderContactNameInOverlay(activeContact, contactId) {
+    document.getElementById("selectedContactsInOverlay").innerHTML += `
+        <li class="d-flex align-items-center">
+            <p class="rounded-100 fc-white board-user-icon d-flex align-items-center justify-content-center m-8 ${activeContact.contactColor}" id="${contactId}">
+                ${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}
+            </p>
+            <p>${activeContact.name}</p>
+        </li>`;
+}
+/**
+ * Renders the newly added subtask inside the ticket
+ * @function renderContactNameInOverlay
+ */
+function renderSubTasks(subtask, taskId, i, checkBox = '') {
+    document.getElementById('taskOverlayCheckbox').innerHTML += `
+        <div class="checkBox">
+            <input type="checkbox" id="ceckBox_${i}" onclick="changeSubtaskProvement(${i}, '${taskId}')" ${checkBox}>
+            <span>${subtask}</span>
+        </div>`;
+}
+function renderTaskCardBig(element, categoryText, taskId) {
+    document.getElementById('taskOverlay').innerHTML = `
+        <div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
+            <div id="taskOverlayType" class="taskOverlayType">
+                <div id="issueType" class="issueType ${element.categorySelect}">
+                    ${categoryText}
+                </div>
+                <img src="./img/icons/cancel-logo.png" onclick="closeTaskOverlay()" alt="cancel-logo">
+            </div>
+            <div class="scrollbarTaskOverlayWrapper scrollbox">
+                <div  class="taskOverlayTitle">
+                    ${element.title}
+                </div>
+                <div id="taskOverlayFacts" class="taskOverlayFacts">
+                    <p>${element.description}</p>
+                    <p>Due Date: ${element.datePicker}</p>
+                    <p>Priority: ${element.priority}</p>
+                </div>
+                <div id="taskOverlayAssignee" class="taskOverlayAssignee">
+                    Assigned to:
+                    <ul id="selectedContactsInOverlay">
+                    </ul>
+                </div>
+                <div id="taskOverlayCheckbox" class="taskOverlayCheckbox">
+                    <p>Subtasks:</p>
+                </div>
+            </div>
+            <div id="taskOverlayBottomEdit" class="taskOverlayBottomEdit">
+                <button class="unstyled-button editBar" type="button" onclick="deleteTask(event, '${taskId}')">
+                    <img src="./img/icons/delete_icon.png" alt="delete-icon">
+                    <p>Delete</p>
+                </button>
+                <button class="unstyled-button editBar" type="button" onclick="taskEdit('${taskId}')">
+                    <img src="./img/icons/edit_icon.png" alt="edit-icon">
+                    <p>Edit</p>
+                </button>
+            </div>
+        </div>`;
+}
+function renderTaskEditor(taskId, task) {
+    document.getElementById('taskOverlay').innerHTML = /*html*/ `
+        <div  class="taskOverlayWrapper slide-right">
+            <div  class="taskOverlayTypeEdite d-flex">
+                <img src="./img/icons/cancel-logo.png" onclick="closeTaskOverlay()" alt="cancel-logo">
+            </div>
+                <form class="main" onsubmit="changeTask(event,'${taskId}')">
+                    <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
+                        <div>
+                            <div>
+                                <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
+                                <input type="text" id="title" value="${task.title}" required/>
+                            </div>    
+                            <div>&nbsp;</div>
+                            <div>
+                                <p class="fSize-20  editTaskWrapper">Description</p>
+                                <textarea rows="5" id="description" >${task.description}</textarea>
+                            </div>                            
+                            <div>&nbsp;</div>                            
+                            <div>
+                            <p class="fSize-20  editTaskWrapper">Due Date<span class="redStar">*</span></p>
+                            <input type="date" id="datePicker" value="${task.datePicker}" required>
+                            </div>                           
+                            <div>&nbsp;</div>     
+                            <div>
+                                <p class="fSize-20  editTaskWrapper">Prio</p>
+                                <div id="priority" class="priority d-flex">
+                                    <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                    Urgent
+                                    <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                        </button>
+                                        <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Medium
+                                            <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
+                                        </button>
+                                        <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Low
+                                            <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                        </button>
+                                </div>
+                            </div>
+                            <div>&nbsp;</div>
+                            <div class="gap-8">
+                                <p class="fSize-16 mb-8">Assigned to</p>
+                                <div>
+                                    <div class="selectBox" onclick="showCheckboxes()">
+                                        <select id="selectInputAssignee">
+                                            <option value="" disabled selected>Select contacts to assign</option>
+                                        </select>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="checkboxes" class="">
+                                        <div class="d-flex flex-column w-100" id="selectContacts">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-8">
+                                    <div class="fc-white d-flex gap-10" id="selectedContact">
+                                    </div>
+                                </div>
+                            </div>
+                            <div>&nbsp;</div>  
+                            <div>
+                                <p class="fSize-20  editTaskWrapper">Subtasks</p>
+                                <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                                    <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
+                                    <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
+                                    <div class="addTaskAdd"></div>
+                                    </button>
+                                </div>
+                                <ul id="subtaskStorage"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="editTaskBottom d-flex">
+                        <div>
+                            <button class="editTaskEditBottom d-flex align-items-center justify-content-center">OK <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>`;
+}
+/**
+ * Rendering the contact details for editing
+ * @function renderContacts
+ */
+async function renderEditContactsOverlay(contactId) {
+    await loadContacts("/contacts");
+    let name = localContactArray[contactId]['name'];
+    let email = localContactArray[contactId]['email'];
+    let phone = localContactArray[contactId]['phone'];
+    let color = localContactArray[contactId]['contactColor'];
+    let nameCharts = localContactArray[contactId]['nameCharts'];
+    document.getElementById("newContactName").value = name;
+    document.getElementById("newContactMail").value = email;
+    document.getElementById("newContactPhone").value = phone;
+    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
+    document.getElementById("avatar").innerHTML =  /*html*/ `
+        <div id="contactAvatar">
+            <div class="credentialsCircle ${color}" id="credentialsCircle">
+                ${nameCharts[0]}${nameCharts[1]}
+            </div>
+        </div>`;
+    document.getElementById("createNewContact").innerHTML = /*html*/ `
+        Save
+        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`;
+    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
+        <img src="./img/cancel-logo-white.png" alt="join-logo" class="white-cancel">
+        <h1>Edit contact</h1>
+        <img src="./img/icons/blue-borderLine.png" alt="blue-border">`;
+    document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
+        <div class="contactOverlayLeft">
+            <div class="close-white">
+                <img src="../img/icons/cancel-logo-white.png" alt="cross" class="cancelContactEdit white-cancel" onclick="closeContactOverlay()">
+            </div>
+            <div class="innerContactOverlayLeftContent">
+                <h1>Edit contact</h1>
+                <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+            </div>
+        </div>`;
+}
+/**
+ * Rendering the contact details into the HTML
+ * @function renderClickedContacts
+ */
+function renderClickedContact(contactID) {
+    let contacts = localContactArray;
+    let contact = contacts[contactID];
+    let name = contact['name'];
+    let email = contact['email'];
+    let phone = contact['phone'];
+    let color = contact['contactColor'];
+    let nameCharts = contact['nameCharts'];
+    renderContactHighlight(contactID);
+    document.getElementById('renderedContactDetails').innerHTML = "";
+    document.getElementById(`renderedContactDetails`).classList.remove('d-none');
+    document.getElementById('renderedContactDetails').innerHTML += /*html*/ ` 
+        <div id="contactSummary">
+            <div id="contactTitle">
+                <div id="contactAvatar">
+                    <div class="credentialsCircle ${color}" id="credentialsCircle">
+                        ${nameCharts[0]}${nameCharts[1]}
+                    </div>
+                </div>
+                <div id="editName">
+                    <div class="currentName">
+                        ${name}
+                    </div>
+                    <div id="editButtons">
+                        <div id="editCurrentContact" onclick="editContact('${contactID}')">
+                            <img src="./img/icons/edit_icon.svg" alt="edit">
+                            Edit
+                        </div>          
+                        <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
+                            <img src="./img/icons/delete_icon.svg" alt="delete">
+                            Delete
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+        <div id="contactDetails">
+            <p>Contact Information</p>
+            <div id="contactDetailMail">
+                <b>Email:</b>
+                <br>
+                <br>
+                <a href="mailto:${email}" class="mailLink">${email}</a>
+            </div>
+            <div id="contactDetailPhone">
+                <b>Phone:</b>
+                <br>
+                <br>
+                <a href="tel:${phone}" class="phoneLink">${phone}</a>
+            </div>
+        </div>
+        <div  class="iconCircleContactPosition">
+        <div id="contact-Navbar" class="contact-navbar-position d-none">
+            <div class="contact-navbar">
+                    <div id="editCurrentContact" onclick="editContact('${contactID}')">
+                        <img src="./img/icons/edit_icon.svg" alt="edit">
+                        Edit
+                    </div>                     
+                    <div id="deleteCurrentContact" onclick="deleteContactEverywhere('${contactID}')">
+                        <img src="./img/icons/delete_icon.svg" alt="delete">
+                        Delete
+                    </div>
+                </div>
+        </div>
+            <div class="iconCircleContact">
+                <img src="./img/icons/three_points_With.png" onclick="contactNavbarOpenClose()" alt="">
+            </div>
+        </div>
+    `;
 }

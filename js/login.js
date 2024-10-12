@@ -12,25 +12,19 @@ async function login(event) {
     event.preventDefault();
     let email = document.getElementById('email').value;
     let password = document.getElementById('password').value;
-    
     for (const key in localUser) {
         const SINGLE_CONTACT = localUser[key];
-        if (email === SINGLE_CONTACT.email) {
-            counter ++;
+        if (email === SINGLE_CONTACT.email) {counter ++;
             if (password === SINGLE_CONTACT.password) {
                 let activeUserName = SINGLE_CONTACT.name;
                 localStorage.setItem("ableToUse", true);
                 localStorage.setItem("activeUserName", `${activeUserName}`);
-                window.location.assign('./index.html');
-            }
+                window.location.assign('./index.html');}
             else {
-                counter = 0;
-            }
+                counter = 0;}
         }
     }
-    if (counter === 0) {
-        wrongPassword();
-    }
+    if (counter === 0) {wrongPassword();}
     counter = 0;
 }
 

@@ -53,6 +53,10 @@ async function addUser(event) {
     let email = document.getElementById("email");
     checkName(name);
     checkEmail(email);
+    await addUserIfElse(name, email, passwordConfirm, password);
+}
+
+async function addUserIfElse(name, email, passwordConfirm, password) {
     if (nameCheck == 1) {
     } else {
         if (emailCheck == 1) {

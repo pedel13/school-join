@@ -18,6 +18,10 @@ async function summaryOnLoad(){
     let activeUserName = localStorage.getItem("activeUserName");
     let greet = summaryGetTime();
     renderUserGreeting(greet, activeUserName);
+    setCountToZero();
+}
+
+function setCountToZero() {
     taskCount=0;
     urgentCount=0;
     countOnToDo = 0;

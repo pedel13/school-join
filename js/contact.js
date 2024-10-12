@@ -440,10 +440,8 @@ async function searchContactsInTasks(contactID) {
         let contactsInTask = element.selectContacts;
         for (const activeContactCount in contactsInTask) {
             let activeContactId = contactsInTask[activeContactCount];
-            if (contactID == activeContactId) {
-                contactIsInTask = true;
-                contactsInTask.splice(activeContactCount, 1);
-            }
+            if (contactID == activeContactId) {contactIsInTask = true;
+                contactsInTask.splice(activeContactCount, 1);}
         }
         let elementAsStringify = JSON.stringify(element);
         updateTask(elementAsStringify, `/board/tasks/${taskId}`)

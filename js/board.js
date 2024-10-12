@@ -199,12 +199,9 @@ function findeTask(value) {
         let element = tasks[taskId];
         let titleTest = element.title;
         let descriptionTest = element.description;
-            if (titleTest.toUpperCase().indexOf(filter) > -1) {
-                renderFindeTask(element, taskId, contacts);
+            if (titleTest.toUpperCase().indexOf(filter) > -1) {renderFindeTask(element, taskId, contacts);
                 } else {
-                    if (descriptionTest.toUpperCase().indexOf(filter) > -1) {
-                        renderFindeTask(element, taskId, contacts);
-                }
+                    if (descriptionTest.toUpperCase().indexOf(filter) > -1) {renderFindeTask(element, taskId, contacts);}
             }
     }
     noTasksInProgress();
@@ -225,8 +222,7 @@ function renderFindeTask(element, taskId, contacts) {
         let activeContact = contacts[activeContactId];
         renderActiveContacts(activeContact, activeContactId, taskId);
         }
-        subtaskCount = 0;
-    
+        subtaskCount = 0; 
 }
 
 /**
