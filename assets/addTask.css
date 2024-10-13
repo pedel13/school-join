@@ -445,14 +445,53 @@ label#subTaskLabel {
     padding: 12px;
 }
 
+.contactListWrapperContainer {
+    height: 60px;
+    padding: 8px;
+}
+
 .contactListWrapperContainer:hover {
     border-radius: 12px;
 }
 
-.contactLabels > div > p:nth-of-type(2) {
-    margin-left: 8px;
-    font-size: 16px;
+.avatarAndName,
+.chooseContact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
+.avatarAndName > p:nth-of-type(2) { margin-left: 16px; font-size: 18px }
+
+/*##### START custom Checkboxes #####*/
+[type="checkbox"] + label {
+    position: relative;
+}
+[type="checkbox"] {
+    position: relative;
+    left: 15px;
+    top: -4px;
+    z-index: 0;
+    -webkit-appearance: none;
+}
+[type="checkbox"] + label::before {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 6px;
+    display: block;
+    content: "";
+    float: left;
+    margin-right: 5px;
+    z-index: 5;
+    position: relative;
+}
+[type="checkbox"]:checked+label::before {
+    background-image: url("../img/icons/checkmark.svg");
+}
+/*##### END custom Checkboxes #####*/
+
 /*##### END OF AddTASK Overlay section #####*/
 
 /*##### START OF Task Overlay section #####*/
@@ -576,9 +615,9 @@ ul {
 #board-task-on-done:hover {
     cursor: pointer;
 }
-/* END OF TASK-OVERLAY SLIDING dataPickerForTodayRIGHT */
+/*##### END OF TASK-OVERLAY SLIDING dataPickerForTodayRIGHT #####*/
 
-/* start of EDIT-OVERLAY selection  */
+/*##### start of EDIT-OVERLAY selection  #####*/
 .editTaskBottom {
     justify-content: end;
 }
@@ -632,34 +671,3 @@ ul {
     }
 }
 /*##### END OF Task Overlay section #####*/
-
-/*##### START custom Checkboxes #####*/
-[type="checkbox"] + label {
-    position: relative;
-}
-[type="checkbox"] {
-    position: relative;
-    left: 15px;
-    top: -4px;
-    z-index: 0;
-    -webkit-appearance: none;
-}
-[type="checkbox"] + label::before {
-    width: 15px;
-    height: 15px;
-    background-color: transparent;
-    border: 1px solid black;
-    border-radius: 6px;
-    display: block;
-    content: "";
-    float: left;
-    margin-right: 5px;
-    z-index: 5;
-    position: relative;
-}
-[type="checkbox"]:checked+label::before {
-    background-image: url("../img/icons/checkmark.svg");
-    height: 20px;
-    width: 20px;
-}
-/*##### END custom Checkboxes #####*/
