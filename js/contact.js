@@ -139,7 +139,6 @@ async function fetchContacts() {
         }
         renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetRenderElement);
     }
-
 }
 
 async function loadContacts(path = "") {
@@ -149,35 +148,6 @@ async function loadContacts(path = "") {
 
 function highlightContactCard() {
     //
-}
-
-/**
- * Rendering the contact data into the HTML
- * @function renderContacts
- */
-async function renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetElement) {
-    contactAlphabetElement.innerHTML += /*html*/ `
-        <div id="${contactID}" class="contactDetailWrapper">
-            <ul class="namesList" id="contactUlActive_${contactID}" onclick="searchRenderPositionClickedContact('${contactID}'); highlightContactCard()">
-                <li id="contactItem_${contactID}" class="contactItem">
-                    <div class="innerContactDetailWrapper">
-                        <div id="userProfile">
-                        <div class="fc-white d-flex">
-                    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${color} -m-8">${nameCharts[0]}${nameCharts[1]}</p>
-                    </div>
-                        </div>
-                        <div class="contact">
-                            ${name}
-                            <br>
-                            <a href="mailto:${mail}" target="_blank" class="emailLink">
-                                ${mail}
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    `;
 }
 
 function searchRenderPositionClickedContact(contactId) {
@@ -190,8 +160,6 @@ function searchRenderPositionClickedContact(contactId) {
         document.getElementById('contactRightHeadSectionMobile').classList.remove('d-none')
     }
 }
-
-
 
 let anyID;
 function renderContactHighlight(contactID) {

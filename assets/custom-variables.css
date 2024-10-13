@@ -586,4 +586,8 @@ input {
 .bg-red {
     background-color: #FF4646;
 }
+
+.bg-grey {
+    background-color: #A8A8A8;
+}
 /*  end bg-user colors */

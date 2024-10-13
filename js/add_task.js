@@ -45,9 +45,22 @@ function selectContact(contact="") {
         selectContacts.push(contact);
         document.getElementById(`input${contact}`).checked = true;
         contactmarker.classList.add("addedContacts");
-        let newSelectedContact = contacts[contact];
-    renderSelectedContact(newSelectedContact, contact);
     }
+    if (selectContacts.length>0){renderSelectedContactForLoop()}
+}
+
+function renderSelectedContactForLoop() {
+    let i = 0;
+    document.getElementById("selectedContact").innerHTML = ``
+    for (let I = 0; I < selectContacts.length; I++) {
+        const contact = selectContacts[I];
+        let newSelectedContact = contacts[contact];
+        i++;
+        if (I<5) {renderSelectedContact(newSelectedContact, contact);}
+    }
+    if (i>5){
+        i= i-5
+        renderSelectedContactRest(i)}
 }
 
 function selectContactForLoop(contact,contactmarker) {
@@ -58,9 +71,7 @@ function selectContactForLoop(contact,contactmarker) {
             selectedContact = false;
             selectContacts.splice(i, 1);
             document.getElementById(`input${contact}`).checked = false;
-            oldSelectedContact = document.getElementById("select"+contact);
             contactmarker.classList.remove("addedContacts");
-            oldSelectedContact.remove();
         }
         i++;
     }
@@ -363,58 +374,15 @@ function renderAllCreateSubtasks(taskId) {
  */
 function addSubtaskAddArray() {
     let newSubtask = document.getElementById('subtasks').value;
-    if (subtaskList.length < 1) {
-        subtaskList = [];
-        subtaskProvement = [];
+    if (newSubtask) {  
+        if (subtaskList.length < 1) {
+            subtaskList = [];
+            subtaskProvement = [];
+        }
+        subtaskList.push(newSubtask);
+        subtaskProvement.push("false");
+        subtasks.value = '';
+        let subtaskCreateCount = subtaskList.length - 1;
+        renderCrateSubtask(newSubtask, subtaskCreateCount);
     }
-    subtaskList.push(newSubtask);
-    subtaskProvement.push("false");
-    subtasks.value = '';
-    let subtaskCreateCount = subtaskList.length - 1;
-    renderCrateSubtask(newSubtask, subtaskCreateCount);
-}
-
-/**
- * @function renderSelectedContact()
- * rendert das icon des ausgewählten kontakts hinzu
- */
-function renderSelectedContact(newSelectedContact, contact) {
-    document.getElementById("selectedContact").innerHTML += `
-    <p
-    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${newSelectedContact.contactColor}" id="select${contact}">
-    ${newSelectedContact.nameCharts[0]}${newSelectedContact.nameCharts[1]}</p> `
-}
-
-/**
- * @function renderContactSelector()
- * rendert die zur auswahl stehenden kontakte in das dropdown
- */
-function renderContactSelector(element, initials, name, contactColor) {
-    document.getElementById('selectContacts').innerHTML += /*html*/ `
-        <label for="${element}" onclick="selectContact('${element}')" class="d-flex justify-content-between w-100 contactLabels" id="contactLabels${element}">
-            <div class="d-flex align-items-center justify-content-between">
-                <p class="fc-white rounded-100 board-user-icon d-flex flex-row align-items-center justify-content-center ${contactColor}">
-                    ${initials[0]}${initials[1]}
-                </p>
-                <p>${name}</p>
-            </div>
-            <input type="checkbox" id="input${element}" class="addTaskContactInput"/>
-        </label>`
-}
-
-/**
- * @function renderCrateSubtask()
- * rendert den existierenden subtask hinzu
- */
-function renderCrateSubtask(newSubtask, subtaskCreateCount) {
-    document.getElementById('subtaskStorage').innerHTML += `
-        <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" class="justify-content-between">
-            • ${newSubtask}
-            <div class="d-flex" id="subTaskButton">
-                <button type="button"  class="addTaskSubtaskEdit" onclick="editCreatSubtask('${subtaskCreateCount}', '${newSubtask}')"></button>
-                <div class="addTaskSubtaskVertikalLine"></div>
-                <button type="button"  class="addTaskSubtaskWaste" onclick="deleteCreateSubtask('${subtaskCreateCount}')"></button>
-            </div>
-        </li>
-    `;
 }

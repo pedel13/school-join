@@ -15,10 +15,7 @@ function allowDrop(ev) {
  * @function drag()
  * speichert die id des tasks global
  */
-function drag(id) {
-    cardDraggedId = id;
-}
-
+function drag(id) {cardDraggedId = id;}
 /**
  * @function drop()
  * rendert die position und gibt sie danach der updateTask funktion
@@ -216,15 +213,16 @@ function renderFindeTask(element, taskId, contacts) {
     let subtask = subtaskExist(element);
     let categoryText = categoryFinder(element);
     countForNoTask(element.position);
+    let i = 0;
     renderTask(element, taskId, subtask, categoryText);
     for (let contact in element.selectContacts) {
         let activeContactId = element.selectContacts[contact];
         let activeContact = contacts[activeContactId];
-        renderActiveContacts(activeContact, activeContactId, taskId);
-        }
+        i++;
+        if (i<5){renderActiveContacts(activeContact, activeContactId, taskId);}
+        }if (i>=5){renderActiveContactsRest(i,taskId)}
         subtaskCount = 0; 
 }
-
 /**
  * @function noTasksInProgress()
  * kontrolliert ob tasks in der jeweiligen spalte vorhanden sind und lässt das no task feld erscheinen oder verschwinden
@@ -251,7 +249,6 @@ function noTasksInProgress() {
         removeNoTaskInProgress("no-tasks-Done");
     }
 }
-
 /**
  * @function addNoTaskInProgress()
  * läst das no task feld in der entsprechenden Spalte erscheinen oder verschwinden
@@ -278,7 +275,6 @@ async function loadTasks(path="") {
     let response = await fetch(baseUrl + path + ".json");
     return await response.json();
 }
-
 /**
  * @function cleanTaskboard()
  * löscht die tasks aus den entsprechenden progress spalten und setzt die dazugehörigen zähler wieder auf 0
@@ -293,7 +289,6 @@ function cleanTaskboard() {
     countOnAwaitFeedback = 0;
     countOnDone = 0;
 }
-
 /**
  * @function renderAllTasks()
  * ladet alle tasks fom backend und speichert sie lokal, leert das bord und rendert die tasks neu
@@ -315,7 +310,6 @@ async function renderAllTasks() {
  * @function subtaskExist()
  * kontrolliert, ob ein oder mehrere subtasks vorhanden sind und rendert die progressbar oder läst sie verschwinden
  */
-
 function subtaskExist(task) {
     let subtask = " ";
     let testingSubtask = task.subtasks;
@@ -345,12 +339,10 @@ function subtaskCounter(task) {
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
 }
-
 /**
  * @function categoryFinder()
  * kontrolliert welcher kategorie der task angehört und setzt den dazugehörigen text fest da das abgespeicherte nur die klasse festlegt für die farbe
  */
-
 function categoryFinder(task) {
     let categoryText = "";
     if (task.categorySelect == "technical-task") {
@@ -360,7 +352,6 @@ function categoryFinder(task) {
     }
     return categoryText;
 }
-
 /**
  * @function countForNoTask()
  * zählt die tasks in der jeweiligen progress spalte, um herauszufinden, wo kein task ist
@@ -402,73 +393,3 @@ async function deleteTask(event, taskId) {
     }
     closeTaskOverlay();
 }
-
-/**
- * @function renderActiveContacts()
- * rendert das icon eines zugeteilten kontakt in einen task
- */
-function renderActiveContacts(activeContact, contactId, taskId) {
-    document.getElementById("selectContent"+taskId).innerHTML += `
-    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
-    `
-}
-
-/**
- * @function renderTask()
- * rendert eine task karte in die richtige progress spalte
- */
-function renderTask(task, taskId, subtask, categoryText) {
-    document.getElementById(task.position).innerHTML += /*html*/`
-        <div id="taskID_${taskId}" onclick="openTaskOverlay('${taskId}')" ondragstart="drag('${taskId}')" draggable="true" class="d-flex board-task-card flex-column hoverRotation">
-            <div class="d-flex align-items-center justify-content-between">
-                <p class="fc-white rounded-8 board-user d-flex align-items-center ${task.categorySelect}" id="categoryTitle">${categoryText}</p>
-                <div id="moveButtons">
-                    <img src="img/icons/arrow_upward_32px.png" alt="arrow_upward" class="arrow-up-${task.position} moveArrows" onclick="taskGoBack('${task.position}', '${taskId}')">
-                    <img src="img/icons/arrow_downward_32px.png" alt="arrow_downward" class="arrow-down-${task.position} moveArrows" onclick="taskGoForward('${task.position}', '${taskId}')">
-                </div>
-            </div>
-            <div>
-                <p class="board-card-subtitle">${task.title}</p>
-            </div>
-            <div>
-                <p class="board-description">${task.description}</p>
-            </div>
-            <div class="d-flex align-items-center gap-10 ${subtask}" id="board-done-progressbar">
-                <div class="board-progressbar-full rounded-8">
-                    <div class="board-progressbar rounded-8" style="width: ${subtaskCountInProzent}%;">
-                    </div>
-                </div>
-                <div class="d-flex board-subtasks gap-4">
-                  <p> ${subtaskCountProvement}/${subtaskCount}</p>
-                  <p>Subtasks</p>
-                </div>
-            </div>
-            <div class="d-flex justify-content-between">
-                <div class="fc-white d-flex" id="selectContent${taskId}">
-                </div>
-                <div class="board-icon-importance board-icon-${task.priority}-prio">
-                </div>
-            </div>
-        </div>
-    `;
-}
-
-// Wenn das Element über einer Drop-Zone schwebt, wird die Highlight-Klasse hinzugefügt
-function highlightDropZone(zoneId="") {
-    const dropZone = document.getElementById(zoneId);
-    dropZone.classList.add('highlight');
-}
-
-// Entfernt die Highlight-Klasse, wenn das Element die Drop-Zone verlässt
-function removeHighlightDropZone(zoneId="") {
-    const dropZone = document.getElementById(zoneId);
-    dropZone.classList.remove('highlight');
-}
-
-// Wenn das Element fallengelassen wird, wird die Highlight-Klasse entfernt
-function dropremoveHighlightDropZone(zoneId) {
-    const dropZone = document.getElementById(zoneId);
-    dropZone.classList.remove('highlight');
-    // Hier kann der Code hinzugefügt werden, der das tatsächliche Verschieben der Aufgabe regelt
-}
-
