@@ -328,6 +328,8 @@ header > div > h1 {
 /* Hervorheben, wenn das Element über der Drop-Zone schwebt */
 .board-task-columns.highlight {
     background-color: rgba(189,193,197,0.3) !important;
+    border: 1px dashed darkgrey !important;
+    border-radius: 2px !important;
 }
 
 #addTask {

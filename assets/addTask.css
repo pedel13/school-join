@@ -34,8 +34,7 @@ textarea,
 .addTaskEnterSubtask {
     width: 428px;
     height: 48px;
-    padding: 12px 0 12px 16px !important;
-    gap: 10px;
+    padding: 12px 5px 12px 8px !important;
     border: 1px solid lightgray !important;
     border-radius: 10px;
 }
@@ -311,6 +310,8 @@ button#create {
 
 .createTaskButtonImg {
     margin-left: 8px;
+    width: 24px;
+    height: 24px;
 }
 
 select {
@@ -393,8 +394,8 @@ select {
     height: 32px;
     width: 32px;
 }
-/* checkbox contacts */
 
+/*##### checkbox contacts #####*/
 .selectBox {
     position: relative;
 }
@@ -415,6 +416,7 @@ select {
 label#subTaskLabel:focus {
     outline: none !important;
 }
+
 label#subTaskLabel {
     width: 100%;
 }
@@ -422,7 +424,7 @@ label#subTaskLabel {
 #checkboxes {
     display: none;
     background-color: #ffffff;
-    position: fixed;
+    position: relative;
     max-height: 500px;
     width: 428px;
     overflow: hidden;
@@ -431,7 +433,7 @@ label#subTaskLabel {
     overflow-y: scroll;
 }
 
-#checkboxes label:hover {
+#checkboxes div.contactListWrapperContainer:hover {
     background-color: #1e90ff;
 }
 
@@ -443,7 +445,7 @@ label#subTaskLabel {
     padding: 12px;
 }
 
-.contactLabels:hover {
+.contactListWrapperContainer:hover {
     border-radius: 12px;
 }
 
@@ -630,3 +632,34 @@ ul {
     }
 }
 /*##### END OF Task Overlay section #####*/
+
+/*##### START custom Checkboxes #####*/
+[type="checkbox"] + label {
+    position: relative;
+}
+[type="checkbox"] {
+    position: relative;
+    left: 15px;
+    top: -4px;
+    z-index: 0;
+    -webkit-appearance: none;
+}
+[type="checkbox"] + label::before {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 6px;
+    display: block;
+    content: "";
+    float: left;
+    margin-right: 5px;
+    z-index: 5;
+    position: relative;
+}
+[type="checkbox"]:checked+label::before {
+    background-image: url("../img/icons/checkmark.svg");
+    height: 20px;
+    width: 20px;
+}
+/*##### END custom Checkboxes #####*/

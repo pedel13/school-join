@@ -38,7 +38,7 @@ function dataPickerForToday() {
  * kontrolliert ob der kontakt schon ausgewählt ist und löst in oder fügt in hinzu
  */
 function selectContact(contact="") {
-    let contactmarker = document.getElementById(`contactLabels${contact}`);
+    let contactmarker = document.getElementById(`contactListWrapperContainer_${contact}`);
     contacts = JSON.parse(localStorage.getItem("usableContacts"));
     let selectedContact = selectContactForLoop(contact, contactmarker);
     if (selectedContact === true) {
