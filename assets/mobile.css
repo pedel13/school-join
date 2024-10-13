@@ -419,14 +419,6 @@
     .innerContactOverlayLeftContent > h1 {
         font-size: 40px;
     }
-
-    #contactOverlayLeft {
-        padding-left: 40px !important;
-    }
-
-    .close-white {
-        margin: -130px 0 0 0 !important;
-    }
 }
 
 @media (max-width: 460px) {
@@ -544,8 +536,14 @@
     }
 
     /*##### AddContact overlay  #####*/
-    .createContactButton > button {
-        width: 80% !important;
+    .icon-person,
+    .icon-letter,
+    .icon-phone {
+        background-image: none !important;
+    }
+
+    .innerContactOverlayLeftContent > h1 {
+        font-size: 30px;
     }
 
     /*##### Privacy.html #####*/

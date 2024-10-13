@@ -389,4 +389,6 @@ header > div > h1 {
 
 .white-cancel {
     display: none !important;
+    height: 40px;
+    width: 40px;
 }

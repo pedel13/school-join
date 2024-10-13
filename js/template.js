@@ -65,7 +65,7 @@ function renderAddOverlay(position) {
         <div id="outerTaskOverlayWrapper" class="outerTaskOverlayWrapper slide-top">
             <div class="addTaskOverlayHeadline">
                 <h1>Add Task</h1>
-                <img src="./img/icons/cancel-logo.png" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
+                <img src="./img/icons/cancel.svg" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
             </div>
             <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
                 <form class="main" onsubmit="addTask(event,'${position}')">
@@ -147,7 +147,7 @@ function renderAddOverlay(position) {
                     <div id="addTaskBottom" class="addTaskBottom">
                         <p class="fSize-16">This field is required<span class="redStar">*</span></p>   
                         <div id="createTaskButton">
-                            <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel-logo.png"  class="createTaskButtonImg"></button>
+                            <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel.svg"  class="createTaskButtonImg"></button>
                             <button id="create">Create Task <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
                         </div>
                     </div>
@@ -186,7 +186,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
                 <div id="issueType" class="issueType ${element.categorySelect}">
                     ${categoryText}
                 </div>
-                <img src="./img/icons/cancel-logo.png" onclick="closeTaskOverlay()" alt="cancel-logo">
+                <img src="./img/icons/cancel.svg" onclick="closeTaskOverlay()" alt="cancel-logo">
             </div>
             <div class="scrollbarTaskOverlayWrapper scrollbox">
                 <div  class="taskOverlayTitle">
@@ -222,7 +222,7 @@ function renderTaskEditor(taskId, task) {
     document.getElementById('taskOverlay').innerHTML = /*html*/ `
         <div  class="taskOverlayWrapper slide-right">
             <div  class="taskOverlayTypeEdite d-flex">
-                <img src="./img/icons/cancel-logo.png" onclick="closeTaskOverlay()" alt="cancel-logo">
+                <img src="./img/icons/cancel.svg" onclick="closeTaskOverlay()" alt="cancel-logo">
             </div>
                 <form class="main" onsubmit="changeTask(event,'${taskId}')">
                     <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
@@ -326,13 +326,13 @@ async function renderEditContactsOverlay(contactId) {
         Save
         <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
-        <img src="./img/cancel-logo-white.png" alt="join-logo" class="white-cancel">
+        <img src="./img/cancel-white.svg" alt="join-logo" class="white-cancel">
         <h1>Edit contact</h1>
         <img src="./img/icons/blue-borderLine.png" alt="blue-border">`;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
         <div class="contactOverlayLeft">
             <div class="close-white">
-                <img src="../img/icons/cancel-logo-white.png" alt="cross" class="cancelContactEdit white-cancel" onclick="closeContactOverlay()">
+                <img src="../img/icons/cancel-white.svg" alt="cross" class="cancelContactEdit white-cancel" onclick="closeContactOverlay()">
             </div>
             <div class="innerContactOverlayLeftContent">
                 <h1>Edit contact</h1>

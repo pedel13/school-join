@@ -106,6 +106,8 @@ input#newContactPhone {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    height: 40px;
+    width: 40px;
 }
 
 .avatar {
