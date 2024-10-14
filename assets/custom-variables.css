@@ -588,6 +588,9 @@ input {
 }
 
 .bg-grey {
-    background-color: #A8A8A8;
+    .addedContacts {
+        background-color: #2A3647;
+        border-radius: 12px;
+    }
 }
 /*  end bg-user colors */

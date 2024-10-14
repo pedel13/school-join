@@ -89,7 +89,7 @@ function renderSelectedContact(newSelectedContact, contact) {
 function renderSelectedContactRest(i) {
     document.getElementById("selectedContact").innerHTML += `
     <p
-    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-grey" id="select${i}">+
+    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center" id="select${i}">+
     ${i}</p> `
 }
 
