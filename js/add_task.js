@@ -82,7 +82,6 @@ function selectContactForLoop(contact,contactmarker) {
  * @function addEventListener()
  * schliesst das kontaktauswahl dropdown beim klicken ausserhalb des dropdowns
  */
-
 document.addEventListener('click', function(event) {
     var checkboxes = document.getElementById("checkboxes");
     var selectBox = document.querySelector(".selectBox");
@@ -96,7 +95,6 @@ document.addEventListener('click', function(event) {
  * @function showCheckboxes()
  * öffnet und schliesst das dropdown
  */
-
 function showCheckboxes() {
     var checkboxes = document.getElementById("checkboxes");
     if (!expanded) {
@@ -104,6 +102,21 @@ function showCheckboxes() {
         expanded = true;
     } else {
         checkboxes.style.display = "none";
+        expanded = false;
+    }
+}
+
+/**
+ * @function showSelectBox()
+ * öffnet und schliesst das dropdown
+ */
+function showSelectBox() {
+    var typeSelect = document.getElementById("taskType");
+    if (!expanded) {
+        typeSelect.style.display = "flex";
+        expanded = true;
+    } else {
+        typeSelect.style.display = "none";
         expanded = false;
     }
 }

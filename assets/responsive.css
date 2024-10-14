@@ -17,6 +17,18 @@
     #subtaskStorage,
     .addTaskEnterSubtask {
         width: 395px;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 16px !important;
+        padding-right: 16px !important;
+    }
+
+    #subtasks {
+        font-family: 'Inter', sans-serif !important;
+        font-size: 16px !important;
+    }
+
+    #selectContacts {
+        padding-right: 0 !important;
     }
 
     #subtaskStorage {
@@ -35,7 +47,8 @@
     }
 
     /*##### AddTask Form page #####*/
-    #checkboxes {
+    #checkboxes,
+    #taskType {
         max-width: 395px;
     }
 
@@ -71,7 +84,8 @@
     }
 
     /*##### AddTask Form page #####*/
-    #checkboxes {
+    #checkboxes,
+    #taskType {
         max-width: 300px;
     }
 }
@@ -82,7 +96,8 @@
     }
 
     /*##### AddTask Form page #####*/
-    #checkboxes {
+    #checkboxes,
+    #taskType {
         max-width: 300px !important;
         font-size: 18px;
         padding: 4px;

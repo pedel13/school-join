@@ -411,7 +411,8 @@
     }
 
     /*##### AddTask Form page #####*/
-    #checkboxes {
+    #checkboxes,
+    #taskType {
         max-width: 224px !important;
     }
 

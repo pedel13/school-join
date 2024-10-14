@@ -421,7 +421,8 @@ label#subTaskLabel {
     width: 100%;
 }
 
-#checkboxes {
+#checkboxes,
+#taskType {
     display: none;
     background-color: #ffffff;
     position: relative;
@@ -431,6 +432,20 @@ label#subTaskLabel {
     padding: 8px;
     cursor: pointer;
     overflow-y: scroll;
+}
+
+#taskType {
+    overflow: hidden;
+    /*max-width: 300px;
+    background-color: #ffffff;
+    padding: 20px 12px 12px 12px;
+    border-radius: 10px;
+    margin-top: -10px;
+    z-index: -10 !important;*/
+}
+
+#taskType div.contactListWrapperContainer:hover {
+    background-color: #1e90ff;
 }
 
 #checkboxes div.contactListWrapperContainer:hover {
@@ -477,6 +492,7 @@ label#subTaskLabel {
 [type="checkbox"] + label::before {
     width: 15px;
     height: 15px;
+    padding: 3px;
     background-color: transparent;
     border: 1px solid black;
     border-radius: 6px;

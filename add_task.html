@@ -113,15 +113,29 @@
                                     </div>
                                 </div>
                                 
-                                <div>
+                                <div class="gap-8">
                                     <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
-                                    <label for="categorySelect">
-                                        <select name="choose" id="categorySelect" required>
-                                            <option value="" disabled selected>Select Category</option>
-                                            <option value="technical-task">Technical-Task</option>
-                                            <option value="user-story">User-Story</option>
-                                        </select>
-                                    </label>
+                                    <div>
+                                        <div class="selectBox" onclick="showSelectBox()">
+                                            <select name="choose" id="categorySelect" required>
+                                                <option value="" disabled selected>Select Category</option>
+                                                <option value="technical-task">Technical-Task</option>
+                                                <option value="user-story">User-Story</option>
+                                            </select>
+                                            <label for="categorySelect" class="d-none"></label>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="taskType">
+                                            <div id="chooseTaskType" class="chooseTaskType">
+                                                <div>
+                                                    <option value="technical-task">Technical-Task</option>
+                                                </div>
+                                                <div>
+                                                    <option value="user-story">User-Story</option>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div>
@@ -145,10 +159,10 @@
                             
                             <div id="createTaskButton">
                                 <button type="button" onclick="clearAddTask()" id="clear">Clear
-                                    <img src="./img/icons/cancel.svg" class="createTaskButtonImg">
+                                    <img src="./img/icons/cancel.svg" class="createTaskButtonImg" alt="cancel-cross">
                                 </button>
                                 <button id="create">Create Task
-                                    <img src="./img/icons/check-icon.png" class="createTaskButtonImg">
+                                    <img src="./img/icons/check-icon.png" class="createTaskButtonImg" alt="checkmark">
                                 </button>
                             </div>
                         </div>
