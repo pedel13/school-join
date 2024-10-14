@@ -340,3 +340,32 @@ async function renderEditContactsOverlay(contactId) {
             </div>
         </div>`;
 }
+
+/**
+ * editCreatSubtask()
+ * löst den subtask und schreibt ihn in das input um ihn zu bearbeiten
+ */
+function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
+    document.getElementById('subtasks').removeAttribute("placeholder");
+    document.getElementById('subtasks').value = newSubtask;
+    deleteCreateSubtask(subtaskCreateCount);
+}
+
+/**
+ * @function prioButtonRemoveOther()
+ * setzt die aktiven buttons zurück ausser der, der gerade aktiviert wurde
+ */
+function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
+    buttonSelected = document.getElementById(button);
+    iconSelected = document.getElementById(icon);
+    buttonOtherSelected = document.getElementById(buttonOther);
+    iconOtherSelected = document.getElementById(iconOther);
+    buttonSelected.classList.add("priorityButton");
+    buttonSelected.classList.remove("priorityButtonActive");
+    iconSelected.classList.add(icon);
+    iconSelected.classList.remove(icon + 'Activ');
+    buttonOtherSelected.classList.add("priorityButton");
+    buttonOtherSelected.classList.remove("priorityButtonActive");
+    iconOtherSelected.classList.add(iconOther);
+    iconOtherSelected.classList.remove(iconOther + 'Activ');
+}

@@ -3,6 +3,7 @@ let prio = 'medium';
 let subtaskList = [];
 let subtaskProvement = [];
 let expanded = false;
+let expandedCategory = false;
 let contacts;
 let selectContacts;
 
@@ -111,13 +112,34 @@ function showCheckboxes() {
  */
 function showSelectBox() {
     var typeSelect = document.getElementById("taskType");
-    if (!expanded) {
+    if (!expandedCategory) {
         typeSelect.style.display = "flex";
-        expanded = true;
+        expandedCategory = true;
     } else {
         typeSelect.style.display = "none";
-        expanded = false;
+        expandedCategory = false;
     }
+}
+
+document.addEventListener('click', function(event) {
+    var checkboxes = document.getElementById("taskType");
+    var selectBox = document.querySelector(".selectBoxtask");
+    if (expandedCategory && !checkboxes.contains(event.target) && !selectBox.contains(event.target)) {
+        checkboxes.style.display = "none";
+        expandedCategory = false;
+    }
+});
+
+function selectCheckBoxselecter(catecoryselected='') {
+    var typeCatecorySelect = document.getElementById("categorySelect");
+    if (catecoryselected === 'technical-task') {
+        typeCatecorySelect.value = "technical-task";
+    } else if (catecoryselected === 'user-story') {
+        typeCatecorySelect.value = "user-story";
+    } else {
+        typeCatecorySelect.value = ""; // Standardoption auswählen, wenn keine gültige Kategorie angegeben wurde
+    }
+    showSelectBox()
 }
 
 /**
@@ -160,7 +182,7 @@ async function clearAddTask() {
     document.getElementById('title').value = '';
     document.getElementById('description').value = '';
     document.getElementById('datePicker').value = '';
-    document.getElementById('categorySelect').value = '';
+    document.getElementById('categorySelect').value= '';
     document.getElementById('subtasks').value = '';
     document.getElementById('subtaskStorage').innerHTML = '';
     document.getElementById('selectedContact').innerHTML = '';
@@ -230,25 +252,6 @@ function prioButton(button, icon) {
 
 /**
  * @function prioButtonRemoveOther()
- * setzt die aktiven buttons zurück ausser der, der gerade aktiviert wurde
- */
-function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
-    buttonSelected = document.getElementById(button);
-    iconSelected = document.getElementById(icon);
-    buttonOtherSelected = document.getElementById(buttonOther);
-    iconOtherSelected = document.getElementById(iconOther);
-    buttonSelected.classList.add("priorityButton");
-    buttonSelected.classList.remove("priorityButtonActive");
-    iconSelected.classList.add(icon);
-    iconSelected.classList.remove(icon + 'Activ');
-    buttonOtherSelected.classList.add("priorityButton");
-    buttonOtherSelected.classList.remove("priorityButtonActive");
-    iconOtherSelected.classList.add(iconOther);
-    iconOtherSelected.classList.remove(iconOther + 'Activ');
-}
-
-/**
- * @function prioButtonRemoveOther()
  * setzt die aktiven buttons zurück
  */
 function prioButtonclear(button, icon) {
@@ -302,16 +305,6 @@ function prioButtonClearSelect() {
         default: break;
     }
     prioButtonSelect('medium');
-}
-
-/**
- * editCreatSubtask()
- * löst den subtask und schreibt ihn in das input um ihn zu bearbeiten
- */
-function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
-    document.getElementById('subtasks').removeAttribute("placeholder");
-    document.getElementById('subtasks').value = newSubtask;
-    deleteCreateSubtask(subtaskCreateCount);
 }
 
 /**

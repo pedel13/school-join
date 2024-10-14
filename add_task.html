@@ -116,7 +116,7 @@
                                 <div class="gap-8">
                                     <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
                                     <div>
-                                        <div class="selectBox" onclick="showSelectBox()">
+                                        <div class="selectBox selectBoxtask" onclick="showSelectBox()">
                                             <select name="choose" id="categorySelect" required>
                                                 <option value="" disabled selected>Select Category</option>
                                                 <option value="technical-task">Technical-Task</option>
@@ -127,10 +127,10 @@
                                         </div>
                                         <div id="taskType">
                                             <div id="chooseTaskType" class="chooseTaskType">
-                                                <div>
+                                                <div onclick="selectCheckBoxselecter('technical-task')">
                                                     <option value="technical-task">Technical-Task</option>
                                                 </div>
-                                                <div>
+                                                <div onclick="selectCheckBoxselecter('user-story')">
                                                     <option value="user-story">User-Story</option>
                                                 </div>
                                             </div>
