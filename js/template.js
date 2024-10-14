@@ -228,22 +228,22 @@ function renderTaskEditor(taskId, task) {
                     <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
                         <div>
                             <div>
-                                <p class="fSize-20  editTaskWrapper">Title<span class="redStar">*</span></p>
+                                <p class="fSize-20 editTaskWrapper taskEditTitle">Title<span class="redStar">*</span></p>
                                 <input type="text" id="title" value="${task.title}" required/>
                             </div>    
                             <div>&nbsp;</div>
                             <div>
-                                <p class="fSize-20  editTaskWrapper">Description</p>
+                                <p class="fSize-20 editTaskWrapper">Description</p>
                                 <textarea rows="5" id="description" >${task.description}</textarea>
                             </div>                            
                             <div>&nbsp;</div>                            
                             <div>
-                            <p class="fSize-20  editTaskWrapper">Due Date<span class="redStar">*</span></p>
+                            <p class="fSize-20 editTaskWrapper">Due Date<span class="redStar">*</span></p>
                             <input type="date" id="datePicker" value="${task.datePicker}" required>
                             </div>                           
                             <div>&nbsp;</div>     
                             <div>
-                                <p class="fSize-20  editTaskWrapper">Prio</p>
+                                <p class="fSize-20 editTaskWrapper">Prio</p>
                                 <div id="priority" class="priority d-flex">
                                     <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
                                     Urgent
@@ -281,7 +281,7 @@ function renderTaskEditor(taskId, task) {
                             </div>
                             <div>&nbsp;</div>  
                             <div>
-                                <p class="fSize-20  editTaskWrapper">Subtasks</p>
+                                <p class="fSize-20 editTaskWrapper">Subtasks</p>
                                 <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                     <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                                     <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
@@ -324,11 +324,11 @@ async function renderEditContactsOverlay(contactId) {
         </div>`;
     document.getElementById("createNewContact").innerHTML = /*html*/ `
         Save
-        <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`;
+        <img src="../img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
-        <img src="./img/cancel-white.svg" alt="join-logo" class="white-cancel">
+        <img src="../img/cancel-white.svg" alt="join-logo" class="white-cancel">
         <h1>Edit contact</h1>
-        <img src="./img/icons/blue-borderLine.png" alt="blue-border">`;
+        <img src="../img/icons/blue-borderLine.png" alt="blue-border">`;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
         <div class="contactOverlayLeft">
             <div class="close-white">

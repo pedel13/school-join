@@ -689,7 +689,11 @@
     }
 
     .addTaskWrapper {
-        margin-top: 60px!important;
+        margin: 0 !important;
+    }
+
+    .taskEditTitle {
+        margin-top: 24px !important;
     }
 
     .loginHeader {
