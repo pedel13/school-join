@@ -10,7 +10,6 @@ let selectContacts;
  * @function loadUsableContacts()
  * lädt alle verfügbaren kontakte und lässt sie der Reihe nach in den selector rendern
  */
-
 async function loadUsableContacts() {
     contacts = await loadTasks("/contacts");
     selectContacts = [];
@@ -196,10 +195,8 @@ async function setTaskDataInDatabase(data) {
 
 /**
  * @function openAddTaskOverlay()
- * entfernt display: none von dem addTaskOverlay und setzt einen timer, um das schliessen zu verhindern, wenn man nicht aufs overlay klickt
- * bis der timer abgelaufen ist
+ * entfernt display: none von dem addTaskOverlay und setzt einen timer, um das schliessen zu verhindern, wenn man nicht aufs overlay klickt bis der timer abgelaufen ist
  */
-
 async function openAddTaskOverlay(position = '') {
     let overlay = document.getElementById('addTaskOverlay');
     overlay.classList.remove('d-none');

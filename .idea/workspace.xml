@@ -12,7 +12,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/addTask.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/addTask.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/mobile.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/mobile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/add_task.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/add_task.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +183,7 @@
       <workItem from="1728210234749" duration="2334000" />
       <workItem from="1728214434020" duration="21910000" />
       <workItem from="1728458062704" duration="519000" />
-      <workItem from="1728458596674" duration="37650000" />
+      <workItem from="1728458596674" duration="40214000" />
     </task>
     <task id="LOCAL-00001" summary="git conflict first big one">
       <option name="closed" value="true" />

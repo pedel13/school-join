@@ -37,6 +37,7 @@ textarea,
     padding: 12px 5px 12px 8px !important;
     border: 1px solid lightgray !important;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .addTaskEnterSubtask {
@@ -352,6 +353,7 @@ select {
 .outerTaskOverlayWrapper > * {
     width: 100%;
 }
+
 /* TASK-OVERLAY SLIDING dataPickerForTodayTOP */
 .slide-top {
     position: absolute;
@@ -396,9 +398,38 @@ select {
     width: 32px;
 }
 
+/*##### Issuetype box #####*/
+#taskType {
+    overflow: hidden !important;
+    display: none;
+}
+
+.chooseTaskType {
+    width: 100%;
+}
+
+.chooseTaskType > div {
+    height: 60px;
+    padding: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#taskType .chooseTaskType div {
+    width: 100%;
+}
+
+#taskType .chooseTaskType div:hover {
+    background-color: #1e90ff;
+    border-radius: 10px;
+    width: 100%;
+}
+
 /*##### checkbox contacts #####*/
 .selectBox {
     position: relative;
+    cursor: pointer;
 }
 
 .selectBox select {
@@ -412,6 +443,7 @@ select {
     right: 0;
     top: 0;
     bottom: 0;
+
 }
 
 label#subTaskLabel:focus {
@@ -433,20 +465,6 @@ label#subTaskLabel {
     padding: 8px;
     cursor: pointer;
     overflow-y: scroll;
-}
-
-#taskType {
-    overflow: hidden;
-    /*max-width: 300px;
-    background-color: #ffffff;
-    padding: 20px 12px 12px 12px;
-    border-radius: 10px;
-    margin-top: -10px;
-    z-index: -10 !important;*/
-}
-
-#taskType div.contactListWrapperContainer:hover {
-    background-color: #1e90ff;
 }
 
 #checkboxes div.contactListWrapperContainer:hover {

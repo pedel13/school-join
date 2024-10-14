@@ -617,6 +617,14 @@
     }
 }
 
+/*##### iPhone 12 #####*/
+@media (max-height: 844px) {
+    /*##### Edit Task on Board #####*/
+    .scrollbarTaskOverlayWrapper {
+        width: 75vw !important;
+    }
+}
+
 /*##### iPhone SE #####*/
 @media (max-height: 667px) {
     /*##### Contacts #####*/

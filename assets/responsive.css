@@ -489,6 +489,10 @@
         max-width: 352px;
     }
 
+    /*##### Edit Task on Board #####*/
+    .scrollbarTaskOverlayWrapper {
+        width: 85vw !important;
+    }
 }
 
 @media (max-width: 850px) {
