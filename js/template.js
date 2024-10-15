@@ -124,14 +124,30 @@ function renderAddOverlay(position) {
                                     </button>
                                 </div>
                             </div>
-                            <div>
-                                <p class="fSize-16">Category<span class="redStar">*</span></p>
-                                <select name="choose" id="categorySelect" required>
-                                    <option value="" disabled selected>Select Category</option>
-                                    <option value="technical-task">Technical-Task</option>
-                                    <option value="user-story">User-Story</option>
-                                </select>
-                            </div>
+                            <div class="gap-8">
+                                    <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
+                                    <div>
+                                        <div class="selectBox selectBoxtask" onclick="showSelectBox()">
+                                            <select name="choose" id="categorySelect" required>
+                                                <option value="" disabled selected>Select Category</option>
+                                                <option value="technical-task">Technical-Task</option>
+                                                <option value="user-story">User-Story</option>
+                                            </select>
+                                            <label for="categorySelect" class="d-none"></label>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="taskType">
+                                            <div id="chooseTaskType" class="chooseTaskType">
+                                                <div id="technical-task" onclick="selectCheckBoxSelector('technical-task')">
+                                                    <option value="technical-task">Technical-Task</option>
+                                                </div>
+                                                <div id="user-story" onclick="selectCheckBoxSelector('user-story')">
+                                                    <option value="user-story">User-Story</option>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             <div>
                                 <p class="fSize-16">Subtasks</p>
                                 <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
@@ -166,7 +182,8 @@ function renderContactNameInOverlay(activeContact, contactId) {
                 ${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}
             </p>
             <p>${activeContact.name}</p>
-        </li>`;
+        </li>
+    `;
 }
 /**
  * Renders the newly added subtask inside the ticket
@@ -175,9 +192,10 @@ function renderContactNameInOverlay(activeContact, contactId) {
 function renderSubTasks(subtask, taskId, i, checkBox = '') {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
         <div class="checkBox">
-            <input type="checkbox" id="ceckBox_${i}" onclick="changeSubtaskProvement(${i}, '${taskId}')" ${checkBox}>
+            <input type="checkbox" id="checkBox_${i}" onclick="changeSubtaskProvement(${i}, '${taskId}')" ${checkBox}>
             <span>${subtask}</span>
-        </div>`;
+        </div>
+    `;
 }
 function renderTaskCardBig(element, categoryText, taskId) {
     document.getElementById('taskOverlay').innerHTML = `
@@ -188,7 +206,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
                 </div>
                 <img src="./img/icons/cancel.svg" onclick="closeTaskOverlay()" alt="cancel-logo">
             </div>
-            <div class="scrollbarTaskOverlayWrapper scrollbox">
+            <div class="w-100">
                 <div  class="taskOverlayTitle">
                     ${element.title}
                 </div>
@@ -225,7 +243,7 @@ function renderTaskEditor(taskId, task) {
                 <img src="./img/icons/cancel.svg" onclick="closeTaskOverlay()" alt="cancel-logo">
             </div>
                 <form class="main" onsubmit="changeTask(event,'${taskId}')">
-                    <div class="addTaskWrapper scrollbarTaskOverlayWrapper scrollbox">
+                    <div class="addTaskWrapper">
                         <div>
                             <div>
                                 <p class="fSize-20 editTaskWrapper taskEditTitle">Title<span class="redStar">*</span></p>
@@ -299,7 +317,8 @@ function renderTaskEditor(taskId, task) {
                     </div>
                 </form>
             </div>
-        </div>`;
+        </div>
+    `;
 }
 /**
  * Rendering the contact details for editing

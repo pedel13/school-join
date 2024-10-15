@@ -4,14 +4,18 @@
  */
 function renderActiveContacts(activeContact, contactId, taskId) {
     document.getElementById("selectContent"+taskId).innerHTML += `
-    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
+        <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${activeContact.contactColor} -m-8" id="${contactId}">${activeContact.nameCharts[0]}${activeContact.nameCharts[1]}</p>
     `
 }
 
+/**
+ * @function renderActiveContactsRest()
+ * rendert den zähler der zusätzlichen Assignees
+ */
 function renderActiveContactsRest(i,taskId){
     i = i-4;
     document.getElementById("selectContent"+taskId).innerHTML += `
-    <p class="rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-grey -m-8" id="${i}">+${i}</p>
+        <p class="supCounter rounded-100 board-user-icon d-flex align-items-center justify-content-center bg-grey -m-8" id="${i}">+${i}</p>
     `
 }
 

@@ -84,17 +84,13 @@ async function changeTask(event,taskId="") {
  */
 function reduceDroppedElement(elementPosition) {
     switch (elementPosition) {
-        case "board-task-on-to-do":
-            countOnToDo--;
+        case "board-task-on-to-do": countOnToDo--;
             break;
-        case "board-task-on-in-progress":
-            countOnInProgress--;
+        case "board-task-on-in-progress": countOnInProgress--;
             break;
-        case "board-task-on-await-feedback":
-            countOnAwaitFeedback--;
+        case "board-task-on-await-feedback": countOnAwaitFeedback--;
             break;
-        case "board-task-on-done":
-            countOnDone--;
+        case "board-task-on-done": countOnDone--;
             break;
     }
 }
@@ -230,28 +226,20 @@ function renderFindeTask(element, taskId, contacts) {
 function noTasksInProgress() {
     if (countOnToDo != 0) {
         addNoTaskInProgress("no-tasks-to-do");
-    }else {
-        removeNoTaskInProgress("no-tasks-to-do");
-    }
+    } else { removeNoTaskInProgress("no-tasks-to-do"); }
     if (countOnInProgress != 0) {
         addNoTaskInProgress("no-tasks-in-progress");
-    }else {
-        removeNoTaskInProgress("no-tasks-in-progress");
-    }
+    } else { removeNoTaskInProgress("no-tasks-in-progress"); }
     if (countOnAwaitFeedback != 0) {
         addNoTaskInProgress("no-tasks-await-feedback");
-    }else {
-        removeNoTaskInProgress("no-tasks-await-feedback");
-    }
+    } else { removeNoTaskInProgress("no-tasks-await-feedback"); }
     if (countOnDone != 0) {
         addNoTaskInProgress("no-tasks-Done");
-    }else {
-        removeNoTaskInProgress("no-tasks-Done");
-    }
+    } else { removeNoTaskInProgress("no-tasks-Done"); }
 }
 /**
  * @function addNoTaskInProgress()
- * läst das no task feld in der entsprechenden Spalte erscheinen oder verschwinden
+ * lässt das no task feld in der entsprechenden Spalte erscheinen oder verschwinden
  */
 function addNoTaskInProgress(taskInProgress = "") {
     let element = document.getElementById(taskInProgress);

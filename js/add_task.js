@@ -131,18 +131,18 @@ document.addEventListener('click', function(event) {
     }
 });
 
-function selectCheckBoxselecter(catecoryselected='') {
-    var typeCatecorySelect = document.getElementById("categorySelect");
-    if (catecoryselected === 'technical-task') {
-        typeCatecorySelect.value = "technical-task";
+function selectCheckBoxSelector(categorySelected='') {
+    var typeCategorySelect = document.getElementById("categorySelect");
+    if (categorySelected === 'technical-task') {
+        typeCategorySelect.value = "technical-task";
         document.getElementById("technical-task").classList.add("addedContacts");
         document.getElementById("user-story").classList.remove("addedContacts");
-    } else if (catecoryselected === 'user-story') {
-        typeCatecorySelect.value = "user-story";
+    } else if (categorySelected === 'user-story') {
+        typeCategorySelect.value = "user-story";
         document.getElementById("technical-task").classList.remove("addedContacts");
         document.getElementById("user-story").classList.add("addedContacts");
     } else {
-        typeCatecorySelect.value = "";
+        typeCategorySelect.value = "";
     }
     showSelectBox()
 }
@@ -189,7 +189,7 @@ async function clearAddTask() {
     document.getElementById('datePicker').value = '';
     document.getElementById('categorySelect').value= '';
     document.getElementById("technical-task").classList.remove("addedContacts");
-        document.getElementById("user-story").classList.remove("addedContacts");
+    document.getElementById("user-story").classList.remove("addedContacts");
     document.getElementById('subtasks').value = '';
     document.getElementById('subtaskStorage').innerHTML = '';
     document.getElementById('selectedContact').innerHTML = '';
