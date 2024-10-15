@@ -119,10 +119,10 @@ function renderContactSelector(element, initials, name, contactColor) {
 }
 
 /**
- * @function renderCrateSubtask()
+ * @function renderCreateSubtask()
  * rendert den existierenden subtask hinzu
  */
-function renderCrateSubtask(newSubtask, subtaskCreateCount) {
+function renderCreateSubtask(newSubtask, subtaskCreateCount) {
     document.getElementById('subtaskStorage').innerHTML += `
         <li class="addTaskSubtaskShow" id="subtaskCreate_${subtaskCreateCount}" class="justify-content-between">
             • ${newSubtask}

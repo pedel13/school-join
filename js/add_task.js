@@ -352,7 +352,7 @@ function renderAllCreateSubtaskNew() {
     } else {
         let i = 0;
         for (let subtask in subtaskList) {
-            renderCrateSubtask(subtaskList[i], i);
+            renderCreateSubtask(subtaskList[i], i);
             i++;
         }
     }
@@ -372,7 +372,7 @@ function renderAllCreateSubtasks(taskId) {
         for (let subtask in element.subtasks) {
             subtaskList.push(element.subtasks[i]);
             subtaskProvement.push(element.subtask[i]);
-            renderCrateSubtask(element.subtasks[i], i);
+            renderCreateSubtask(element.subtasks[i], i);
             i++;
         }
     }
@@ -393,6 +393,6 @@ function addSubtaskAddArray() {
         subtaskProvement.push("false");
         subtasks.value = '';
         let subtaskCreateCount = subtaskList.length - 1;
-        renderCrateSubtask(newSubtask, subtaskCreateCount);
+        renderCreateSubtask(newSubtask, subtaskCreateCount);
     }
 }
