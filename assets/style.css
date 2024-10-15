@@ -332,6 +332,14 @@ header > div > h1 {
     border-radius: 2px !important;
 }
 
+.border-black {
+    border: 2px solid #000000;
+}
+
+.checkedinput {
+    background-image: url("../img/icons/checkmark.svg");
+}
+
 #addTask {
     margin-right: 80px;
 }

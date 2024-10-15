@@ -191,9 +191,9 @@ function renderContactNameInOverlay(activeContact, contactId) {
  */
 function renderSubTasks(subtask, taskId, i, checkBox = '') {
     document.getElementById('taskOverlayCheckbox').innerHTML += `
-        <div class="checkBox">
-            <input type="checkbox" id="checkBox_${i}" onclick="changeSubtaskProvement(${i}, '${taskId}')" ${checkBox}>
-            <span>${subtask}</span>
+        <div class="checkBox d-flex justify-content-between" onclick="changeSubtaskProvement(${i}, '${taskId}')">
+        <span>${subtask}</span>
+        <input type="checkbox" class="border-black d-flex justify-content-between contactLabels ${checkBox}" id="checkBox_${i}">
         </div>
     `;
 }

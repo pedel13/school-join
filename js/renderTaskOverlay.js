@@ -44,6 +44,8 @@ function takeElementFromTask(taskid) {
  * @function subtaskLoop
  */
 function subtaskLoop(taskId) {
+    document.getElementById('taskOverlayCheckbox').innerHTML = '';
+    console.log("test");
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtasks = element.subtasks;
@@ -53,7 +55,7 @@ function subtaskLoop(taskId) {
         if (subtaskCheckbox[i] == 'false') {
             renderSubTasks(subtask, taskId, i, '');
         } else {
-            renderSubTasks(subtask, taskId, i, 'checked');
+            renderSubTasks(subtask, taskId, i, 'checkedinput');
         }
         i++;
     });
@@ -68,8 +70,11 @@ async function changeSubtaskProvement(i, taskId = '') {
         await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
     } else {
         subtaskCheckbox[i] = 'false';
-        await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);
-    }
+        await updateSubtaskProvement(subtaskCheckbox, `${taskId}/subtask`);}
+    element.subtask = subtaskCheckbox;
+    tasks[taskId] = element;
+    localStorage.tasks = JSON.stringify(tasks);
+    subtaskLoop(taskId);
 }
 
 async function updateSubtaskProvement(data = {}, path = '') {
