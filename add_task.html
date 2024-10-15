@@ -69,7 +69,7 @@
                                 <div class="gap-8">
                                     <p class="fSize-16 mb-8">Assigned to</p>
                                     <div>
-                                        <div class="selectBox" onclick="showCheckboxes()">
+                                        <div class="selectBox" id="dropDownArrowContacts" onclick="showCheckboxes()">
                                             <select id="selectInputAssignee">
                                                 <option value="" disabled selected>Select contacts to assign</option>
                                             </select>
@@ -121,7 +121,8 @@
                                 <div class="gap-8">
                                     <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
                                     <div>
-                                        <div class="selectBox selectBoxtask" onclick="showSelectBox()">
+                                        <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
+                                            <!--img src="./img/icons/arrow_drop_down.svg" alt="arrow-down"-->
                                             <select name="choose" id="categorySelect" required>
                                                 <option value="" disabled selected>Select Category</option>
                                                 <option value="technical-task">Technical-Task</option>

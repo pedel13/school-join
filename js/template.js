@@ -84,7 +84,7 @@ function renderAddOverlay(position) {
                             <div class="gap-8">
                                 <p class="fSize-16 mb-8">Assigned to</p>
                                 <div>
-                                    <div class="selectBox" onclick="showCheckboxes()">
+                                    <div class="selectBox" id="dropDownArrowContacts" onclick="showCheckboxes()">
                                         <select id="selectInputAssignee">
                                             <option value="" disabled selected>Select contacts to assign</option>
                                         </select>
@@ -127,7 +127,7 @@ function renderAddOverlay(position) {
                             <div class="gap-8">
                                     <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
                                     <div>
-                                        <div class="selectBox selectBoxtask" onclick="showSelectBox()">
+                                        <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
                                             <select name="choose" id="categorySelect" required>
                                                 <option value="" disabled selected>Select Category</option>
                                                 <option value="technical-task">Technical-Task</option>
@@ -156,7 +156,7 @@ function renderAddOverlay(position) {
                                             <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <lu id="subtaskStorage"></lu>
+                                <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
                     </div>
@@ -281,7 +281,7 @@ function renderTaskEditor(taskId, task) {
                             <div class="gap-8">
                                 <p class="fSize-16 mb-8">Assigned to</p>
                                 <div>
-                                    <div class="selectBox" onclick="showCheckboxes()">
+                                    <div class="selectBox" id="dropDownArrowContacts" onclick="showCheckboxes()">
                                         <select id="selectInputAssignee">
                                             <option value="" disabled selected>Select contacts to assign</option>
                                         </select>

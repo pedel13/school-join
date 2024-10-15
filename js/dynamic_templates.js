@@ -86,14 +86,14 @@ function dropremoveHighlightDropZone(zoneId) {
 function renderSelectedContact(newSelectedContact, contact) {
     document.getElementById("selectedContact").innerHTML += `
     <p
-    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center ${newSelectedContact.contactColor}" id="select${contact}">
+    class="supCounter rounded-100 board-user-icon d-flex align-items-center justify-content-center ${newSelectedContact.contactColor}" id="select${contact}">
     ${newSelectedContact.nameCharts[0]}${newSelectedContact.nameCharts[1]}</p> `
 }
 
 function renderSelectedContactRest(i) {
     document.getElementById("selectedContact").innerHTML += `
     <p
-    class="rounded-100 board-user-icon d-flex align-items-center justify-content-center" id="select${i}">+
+    class="supCounter rounded-100 board-user-icon d-flex align-items-center justify-content-center" id="select${i}">+
     ${i}</p> `
 }
 
