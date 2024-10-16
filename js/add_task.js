@@ -383,16 +383,16 @@ function renderAllCreateSubtasks(taskId) {
  * fügt die erstellten subtask dem globalen array hinzu
  */
 function addSubtaskAddArray() {
+    let noSubtask = document.getElementById('massageBoxSubtask');
     let newSubtask = document.getElementById('subtasks').value;
     if (newSubtask) {  
         if (subtaskList.length < 1) {
             subtaskList = [];
-            subtaskProvement = [];
-        }
+            subtaskProvement = [];}
         subtaskList.push(newSubtask);
         subtaskProvement.push("false");
         subtasks.value = '';
         let subtaskCreateCount = subtaskList.length - 1;
         renderCreateSubtask(newSubtask, subtaskCreateCount);
-    }
+    }else{noSubtask.classList.remove('d-none');}
 }
