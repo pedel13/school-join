@@ -82,7 +82,6 @@ document.addEventListener('input', function(event) {
         let noSubtask = document.getElementById('massageBoxSubtask');
         if (!noSubtask.classList.contains('d-none')) {
             noSubtask.classList.add('d-none');
-            console.log("test");
         }
     }
 });

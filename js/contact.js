@@ -116,6 +116,10 @@ async function setContactToFirebase(name, email, phone, nameCharts, contactColor
 function clearContactRendering() {
     for (let i = 0; i < alphabet.length; i++) {
         document.getElementById(`contactListContent-${alphabet[i]}`).innerHTML ='';
+        let alphabetVerzeichniss = document.getElementById(`contactList-${alphabet[i]}`);
+        if (!alphabetVerzeichniss.classList.contains('d-none')) {
+            alphabetVerzeichniss.classList.add('d-none');
+        }
     }
 }
 
@@ -214,6 +218,7 @@ function clearNewContactForm() {
     document.getElementById('newContactName').value = '';
     document.getElementById('newContactMail').value = '';
     document.getElementById('newContactPhone').value = '';
+    renderAddContactsOverlay();
 }
 
 /**

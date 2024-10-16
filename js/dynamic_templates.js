@@ -237,3 +237,67 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
         </div>
     `;
 }
+
+/**
+ * Rendering the contact details for editing
+ * @function renderContacts
+ */
+async function renderAddContactsOverlay() {
+    document.getElementById("contactOverlay").innerHTML =  /*html*/ ` 
+        <div id="contactOverlayLeft" class="contactOverlayLeft">
+            <div class="close-white">
+                <img src="./img/icons/cancel-white.svg" alt="cancel" class="close-img white-cancel" onclick="closeContactOverlay(event)">
+            </div>
+            
+            <div class="innerContactOverlayLeftContent">
+                <img src="./img/join-logo-contacts.png" alt="join-logo" class="contactJoinLogo">
+                <h1>Add contact</h1>
+                <p>Tasks are better with a team!</p>
+                <img src="./img/icons/blue-borderLine.png" alt="blue-border">
+            </div>
+        </div>
+        
+        <div id="contactOverlayRight" class="contactOverlayRight">
+            <div class="close">
+                <img src="./img/icons/cancel.svg" alt="cancel" class="close-img" onclick="closeContactOverlay(event)">
+            </div>
+            
+            <div class="formWrapper">
+                <form onsubmit="addContact(event)" id="createNewContactForm">
+                    <div id="addContactFormAvatar" class="addContactFormAvatar">
+                        <div class="avatar" id="avatar">
+                            <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
+                        </div>
+                        <div class="addContactForm">
+                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
+                            <label for="newContactName"></label>
+                            
+                            <input type="email" id="newContactMail" class="icon-letter" pattern=".*@.*\.\w{2,}" title="Please enter a valid e-mail address" placeholder="Mail" required>   
+                            <label for="newContactMail"></label>
+                                                                     
+                            <input type="tel" id="newContactPhone" class="icon-phone" pattern="[0-9]+" placeholder="Phone" required>
+                            <label for="newContactPhone"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="createContact">
+                        <div class="spaceDivContacts">
+                            &nbsp;
+                        </div>
+                        <div class="createContactButton">
+                            <button id="clearNewContact" class="clearNewContact" type="button" onclick="clearNewContactForm()">
+                                Cancel
+                                <img src="./img/icons/cancel.svg"  class="createTaskButtonImg" alt="cancel_logo">
+                            </button>
+                            
+                            <button id="createNewContact" class="createNewContact">
+                                Create Contact
+                                <img src="./img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>       
+    `;
+}
