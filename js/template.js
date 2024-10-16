@@ -340,14 +340,17 @@ async function renderEditContactsOverlay(contactId) {
             <div class="credentialsCircle ${color}" id="credentialsCircle">
                 ${nameCharts[0]}${nameCharts[1]}
             </div>
-        </div>`;
+        </div>
+    `;
     document.getElementById("createNewContact").innerHTML = /*html*/ `
         Save
-        <img src="../img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">`;
+        <img src="../img/icons/check-icon.png"  class="createTaskButtonImg" alt="check_icon">
+    `;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
         <img src="../img/cancel-white.svg" alt="join-logo" class="white-cancel">
-        <h1>Edit contact</h1>
-        <img src="../img/icons/blue-borderLine.png" alt="blue-border">`;
+        <h1>Add contact</h1>
+        <img src="../img/icons/blue-borderLine.png" alt="blue-border">
+    `;
     document.getElementById("contactOverlayLeft").innerHTML = /*html*/ `
         <div class="contactOverlayLeft">
             <div class="close-white">
@@ -357,7 +360,8 @@ async function renderEditContactsOverlay(contactId) {
                 <h1>Edit contact</h1>
                 <img src="./img/icons/blue-borderLine.png" alt="blue-border">
             </div>
-        </div>`;
+        </div>
+    `;
 }
 
 /**

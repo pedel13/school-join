@@ -45,7 +45,6 @@ function takeElementFromTask(taskid) {
  */
 function subtaskLoop(taskId) {
     document.getElementById('taskOverlayCheckbox').innerHTML = '';
-    console.log("test");
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
     let subtasks = element.subtasks;

@@ -21,8 +21,29 @@
         overflow-y: scroll !important;
     }
 
+    .contactOverlayWrapper {
+        width: 100% !important;
+    }
+
     .taskOverlayTitle {
         font-size: 32px !important;
+    }
+
+    /*##### board.html #####*/
+    #main > div.board-task-columns:nth-of-type(1) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(2) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(3) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(4) { width: 65% !important; }
+
+    p#categoryTitle {
+        font-size: 12px;
+        height: 32px !important;
+        padding: 6px;
+    }
+
+    .avatarAndName > p:nth-of-type(2) {
+        margin-left: 6px !important;
+        font-size: 14px !important;
     }
 }
 
@@ -33,20 +54,30 @@
         overflow-y: scroll;
     }
 
-    .taskOverlayTitle {
-        font-size: 32px !important;
+    /*##### board.html #####*/
+    #main > div.board-task-columns:nth-of-type(1) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(2) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(3) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(4) { width: 65% !important; }
+
+    p#categoryTitle {
+        font-size: 12px;
+        height: 32px !important;
+        padding: 6px;
+    }
+
+    .avatarAndName > p:nth-of-type(2) {
+        margin-left: 6px !important;
+        font-size: 14px !important;
     }
 }
 
 /*##### iPhone SE #####*/
 @media (max-height: 667px) {
     /*##### Contacts #####*/
-    .contactOverlayWrapper {
-        width: 95% !important;
-    }
-
     .close-white {
-        padding: -130px 12px 0 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
 
     input#newContactName,
@@ -64,12 +95,16 @@
     }
 
     #contactOverlayLeft {
-        height: 240px !important;
-        padding-left: 0 !important;
+        height: 260px !important;
+        padding: 0 0 24px 0 !important;
     }
 
     #contactOverlayLeft > img {
         margin-bottom: 50px !important;
+    }
+
+    .contactOverlayRight {
+        height: 390px !important;
     }
 
     .createContactButton > button {
@@ -158,8 +193,6 @@
 }
 
 /*##### Some outsourced responsive declarations #####*/
-
-
 @media (max-width: 1050px) {
     /*##### index.html (dashboard) #####*/
     h1.project-title {

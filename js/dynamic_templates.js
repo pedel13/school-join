@@ -112,7 +112,7 @@ function renderContactSelector(element, initials, name, contactColor) {
             </div>
             <div class="chooseContact">
                 <input type="checkbox" id="input${element}" class="addTaskContactInput"/>
-                <label for="${element}" class="d-flex justify-content-between contactLabels" id="contactLabels${element}"></label>
+                <label for="input${element}" class="d-flex justify-content-between contactLabels" id="contactLabels${element}"></label>
             </div>
         </div>
     `

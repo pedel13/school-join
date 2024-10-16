@@ -287,10 +287,10 @@
                                             <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
                                             <label for="newContactName"></label>
                                             
-                                            <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail" required>
+                                            <input type="email" id="newContactMail" class="icon-letter" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}" placeholder="Mail" required>
                                             <label for="newContactMail"></label>
                                             
-                                            <input type="tel" id="newContactPhone" class="icon-phone" pattern="[0-9]{11}" placeholder="Phone" required>
+                                            <input type="tel" id="newContactPhone" class="icon-phone" pattern="[0-9]+" placeholder="Phone" required>
                                             <label for="newContactPhone"></label>
                                         </div>
                                     </div>

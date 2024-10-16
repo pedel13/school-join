@@ -6,6 +6,10 @@ html {
     scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+    display: none !important;
+}
+
 body {
     width: 100%;
     margin: 0;
