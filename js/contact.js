@@ -26,21 +26,29 @@ function setColor() {
     let randomNumber = Math.floor(Math.random() * 7);
     let color = '';
     switch (randomNumber) {
-        case 0: color = "bg-orange";
+        case 0:
+            color = "bg-orange";
             break;
-        case 1: color = "bg-purple";
+        case 1:
+            color = "bg-purple";
             break;
-        case 2: color = "bg-blue";
+        case 2:
+            color = "bg-blue";
             break;
-        case 3: color = "bg-pink";
+        case 3:
+            color = "bg-pink";
             break;
-        case 4: color = "bg-yellow";
+        case 4:
+            color = "bg-yellow";
             break;
-        case 5: color = "bg-green";
+        case 5:
+            color = "bg-green";
             break;
-        case 6: color = "bg-dark-blue";
+        case 6:
+            color = "bg-dark-blue";
             break;
-        case 7: color = "bg-red";
+        case 7:
+            color = "bg-red";
             break;
         default:
             break;
@@ -305,47 +313,6 @@ async function deleteContact(contactToDelete) {
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }
-
-function validateAdd(name, email, phone) {
-    let nameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    let phoneRegex = /^[0-9]+$/;
-    if (!name || !email || !phone) {
-        failAllAdd();
-        return false;
-    }
-    if (!nameRegex.test(name)) {
-        failEmailAdd();
-        return false;
-    }
-    if (!emailRegex.test(email)) {
-        failEmailAdd();
-        return false;
-    }
-    if (!phoneRegex.test(phone)) {
-        failPhoneAdd();
-        return false;
-    }
-    return true;
-}
-
-function failEmailAdd() {
-    document.getElementById('newContactMail').classList.add('inputFail');
-    document.getElementById('failEmailAdd').classList.remove('d-none');
-}
-
-function failPhoneAdd() {
-    document.getElementById('newContactPhone').classList.add('inputFail');
-    document.getElementById('failPhoneAdd').classList.remove('d-none');
-}
-
-function failAllAdd() {
-    document.getElementById('newContactName').classList.add('inputFail');
-    document.getElementById('newContactMail').classList.add('inputFail');
-    document.getElementById('newContactPhone').classList.add('inputFail');
-    document.getElementById('failAll').classList.remove('d-none');
-}
-
 function validateEdit() {
     let name = document.getElementById('newContactName').value;
     let email = document.getElementById('newContactMail').value;
@@ -365,21 +332,4 @@ function validateEdit() {
         return false;
     }
     return true;
-}
-
-function failAllEdit() {
-    document.getElementById('name2').classList.add('failinput');
-    document.getElementById('email2').classList.add('failinput');
-    document.getElementById('phone2').classList.add('failinput');
-    document.getElementById('failAllEdit').classList.remove('d_none');
-}
-
-function failEmailEdit() {
-    document.getElementById('newContactMail').classList.add('inputFail');
-    document.getElementById('failEmailAdd').classList.remove('d-none');
-}
-
-function failPhoneEdit() {
-    document.getElementById('newContactPhone').classList.add('inputFail');
-    document.getElementById('failPhoneAdd').classList.remove('d-none');
 }

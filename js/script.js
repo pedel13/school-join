@@ -31,20 +31,13 @@ document.addEventListener('keydown', evt => {
     if (evt.key === 'Escape') {
         let closeOpenAddTaskOverlay = document.getElementById('addTaskOverlay');
         if (closeOpenAddTaskOverlay && !closeOpenAddTaskOverlay.classList.contains("d-none")) {
-            closeAddTaskOverlay();
-        }
+            closeAddTaskOverlay();}
         let closeOpenTaskOverlay = document.getElementById('taskOverlay');
         if (closeOpenTaskOverlay && !closeOpenTaskOverlay.classList.contains("d-none")) {
-            closeTaskOverlay();
-        }
+            closeTaskOverlay();}
         let closeOpenContactOverlay = document.getElementById('contactOverlayWrapper');
         if (closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
-            closeContactOverlay();
-        }
-    }
-    
-    if (evt.key === 'Enter') {
-        addSubtaskAddArray();
+            closeContactOverlay();}
     }
 });
 

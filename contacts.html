@@ -284,34 +284,12 @@
                                             <img src="./img/icons/contactAvatar.png" alt="avatar" class="avatar-img">
                                         </div>
                                         <div class="addContactForm">
-                                            <input type="text" id="newContactName" class="icon-person" placeholder="Name">
+                                            <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
                                             <label for="newContactName"></label>
-                                            <div id="failNameAdd" class="fail d-none">
-                                                <span>
-                                                    Bitte gib einen Vor- und Nachnamen ein.
-                                                </span>
-                                            </div>
                                             
-                                            <input type="email" id="newContactMail" class="icon-letter" placeholder="Mail">
-                                            <label for="newContactMail"></label>
-                                            <div id="failEmailAdd" class="fail d-none">
-                                                <span>
-                                                    Bitte gib eine gültige E-Mail-Adresse ein.
-                                                </span>
-                                            </div>
-                                            
-                                            <input type="tel" id="newContactPhone" class="icon-phone" placeholder="Phone">
+                                            <input type="email" id="newContactMail" class="icon-letter" pattern=".*@.*\.\w{2,}" title="Please enter a valid e-mail address" placeholder="Mail" required>                                            
+                                            <input type="tel" id="newContactPhone" class="icon-phone" pattern="[0-9]+" placeholder="Phone" required>
                                             <label for="newContactPhone"></label>
-                                            <div id="failPhoneAdd" class="fail d-none">
-                                                <span>
-                                                    Bitte gib eine gültige Telefonnummer ein.
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div id="failAll" class="fail d-none">
-                                            <span>
-                                                Bitte gib einen Vornamen, Nachnamen, eine E-Mail-Adresse und eine Telefonnummer ein!
-                                            </span>
                                         </div>
                                     </div>
                                     
