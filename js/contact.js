@@ -16,6 +16,7 @@ async function addContact(event) {
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
     closeContactOverlay();
     await fetchContacts();
+    validateAdd();
 }
 
 /**
@@ -313,6 +314,42 @@ async function deleteContact(contactToDelete) {
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }
+
+function validateAdd(name, email, phone) {
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    let phoneRegex = /^[0-9]+$/;
+    if (!name || !email || !phone) {
+        failAllAdd();
+        return false;
+    }
+    if (!emailRegex.test(email)) {
+        failEmailAdd();
+        return false;
+    }
+    if (!phoneRegex.test(phone)) {
+        failPhoneAdd();
+        return false;
+    }
+    return true;
+}
+
+function failEmailAdd() {
+    document.getElementById('newContactMail').classList.add('inputFail');
+    document.getElementById('failEmailAdd').classList.remove('d-none');
+}
+
+function failPhoneAdd() {
+    document.getElementById('newContactPhone').classList.add('inputFail');
+    document.getElementById('failPhoneAdd').classList.remove('d-none');
+}
+
+function failAllAdd() {
+    document.getElementById('newContactName').classList.add('inputFail');
+    document.getElementById('newContactMail').classList.add('inputFail');
+    document.getElementById('newContactPhone').classList.add('inputFail');
+    document.getElementById('failAll').classList.remove('d-none');
+}
+
 function validateEdit() {
     let name = document.getElementById('newContactName').value;
     let email = document.getElementById('newContactMail').value;
@@ -332,4 +369,21 @@ function validateEdit() {
         return false;
     }
     return true;
+}
+
+function failAllEdit() {
+    document.getElementById('name2').classList.add('failinput');
+    document.getElementById('email2').classList.add('failinput');
+    document.getElementById('phone2').classList.add('failinput');
+    document.getElementById('failAllEdit').classList.remove('d_none');
+}
+
+function failEmailEdit() {
+    document.getElementById('newContactMail').classList.add('inputFail');
+    document.getElementById('failEmailAdd').classList.remove('d-none');
+}
+
+function failPhoneEdit() {
+    document.getElementById('newContactPhone').classList.add('inputFail');
+    document.getElementById('failPhoneAdd').classList.remove('d-none');
 }

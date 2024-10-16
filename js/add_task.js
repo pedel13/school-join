@@ -322,7 +322,7 @@ function deleteCreateSubtask(subtaskCreateCount = '') {
     deleteCreateSubtaskIfElse(subtaskCreateCount);
     let element = document.getElementById('subtaskStorage');
     if (element) {
-        let child = document.querySelector('#subtaskCreate_' + subtaskCreateCount);;
+        let child = document.querySelector('#subtaskCreate_' + subtaskCreateCount);
         if (child) {
             child.remove();
         }
