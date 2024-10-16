@@ -18,6 +18,7 @@
 @media (max-height: 932px) {
     .taskOverlayWrapper {
         max-height: 90vh;
+        width: 95% !important;
         overflow-y: scroll !important;
     }
 
