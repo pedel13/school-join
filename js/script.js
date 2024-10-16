@@ -48,10 +48,6 @@ document.addEventListener('keydown', evt => {
     }
 });
 
-document.addEventListener('enter', evt => {
-
-});
-
 document.addEventListener('click', function(event) {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     let typeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
