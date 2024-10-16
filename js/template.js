@@ -114,7 +114,7 @@ function renderAddOverlay(position) {
                                         Urgent
                                         <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
                                     </button>
-                                    <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly">
+                                    <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly priorityButtonActive">
                                         Medium
                                         <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
                                     </button>
