@@ -16,7 +16,6 @@ async function addContact(event) {
     await setContactToFirebase(contactName, contactMail, contactPhone, nameCharts, contactColor);
     closeContactOverlay();
     await fetchContacts();
-    validateAdd();
 }
 
 /**
@@ -27,29 +26,21 @@ function setColor() {
     let randomNumber = Math.floor(Math.random() * 7);
     let color = '';
     switch (randomNumber) {
-        case 0:
-            color = "bg-orange";
+        case 0: color = "bg-orange";
             break;
-        case 1:
-            color = "bg-purple";
+        case 1: color = "bg-purple";
             break;
-        case 2:
-            color = "bg-blue";
+        case 2: color = "bg-blue";
             break;
-        case 3:
-            color = "bg-pink";
+        case 3: color = "bg-pink";
             break;
-        case 4:
-            color = "bg-yellow";
+        case 4: color = "bg-yellow";
             break;
-        case 5:
-            color = "bg-green";
+        case 5: color = "bg-green";
             break;
-        case 6:
-            color = "bg-dark-blue";
+        case 6: color = "bg-dark-blue";
             break;
-        case 7:
-            color = "bg-red";
+        case 7: color = "bg-red";
             break;
         default:
             break;
@@ -316,10 +307,15 @@ async function deleteContact(contactToDelete) {
 }
 
 function validateAdd(name, email, phone) {
+    let nameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
     let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     let phoneRegex = /^[0-9]+$/;
     if (!name || !email || !phone) {
         failAllAdd();
+        return false;
+    }
+    if (!nameRegex.test(name)) {
+        failEmailAdd();
         return false;
     }
     if (!emailRegex.test(email)) {
