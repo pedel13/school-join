@@ -243,7 +243,7 @@ async function renderContacts(contactID, name, mail, nameCharts, color, contactA
  * @function renderContacts
  */
 async function renderAddContactsOverlay() {
-    document.getElementById("contactOverlay").innerHTML =  /*html*/ ` 
+    document.getElementById("contactOverlayWrapper").innerHTML =  /*html*/ ` 
         <div id="contactOverlayLeft" class="contactOverlayLeft">
             <div class="close-white">
                 <img src="./img/icons/cancel-white.svg" alt="cancel" class="close-img white-cancel" onclick="closeContactOverlay(event)">
