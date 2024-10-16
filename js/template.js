@@ -125,28 +125,28 @@ function renderAddOverlay(position) {
                                 </div>
                             </div>
                             <div class="gap-8">
-                                    <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
-                                    <div>
-                                        <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
-                                            <select name="choose" id="categorySelect" required>
-                                                <option value="" disabled selected>Select Category</option>
+                                <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
+                                <div>
+                                    <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
+                                        <select name="choose" id="categorySelect" required>
+                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="technical-task">Technical-Task</option>
+                                            <option value="user-story">User-Story</option>
+                                        </select>
+                                        <label for="categorySelect" class="d-none"></label>
+                                        <div class="overSelect"></div>
+                                    </div>
+                                    <div id="taskType">
+                                        <div id="chooseTaskType" class="chooseTaskType">
+                                            <div id="technical-task" onclick="selectCheckBoxSelector('technical-task')">
                                                 <option value="technical-task">Technical-Task</option>
+                                            </div>
+                                            <div id="user-story" onclick="selectCheckBoxSelector('user-story')">
                                                 <option value="user-story">User-Story</option>
-                                            </select>
-                                            <label for="categorySelect" class="d-none"></label>
-                                            <div class="overSelect"></div>
-                                        </div>
-                                        <div id="taskType">
-                                            <div id="chooseTaskType" class="chooseTaskType">
-                                                <div id="technical-task" onclick="selectCheckBoxSelector('technical-task')">
-                                                    <option value="technical-task">Technical-Task</option>
-                                                </div>
-                                                <div id="user-story" onclick="selectCheckBoxSelector('user-story')">
-                                                    <option value="user-story">User-Story</option>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             <div>
                                 <p class="fSize-16">Subtasks</p>
@@ -160,9 +160,10 @@ function renderAddOverlay(position) {
                                 <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
+                        </div>
                     </div>
                     <div id="addTaskBottom" class="addTaskBottom">
-                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>   
+                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>
                         <div id="createTaskButton">
                             <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel.svg"  class="createTaskButtonImg"></button>
                             <button id="create">Create Task <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
@@ -170,7 +171,8 @@ function renderAddOverlay(position) {
                     </div>
                 </form>
             </div>
-        </div>`
+        </div>
+    `;
 }
 /**
  * Renders the name of a clicked contact
