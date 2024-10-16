@@ -32,10 +32,10 @@ select {
     content: url('../img/icons/arrow_drop_down.svg');
     font-size: 2rem;
     top: -3px;
-    right: 34px;
+    right: 18px;
     color: #000;
     height: 24px;
-    position: relative;
+    position: absolute;
     z-index: 100;
 }
 
