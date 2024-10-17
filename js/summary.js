@@ -21,6 +21,9 @@ async function summaryOnLoad(){
     setCountToZero();
 }
 
+/**
+ * resets the counters for the tasks
+ */
 function setCountToZero() {
     taskCount=0;
     urgentCount=0;

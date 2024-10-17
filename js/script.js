@@ -16,6 +16,9 @@ async function init(i) {
     }
 }
 
+/**
+ * tests whether a user is logged in to block the links
+ */
 function testingUser() {
     let ableToUse = JSON.parse(localStorage.getItem("ableToUse"));
     if (ableToUse === false){
@@ -41,6 +44,9 @@ document.addEventListener('keydown', evt => {
     }
 });
 
+/**
+ * closes the addTaskOverlay when clicking next to it
+ */
 document.addEventListener('click', function(event) {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     let typeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
@@ -49,6 +55,12 @@ document.addEventListener('click', function(event) {
             closeAddTaskOverlay();
         }
     }
+});
+
+/**
+ * closes the taskOverlay when clicking next to it
+ */
+document.addEventListener('click', function(event) {
     let taskOverlay = document.getElementById('taskOverlay');
     let typeOnTaskOverlay = document.getElementById('taskOverlayWrapper');
     if (taskOverlay && !taskOverlay.classList.contains('d-none')) {
@@ -56,6 +68,12 @@ document.addEventListener('click', function(event) {
             closeTaskOverlay();
         }
     }
+});
+
+/**
+ * closes the contactOverlay when clicking next to it
+ */
+document.addEventListener('click', function(event) {
     let closeOpenContactOverlay = document.getElementById('contactOverlay');
     let typeOnContactOverlay = document.getElementById('contactOverlayWrapper');
     if (closeOpenContactOverlay && closeOpenContactOverlay && !closeOpenContactOverlay.classList.contains("d-none")) {
@@ -63,12 +81,24 @@ document.addEventListener('click', function(event) {
                 closeContactOverlay();
             }
     }
+});
+
+/**
+* closes the navbar when clicking next to it
+ */
+document.addEventListener('click', function(event) {
     let navbarOpenOrClose = document.getElementById("header-Navbar");
     if (navbarOpenOrClose && !navbarOpenOrClose.classList.contains("d-none")) {
         if (navbarOpenOrClose && !navbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
             navbarOpenOrClose.classList.add("d-none");
         }
     }
+});
+
+/**
+* closes the navbar when clicking next to it
+ */
+document.addEventListener('click', function(event) {
     let contactNavbarOpenOrClose = document.getElementById("contact-Navbar");
     if (contactNavbarOpenOrClose && !contactNavbarOpenOrClose.classList.contains("d-none")) {
         if (contactNavbarOpenOrClose && !contactNavbarOpenOrClose.contains(event.target)&& !isContactOverlayJustOpened) {
@@ -77,6 +107,9 @@ document.addEventListener('click', function(event) {
     }
 });
 
+/**
+ * removes the message no subtask available when writing in the input field
+ */
 document.addEventListener('input', function(event) {
     if (event.target.id === 'subtasks') {
         let noSubtask = document.getElementById('massageBoxSubtask');

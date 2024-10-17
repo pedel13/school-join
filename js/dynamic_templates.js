@@ -90,6 +90,9 @@ function renderSelectedContact(newSelectedContact, contact) {
     ${newSelectedContact.nameCharts[0]}${newSelectedContact.nameCharts[1]}</p> `
 }
 
+/**
+ * renders the number as file contacts were not changed
+ */
 function renderSelectedContactRest(i) {
     document.getElementById("selectedContact").innerHTML += `
     <p
@@ -300,4 +303,23 @@ async function renderAddContactsOverlay() {
             </div>
         </div>       
     `;
+}
+
+/**
+ * @function prioButtonRemoveOther()
+ * setzt die aktiven buttons zurück ausser der, der gerade aktiviert wurde
+ */
+function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
+    buttonSelected = document.getElementById(button);
+    iconSelected = document.getElementById(icon);
+    buttonOtherSelected = document.getElementById(buttonOther);
+    iconOtherSelected = document.getElementById(iconOther);
+    buttonSelected.classList.add("priorityButton");
+    buttonSelected.classList.remove("priorityButtonActive");
+    iconSelected.classList.add(icon);
+    iconSelected.classList.remove(icon + 'Activ');
+    buttonOtherSelected.classList.add("priorityButton");
+    buttonOtherSelected.classList.remove("priorityButtonActive");
+    iconOtherSelected.classList.add(iconOther);
+    iconOtherSelected.classList.remove(iconOther + 'Activ');
 }

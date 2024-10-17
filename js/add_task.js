@@ -330,7 +330,9 @@ function deleteCreateSubtask(subtaskCreateCount = '') {
     document.getElementById('subtaskStorage').innerHTML = ''
     renderAllCreateSubtaskNew();
 }
-
+/**
+ * removes a subtask that is not yet in the database
+ */
 function deleteCreateSubtaskIfElse(subtaskCreateCount) {
     if (subtaskList.length === 1) {
         subtaskList = [];
@@ -377,7 +379,6 @@ function renderAllCreateSubtasks(taskId) {
         }
     }
 }
-
 /**
  * @function addSubtaskAddArray()
  * fügt die erstellten subtask dem globalen array hinzu

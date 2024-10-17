@@ -1,6 +1,8 @@
 let emailCheck = 0;
 let nameCheck = 0;
-
+/**
+ * checks if the user name is already registered
+ */
 function checkName(name) {
     nameCheck = 0;
     for (const user in localUser) {
@@ -17,15 +19,15 @@ function checkName(name) {
         name.classList.add("m-0");
     } 
 }
-
+/**
+ * checks if the mail is already registered
+ */
 function checkEmail(email) {
     emailCheck = 0;
     for (const user in localUser) {
         if (Object.hasOwnProperty.call(localUser, user)) {
             const userCheck = localUser[user];
-            if (userCheck.email === email.value) {
-                emailCheck = 1;
-            }
+            if (userCheck.email === email.value) {emailCheck = 1;}
         }
     }
     if (emailCheck == 1) {
@@ -34,7 +36,9 @@ function checkEmail(email) {
         email.classList.add("m-0");
     }
 }
-
+/**
+ * removes the field message
+ */
 function alertClassRemove(element, massageBox) {
     element.classList.remove("alert-filled");
     element.classList.remove("m-0");
@@ -55,7 +59,9 @@ async function addUser(event) {
     checkEmail(email);
     await addUserIfElse(name, email, passwordConfirm, password);
 }
-
+/**
+ * checks whether the user already exists
+ */
 async function addUserIfElse(name, email, passwordConfirm, password) {
     if (nameCheck == 1) {
     } else {

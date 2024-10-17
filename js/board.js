@@ -6,7 +6,9 @@ let countOnDone = 0;
 let subtaskCount = 0;
 let subtaskCountInProzent = 0;
 let subtaskCountProvement = 0;
-
+/**
+ * allows dropping
+ */
 function allowDrop(ev) {
     ev.preventDefault();
 }

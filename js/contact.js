@@ -1,6 +1,7 @@
 /* Local variables */
 let localContactArray;
 let alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+let anyID;
 /**
  * Creates new Contact-Dataset
  * @function addContact
@@ -73,7 +74,9 @@ function splitName(data) {
     nameCharts.push(secondChartUpperCase);
     return nameCharts;
 }
-
+/**
+ * saves a new contact on the server
+ */
 async function postContactData(path = "", data) {
     try {
         let response = await fetch(BASE_URL + path + ".json", {
@@ -144,16 +147,16 @@ async function fetchContacts() {
         renderContacts(contactID, name, mail, nameCharts, color, contactAlphabetRenderElement);
     }
 }
-
+/**
+ * load the contact page
+ */
 async function loadContacts(path = "") {
     let response = await fetch(BASE_URL + path + ".json");
     localContactArray = await response.json();
 }
-
-function highlightContactCard() {
-    //
-}
-
+/**
+ * searches for the contakt in the database
+ */
 function searchRenderPositionClickedContact(contactId) {
     let testForOverlay = document.getElementById("contactsRight");
     renderClickedContact(contactId);
@@ -164,8 +167,9 @@ function searchRenderPositionClickedContact(contactId) {
         document.getElementById('contactRightHeadSectionMobile').classList.remove('d-none')
     }
 }
-
-let anyID;
+/**
+ * highlights the contacted contact
+ */
 function renderContactHighlight(contactID) {
     if(anyID) {
         document.getElementById(`${anyID}`).classList.remove('activeContact');
@@ -173,7 +177,9 @@ function renderContactHighlight(contactID) {
     document.getElementById(`${contactID}`).classList.add('activeContact');
     anyID = contactID;
 }
-
+/**
+ * closes the coantakt navbar
+ */
 function contactNavbarOpenClose() {
     let navbarOpenOrClose = document.getElementById("contact-Navbar");
     if (hasClass(navbarOpenOrClose,'d-none')) {
@@ -318,6 +324,9 @@ async function deleteContact(contactToDelete) {
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }
+/**
+ * checks whether the email is correctly validated
+ */
 function validateEdit() {
     let name = document.getElementById('newContactName').value;
     let email = document.getElementById('newContactMail').value;

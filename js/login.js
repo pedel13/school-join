@@ -67,7 +67,9 @@ async function fetchUserData() {
     
     localUser = responseToJson;
 }
-
+/**
+ * load your login page
+ */
 async function onloadLogin() {
     localStorage.clear();
     localStorage.setItem("ableToUse", false);

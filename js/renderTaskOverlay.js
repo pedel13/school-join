@@ -26,7 +26,9 @@ function closeTaskOverlay() {
     document.getElementById('taskOverlay').classList.add('d-none');
     renderAllTasks();
 }
-
+/**
+ * fetches the data to render the task clicked on
+ */
 function takeElementFromTask(taskid) {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let contacts = JSON.parse(localStorage.getItem("usableContacts"));
@@ -59,7 +61,9 @@ function subtaskLoop(taskId) {
         i++;
     });
 }
-
+/**
+ * changes whether a subtask is completed or not
+ */
 async function changeSubtaskProvement(i, taskId = '') {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
     let element = tasks[taskId];
@@ -75,7 +79,9 @@ async function changeSubtaskProvement(i, taskId = '') {
     localStorage.tasks = JSON.stringify(tasks);
     subtaskLoop(taskId);
 }
-
+/**
+ * updates the server whether a subtask is completed or not
+ */
 async function updateSubtaskProvement(data = {}, path = '') {
     try {
         let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {

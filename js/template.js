@@ -38,6 +38,9 @@ async function includeHTMLNoUser() {
     }
     document.getElementById("sidebarNoUserContainer").classList.remove("d-none");
 }
+/**
+ * checks whether the class d-non is set
+ */
 function hasClass(element, className) {
     return (' ' + element.className + ' ').indexOf(' ' + className+ ' ') > -1;
 }
@@ -156,7 +159,7 @@ function renderAddOverlay(position) {
                                             <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="massageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span>
+                                <div id="massageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span></div>
                                 <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
@@ -200,6 +203,9 @@ function renderSubTasks(subtask, taskId, i, checkBox = '') {
         </div>
     `;
 }
+/**
+ * renders the clicked task
+ */
 function renderTaskCardBig(element, categoryText, taskId) {
     document.getElementById('taskOverlay').innerHTML = `
         <div id="taskOverlayWrapper" class="taskOverlayWrapper slide-right">
@@ -239,6 +245,9 @@ function renderTaskCardBig(element, categoryText, taskId) {
             </div>
         </div>`;
 }
+/**
+ * renders the editor for the clicked task
+ */
 function renderTaskEditor(taskId, task) {
     document.getElementById('taskOverlay').innerHTML = /*html*/ `
         <div  class="taskOverlayWrapper slide-right">
@@ -376,23 +385,4 @@ function editCreatSubtask(subtaskCreateCount = '', newSubtask = '') {
     document.getElementById('subtasks').removeAttribute("placeholder");
     document.getElementById('subtasks').value = newSubtask;
     deleteCreateSubtask(subtaskCreateCount);
-}
-
-/**
- * @function prioButtonRemoveOther()
- * setzt die aktiven buttons zurück ausser der, der gerade aktiviert wurde
- */
-function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
-    buttonSelected = document.getElementById(button);
-    iconSelected = document.getElementById(icon);
-    buttonOtherSelected = document.getElementById(buttonOther);
-    iconOtherSelected = document.getElementById(iconOther);
-    buttonSelected.classList.add("priorityButton");
-    buttonSelected.classList.remove("priorityButtonActive");
-    iconSelected.classList.add(icon);
-    iconSelected.classList.remove(icon + 'Activ');
-    buttonOtherSelected.classList.add("priorityButton");
-    buttonOtherSelected.classList.remove("priorityButtonActive");
-    iconOtherSelected.classList.add(iconOther);
-    iconOtherSelected.classList.remove(iconOther + 'Activ');
 }
