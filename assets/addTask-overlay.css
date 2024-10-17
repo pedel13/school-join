@@ -184,6 +184,7 @@ label#subTaskLabel {
     position: relative;
     left: 15px;
     top: -4px;
+    height: 28px;
     z-index: 0;
     -webkit-appearance: none;
 }

@@ -137,6 +137,10 @@
         width: 20px !important;
         height: 20px !important;
     }
+
+    .ticketTitle {
+        font-size: 32px !important;
+    }
 }
 
 @media (max-width: 615px) {

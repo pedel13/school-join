@@ -120,6 +120,12 @@
     }
 }
 
+@media (max-width: 430px) {
+    .checkBox {
+        margin-bottom: 10px !important;
+    }
+}
+
 @media (max-width: 415px) {
     /*##### login page #####*/
     .join-logo {
@@ -303,6 +309,10 @@
 
     .ticketTitle {
         font-size: 24px !important;
+    }
+
+    .issueType {
+        font-size: 20px !important;
     }
 }
 
