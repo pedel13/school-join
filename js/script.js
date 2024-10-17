@@ -79,7 +79,7 @@ document.addEventListener('click', function(event) {
 
 document.addEventListener('input', function(event) {
     if (event.target.id === 'subtasks') {
-        let noSubtask = document.getElementById('massageBoxSubtask');
+        let noSubtask = document.getElementById('messageBoxSubtask');
         if (!noSubtask.classList.contains('d-none')) {
             noSubtask.classList.add('d-none');
         }

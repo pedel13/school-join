@@ -156,7 +156,7 @@ function renderAddOverlay(position) {
                                             <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="massageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span>
+                                <div id="messageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span>
                                 <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
@@ -309,7 +309,7 @@ function renderTaskEditor(taskId, task) {
                                         <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="massageBoxSubtask" class="d-none">
+                                <div id="messageBoxSubtask" class="d-none">
                                     <span class="alert-massage">Bitte gib eine Aufgabe ein</span>
                                 </div>
                                 <ul id="subtaskStorage"></ul>

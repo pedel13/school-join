@@ -190,6 +190,7 @@ async function clearAddTask() {
     document.getElementById('categorySelect').value= '';
     document.getElementById("technical-task").classList.remove("addedContacts");
     document.getElementById("user-story").classList.remove("addedContacts");
+    document.getElementById("messageBoxSubtask").classList.add("d-none");
     document.getElementById('subtasks').value = '';
     document.getElementById('subtaskStorage').innerHTML = '';
     document.getElementById('selectedContact').innerHTML = '';
@@ -383,7 +384,7 @@ function renderAllCreateSubtasks(taskId) {
  * fügt die erstellten subtask dem globalen array hinzu
  */
 function addSubtaskAddArray() {
-    let noSubtask = document.getElementById('massageBoxSubtask');
+    let noSubtask = document.getElementById('messageBoxSubtask');
     let newSubtask = document.getElementById('subtasks').value;
     if (newSubtask) {  
         if (subtaskList.length < 1) {
