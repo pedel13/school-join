@@ -56,7 +56,7 @@ function subtaskLoop(taskId) {
         if (subtaskCheckbox[i] == 'false') {
             renderSubTasks(subtask, taskId, i, '');
         } else {
-            renderSubTasks(subtask, taskId, i, 'checkedinput');
+            renderSubTasks(subtask, taskId, i, 'checkedInput');
         }
         i++;
     });

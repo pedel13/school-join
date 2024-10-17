@@ -324,26 +324,3 @@ async function deleteContact(contactToDelete) {
     document.getElementById('renderedContactDetails').innerHTML = "";
     document.getElementById(`renderedContactDetails`).classList.remove('d-none');
 }
-/**
- * checks whether the email is correctly validated
- */
-function validateEdit() {
-    let name = document.getElementById('newContactName').value;
-    let email = document.getElementById('newContactMail').value;
-    let phone = document.getElementById('newContactPhone').value;
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    let phoneRegex = /^[0-9]+$/;
-    if (!name || !email || !phone) {
-        failAllEdit();
-        return false;
-    }
-    if (!emailRegex.test(email)) {
-        failEmailEdit();
-        return false;
-    }
-    if (!phoneRegex.test(phone)) {
-        failPhoneEdit();
-        return false;
-    }
-    return true;
-}

@@ -1,0 +1,314 @@
+@media (max-width: 500px) {
+    /*##### Sign Up Page #####*/
+    .signUp-title > div > h1 {
+        font-size: 32px !important;
+    }
+
+    .project-title {
+        max-width: 350px;;
+    }
+
+    .currentName {
+        font-size: 37px;
+        font-weight: 500;
+        margin-bottom: 0;
+    }
+
+    #loginForm {
+        max-width: 370px;
+    }
+
+    #loginCredentials > form > input {
+        max-width: 320px;
+    }
+
+    button#logIn {
+        max-width: 65px;
+    }
+    button#guestLogIn {
+        max-width: 130px;
+    }
+
+    /*##### board.html (Add task form) #####*/
+    #title,
+    textarea,
+    #selectContacts,
+    #selectInputAssignee,
+    #datePicker,
+    #categorySelect,
+    .priority,
+    .addTaskEnterSubtask {
+        width: 224px;
+    }
+
+    .addTaskWrapperRight {
+        align-items: center;
+    }
+
+    .priorityButton {
+        width: 70px;
+        font-size: 16px;
+    }
+
+    .priorityImg {
+        display: none;
+    }
+
+    div#addTaskBottom {
+        width: 100% !important;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .addTaskEnterSubtask {
+        padding-right: 8px !important;
+    }
+
+    .mainAddTaskSite {
+        font-size: 36px !important;
+    }
+
+    #createTaskButton {
+        flex-direction: column;
+        width: 224px;
+    }
+
+    #clear,
+    #create {
+        width: 100% !important;
+        margin: 8px 0 !important;
+    }
+
+    .contactOverlayMobileTop {
+        margin-bottom: 100px;
+        color: #ffffff;
+        padding: 40px;
+        font-size: 20px !important;
+    }
+
+    /*##### Add-Task page #####*/
+    #subtaskStorage {
+        width: 224px;
+    }
+
+    /*##### AddTask Form page #####*/
+    #checkboxes,
+    #taskType {
+        max-width: 224px !important;
+    }
+
+    /*##### AddContact Form overlay #####*/
+    .contactOverlayLeft {
+        padding-left: 12px !important;
+    }
+    .innerContactOverlayLeftContent > h1 {
+        font-size: 26px;
+    }
+
+    .innerContactOverlayLeftContent > p {
+        font-size: 16px;
+    }
+
+    .close-white {
+        margin-top: -100px !important;
+    }
+}
+
+@media (max-width: 460px) {
+    .contactListWithButton {
+        max-width: 100vw;
+    }
+}
+
+@media (max-width: 415px) {
+    /*##### login page #####*/
+    .join-logo {
+        height: 80px;
+        width: 70px;
+    }
+
+    .loginHeader {
+        justify-content: flex-start;
+    }
+
+    #loginForm > h1 {
+        font-size: 40px !important;
+    }
+
+    button#logIn {
+        width: 75px;
+    }
+
+    button#guestLogIn {
+        width: 115px;
+    }
+
+    /*##### summary page #####*/
+    #innerCenterBoxMobile {
+        width: 300px;
+    }
+
+    #innerCenterBoxMobile > h1,
+    #innerCenterBoxMobile > h3 {
+        font-size: 26px !important;
+    }
+
+    #summary-toDo,
+    #summary-done,
+    #summary-urgent,
+    #summary-all-tasks,
+    #summary-taskInProgress,
+    #summary-awaitFeedback {
+        font-size: 40px !important;
+    }
+
+    .summary-button-text-medium {
+        font-size: 16px !important;
+    }
+
+    .summary-button-box {
+        margin-top: 16px !important;
+    }
+
+    .summary-button-size-medium {
+        width: 147px !important;
+    }
+
+    #button-row2 {
+        width: 306px;
+    }
+
+    .summary-date {
+        font-size: 15px !important;
+    }
+
+    .summary-date-text {
+        font-size: 15px !important;
+    }
+
+    #button-row3 {
+        max-width: 306px;
+    }
+
+    #button-row3 > * {
+        width: 94px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-bottom: 16px;
+    }
+
+    .footerLinks {
+        font-size: 16px;
+    }
+
+    /*##### Sign Up Page #####*/
+    .loginForm,
+    .signUpForm {
+        padding: 42px 63px;
+    }
+
+    .signUp-title {
+        flex-direction: column-reverse;
+        justify-content: center!important;
+        align-items: center !important;
+        margin-top: 0 !important;
+        padding: 0 !important;
+    }
+
+    .signUp-title > div > h1 {
+        margin: 0 0 16px 0;
+    }
+
+    .addTaskOverlayHeadline > h1 {
+        font-size: 24px !important;
+    }
+
+    #contactTitle {
+        gap: 30px;
+    }
+
+    /*##### AddContact overlay  #####*/
+    .icon-person,
+    .icon-letter,
+    .icon-phone {
+        background-image: none !important;
+    }
+
+    .innerContactOverlayLeftContent > h1 {
+        font-size: 30px;
+    }
+
+    /*##### Privacy.html #####*/
+    .privacyWrapper > div > h1,
+    .privacyWrapper > div > h2 {
+        font-size: 28px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    /*##### Log-In Page #####*/
+    .signUp_buttons {
+        width: 100% !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .signUp_buttons > button {
+        width: 100%;
+        display: block;
+        flex-direction: column;
+        margin-bottom: 12px;
+    }
+
+    #loginForm {
+        max-width: 320px;
+    }
+
+    #loginCredentials > form > input {
+        max-width: 280px;
+    }
+
+    button#logIn {
+        width: 200px;
+        max-width: 200px!important;
+    }
+
+    button#guestLogIn {
+        width: 200px;
+        max-width: 200px;
+    }
+
+    h1.project-title {
+        font-size: 18px !important;
+    }
+    .currentName {
+        font-size: 27px;
+    }
+    #contactTitle {
+        gap: 10px;
+    }
+
+    #contactAvatar {
+        height: 60px !important;
+        width: 60px !important;
+    }
+
+    .credentialsCircle {
+        height: 55px;
+        width: 60px;
+    }
+}
+
+@media (max-width: 320px) {
+    /*##### Log-In Page #####*/
+    #loginForm {
+        max-width: 250px;
+    }
+
+    h1.project-title {
+        font-size: 20px !important;
+    }
+}

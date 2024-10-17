@@ -315,10 +315,12 @@ function renderTaskEditor(taskId, task) {
                                 <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
                                     <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
                                     <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
-                                    <div class="addTaskAdd"></div>
+                                        <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="massageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span>
+                                <div id="messageBoxSubtask" class="d-none">
+                                    <span class="alert-massage">Bitte gib eine Aufgabe ein</span>
+                                </div>
                                 <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
@@ -347,7 +349,7 @@ async function renderEditContactsOverlay(contactId) {
     document.getElementById("newContactName").value = name;
     document.getElementById("newContactMail").value = email;
     document.getElementById("newContactPhone").value = phone;
-    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
+    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`;
     document.getElementById("avatar").innerHTML =  /*html*/ `
         <div id="contactAvatar">
             <div class="credentialsCircle ${color}" id="credentialsCircle">
