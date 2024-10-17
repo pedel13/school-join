@@ -16,6 +16,7 @@ function allowDrop(ev) {
  * speichert die id des tasks global
  */
 function drag(id) {cardDraggedId = id;}
+
 /**
  * @function drop()
  * rendert die position und gibt sie danach der updateTask funktion
@@ -96,7 +97,6 @@ function reduceDroppedElement(elementPosition) {
 }
 
 /**
- * 
  * @function taskGoBackNext()
  * verändert die position von dem verschobenen task ohne drag & drop und gibt diese an die funktion taskGoBack() zurück
  */
@@ -141,8 +141,7 @@ function taskGoForwardNext(position) {
 
 /**
  *  taskGoBack()
- *  setzt die position im aufgabenfeld zurück und gibt sie danach der funktion updateTask one drag and drop
- *  und läst die task neu rendern
+ *  setzt die position im aufgabenfeld zurück und gibt sie danach der funktion updateTask one drag and drop und läst die task neu rendern
  */
 async function taskGoBack(position="", taskId="") {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -161,8 +160,7 @@ async function taskGoBack(position="", taskId="") {
 
 /**
  *  @function taskGoBack()
- *  setzt die position im aufgabenfeld nach vorne und gibt sie danach der funktion updateTask one drag & drop
- *  und lässt die tasks neu rendern
+ *  setzt die position im aufgabenfeld nach vorne und gibt sie danach der funktion updateTask one drag & drop und lässt die tasks neu rendern
  */
 async function taskGoForward(position="", taskId="") {
     let tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -201,7 +199,6 @@ function findeTask(value) {
 }
 
 /**
- * 
  * @function renderFindeTask()
  * lässt den gefundenen task rendern und lässt die vorhandenen Kontakte reinrendern
  */
@@ -216,9 +213,13 @@ function renderFindeTask(element, taskId, contacts) {
         let activeContact = contacts[activeContactId];
         i++;
         if (i<5){renderActiveContacts(activeContact, activeContactId, taskId);}
-        }if (i>=5){renderActiveContactsRest(i,taskId)}
-        subtaskCount = 0; 
+    }
+    if (i>=5){
+        renderActiveContactsRest(i,taskId)
+    }
+    subtaskCount = 0;
 }
+
 /**
  * @function noTasksInProgress()
  * kontrolliert ob tasks in der jeweiligen spalte vorhanden sind und lässt das no task feld erscheinen oder verschwinden
@@ -237,6 +238,7 @@ function noTasksInProgress() {
         addNoTaskInProgress("no-tasks-Done");
     } else { removeNoTaskInProgress("no-tasks-Done"); }
 }
+
 /**
  * @function addNoTaskInProgress()
  * lässt das no task feld in der entsprechenden Spalte erscheinen oder verschwinden
@@ -263,6 +265,7 @@ async function loadTasks(path="") {
     let response = await fetch(baseUrl + path + ".json");
     return await response.json();
 }
+
 /**
  * @function cleanTaskboard()
  * löscht die tasks aus den entsprechenden progress spalten und setzt die dazugehörigen zähler wieder auf 0
@@ -277,6 +280,7 @@ function cleanTaskboard() {
     countOnAwaitFeedback = 0;
     countOnDone = 0;
 }
+
 /**
  * @function renderAllTasks()
  * ladet alle tasks fom backend und speichert sie lokal, leert das bord und rendert die tasks neu
@@ -303,7 +307,7 @@ function subtaskExist(task) {
     let testingSubtask = task.subtasks;
     if (typeof testingSubtask !== 'undefined' && testingSubtask) {
         subtaskCounter(task);
-    }else {
+    } else {
         subtask = "d-none";
     }
     return subtask;
@@ -313,7 +317,6 @@ function subtaskExist(task) {
  * @function subtaskCounter()
  * zählt die subtasks und berechnet wie viel prozent davon erledigt sind
  */
-
 function subtaskCounter(task) {
     let subtask = task.subtasks;
     subtaskProofments = task.subtask;
@@ -327,6 +330,7 @@ function subtaskCounter(task) {
     }
     subtaskCountInProzent = 100 / subtaskCount * subtaskCountProvement;
 }
+
 /**
  * @function categoryFinder()
  * kontrolliert welcher kategorie der task angehört und setzt den dazugehörigen text fest da das abgespeicherte nur die klasse festlegt für die farbe
@@ -340,11 +344,11 @@ function categoryFinder(task) {
     }
     return categoryText;
 }
+
 /**
  * @function countForNoTask()
  * zählt die tasks in der jeweiligen progress spalte, um herauszufinden, wo kein task ist
  */
-
 function countForNoTask(positionFromCard) {
     switch (positionFromCard) {
         case "board-task-on-to-do":
@@ -366,7 +370,6 @@ function countForNoTask(positionFromCard) {
  * @function deleteTask()
  * löst einen bestimmten task anhand seiner id
  */
-
 async function deleteTask(event, taskId) {
     event.preventDefault(event);
     try {

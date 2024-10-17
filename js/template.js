@@ -340,7 +340,7 @@ async function renderEditContactsOverlay(contactId) {
     document.getElementById("newContactName").value = name;
     document.getElementById("newContactMail").value = email;
     document.getElementById("newContactPhone").value = phone;
-    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`
+    document.getElementById("clearNewContact").innerHTML = /*html*/ `Delete`;
     document.getElementById("avatar").innerHTML =  /*html*/ `
         <div id="contactAvatar">
             <div class="credentialsCircle ${color}" id="credentialsCircle">

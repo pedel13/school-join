@@ -336,25 +336,15 @@ header > div > h1 {
     border-radius: 2px !important;
 }
 
-.border-black {
-    border: 2px solid #000000;
-}
+.border-black { border: 2px solid #000000; }
 
-.checkedinput {
-    background-image: url("../img/icons/checkmark.svg");
-}
+.checkedInput { background-image: url("../img/icons/checkmark.svg"); }
 
-#addTask {
-    margin-right: 80px;
-}
+#addTask { margin-right: 80px; }
 
-.headerBar {
-    margin-top: 24px;
-}
+.headerBar { margin-top: 24px; }
 
-#taskID {
-    justify-content: space-between;
-}
+#taskID { justify-content: space-between; }
 
 .moveButtons {
     display: flex;
@@ -374,32 +364,23 @@ header > div > h1 {
     height: 24px;   
 }
 
-.alert-filled {
-    border-color: #FF8190 !important;  
+.alert-filled { border-color: #FF8190 !important;
 }
 
-.resp-signUp {
-    display: none;
-}
+.resp-signUp { display: none; }
 
-.responsive-mobile-menu {
-    display: none;
-}
+.responsive-mobile-menu { display: none; }
 
 .privacyWrapper,
 .legalWrapper,
-.helpWrapper {
-    padding: 5%;
-}
+.helpWrapper { padding: 5%; }
 
-#hoverRotation:hover {
-    transform: rotate(1deg) !important;
+.hoverRotation:hover {
+    transform: rotate(3deg) !important;
     transition: all 100ms ease-in-out !important;
 }
 
-.iconCircleContact {
-    display: none;
-}
+.iconCircleContact { display: none; }
 
 .white-cancel {
     display: none !important;

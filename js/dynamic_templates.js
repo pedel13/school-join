@@ -272,7 +272,7 @@ async function renderAddContactsOverlay() {
                             <input type="text" id="newContactName" class="icon-person" pattern="^[A-Za-z]+ [A-Za-z]+$" title="Firstname Space Name" placeholder="Name" required>
                             <label for="newContactName"></label>
                             
-                            <input type="email" id="newContactMail" class="icon-letter" pattern=".*@.*\.\w{2,}" title="Please enter a valid e-mail address" placeholder="Mail" required>   
+                            <input type="email" id="newContactMail" class="icon-letter" pattern=".*@.*\.\w{2,}" title="Bitte gib eine gültige E-Mailadresse ein. Z.B. max@muster.com" placeholder="Mail" required>   
                             <label for="newContactMail"></label>
                                                                      
                             <input type="tel" id="newContactPhone" class="icon-phone" pattern="[0-9]+" placeholder="Phone" required>

@@ -394,5 +394,7 @@ function addSubtaskAddArray() {
         subtasks.value = '';
         let subtaskCreateCount = subtaskList.length - 1;
         renderCreateSubtask(newSubtask, subtaskCreateCount);
-    }else{noSubtask.classList.remove('d-none');}
+    } else {
+        noSubtask.classList.remove('d-none');
+    }
 }
