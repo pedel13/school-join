@@ -217,7 +217,7 @@ function renderTaskCardBig(element, categoryText, taskId) {
             </div>
             <div class="w-100">
                 <div  class="taskOverlayTitle">
-                    ${element.title}
+                    <p class="ticketTitle">${element.title}</p>
                 </div>
                 <div id="taskOverlayFacts" class="taskOverlayFacts">
                     <p>${element.description}</p>
