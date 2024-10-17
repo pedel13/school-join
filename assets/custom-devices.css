@@ -176,10 +176,10 @@
     }
 
     /*##### board.html #####*/
-    #main > div.board-task-columns:nth-of-type(1) { width: 55% !important; }
-    #main > div.board-task-columns:nth-of-type(2) { width: 55% !important; }
-    #main > div.board-task-columns:nth-of-type(3) { width: 55% !important; }
-    #main > div.board-task-columns:nth-of-type(4) { width: 55% !important; }
+    #main > div.board-task-columns:nth-of-type(1) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(2) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(3) { width: 65% !important; }
+    #main > div.board-task-columns:nth-of-type(4) { width: 65% !important; }
 
     p#categoryTitle {
         font-size: 12px;

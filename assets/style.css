@@ -377,7 +377,7 @@ header > div > h1 {
 
 .hoverRotation:hover {
     transform: rotate(3deg) !important;
-    transition: all 100ms ease-in-out !important;
+    transition: all 350ms ease-in-out !important;
 }
 
 .iconCircleContact { display: none; }
