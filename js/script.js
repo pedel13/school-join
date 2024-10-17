@@ -51,7 +51,7 @@ document.addEventListener('click', function(event) {
     let addTaskOverlay = document.getElementById('addTaskOverlay');
     let typeOnAddTaskOverlay = document.getElementById('outerTaskOverlayWrapper');
     if (addTaskOverlay && !addTaskOverlay.classList.contains('d-none')) {
-        if (typeOnAddTaskOverlay && !typeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
+        if (!typeOnAddTaskOverlay.contains(event.target) && !isAddTaskOverlayJustOpened) {
             closeAddTaskOverlay();
         }
     }
@@ -112,9 +112,6 @@ document.addEventListener('click', function(event) {
  */
 document.addEventListener('input', function(event) {
     if (event.target.id === 'subtasks') {
-        let noSubtask = document.getElementById('messageBoxSubtask');
-        if (!noSubtask.classList.contains('d-none')) {
-            noSubtask.classList.add('d-none');
-        }
+        deleteSubtaskAlert();
     }
 });

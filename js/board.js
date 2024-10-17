@@ -45,7 +45,7 @@ async function drop(dropPosition, zoneId) {
  */
 async function updateTask(element,path="") {
     try {
-        let response = await fetch(baseUrl + path + ".json", {
+        let response = await fetch(BASE_URL + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -264,7 +264,7 @@ function removeNoTaskInProgress(taskInProgress = "") {
  * lädt daten mit variablem pfad vom backand
  */
 async function loadTasks(path="") {
-    let response = await fetch(baseUrl + path + ".json");
+    let response = await fetch(BASE_URL + path + ".json");
     return await response.json();
 }
 
@@ -375,7 +375,7 @@ function countForNoTask(positionFromCard) {
 async function deleteTask(event, taskId) {
     event.preventDefault(event);
     try {
-    let response = await fetch(baseUrl + "/board/tasks/" + taskId + ".json", {
+    let response = await fetch(BASE_URL + "/board/tasks/" + taskId + ".json", {
         method: 'DELETE',
     });
         if (!response.ok) {

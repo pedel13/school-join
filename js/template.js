@@ -64,114 +64,142 @@ function templateNavbarOpenClose() {
  */
 function renderAddOverlay(position) {
     document.getElementById('addTaskOverlay').innerHTML = ''
-    document.getElementById('addTaskOverlay').innerHTML = `            
+    document.getElementById('addTaskOverlay').innerHTML = /*html */`            
         <div id="outerTaskOverlayWrapper" class="outerTaskOverlayWrapper slide-top">
             <div class="addTaskOverlayHeadline">
                 <h1>Add Task</h1>
                 <img src="./img/icons/cancel.svg" alt="cancel" onclick="closeAddTaskOverlay()" title="Klick or press ESC to close">
             </div>
             <div id="innerTaskOverlayWrapper" class="innerTaskOverlayWrapper">
-                <form class="main" onsubmit="addTask(event,'${position}')">
-                    <div id="addTaskWrapper" class="addTaskWrapper">
-                        <div class="addTaskWrapperLeft">
-                            <div>
-                                <p class="fSize-16">Title<span class="redStar">*</span></p>
-                                <input type="text" id="title" placeholder="Enter Title" required/>
-                            </div>
-                            <div class="spacer">&nbsp;</div>
-                            <div>
-                                <p class="fSize-16">Description</p>
-                                <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
-                            </div>
-                            <div class="spacer">&nbsp;</div>
-                            <div class="gap-8">
-                                <p class="fSize-16 mb-8">Assigned to</p>
+            <form class="main" onsubmit="addTask(event, '${position}')">
+                        <div id="addTaskWrapper" class="addTaskWrapper">
+                            <div class="addTaskWrapperLeft">
                                 <div>
-                                    <div class="selectBox" id="dropDownArrowContacts" onclick="showCheckboxes()">
-                                        <select id="selectInputAssignee">
-                                            <option value="" disabled selected>Select contacts to assign</option>
-                                        </select>
-                                        <div class="overSelect"></div>
+                                    <p class="fSize-16 mb-8">Title<span class="redStar">*</span></p>
+                                    <label for="title">
+                                        <input type="text" id="title" placeholder="Enter Title" required />
+                                    </label>
+                                </div>
+                                
+                                <div class="spacer">&nbsp;</div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Description</p>
+                                    <label for="description">
+                                        <textarea rows="5" id="description" placeholder="Enter a Description"></textarea>
+                                    </label>
+                                </div>
+                                
+                                <div class="spacer">&nbsp;</div>
+                                
+                                <div class="gap-8">
+                                    <p class="fSize-16 mb-8">Assigned to</p>
+                                    <div>
+                                        <div class="selectBox" id="dropDownArrowContacts" onclick="showCheckboxes()">
+                                            <select id="selectInputAssignee">
+                                                <option value="" disabled selected>Select contacts to assign</option>
+                                            </select>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="checkboxes">
+                                            <div class="d-flex flex-column" id="selectContacts">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div id="checkboxes" class="">
-                                        <div class="d-flex flex-column w-100" id="selectContacts">
+                                    <div class="d-flex justify-content-between mt-8">
+                                        <div class="fc-white d-flex gap-10" id="selectedContact">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between mt-8">
-                                    <div class="fc-white d-flex gap-10" id="selectedContact">
-                                    </div>
-                                </div>
                             </div>
-                        </div>
-                        <div class="addTaskWrapperMid divider">&nbsp;</div>
-                        <div class="addTaskWrapperRight">
-                            <div>
-                                <p class="fSize-16">Due Date<span class="redStar">*</span></p>
-                                <input type="date" id="datePicker" required>
-                            </div>
-                            <div>
-                                <p class="fSize-16">Prio</p>
-                                <div id="priority" class="priority d-flex">
-                                    <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                        Urgent
-                                        <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
-                                    </button>
-                                    <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')" class="priorityButton d-flex align-items-center justify-content-evenly priorityButtonActive">
-                                        Medium
-                                        <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
-                                    </button>
-                                    <button id="lowButton" type="button" onclick="prioButtonSelect('low')" class="priorityButton d-flex align-items-center justify-content-evenly">
-                                        Low
-                                        <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="gap-8">
-                                <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
+                            
+                            <div class="addTaskWrapperMid divider">&nbsp;</div>
+                            
+                            <div class="addTaskWrapperRight">
                                 <div>
-                                    <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
-                                        <select name="choose" id="categorySelect" required>
-                                            <option value="" disabled selected>Select Category</option>
-                                            <option value="technical-task">Technical-Task</option>
-                                            <option value="user-story">User-Story</option>
-                                        </select>
-                                        <label for="categorySelect" class="d-none"></label>
-                                        <div class="overSelect"></div>
+                                    <p class="fSize-16 mb-8">Due Date<span class="redStar">*</span></p>
+                                    <label for="datePicker">
+                                        <input type="date" id="datePicker" required>
+                                    </label>
+                                </div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Prio</p>
+                                    <div id="priority" class="priority d-flex">
+                                        <button id="urgentButton" type="button" onclick="prioButtonSelect('urgent')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Urgent
+                                            <div id="addTaskPrioUrgent" class="priorityImg addTaskPrioUrgent"></div>
+                                        </button>
+                                        <button id="mediumButton" type="button" onclick="prioButtonSelect('medium')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly priorityButtonActive">
+                                            Medium
+                                            <div id="addTaskPrioMedium" class="priorityImg addTaskPrioMedium"></div>
+                                        </button>
+                                        <button id="lowButton" type="button" onclick="prioButtonSelect('low')"
+                                                class="priorityButton d-flex align-items-center justify-content-evenly">
+                                            Low
+                                            <div id="addTaskPrioLow" class="priorityImg addTaskPrioLow"></div>
+                                        </button>
                                     </div>
-                                    <div id="taskType">
-                                        <div id="chooseTaskType" class="chooseTaskType">
-                                            <div id="technical-task" onclick="selectCheckBoxSelector('technical-task')">
+                                </div>
+                                
+                                <div class="gap-8">
+                                    <p class="fSize-16 mb-8">Category<span class="redStar">*</span></p>
+                                    <div>
+                                        <div class="selectBox selectBoxtask" id="dropDownCategory" onclick="showSelectBox()">
+                                            <!--img src="./img/icons/arrow_drop_down.svg" alt="arrow-down"-->
+                                            <select name="choose" id="categorySelect" required>
+                                                <option value="" disabled selected>Select Category</option>
                                                 <option value="technical-task">Technical-Task</option>
-                                            </div>
-                                            <div id="user-story" onclick="selectCheckBoxSelector('user-story')">
                                                 <option value="user-story">User-Story</option>
+                                            </select>
+                                            <label for="categorySelect" class="d-none"></label>
+                                            <div class="overSelect"></div>
+                                        </div>
+                                        <div id="taskType">
+                                            <div id="chooseTaskType" class="chooseTaskType">
+                                                <div id="technical-task" onclick="selectCheckBoxSelector('technical-task')">
+                                                    <option value="technical-task">Technical-Task</option>
+                                                </div>
+                                                <div id="user-story" onclick="selectCheckBoxSelector('user-story')">
+                                                    <option value="user-story">User-Story</option>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                </div>
-                            <div>
-                                <p class="fSize-16">Subtasks</p>
-                                <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
-                                <input type="text" id="subtasks" placeholder="Enter Subtasks"/>
-                                    <button class="d-flex" id="addTaskAddSubtaskButton" type="button" onclick="addSubtaskAddArray()">
-                                            <div class="addTaskAdd"></div>
+                                
+                                <div>
+                                    <p class="fSize-16 mb-8">Subtasks</p>
+                                    <div class="addTaskEnterSubtask d-flex align-items-center justify-content-between">
+                                        <label for="subtasks" id="subTaskLabel">
+                                            <input type="text" id="subtasks" placeholder="Enter Subtasks" />
+                                        </label>
+                                        <button class="d-flex" id="addTaskAddSubtaskButton" type="button"
+                                        onclick="addSubtaskAddArray()">
+                                        <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="massageBoxSubtask" class="d-none"><span class="alert-massage">Please type something</span></div>
+                                <div id="messageBoxSubtask" class="">
+                                </div>
                                 <ul id="subtaskStorage"></ul>
                             </div>
                         </div>
                         </div>
-                    </div>
-                    <div id="addTaskBottom" class="addTaskBottom">
-                        <p class="fSize-16">This field is required<span class="redStar">*</span></p>
-                        <div id="createTaskButton">
-                            <button type="button" onclick="clearAddTask()" id="clear">Clear <img src="./img/icons/cancel.svg"  class="createTaskButtonImg"></button>
-                            <button id="create">Create Task <img src="./img/icons/check-icon.png"  class="createTaskButtonImg"></button>
+                        <div id="addTaskBottom" class="addTaskBottom">
+                            <p class="fSize-16">This field is required<span class="redStar">*</span></p>
+                            
+                            <div id="createTaskButton">
+                                <button type="button" onclick="clearAddTask()" id="clear">Clear
+                                    <img src="./img/icons/cancel.svg" class="createTaskButtonImg" alt="cancel-cross">
+                                </button>
+                                <button id="create">Create Task
+                                    <img src="./img/icons/check-icon.png" class="createTaskButtonImg" alt="checkmark">
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    
                 </form>
             </div>
         </div>
@@ -318,8 +346,7 @@ function renderTaskEditor(taskId, task) {
                                         <div class="addTaskAdd"></div>
                                     </button>
                                 </div>
-                                <div id="messageBoxSubtask" class="d-none">
-                                    <span class="alert-massage">Bitte gib eine Aufgabe ein</span>
+                                <div id="messageBoxSubtask" class="">
                                 </div>
                                 <ul id="subtaskStorage"></ul>
                             </div>

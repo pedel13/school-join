@@ -323,3 +323,15 @@ function prioButtonRemoveOther(button, icon, buttonOther, iconOther) {
     iconOtherSelected.classList.add(iconOther);
     iconOtherSelected.classList.remove(iconOther + 'Activ');
 }
+/**
+ * add the message no subtask available when writing in the input field
+ */
+function renderSubtaskAlert() {
+    document.getElementById("messageBoxSubtask").innerHTML =  /*html*/ `<span id="alertMassageSubtask" class="alert-massage">Bitte gib eine Aufgabe ein</span>`
+}
+/**
+ * removes the message no subtask available when writing in the input field
+ */
+function deleteSubtaskAlert() {
+    document.getElementById("messageBoxSubtask").innerHTML =  /*html*/ ``
+}

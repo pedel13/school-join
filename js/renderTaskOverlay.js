@@ -84,7 +84,7 @@ async function changeSubtaskProvement(i, taskId = '') {
  */
 async function updateSubtaskProvement(data = {}, path = '') {
     try {
-        let response = await fetch(baseUrl + "/board/tasks/" + path + ".json", {
+        let response = await fetch(BASE_URL + "/board/tasks/" + path + ".json", {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

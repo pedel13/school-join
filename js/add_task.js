@@ -314,7 +314,6 @@ function prioButtonClearSelect() {
     }
     prioButtonSelect('medium');
 }
-
 /**
  * @function deleteCreateSubtask()
  * entfernt den zu löschenden subtask aus der liste und löst in global
@@ -345,7 +344,6 @@ function deleteCreateSubtaskIfElse(subtaskCreateCount) {
         subtaskProvement.splice(subtaskCreateCountSplice, 1);
     }
 }
-
 /**
  * @function renderAllCreateSubtaskNew()
  * rendert die liste der existierenden subtasks, nachdem einer gelöst wurde, neu
@@ -360,7 +358,6 @@ function renderAllCreateSubtaskNew() {
         }
     }
 }
-
 /**
  * @function renderAllCreateSubtasks()
  * rendert alle bestehenden subtask ins overlay
@@ -385,7 +382,6 @@ function renderAllCreateSubtasks(taskId) {
  * fügt die erstellten subtask dem globalen array hinzu
  */
 function addSubtaskAddArray() {
-    let noSubtask = document.getElementById('messageBoxSubtask');
     let newSubtask = document.getElementById('subtasks').value;
     if (newSubtask) {  
         if (subtaskList.length < 1) {
@@ -396,7 +392,5 @@ function addSubtaskAddArray() {
         subtasks.value = '';
         let subtaskCreateCount = subtaskList.length - 1;
         renderCreateSubtask(newSubtask, subtaskCreateCount);
-    } else {
-        noSubtask.classList.remove('d-none');
-    }
+    } else { renderSubtaskAlert();}
 }
