@@ -98,8 +98,19 @@
     }
 
     /*##### AddContact Form overlay #####*/
+    .contactOverlayLeft {
+        padding-left: 12px !important;
+    }
     .innerContactOverlayLeftContent > h1 {
-        font-size: 40px;
+        font-size: 26px;
+    }
+
+    .innerContactOverlayLeftContent > p {
+        font-size: 16px;
+    }
+
+    .close-white {
+        margin-top: -100px !important;
     }
 }
 
